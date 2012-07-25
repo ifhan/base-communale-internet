@@ -38,29 +38,6 @@ class Rnn {
             echo 'ERROR: ' . $e->getMessage();
         }   
     }
-    
-    /**
-     * Sélectionne les photographies d'une RNN
-     * @global string $pdo
-     * @param string $id_regional
-     * @param int $id_type 
-     */
-    public function getRnnPhotosById($id_regional) {
-        global $pdo;        
-        $sql = "SELECT * 
-        FROM R_RNN_R52_photos 
-        WHERE id_regional = '$id_regional' ";
-        try {
-            $rnn_photos = $pdo->query($sql)->fetch();          
-            $this->id_regional = $rnn_photos["id_regional"];
-            $this->id_photo = $rnn_photos["id_photo"];
-            $this->titre = $rnn_photos["titre"];
-            $this->auteur = $rnn_photos["auteur"];
-            $this->fournisseur = $rnn_photos["fournisseur"];
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }   
-    }
 }
 
 /**
@@ -69,7 +46,7 @@ class Rnn {
  * @param string $id_regional
  * @return array 
  */
-function getRnnPhotosById($id_regional) {
+function getRnnPhotosByIdRegional($id_regional) {
     global $pdo;
     $sql = "SELECT *
     FROM R_RNN_R52_photos 
