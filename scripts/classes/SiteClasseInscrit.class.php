@@ -16,20 +16,14 @@ class SiteClasseInscrit {
      */
     public function getSiteClasseInscritData($id_regional) {
         global $pdo;
-        $sql="SELECT * 
+        $sql = "SELECT * 
         FROM R_SITE_CLASSE_INSCRIT_R52_data 
-        WHERE id_regional = $id_regional "; 
+        WHERE id_regional = '$id_regional' ";
         try {
-            $siteclasseinscrit = $pdo->query($sql)->fetch();          
-            $this->id_regional = $siteclasseinscrit["id_regional"];
-            $this->id_national = $siteclasseinscrit["id_national"];
-            $this->nom = $siteclasseinscrit["nom"];
-            $this->id_dpt = $siteclasseinscrit["id_dpt"];
-            $this->type_site = $siteclasseinscrit["type_site"];
-            $this->id_site = $siteclasseinscrit["id_site"];
-            $this->id_entite = $siteclasseinscrit["id_entite"];
-            $this->url_texte = $siteclasseinscrit["url_texte"];
-            $this->texte_protection = $siteclasseinscrit["texte_protection"];
+            $row = $pdo->query($sql)->fetch();
+            $this->nom = $row["nom"];
+            $this->commentaires = nl2br($row["commentaires"]);
+            $this->sources = nl2br($row["sources"]);
         } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }   
@@ -60,6 +54,24 @@ class SiteClasseInscrit {
         } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }   
+    }
+}
+
+function getEntitesFromSiteByIdRegional($id_regional) {
+    global $pdo;
+    $table = "R_SITE_CLASSE_INSCRIT_R52";
+    $table_2 = "R_SITE_CLASSE_INSCRIT_R52_data";
+        
+    $sql = "SELECT * 
+    FROM $table, $table_2
+    WHERE $table.id_regional = $id_regional 
+    AND $table.id_regional = $table_2.id_regional
+    GROUP BY $table.id_sp"; 
+    try {
+        $entites = $pdo->query($sql)->fetchAll();
+        return $entites;
+    } catch(PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
     }
 }
 
