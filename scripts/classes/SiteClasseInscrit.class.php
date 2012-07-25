@@ -14,13 +14,14 @@ class SiteClasseInscrit {
      * @global type $pdo
      * @param string $id_regional 
      */
-    public function getSiteClasseInscritData($id_regional) {
+    public function getSiteClasseInscritDataByIdRegional($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_SITE_CLASSE_INSCRIT_R52_data 
         WHERE id_regional = '$id_regional' ";
         try {
             $row = $pdo->query($sql)->fetch();
+            $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
             $this->commentaires = nl2br($row["commentaires"]);
             $this->sources = nl2br($row["sources"]);
@@ -74,5 +75,24 @@ function getEntitesFromSiteByIdRegional($id_regional) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
+
+function getSiteClasseInscritPhotosByIdRegional($id_regional,$id_type) {
+        global $pdo;
+        $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
+        $table_2 = "R_SITE_CLASSE_INSCRIT_R52";
+        $table_3 = "R_TYPE_ZONAGE_R52";
+        
+        $sql = "SELECT * 
+        FROM $table, $table_2, $table_3
+        WHERE $table.id_regional = '$id_regional'
+        AND $table.id_regional = $table_2.id_regional
+        AND $table_3.id_type = $id_type "; 
+        try {
+            $site_photos = $pdo->query($sql)->fetchAll();
+            return $site_photos;
+        } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }   
+    }
 
 ?>
