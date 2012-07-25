@@ -94,6 +94,7 @@ function getCommunesByIdRegional($id_regional,$id_type) {
         WHERE $table.id_regional = '$id_regional'
         AND $table.id_commune = $table_2.id_commune 
         AND $table.id_type = $id_type 
+        GROUP BY $table_2.id_commune
         ORDER BY $table_2.id_commune";
         try {
             $communes = $pdo->query($sql)->fetchAll();
