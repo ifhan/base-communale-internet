@@ -29,35 +29,14 @@ class SiteClasseInscrit {
             echo 'ERROR: ' . $e->getMessage();
         }   
     }
-    
-    /**
-     * Sélectionne les photographies d'un site classé ou inscrit
-     * @global type $pdo
-     * @param string $id_regional
-     * @param int $id_type 
-     */
-    public function getSiteClasseInscritPhotos($id_regional,$id_type) {
-        global $pdo;
-        $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
-        $table_2 = "R_SITE_CLASSE_INSCRIT_R52";
-        $table_3 = "R_TYPE_ZONAGE_R52";
-        
-        $sql = "SELECT * 
-        FROM $table, $table_2, $table_3
-        WHERE $table.id_regional = '$id_regional'
-        AND $table.id_regional = $table_2.id_regional
-        AND $table_3.id_type = $id_type "; 
-        try {
-            $site_classe_inscrit = $pdo->query($sql)->fetch();          
-            $this->id_regional = $site_classe_inscrit["id_regional"];
-            $this->id_national = $site_classe_inscrit["id_national"];
-            $this->nom = $site_classe_inscrit["nom"];
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }   
-    }
 }
 
+/**
+ * Sélectionne les entités d'un site à partir de son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
 function getEntitesFromSiteByIdRegional($id_regional) {
     global $pdo;
     $table = "R_SITE_CLASSE_INSCRIT_R52";
@@ -76,6 +55,13 @@ function getEntitesFromSiteByIdRegional($id_regional) {
     }
 }
 
+/**
+ * Sélectionne les photographies d'un site à partir de son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @param int $id_type
+ * @return array 
+ */
 function getSiteClasseInscritPhotosByIdRegional($id_regional,$id_type) {
         global $pdo;
         $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
