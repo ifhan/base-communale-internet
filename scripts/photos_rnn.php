@@ -27,7 +27,7 @@ $departement->getDepartementByIdRegional($id_regional,$id_type);
 $zonage = new Zonage();
 $zonage->getTypeZonageByIdType($id_type);
 
-$rnn_photos =  getRnnPhotosByIdRegional($id_regional);
+$rnn_photos = getRnnPhotosByIdRegional($id_regional);
 ?>
 <table class="cadre_plein">
     <tr>
@@ -74,17 +74,24 @@ $rnn_photos =  getRnnPhotosByIdRegional($id_regional);
         <?php foreach ($rnn_photos as $rnn_photo): ?>
         <div class="mosaique">
             <div class="image" align="center">
-                <a class="group" rel="fancybox-button" href="data/photos/<?=$zonage->path?>/<?=$rnn_photo["id_photo"]?>.jpg" title="
-		<?php if($rnn_photo["titre"]!="") { echo $rnn_photo["titre"]." - "; }
+                <a class="group" rel="fancybox-button" href="data/photos/<?=$zonage->path?>/<?=$rnn_photo["id_photo"]?>.jpg" title="<?php 
+                if($rnn_photo["titre"]!="") { echo $rnn_photo["titre"]." - "; }
 		if($rnn_photo["auteur"]!="") { echo $rnn_photo["auteur"]; }
-		if($rnn_photo["fournisseur"]!="") { echo " &copy;".$rnn_photo["fournisseur"]; } ?>">
+		if($rnn_photo["fournisseur"]!="") { echo " &copy;".$rnn_photo["fournisseur"]; }
+                ?>">
                     <img src="data/photos/<?=$zonage->path?>_small/<?=$rnn_photo["id_photo"]?>_small.jpg" alt="<?=$rnn_photo["titre"]?> - <?=$rnn_photo["id"]?> (<?=$rnn_photo["resolution"]?>)"/>
                 </a>
             </div>
             <div class="link-paysage">
-		<?php if($rnn_photo["auteur"]!="") { echo $rnn_photo["auteur"]; }
-		if($rnn_photo["fournisseur"]!="") { echo " &copy;".$rnn_photo["fournisseur"]; }
-		if($rnn_photo["commentaire"]!="") { echo ", ".$rnn_photo["commentaire"]; } ?>
+		<?php if(!empty($rnn_photo["auteur"])): ?>
+                    <?=$rnn_photo["auteur"]?>
+                <?php endif; ?>
+		<?php if(!empty($rnn_photo["fournisseur"])): ?>
+                &copy;<?=$rnn_photo["fournisseur"]?>
+                <?php endif; ?>
+		<?php if(!empty($rnn_photo["commentaire"])): ?>
+                , <?=$rnn_photo["commentaire"]?>
+                <?php endif; ?>
             </div>
             <div class="link-paysage">
                 <?php		
