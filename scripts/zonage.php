@@ -415,9 +415,8 @@ $zonage->getTypeZonageByIdType($id_type);
              *  13.2 Photographies pour les RNN 
              */
             case 2:
-                $rnn_photos = new Rnn();
-                $rnn_photos->getRnnPhotosById($id_regional);
-                if(isset($rnn_photos)): ?>
+                $rnn_photos = getRnnPhotosByIdRegional($id_regional);
+                if(count($rnn_photos) > 0): ?>
         <a class="document" href="spip.php?page=photos&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Afficher les photographies
         </a>
@@ -428,8 +427,7 @@ $zonage->getTypeZonageByIdType($id_type);
              *  13.3 Photographies pour les sites classés et inscrits
              */
             case 13:
-                $site_classe_inscrit_photos = new SiteClasseInscrit();
-                $site_classe_inscrit_photos->getSiteClasseInscritPhotos($id_regional, $id_type);
+                $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
                 if(count($site_classe_inscrit_photos) > 0): ?>
         <a class="document" href="spip.php?page=photos&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Afficher les photographies
