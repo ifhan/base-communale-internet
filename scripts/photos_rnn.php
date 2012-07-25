@@ -27,7 +27,7 @@ $departement->getDepartementByIdRegional($id_regional,$id_type);
 $zonage = new Zonage();
 $zonage->getTypeZonageByIdType($id_type);
 
-$rnn_photos =  getRnnPhotosById($id_regional);
+$rnn_photos =  getRnnPhotosByIdRegional($id_regional);
 ?>
 <table class="cadre_plein">
     <tr>
