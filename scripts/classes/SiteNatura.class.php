@@ -208,4 +208,92 @@ function getInvertebresByIdRegional($id_regional) {
     } 
 }
 
+/**
+ * Sélectionne les mammifères présents sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
+function getMammiferesByIdRegional($id_regional) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM natura_mammal 
+    WHERE SITECODE = '$id_regional'
+    GROUP BY SPECNUM
+    ORDER BY SPECNUM"; 
+    try {
+        $mammiferes = $pdo->query($sql)->fetchAll();
+        return $mammiferes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
+/**
+ * Sélectionne les plantes présentes sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
+function getPlantesByIdRegional($id_regional) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM natura_plant 
+    WHERE SITECODE = '$id_regional'
+    GROUP BY SPECNUM
+    ORDER BY SPECNUM"; 
+    try {
+        $plantes = $pdo->query($sql)->fetchAll();
+        return $plantes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
+/**
+ * Sélectionne les poissons présentes sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
+function getPoissonsByIdRegional($id_regional) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM natura_fishes 
+    WHERE SITECODE = '$id_regional'
+    GROUP BY SPECNUM
+    ORDER BY SPECNUM"; 
+    try {
+        $poissons = $pdo->query($sql)->fetchAll();
+        return $poissons;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
+/**
+ * Sélectionne les autres espèces présentes sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
+function getAutresEspecesByIdRegional($id_regional) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM natura_spec 
+    WHERE SITECODE = '$id_regional'
+    GROUP BY SPECNAME
+    ORDER BY SPECNAME"; 
+    try {
+        $autres_especes = $pdo->query($sql)->fetchAll();
+        return $autres_especes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
 ?>
