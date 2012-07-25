@@ -296,4 +296,21 @@ function getAutresEspecesByIdRegional($id_regional) {
     } 
 }
 
+function getHabitatsByIdRegional($id_regional) {
+    global $pdo;
+    $table = "natura_eur15";
+    $table_2 = "natura_habit1";
+    
+    $sql = "SELECT * 
+    FROM $table, $table_2 
+    WHERE $table_2.SITECODE = '$id_regional' 
+    AND $table_2.HBCDAX = $table.ID_EUR15";
+    try {
+        $habitats = $pdo->query($sql)->fetchAll();
+        return $habitats;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
 ?>
