@@ -87,10 +87,10 @@ $rnn_photos = getRnnPhotosByIdRegional($id_regional);
                     <?=$rnn_photo["auteur"]?>
                 <?php endif; ?>
 		<?php if(!empty($rnn_photo["fournisseur"])): ?>
-                &copy;<?=$rnn_photo["fournisseur"]?>
+                    &copy;<?=$rnn_photo["fournisseur"]?>
                 <?php endif; ?>
 		<?php if(!empty($rnn_photo["commentaire"])): ?>
-                , <?=$rnn_photo["commentaire"]?>
+                    , <?=$rnn_photo["commentaire"]?>
                 <?php endif; ?>
             </div>
             <div class="link-paysage">
