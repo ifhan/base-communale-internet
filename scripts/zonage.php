@@ -282,7 +282,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 break;
             case 13:
                 $site_classe_inscrit = new SiteClasseInscrit();
-                $site_classe_inscrit->getSiteClasseInscritData($id_regional);
+                $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
                 if(file_exists("data/docs/decrets/".$zonage->path."/".$site_classe_inscrit->id_dpt.$site_classe_inscrit->type_site.$site_classe_inscrit->id_site.$site_classe_inscrit->id_entite.".pdf")): ?>
         <a class="document" href="data/docs/decrets/<?=$zonage->path?>/<?=$site_classe_inscrit->id_dpt?><?=$site_classe_inscrit->type_site?><?=$site_classe_inscrit->id_site?><?=$site_classe_inscrit->id_entite?>.pdf" target="_blank">
             T&eacute;l&eacute;charger le d&eacute;cret
@@ -313,7 +313,7 @@ $zonage->getTypeZonageByIdType($id_type);
         <?php
         elseif($id_type=='13'):
             $site_classe_inscrit = new SiteClasseInscrit();
-            $site_classe_inscrit->getSiteClasseInscritData($id_regional);
+            $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
             
             if(file_exists("data/docs/arretes/".$zonage->path."/".$site_classe_inscrit->id_dpt.$site_classe_inscrit->type_site.$site_classe_inscrit->id_site.$site_classe_inscrit->id_entite.".pdf")):
             ?> 
