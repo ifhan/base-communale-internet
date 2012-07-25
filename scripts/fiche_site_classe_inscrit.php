@@ -18,7 +18,7 @@ $id_type = $_REQUEST["id_type"];
 $id_regional = $_REQUEST["id_regional"];
 
 $site_classe_inscrit = new SiteClasseInscrit();
-$site_classe_inscrit->getSiteClasseInscritData($id_regional);
+$site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
 
 $departement = new Departement();
 $departement->getDepartementByIdRegional($id_regional,$id_type);
