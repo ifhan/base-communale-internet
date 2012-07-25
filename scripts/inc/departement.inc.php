@@ -14,8 +14,6 @@ require_once(dirname(__FILE__)."/../classes/Departement.class.php");
 $id_dpt = $_REQUEST["id_dpt"];
 $id_regional = $_REQUEST["id_regional"];
 $id_type = $_REQUEST["id_type"];
-//$id_eur15 = $_REQUEST["id_eur15"];
-//$id_corine = $_REQUEST["id_corine"];
 	
 if(isset($id_regional)):
     $departement = new Departement();
