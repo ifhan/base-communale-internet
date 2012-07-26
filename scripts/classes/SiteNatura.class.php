@@ -296,6 +296,35 @@ function getAutresEspecesByIdRegional($id_regional) {
     } 
 }
 
+/**
+ * Sélectionne les oiseaux présents sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param string $id_regional
+ * @return array 
+ */
+function getOiseauxByIdRegional($id_regional) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM natura_bird 
+    WHERE SITECODE = '$id_regional'
+    GROUP BY SPECNAME
+    ORDER BY SPECNAME"; 
+    try {
+        $autres_especes = $pdo->query($sql)->fetchAll();
+        return $autres_especes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    } 
+}
+
+/**
+ * Sélectionne les habitats présents sur le site Natura 2000 
+ * par son identifiant régional
+ * @global string $pdo
+ * @param type $id_regional
+ * @return type 
+ */
 function getHabitatsByIdRegional($id_regional) {
     global $pdo;
     $table = "natura_eur15";
