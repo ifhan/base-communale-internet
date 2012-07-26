@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Description of EspecesDeterminantes
+ * Description of EspeceDeterminante
  *
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-27
+ * @copyright 2012-07-26
  * @version 1.0
  */
 class EspeceDeterminante {
