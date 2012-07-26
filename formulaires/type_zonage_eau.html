@@ -1,0 +1,32 @@
+<div class="listerub">
+    <div class="titresousrub">Recherche par type de zonage</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type de zonage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="15">Secteurs d'application de la convention de Ramsar</option>
+                            <option value="12">Zones humides d'importance majeure (ONZH)</option>
+                            <option value="16">Zones d'application des SAGE</option>
+                        </select>
+                    </td>
+                    <td><strong>D&eacute;partement&nbsp;:</strong><br />
+                        <select name="id_dpt" id="departement">
+                            <BOUCLE_departements(spip_departements)>
+                                <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                            </BOUCLE_departements>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
