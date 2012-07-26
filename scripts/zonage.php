@@ -402,8 +402,7 @@ $zonage->getTypeZonageByIdType($id_type);
              * 13.1 Photographies pour les ZNIEFF
              */
             case 10: case 11:
-                $znieff_photos = new Znieff2G();
-                $znieff_photos->getPhotosZnieff($id_regional, $id_type);
+                $znieff_photos = getZnieff2GPhotosByIdRegional($id_regional, $id_type);
                 if(count($znieff_photos) > 0): ?>
         <a class="document" href="spip.php?page=photos&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Afficher les photographies
