@@ -1,0 +1,35 @@
+<div class="listerub">
+    <div class="titresousrub">Natura 2000 : Recherche par catégorie de site</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type de zonage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="25">Tous</option>
+                            <option value="5">ZPS</option>
+                            <!--<option value="19">Projets de ZPS</option>-->
+                            <option value="30">ZSC</option>
+                            <option value="6">SIC</option>
+                            <!--<option value="21">PSIC</option>
+                            <option value="20">Projets de PSIC</option>-->
+                        </select>
+                    </td>
+                    <td>
+                        <strong>Catégorie&nbsp;:</strong><br />
+                        <select name="categorie">
+                            <option value="marin">Marin</option>
+                            <option value="mixte">Mixte</option>
+                            <option value="terrestre">Terrestre</option>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <input type="submit" class="submit" value="Ok" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
