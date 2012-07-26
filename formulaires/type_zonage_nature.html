@@ -1,0 +1,44 @@
+<div class="listerub">
+    <div class="titresousrub">Recherche par type de zonage</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td>
+                        <strong>Type de zonage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="1">APB</option>
+                            <option value="2">RNN</option>
+                            <option value="33">RNR</option>
+                            <option>----------------------------</option>
+                            <option value="5">ZPS</option>
+                            <!--<option value="19">Projets de ZPS</option>-->
+                            <option value="30">ZSC</option>
+                            <option value="6">SIC</option>
+                            <!--<option value="21">PSIC</option>
+                            <option value="20">Projets de PSIC</option>-->
+                            <option>----------------------------</option>
+                            <!--<option value="32">ZICO actualis&eacute;es</option>-->
+                            <option value="34">ZNIEFF de Type I (Inventaire permanent)</option>
+                            <option value="35">ZNIEFF de Type II (Inventaire permanent)</option>
+                            <option>----------------------------</option>
+                            <option value="7">PNR</option>
+                        </select>
+                    </td>
+                    <td>
+                        <strong>D&eacute;partement&nbsp;:</strong><br />
+                        <select name="id_dpt" id="departement">
+                            <BOUCLE_departements(spip_departements)>
+                                <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                            </BOUCLE_departements>
+                        </select>
+                    </td>
+                    <td>
+                        <br /><input type="submit" class="submit" value="Ok" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
