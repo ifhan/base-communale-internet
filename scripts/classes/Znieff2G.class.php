@@ -23,26 +23,26 @@ class Znieff2G {
         WHERE znieff_znieff.NM_REGZN = $id_regional
         AND znieff_znieff.NM_SFFZN  = znieff_comment.NM_SFFZN ";
         try {
-            $znieff = $pdo->query($sql)->fetch();          
-            $this->id_regional = $znieff["NM_REGZN"];
-            $this->id_national = $znieff["NM_SFFZN"];
-            $this->nom = $znieff["LB_ZN"];
-            $this->TY_ZONE = $znieff["TY_ZONE"];
-            $this->ALT_MINI = $znieff["ALT_MINI"];
-            $this->ALT_MAXI = $znieff["ALT_MAXI"];
-            $this->SU_ZN = $znieff["SU_ZN"];                                    
-            $this->AN_DESCRIP = $znieff["AN_DESCRIP"];            
-            $this->AN_MAJ = $znieff["AN_MAJ"];            
-            $this->AN_SFFE = $znieff["AN_SFFE"];
-            $this->TX_TYPO = $znieff["TX_TYPO"];
-            $this->TX_GEO = $znieff["TX_GEO"];
-            $this->TX_ACTH = $znieff["TX_ACTH"];
-            $this->TX_STPRO = $znieff["TX_STPRO"];
-            $this->TX_MESPRO = $znieff["TX_MESPRO"];
-            $this->FG_HABITAT = $znieff["FG_HABITAT"];
-            $this->FG_OISEAUX = $znieff["FG_OISEAUX"];
-            $this->TX_FACT = $znieff["TX_FACT"];
-            $this->CM_GENE = $znieff["CM_GENE"];            
+            $row = $pdo->query($sql)->fetch();          
+            $this->id_regional = $row["NM_REGZN"];
+            $this->id_national = $row["NM_SFFZN"];
+            $this->nom = $row["LB_ZN"];
+            $this->TY_ZONE = $row["TY_ZONE"];
+            $this->ALT_MINI = $row["ALT_MINI"];
+            $this->ALT_MAXI = $row["ALT_MAXI"];
+            $this->SU_ZN = $row["SU_ZN"];                                    
+            $this->AN_DESCRIP = $row["AN_DESCRIP"];            
+            $this->AN_MAJ = $row["AN_MAJ"];            
+            $this->AN_SFFE = $row["AN_SFFE"];
+            $this->TX_TYPO = $row["TX_TYPO"];
+            $this->TX_GEO = $row["TX_GEO"];
+            $this->TX_ACTH = $row["TX_ACTH"];
+            $this->TX_STPRO = $row["TX_STPRO"];
+            $this->TX_MESPRO = $row["TX_MESPRO"];
+            $this->FG_HABITAT = $row["FG_HABITAT"];
+            $this->FG_OISEAUX = $row["FG_OISEAUX"];
+            $this->TX_FACT = $row["TX_FACT"];
+            $this->CM_GENE = $row["CM_GENE"];            
         } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }    
@@ -754,6 +754,26 @@ function getSourcesZnieff($id_regional,$ty_source) {
         return $sources_znieff;
     } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+function getZnieff2GPhotosByIdRegional($id_regional,$id_type){
+    global $pdo;
+    $table = "R_ZNIEFF_R52_photos";
+    $table_2 = "znieff_znieff";
+    $table_3 = "R_TYPE_ZONAGE_R52";
+    
+    $sql = "SELECT * 
+    FROM $table, $table_2, $table_3 
+    WHERE $table.NM_REGZN = '$id_regional' 
+    AND $table.NM_REGZN = $table_2.NM_REGZN 
+    AND $table_3.id_type = $id_type 
+    ORDER BY $table.id_photo ";
+    try {
+        $znieff2g_photos = $pdo->query($sql)->fetchAll();
+        return $znieff2g_photos;
+    } catch(PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
     }
 }
 ?>
