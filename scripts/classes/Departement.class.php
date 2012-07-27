@@ -56,25 +56,7 @@ class Departement {
         }    
     }
 
-    /**
-     * Sélection des départements de la région Pays de la Loire 
-     * par l'identifiant de la région
-     * @global type $pdo
-     * @return array 
-     */
-    public function getDepartementByRegion() {
-        global $pdo;
-        $sql = "SELECT * 
-            FROM admin_departements 
-            WHERE id_region = 18 
-            ORDER BY nom_departement";
-        try {
-            $departements = $pdo->query($sql)->fetchAll();            
-            return $departements;        
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        } 
-    }
+
 }
 
 /**
@@ -102,5 +84,25 @@ function getDepartementsByIdRegional($id_regional) {
             echo 'ERROR: ' . $e->getMessage();
         }    
     }
+    
+/**
+ * Sélection des départements de la région Pays de la Loire 
+ * par l'identifiant de la région
+ * @global type $pdo
+ * @return array 
+ */
+function getDepartementByRegion() {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM admin_departements 
+    WHERE id_region = 18 
+    ORDER BY nom_departement";
+    try {
+        $departements = $pdo->query($sql)->fetchAll();
+        return $departements;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 ?>
