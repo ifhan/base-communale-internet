@@ -2,8 +2,8 @@
 
 /**
  * Description of Rnv
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Réserves Naturelles Volantaires (RNV)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-29
  * @version 1.0
  */
