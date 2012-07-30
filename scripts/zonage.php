@@ -37,24 +37,22 @@ $zonage->getTypeZonageByIdType($id_type);
     </li>
     <!-- 2. Fiches descriptives et liens -->
     <li>
-        <?php
+    <?php
     switch($id_type): 
     /**
      *  2.1 Cas générique pour les fiches descriptives
     */
-    case 1: case 2: case 3: case 4: case 8: case 9: case 12: case 13: case 14: case 16: case 29: ?>
-        <a class="document" href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive
-        </a>
+    case 1: case 2: case 3: case 4: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29: ?>
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
      <?php
         break;
     /** 
      * 2.2 ZNIEFF de deuxième génération	
      */
     case 10: case 11: ?>
-        <a class="document" href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)
-        </a>
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)</a>
     <?php
         break;
     /**
@@ -65,9 +63,8 @@ $zonage->getTypeZonageByIdType($id_type);
          *  2.3.1 Fiches des sites en Pays de la Loire	
          */
         if(ereg("^FR52",$id_regional)): ?>
-        <a class="document" href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive
-        </a>
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
         <?php 
         /**
          * 2.3.2 Lien vers des sites extérieurs pour les sites 
@@ -107,9 +104,8 @@ $zonage->getTypeZonageByIdType($id_type);
          else:
              $zonage_data = new Zonage();
              $zonage_data->getZonageDataById($id_type, $id_regional); ?>
-        <a class="document" href="<?=$zonage_data->url_fiche ?>" target="_blank">
-            Consulter la fiche descriptive sur le site de la DREAL <?=$zonage_data->dreal?>
-        </a>
+        <a class="document" 
+           href="<?=$zonage_data->url_fiche ?>" target="_blank">Consulter la fiche descriptive sur le site de la DREAL <?=$zonage_data->dreal?></a>
         <br />
             <?php
          endif;
@@ -121,14 +117,12 @@ $zonage->getTypeZonageByIdType($id_type);
          $pnr = new Pnr();
          $pnr->getPnrByIdRegional($id_regional); ?>
     <li>
-        <a class="document" href="<?=URL_INPN_ESPACE_PROTEGE?><?=$pnr->id_regional?>" target="_blank">
-            Consulter la fiche descriptive sur le site de l'INPN
-        </a>
+        <a class="document" 
+           href="<?=URL_INPN_ESPACE_PROTEGE?><?=$pnr->id_regional?>" target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
     </li>
     <li>
-        <a class="document" href="<?=$pnr->url_site?>" target="_blank">
-            Consulter le site du PNR
-        </a>
+        <a class="document" 
+           href="<?=$pnr->url_site?>" target="_blank">Consulter le site du PNR</a>
     </li>
     <?php
          break;
@@ -144,25 +138,6 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>        
     </li>   
     <?php
-        break;
-     /**
-      * 2.7 Fiches Ramsar au format PDF et lien vers le site de l'INPN
-      */
-     case 15:
-         ?>
-    <li>
-        <a class="document" href="data/fiches/ramsar/<?=$id_regional?>.pdf">
-            T&eacute;l&eacute;charger la fiche descriptive</a>
-        <span class="docformat"> 
-            (PDF,&nbsp;<?=@ConvertirTaille("data/fiches/ramsar/".$id_regional.".pdf")?>)
-        </span>
-    </li>
-    <li>
-        <a class="document" href="<?=URL_INPN_ESPACE_PROTEGE?><?=$id_regional?>" target="_blank">
-            Consulter la fiche descriptive sur le site de l'INPN
-        </a>
-    </li>
-    <?php 
         break;
      
      /**
@@ -195,6 +170,27 @@ $zonage->getTypeZonageByIdType($id_type);
      endswitch;
      ?>
     </li>
+    <!-- 2 bis. Fiche PDF et lien INPN pour Ramsar -->
+    <?php
+    switch ($id_type):
+     case 15:
+            ?>
+            <li>
+                <a class="document" href="data/fiches/ramsar/<?= $id_regional ?>.pdf">
+                    T&eacute;l&eacute;charger la fiche descriptive</a>
+                <span class="docformat"> 
+                    (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/ramsar/" . $id_regional . ".pdf") ?>)
+                </span>
+            </li>
+            <li>
+                <a class="document" href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $id_regional ?>" target="_blank">
+                    Consulter la fiche descriptive sur le site de l'INPN
+                </a>
+            </li>
+        <?php
+        break;
+    endswitch;
+    ?>
     <!-- 3. Formulaires standards de données pour Natura 2000 -->
     <li>
         <?php
@@ -274,7 +270,7 @@ $zonage->getTypeZonageByIdType($id_type);
 	switch($id_type):
             case 2:
                 $rnn = new Rnn();
-                $rnn->getRnnById($id_regional); ?>
+                $rnn->getRnnByIdRegional($id_regional); ?>
         <a class="document" href="<?=$rnn->url_decret?>" target="_blank">
             Consulter le texte du d&eacute;cret sur L&eacute;gifrance
         </a>	
