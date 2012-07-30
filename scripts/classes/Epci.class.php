@@ -2,8 +2,11 @@
 
 /**
  * Description of Epci
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Établissements Publics de
+ * Coopération Intercommunale
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
+ * @copyright 2012-07-30
+ * @version 1.0
  */
 class Epci {
     //put your code here
@@ -17,8 +20,8 @@ class Epci {
  */
 function getCommunesEpciByIdEpci($id_epci) {
         global $pdo;
-        $table = "admin_communes";
-        $table_2 = "admin_epci_communes";
+        $table = "BDC_COMMUNE_52";
+        $table_2 = "R_EPCI_COMMUNES_R52";
         
         $sql = "SELECT * 
         FROM $table, $table_2 
