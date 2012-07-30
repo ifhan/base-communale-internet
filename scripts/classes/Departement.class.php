@@ -1,8 +1,8 @@
 <?php
 /**
  * Description of Departement
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les départements
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-21
  * @version 1.0
  */
@@ -19,7 +19,7 @@ class Departement {
     public function getDepartementById($id_dpt) {
         global $pdo;
         $sql = "SELECT * 
-        FROM admin_departements 
+        FROM BDC_DEPARTEMENT_52 
         WHERE id_departement = '$id_dpt' ";
         try {
             $row = $pdo->query($sql)->fetch();          
@@ -38,8 +38,8 @@ class Departement {
      */
     public function getDepartementByIdRegional($id_regional,$id_type) {
         global $pdo;
-        $table = "local_zonages_communes";
-        $table_2 = "admin_departements";
+        $table = "R_ZONAGES_COMMUNES_R52";
+        $table_2 = "BDC_DEPARTEMENT_52";
         
         $sql = "SELECT * 
         FROM $table, $table_2
@@ -67,9 +67,9 @@ class Departement {
  */
 function getDepartementsByIdRegional($id_regional) {
         global $pdo;    
-        $table = "local_zonages_communes";
-        $table_2 = "admin_communes";
-        $table_3 = "admin_departements";
+        $table = "R_ZONAGES_COMMUNES_R52";
+        $table_2 = "BDC_COMMUNE_52";
+        $table_3 = "BDC_DEPARTEMENT_52";
         
         $sql = "SELECT * 
         FROM $table, $table_2, $table_3 
@@ -94,7 +94,7 @@ function getDepartementsByIdRegional($id_regional) {
 function getDepartementByRegion() {
     global $pdo;
     $sql = "SELECT * 
-    FROM admin_departements 
+    FROM BDC_DEPARTEMENT_52 
     WHERE id_region = 18 
     ORDER BY nom_departement";
     try {
