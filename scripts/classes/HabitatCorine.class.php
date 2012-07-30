@@ -1,8 +1,8 @@
 <?php
 /**
  * Description of HabitatCorine
- *
- * @author ronan.vignard
+ * Classe et fonction concernant les Habitats de la nomenclature CORINE
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-21
  * @version 1.0
  */
