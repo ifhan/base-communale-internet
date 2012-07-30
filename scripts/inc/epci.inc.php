@@ -18,7 +18,7 @@ class Epci
 try {
 
     $id_epci = $_REQUEST["id_epci"];
-    $result = $pdo->query("SELECT * FROM admin_epci WHERE id_epci = $id_epci ");
+    $result = $pdo->query("SELECT * FROM R_EPCI_R52 WHERE id_epci = $id_epci ");
  
     // Map results to object
     $result->setFetchMode(PDO::FETCH_CLASS, 'Epci');
