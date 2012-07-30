@@ -2,8 +2,8 @@
 
 /**
  * Description of Pnr
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Parcs Naturels Régionaux (PNR)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-26
  * @version 1.0
  */
