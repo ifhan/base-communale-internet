@@ -1,7 +1,8 @@
 <?php
 /**
  * Description of Znieff2G
- *
+ * Classe et fonctions concernant les Zones Naturelles d'Intérêt Faunistique et
+ * Floristique (ZNIEFF) de deuxième génération
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-20
  * @version 1.0
