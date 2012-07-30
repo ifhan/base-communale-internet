@@ -1,10 +1,10 @@
 <?php
 // Application-wide data and database connection
-require_once 'config/constants.inc.php';
-require_once 'config/database.inc.php';
+require_once(dirname(__FILE__)."/../config/constants.inc.php");
+require_once(dirname(__FILE__)."/../config/database.inc.php");
 
 // Utility functions  
-require_once 'classes/utilities.inc.php';
+require_once(dirname(__FILE__)."classes/utilities.inc.php");
 
 $id_epci = $_REQUEST["id_epci"];
 
