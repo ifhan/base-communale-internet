@@ -2,8 +2,9 @@
 
 /**
  * Description of Zonage
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant l'ensemble des zonages d'inventaire et 
+ * de protection réglementaire
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-15
  * @version 1.0
  */
@@ -51,7 +52,7 @@ class Zonage {
         }
     }
     
-        /**
+    /**
      * Sélectionne un type de zonage puis un zonage
      * @global type $pdo
      * @param int $id_type
