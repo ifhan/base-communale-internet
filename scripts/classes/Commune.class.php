@@ -2,8 +2,8 @@
 
 /**
  * Description of Commune
- *
- * @author ronan.vignard
+ * Classe et fonction concernant les commuens
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-13
  * @version 0.1
  */
@@ -23,7 +23,7 @@ class Commune {
     public function getCommunesByIdDepartement($id_dpt) {   
         global $pdo;
         $sql = "SELECT *
-        FROM admin_communes 
+        FROM BDC_COMMUNE_52 
         WHERE id_departement = '$id_dpt' 
         ORDER BY nom_commune";
         try {
@@ -44,7 +44,7 @@ class Commune {
     public function getCommuneById($id_commune) {
         global $pdo;
         $sql = "SELECT * 
-        FROM admin_communes 
+        FROM BDC_COMMUNE_52 
         WHERE id_commune = '$id_commune' ";
         try {
             $row = $pdo->query($sql)->fetch();
@@ -66,7 +66,7 @@ class Commune {
 function getCommunesByIdDpt($id_dpt) {
     global $pdo;
     $sql = "SELECT *
-        FROM admin_communes
+        FROM BDC_COMMUNE_52
         WHERE id_departement = '$id_dpt' 
         ORDER BY nom_commune";
     try {
@@ -86,8 +86,8 @@ function getCommunesByIdDpt($id_dpt) {
  */
 function getCommunesByIdRegional($id_regional,$id_type) {
         global $pdo;
-        $table = "local_zonages_communes";
-        $table_2 = "admin_communes";
+        $table = "R_ZONAGES_COMMUNES_R52";
+        $table_2 = "BDC_COMMUNE_52";
         
         $sql = "SELECT * 
         FROM $table, $table_2 
