@@ -2,7 +2,7 @@
 
 /**
  * Description of Rnn
- *
+ * Classe et fonctions concernant les Réserves Naturelles Nationales (RNN)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-27
  * @version 1.0
@@ -14,7 +14,7 @@ class Rnn {
      * @global string $pdo
      * @param string $id_regional 
      */
-    public function getRnnById($id_regional) {
+    public function getRnnByIdRegional($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_RNN_R52, R_RNN_R52_data  
