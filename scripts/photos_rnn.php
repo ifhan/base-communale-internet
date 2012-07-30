@@ -19,7 +19,7 @@ $id_type = $_REQUEST["id_type"];
 $id_regional = $_REQUEST["id_regional"];
 
 $rnn = new Rnn();
-$rnn->getRnnById($id_regional);
+$rnn->getRnnByIdRegional($id_regional);
 
 $departement = new Departement();
 $departement->getDepartementByIdRegional($id_regional,$id_type);
