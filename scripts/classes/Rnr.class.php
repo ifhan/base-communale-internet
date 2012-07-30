@@ -2,8 +2,8 @@
 
 /**
  * Description of Rnr
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Réserves Naturelles Régionales (RNR)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-26
  * @version 1.0
  */
