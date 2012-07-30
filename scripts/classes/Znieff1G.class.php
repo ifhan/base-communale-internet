@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Description of Znieff1G
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Zones Naturelles d'Intérêt Faunistique et
+ * Floristique (ZNIEFF) de première génération
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-07-23
  * @version 1.0
  */
