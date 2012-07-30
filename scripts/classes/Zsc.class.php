@@ -2,8 +2,9 @@
 
 /**
  * Description of Zsc
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Zones Spéciales de Conservation (ZSC)
+ * (Natura 2000, directive "Habitats")
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-26
  * @version 1.0
  */
