@@ -2,8 +2,8 @@
 
 /**
  * Description of Apb
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Arrêtés de Protection de Biotope (APB)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-13
  * @version 1.0
  */
