@@ -2,8 +2,10 @@
 
 /**
  * Description of Scot
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Schémas de COhérence Territoriale (SCOT)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
+ * @copyright 2012-0-30
+ * @version 1.0
  */
 class Scot {
     //put your code here
@@ -16,8 +18,8 @@ class Scot {
  */
 function getCommunesScotByIdScot($id_scot) {
         global $pdo;
-        $table = "admin_communes";
-        $table_2 = "admin_scot_communes";
+        $table = "BDC_COMMUNE_52";
+        $table_2 = "R_SCOT_COMMUNES_R52";
         
         $sql = "SELECT * 
         FROM $table, $table_2 
