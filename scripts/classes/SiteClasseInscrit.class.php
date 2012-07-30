@@ -2,8 +2,8 @@
 
 /**
  * Description of SiteClasseInscrit
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les sites classés et inscrits
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-27
  * @version 1.0
  */
