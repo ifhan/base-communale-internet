@@ -2,8 +2,9 @@
 
 /**
  * Description of Sic
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Sites d'Intérêt Communautaire (SIC)
+ * (Natura 2000, directive "Habitats")
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-25
  * @version 1.0
  */
