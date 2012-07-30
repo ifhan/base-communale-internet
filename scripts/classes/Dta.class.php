@@ -2,8 +2,9 @@
 
 /**
  * Description of Dta
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Directives Territoriales
+ * d'Aménagement (DTA)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-26
  * @version 1.0
  */
