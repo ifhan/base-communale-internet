@@ -9,23 +9,30 @@
 class HabitatEur15 {
     public $id_eur15;
     public $lb_eur15;
-   
-    //Sélection de l'ensemble de la liste des habitats Natura 2000
-    // (nomenclature EUR15)
+
+    /**
+     * Sélection de l'ensemble de la liste des habitats Natura 2000 
+     * (nomenclature EUR15)
+     * @global string $pdo
+     * @return array 
+     */
     public function getHabitatsEur15() {
         global $pdo;
         $sql = "SELECT * 
         FROM natura_eur15"; 
         try {
-            $habitats_eur15 = $pdo->query($sql)->fetchAll();
-            
+            $habitats_eur15 = $pdo->query($sql)->fetchAll();     
             return $habitats_eur15;
         } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }    
 
-    // Sélection d'un habitat par son identifiant
+    /**
+     * Sélection d'un habitat par son identifiant
+     * @global string $pdo
+     * @param int $id_eur15  
+     */
     public function getHabitatEur15ById($id_eur15) {
         global $pdo;
         $sql = "SELECT * 
@@ -42,8 +49,12 @@ class HabitatEur15 {
     }
 }
 
-//Sélection de l'ensemble de la liste des habitats Natura 2000
-// (nomenclature EUR15)
+/**
+ * Sélection de l'ensemble de la liste des habitats Natura 2000 
+ * (nomenclature EUR15)
+ * @global string $pdo
+ * @return array 
+ */
 function getHabitatsEur15() {
     global $pdo;
     $sql = "SELECT * 
