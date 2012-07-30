@@ -2,8 +2,9 @@
 
 /**
  * Description of SiteNatura
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les sites Natura 2000 des directives Oiseaux
+ * et Habitats
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-07-24
  * @version 1.0
  */
