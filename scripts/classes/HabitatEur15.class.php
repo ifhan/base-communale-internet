@@ -1,8 +1,8 @@
 <?php
 /**
  * Description of HabitatEur15
- *
- * @author ronan.vignard
+ * Classe et fonction concernant les Habitats de la nomemclature EUR15
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-20
  * @version 1.0
  */
