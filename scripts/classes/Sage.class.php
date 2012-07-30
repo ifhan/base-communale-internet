@@ -2,8 +2,9 @@
 
 /**
  * Description of Sage
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Schémas d'Aménagement et de Gestion
+ * des Eaux (SAGE)
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-07-24
  * @version 1.0
  */
