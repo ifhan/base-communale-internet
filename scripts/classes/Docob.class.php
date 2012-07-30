@@ -1,14 +1,11 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Docob
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Documents d'Objectifs Natura 2000
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
+ * @copyright 2012-07-30
+ * @version 1.0
  */
 class Docob {
     public function getDocob() {
