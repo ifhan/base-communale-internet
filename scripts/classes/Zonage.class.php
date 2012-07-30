@@ -10,25 +10,6 @@
  */
 
 class Zonage {
-    public $id_regional;
-    public $id_type;    
-    public $nom;
-    public $type;
-    
-    public function id_regional()
-    {
-        return $this->id_regional;
-    }
-    
-    public function name()
-    {
-        return $this->nom;
-    }
-    
-    public function type()
-    {
-        return $this->type;
-    }
     
     /**
      * Sélectionne un type de zonage par son identifiant
@@ -136,7 +117,8 @@ class Zonage {
 }
 
 /**
- * 
+ * Sélectionne l'ensemble des zonages d'un département par l'identifiant 
+ * du type de zonage et le code géographique du département
  * @global type $pdo
  * @param int $id_type Identifiant du type de zonage
  * @param int $id_dpt Identifiant du département
@@ -174,7 +156,8 @@ function getZonagesByIdTypeByIdDpt($id_type,$id_dpt) {
 }
 
 /**
- *
+ * Sélectionne l'ensemble des zonages de la région par l'identifiant du type
+ * de zonage
  * @global type $pdo
  * @param int $id_type Identifiant du type de zonage
  * @return string 
@@ -207,6 +190,109 @@ function getZonagesByIdTypeByRegion($id_type) {
     } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
     }
+}
+
+/**
+ * Sélectionne l'ensemble des zonages présents sur une commune par
+ * l'identifiant du type de zonage et le code géographique de la commune
+ * @global string $pdo
+ * @param int $id_type Identifiant du type de zonage
+ * @return string 
+ */
+function getZonagesByIdTypeByIdCommune($id_type,$id_commune) {
+    global $pdo; 
+    /**
+     * Sélectionne la table d'un zonage à partir de son identifiant 
+     */
+    $sql_1 = "SELECT * 
+    FROM R_TYPE_ZONAGE_R52 
+    WHERE id_type = '$id_type'";
+    try {       
+        $row = $pdo->query($sql_1)->fetch();
+        $table_3 = $row["table"];
+    } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+    }
+    /**
+     * Retourne l'ensemble des zonages concernés pour la commune
+     */
+    $table = "R_ZONAGES_COMMUNES_R52";
+    $sql_2 = "SELECT * 
+    FROM $table, $table_3 
+    WHERE $table.id_commune = $id_commune 
+    AND $table.id_type = '$id_type'
+    AND $table.id_regional = $table_3.id_regional
+    GROUP BY $table.id_regional
+    ORDER BY $table.id_regional";
+    try {
+        $query = $pdo->query($sql_2);
+        $zonages = $query->fetchAll();
+        return $zonages;
+    } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Sélectionne les thèmes des zonages présents sur une commune à partir du 
+ * code géographique de la commune
+ * @global string $pdo
+ * @param int $id_commune
+ * @param int $id_theme
+ * @return array 
+ */
+function getThemesByIdCommune($id_commune) {
+    global $pdo;
+    $table = "R_ZONAGES_COMMUNES_R52";
+    $table_2 = "R_TYPE_ZONAGE_R52";
+    $table_3 = "R_TYPE_THEME_R52";
+    
+    $sql = "SELECT * 
+    FROM $table, $table_2, $table_3 
+    WHERE $table.id_commune = $id_commune
+    AND $table.id_type = $table_2.id_type 
+    AND $table_2.id_theme = $table_3.id_theme
+    GROUP BY $table_3.id_theme 
+    ORDER BY $table_3.theme";
+    try {
+        $query = $pdo->query($sql);
+        $themes = $query->fetchAll();
+        return $themes;
+    } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Sélectionne les types de zonages des zonages présents sur une commune à
+ * partir de l'identifiant géographique de la commune et de l'identifiant 
+ * du thème
+ * @global string $pdo
+ * @param int $id_commune
+ * @param int $id_theme
+ * @return array 
+ */
+function getTypesZonagesByIdCommuneByIdTheme($id_commune,$id_theme) {
+   global $pdo;
+   $table = "R_ZONAGES_COMMUNES_R52";
+   $table_2 = "R_TYPE_ZONAGE_R52";
+   $table_3 = "R_TYPE_THEME_R52";
+
+   $sql = "SELECT * 
+   FROM $table, $table_2, $table_3 
+   WHERE $table.id_commune = $id_commune 
+   AND $table_3.id_theme = $id_theme 
+   AND $table.id_type = $table_2.id_type 
+   AND $table_2.id_theme = $table_3.id_theme
+   GROUP BY $table.id_type 
+   ORDER BY $table.id_type";
+   try {
+       $query = $pdo->query($sql);
+       $types_zonages = $query->fetchAll();
+       return $types_zonages;
+   } catch (PDOException $e) {
+       echo 'ERROR: ' . $e->getMessage();
+   }
 }
 
 ?>
