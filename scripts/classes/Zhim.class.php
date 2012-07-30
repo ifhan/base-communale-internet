@@ -2,8 +2,8 @@
 
 /**
  * Description of Zhim
- *
- * @author ronan.vignard
+ * Classe et fonctions concernant les Zones Humides d'Importance Majeure
+ * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-07-24
  * @version 1.0
  */
