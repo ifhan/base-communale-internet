@@ -1,34 +1,19 @@
 <?php
-
 // Application-wide data and database connection
 require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
-class Epci 
-{
-    public $nom_epci;
-    
-    public function name()
-    {
-        return $this->nom_epci;
-    }
-    
-}
+// Classes
+require_once(dirname(__FILE__)."/../classes/Epci.class.php");
 
-try {
+/**
+ * Ce fichier sert à afficher le nom de l'EPCI dans un squelette SPIP
+ * @var  $id_epci Identifiant de l'EPCI
+ */
+$id_epci = $_REQUEST["id_epci"];
 
-    $id_epci = $_REQUEST["id_epci"];
-    $result = $pdo->query("SELECT * FROM R_EPCI_R52 WHERE id_epci = $id_epci ");
- 
-    // Map results to object
-    $result->setFetchMode(PDO::FETCH_CLASS, 'Epci');
-    
-    while($epci = $result->fetch()) {
-        // Call our custom name method
-        echo $epci->name();
-    }
-} catch(PDOException $e) {
-  echo 'Error: ' . $e->getMessage();
-}
+$nom_epci = new Epci();
+$nom_epci->getEpciByIdEpci($id_epci);
 
+echo $nom_epci->nom_epci;
 ?>
