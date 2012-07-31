@@ -7,7 +7,6 @@ require_once 'config/database.inc.php';
 require_once 'classes/utilities.inc.php';
 
 // Classes
-require_once 'classes/Commune.class.php';
 require_once 'classes/Zonage.class.php';
 
 /**
@@ -15,9 +14,6 @@ require_once 'classes/Zonage.class.php';
  * @var  $id_commune Code géographique de la commune
  */
 $id_commune = $_REQUEST["id_commune"];
-
-$commune = new Commune();
-$commune->getCommuneById($id_commune);
 
 $themes = getThemesByIdCommune($id_commune);
 ?>
@@ -49,7 +45,7 @@ $themes = getThemesByIdCommune($id_commune);
                  * du lien vers la liste des ressources associées
                  */
                 ?>
-                <tr bgcolor="<?=switchcolor()?>" valign=top>
+                <tr bgcolor="<?=switchcolor()?>" valign="top">
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>
                     </td>
