@@ -1,0 +1,169 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<BOUCLE_principale(RUBRIQUES) {id_rubrique} {tout}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	<div id="milieu">
+	<div id="ext-main">	
+
+	[(#REM) Fil d'Ariane ]
+	
+	<div id="boxnavpath">
+		<div id="navpath">
+			<a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero)]
+		</div>
+	</div>
+
+	<BOUCLE_titre_secteur(RUBRIQUES) {racine} {id_secteur}>
+	<div id="titrerub">
+		<span style='text-transform: uppercase;' class='titrerub'>[(#TITRE|supprimer_numero)]</span><br />
+		<img src="plugins/interdreal/_images/bg_theme_bloc3c_h1.png" width="981px" height="46px" class="img_png">
+	</div>
+	</BOUCLE_titre_secteur>
+
+		<div id="milieu3">
+		<div class="main">
+			
+			<div id="gauche">
+				<div id="navi_gauche">
+					[(#REM) Menu de navigation par rubriques ]
+					<INCLURE{fond=inc-rubriques}{id_rubrique}{tout}>
+					<div class="clearer">&nbsp;</div>
+				</div>
+			</div><!-- gauche -->			
+			
+			<div id="contenu">
+				<div class="main-content-3cols">
+					<h1 class="invisible">Contenu</h1>
+					<div id="boxcentrale">
+						<div class="innercentrale">
+					
+							<BOUCLE_titre_rubrique(RUBRIQUES) {id_rubrique} >
+								<div class="cadrerub">
+									<div class="top">&nbsp;</div>
+									<div class="center">
+										<h2>[(#TITRE|supprimer_numero)]</h2>
+										<div class="texterub">#TEXTE</div>
+									</div>
+									<div class="bottom">&nbsp;</div>
+								</div>
+							</BOUCLE_titre_rubrique>
+					
+							<div class="clearer">&nbsp;</div>
+							
+							[(#REM) Si aucun article, affiche un plan de la rubrique ]
+							<B_sous_rubriques>
+							<div class="listerub">
+								<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {tout}>
+								<div>
+									<a href="#URL_RUBRIQUE" class="titresousrub">[(#TITRE|supprimer_numero)]</a>
+									<div class="textesousrub">#DESCRIPTIF</div>
+									<div class="liens">
+									[(#REM) Une boucle recursive pour le mini plan]
+									<B_miniplan>
+										<ul>
+											<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre} {tout}>
+											<li>
+												<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+												<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+											</li>
+											</BOUCLE_miniplan>
+										</ul>
+									</B_miniplan>
+									</div>
+									<div class="clear0">&nbsp;</div>
+								</div>
+								</BOUCLE_sous_rubriques>
+							</div>
+							</B_sous_rubriques>
+							
+							[(#REM) Articles de la rubrique ]
+							<B_articles>
+							<div class="listeartfirst">
+								#ANCRE_PAGINATION
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination}>
+									[(#LOGO_ARTICLE{#URL_ARTICLE}|image_reduire{150,100})]
+										<a href="#URL_ARTICLE" class="titreartliste">[(#TITRE|supprimer_numero)]</a>
+										<p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></small></p><br />
+										<div class="texte">#DESCRIPTIF</div>
+										<div class="clearer">&nbsp;</div>
+								</BOUCLE_articles>
+								[<p class="pagination">(#PAGINATION)</p>]
+							</div>
+							</B_articles>
+
+						<div class="o2paj"><a href="#entete" title="Haut de page">Haut de page</a></div>
+						
+						</div><!-- innercentrale -->
+					</div><!-- boxcentrale -->
+				</div><!-- main-content-3cols -->
+			</div><!-- contenu -->
+	
+			<div id="droite3">
+			  
+				<div id="menu3">
+					<h1 class="invisible">Menu de droite</h1>
+					[(#REM) Sites de la rubrique ]
+					<B_sites>
+					<div class="voir_sites">
+						<div class="top">&nbsp;</div>
+						<div class="center">		
+							<h2><:sur_web:></h2>
+							<ul>
+								<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+								<li>
+									<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+									<B_syndic>
+									<ul>
+										<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+										<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+										</BOUCLE_syndic>
+									</ul>
+									</B_syndic>
+								</li>
+								</BOUCLE_sites>
+							</ul>
+						</div><!-- center -->
+								
+						<div class="bottom">&nbsp;</div>
+							
+					</div><!-- voir_sites -->
+							
+					<div class="bottom">&nbsp;</div>		
+					</B_sites>
+
+				</div><!-- menu3 -->
+					
+				<div class="clearer">&nbsp;</div>
+					
+			</div><!-- droite3 -->
+				
+			<div class='clearer'>&nbsp;</div>
+					
+		</div><!-- main -->
+		</div><!-- milieu3 -->
+		
+	</div><!-- ext-main -->
+	</div><!-- milieu -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_principale>

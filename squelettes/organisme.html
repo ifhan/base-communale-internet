@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<title>Organisme</title>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	[(#REM) Contenu principal : contenu de l'article ]
+    <div class="hfeed" id="conteneur">
+    <div class="hentry" id="contenu">
+	
+	<INCLURE{fond=inc-chemin_recherche_thematique}>
+
+	<!-- Version imprimable -->
+
+	<div align="right">
+		<div class="titre">
+			<a href="scripts/print_organisme.php?id_organisme=<? echo $id_organisme ?>" title="Afficher une version imprimable"  target="_blank">Version imprimable</a>
+		</div>
+	</div>
+
+	<div id="cartouche">
+		<h1 class="titre-texte">Organisme</h1>
+		<div class="soustitre">Fiche descriptive</div>
+		<div class="ps"></div>
+	</div>
+
+	<div><INCLURE(scripts/organisme.php)></div><br />
+				
+	<div align="right"><a href="#" class="logo"><img src="IMG/gif/top.gif"> Haut de page</a></div><br />
+	
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+    [(#REM) Menu de navigation laterale ]
+    <div id="navigation">
+
+        [(#REM) Menu de navigation par rubriques ]
+        <INCLURE{fond=inc-rubriques}{id_rubrique}>
+	
+		#FORMULAIRE_RECHERCHE
+		
+		<INCLURE{fond=inc-type_zonages}>		
+		
+		<INCLURE{fond=inc-menu_donnees}>
+		
+    </div><!--#navigation-->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	
+</div><!--#page-->
+</body>
+</html>

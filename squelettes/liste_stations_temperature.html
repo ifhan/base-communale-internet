@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+<title>Liste des stations Temp&eacute;rature des cours d'eau</title>
+<INCLURE{fond=inc-head}>
+<INCLURE{fond=inc-datatables}>
+</head>
+
+<body>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	<div id="milieu">
+	<div id="ext-main">	
+
+	[(#REM) Fil d'Ariane ]
+	<INCLURE{fond=inc-fil_ariane} {id_rubrique=7}{tout}>
+	
+	[(#REM) Titre de la rubrique parent]
+	<INCLURE{fond=inc-titre_rubrique}{id_rubrique=7}>
+
+		<div id="milieu3_dedie">
+		<div class="main">
+			
+			<div id="gauche">
+				<div id="navi_gauche">
+					[(#REM) Menu de navigation par rubriques ]
+					<INCLURE{fond=inc-rubriques}{id_rubrique=7} {tout}>
+					<div class="clearer">&nbsp;</div>
+				</div>
+			</div><!-- gauche -->			
+			
+			<div id="contenu">
+				<div class="main-content-2cols_dedie">
+					<h1 class="invisible">Contenu</h1>
+					<div id="boxcentrale">
+						<div class="innercentrale">
+						
+							<h2>Liste des stations Temp&eacute;rature des cours d'eau en Pays de la Loire</h2>
+							<hr class="hrart"><br />
+						
+							<div class="lien_simple">
+								<INCLURE(scripts/liste_stations_temperature.php)>
+							</div>
+
+							<div class="clearer">&nbsp;</div>
+
+							<div class="o2paj"><a href="#entete" title="Haut de page">Haut de page</a></div>
+						
+						</div><!-- innercentrale -->
+					</div><!-- boxcentrale -->
+				</div><!-- main-content-2cols_dedie -->
+			</div><!-- contenu -->
+				
+			<div class='clearer'>&nbsp;</div>
+					
+		</div><!-- main -->
+		</div><!-- milieu3 -->
+		
+	</div><!-- ext-main -->
+	</div><!-- milieu -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>

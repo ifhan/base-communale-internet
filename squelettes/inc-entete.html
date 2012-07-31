@@ -1,0 +1,62 @@
+<div id="menutop">
+	<h1 class="invisible">Menu haut</h1>
+	<ul>
+	<BOUCLE_sites(SITES) {id_rubrique=27} {par nom_site}>
+		<li><a href="#URL_SITE" title="#DESCRIPTIF">#NOM_SITE</a></li>
+	</BOUCLE_sites>
+	</ul>
+</div><!-- menutop -->
+	
+<div class="clearer">&nbsp;</div>
+	
+<div id="page">
+	
+	<div id="pagetop">&nbsp;</div>
+	
+	<div id="entete">
+	
+	<h1 class="invisible">Haut de page</h1>
+
+	<div id="haut" style="background: transparent url(plugins/interdreal/_images/banniere.jpg) no-repeat 116px top;">
+
+		<div class="BandeauHaut">
+		
+			<div id="top">
+				<a href="#contenu" accesskey="C"><span class="invisible">Aller au contenu</span></a>
+				<a href="#URL_SITE_SPIP" accesskey="H"><span class="invisible">Retour &agrave; l'accueil</span></a>
+			</div>
+			
+			<div id="logodusite"><a href="#URL_SITE_SPIP" title="Retour &agrave; l'accueil">#LOGO_SITE_SPIP</a></div>
+			
+			<div id="nomdusite">
+                <table>
+					<tr>
+                        <td colspan="2" class="dreal_lettre">
+                            <img src='plugins/interdreal/_images/BaseCommunale.png' width='300' height='40' style='width:300px;height:40px;' alt='Base communale' class='img_png' /><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="dreal" width="119px">
+                            <img src='plugins/interdreal/_images/DREAL.png' width='119' height='47' style='width:119px;height:47px;' alt='DREAL' class='img_png' />
+                        </td>
+                        <td class="dreal_region"  width="466px">
+                            &nbsp;&nbsp;<img src='plugins/interdreal/_images/PdL.png' width='181' height='28' style='width:181px;height:28px;' alt='PAYS DE LA LOIRE' class='img_png' />
+                        </td>
+                    </tr>
+                </table>
+			</div>
+			
+			<div id="gerbe" style="background: transparent url(plugins/interdreal/_images/bg_haut_droit.png) no-repeat right top;">
+				<div id="rechercher">#FORMULAIRE_RECHERCHE</div>
+			</div><!-- gerbe -->
+
+		</div><!-- BandeauHaut -->
+		
+	</div><!-- haut -->
+	
+	<div class="clear0"></div>
+
+	</div><!-- entete -->
+
+	[(#REM) Menu de navigation par rubriques ]
+	<INCLURE{fond=inc-menu_horizontal}>
