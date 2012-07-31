@@ -4,6 +4,7 @@ define('USERNAME', 'root');
 define('PASSWORD', '%+carantec29');
 
 // URL parameters    
+define ('URL_BASE_COMMUNALE', 'http://www.donnees.pays-de-la-loire.developpement-durable.gouv.fr/');
 define('URL_CARMEN', 'http://carmen.developpement-durable.gouv.fr/26/');
 define('URL_DREAL', 'http://www.pays-de-la-loire.developpement-durable.gouv.fr/article.php3?id_article=');
 define('URL_INPN_ESPACE_PROTEGE', 'http://inpn.mnhn.fr/espace/protege/');
