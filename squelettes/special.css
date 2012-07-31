@@ -1,0 +1,9 @@
+/* Tableaux */
+table.spip {} /* Cf.: spip_style.css */
+
+.encadre { border: solid 1px #DDDDDD;; border-collapse: collapse; }
+.encadre th  { padding: 5px; border: solid 1px #DDDDDD;; }
+.encadre tr td { padding:5px; vertical-align: top; border-collapse: collapse; border: dashed 1px #DDDDDD;;text-align:left; }
+.encadre li { list-style: square; }
+
+.cadre_plein { border-top: solid 1px #DDDDDD;; border-bottom: solid 1px #aaa; border-collapse: collapse; background-color: #efebef; width:100%; }

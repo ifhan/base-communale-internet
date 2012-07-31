@@ -1,0 +1,3463 @@
+* {margin:0;padding:0}
+
+/* -----------------------------------------------------------------------------
+  Structure
+-------------------------------------------------------------------------------- */
+/* menutop */
+
+#menutop {
+	position:relative;
+	top:30px;
+	width: 982px;
+	margin:0 auto;
+	padding-left: 11px;
+	font-size:12px;
+}
+#menutop li {
+	background: #959088 url(../plugins/interdreal/_images/bg_menutop_li.gif) 50% bottom no-repeat;
+	display: inline;
+	float: left;
+}
+#menutop li.on {
+	background: #959088 url(../plugins/interdreal/_images/bg_menutop_li_on.gif) 50% bottom no-repeat;
+}
+#menutop li a, #menutop li a:hover {
+	color: #fff;
+	padding: 5px 10px;
+	float: left;
+	border-right: 1px solid #b5b1ac;
+	white-space:nowrap;
+}
+#menutop li.on a, #menutop li.on a:hover {
+	color: #454545;
+	text-decoration: none;
+	white-space:nowrap;
+}
+.clear0 {
+	clear: both;
+}
+/* fin menutop */
+
+div#pagetop {
+	background:url(../plugins/interdreal/_images/bg_pagetop.png) no-repeat scroll left top transparent;
+	height:11px;
+	width:1004px;
+	margin: 0px auto;
+}
+
+div#page {
+	width:1004px;
+	padding: 0; 
+	background: transparent url(../plugins/interdreal/_images/bg_page.png) left top repeat-y;
+        margin:19px auto;
+}
+
+/*==========  En-tete ==============*/
+
+div#entete {
+	vertical-align: top;
+	padding:0;
+	top:-1px;
+	left:0;
+}
+    
+div#haut {
+	background: none;
+	vertical-align: top;
+	margin:0 11px;
+	padding:0;
+	top:0px;
+	left:0px;
+        height:140px;
+	width:981px;
+}
+#logodusite {
+	width:106px;
+	height:140px;
+	padding:5px;
+	background-color: #ffffff;
+	position:relative;
+	float:left;
+}
+#logodusite img {
+	border: none;	
+}
+#nomdusite  { 
+	font-weight: bold;
+	float: left;
+	margin: 60px 0 0 5px;
+	display:block;
+	position:relative;
+}
+#nomdusite table {
+	width: 585px;
+	color: #484848;
+	text-align:left;
+	margin:0;
+	padding:0;
+}
+#nomdusite table td.dreal {
+	vertical-align:bottom;
+	font-size: 33px;
+}
+#nomdusite table td.dreal_region {
+	vertical-align:bottom;
+	font-size: 18px;
+}
+#nomdusite table td.dreal_region img {
+    margin:15px 0 3px 0;
+}
+#nomdusite table td.dreal_lettre {
+	vertical-align:top;
+	padding:0 0 0 2px;
+	font-size: 14px;
+}
+#nomdusite table td.dreal_lettre img {
+	margin:-20px 0px 0px 0px;
+}
+#gerbe {
+	background: transparent url(../plugins/interdreal/_images/bg_haut_droit.png) right top no-repeat;
+	position: relative;
+	float:right;
+	display:block;
+	height: 140px;
+	width: 270px;
+	z-index:20;
+}
+
+/*======  Milieu (colonnes gauche, centrale et droite) =======*/
+#milieu {
+	margin:11px;
+	padding : 0px;
+}
+#milieusommaire {
+	background: transparent url(../plugins/interdreal/_images/bg_bloc3c_home.gif) right top repeat-y;
+	width: 981px;
+	position: relative;
+	margin-top: -10px;
+	overflow: hidden;
+}
+#milieu2 {
+        background: transparent url(../plugins/interdreal/_images/bg_bloc3c_home.gif) right top repeat-y;
+        width: 981px;
+        position: relative;
+        margin-top: 15px;
+        overflow: hidden;
+}
+#milieu3 {
+        background: #ffffff url(../plugins/interdreal/_images/bg_bloc3c_home.gif) 40px top repeat-y;
+        width: 981px;
+        position: relative;
+        margin-top: 15px;
+        overflow: hidden;
+}
+#milieu3_dedie {
+	background-color: #FFFFFF;
+        width: 981px;
+        position: relative;
+	margin-top: 15px;
+	overflow: hidden;
+}
+
+#pageRecherche #milieu, 
+#pageRubForum #milieu, 
+#pageArticleForum #milieu,
+#pageArticleQuestion #milieu,
+#pageArticleParMois #milieu,
+#pageArticleRediger #milieu,
+#pageAuthentification #milieu,
+#pageMot #milieu,
+#pageVisites #milieu,
+#pageArchive #milieu {
+	margin:0 11px;
+	padding:0 0 0 250px;
+}
+#pageSujetForum #milieu, #pageForum #milieu {
+	margin:0 11px;
+}
+
+#pageRubEspacededie div#droitehaut { margin-top:0px; }
+#pageAfficheArticle, #pageImprimer {
+	padding:20px;
+}
+/*==========  Contenu (colonne centrale)  ==============*/
+#ext-main {
+	width: 100%;
+	position:relative;
+}
+#ext-main[id] { /* pour mozilla */
+	padding-bottom: 0.1px;
+}
+#banniere_haut {
+	width: 981px;
+}
+.banniere {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: -10px;
+}
+.alaune, .sanslaune {
+	background: transparent url(../plugins/interdreal/_images/bg_themgal_bloc3c_h1_alaune.gif) top left no-repeat;
+	width:959px;
+	height:45px;
+	color: #ffffff;
+	font-size:20px;
+	font-weight:bold;
+	padding:10px 0 0 35px;
+	margin-top: 10px;
+	position: relative;
+}
+.sanslaune {
+	background: transparent url(../plugins/interdreal/_images/bg_theme_bloc3c_h1_autre.png) top left no-repeat;
+	padding:10px 0 1px 35px;
+}
+.rssoutils {
+	position: relative;
+	float: right;
+	padding-right: 30px;
+	color: #000000;
+	font-size: 12px;
+	font-weight: normal;
+}
+.rssoutils a {
+	color: #000000;	
+	text-decoration: none;
+}
+.rssoutils img a:hover {
+	text-decoration: underline;
+	cursor:pointer;
+}
+.rssoutils img {
+	border: none;
+	vertical-align: middle;
+	margin: 0;
+}
+div.actu_totale {
+	background: transparent url(../plugins/interdreal/_images/bg_blocalaune.gif) top left repeat-y;
+	width: 695px;
+	padding: 0 10px;
+	position: relative;
+}
+div.actu_totale_top {
+	background: transparent url(../plugins/interdreal/_images/bg_blocalaune_top.gif) top left no-repeat;
+	height:8px;
+	margin: 0 -10px;
+}
+div.actu_totale_bottom {
+        background: transparent url(../plugins/interdreal/_images/bg_blocalaune_bottom.gif) bottom left no-repeat;
+	height:8px;
+	margin:0 -10px;
+}
+.main {
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+}
+.main[class] { 
+	margin-right: -1px;
+}
+.main-content {
+	margin: 0;
+}
+#contenu {
+	padding:0;
+	float: left;
+	position:relative;
+}
+.main-content-2cols {
+	padding:0px 10px;
+	width: 686px;
+	position: relative;
+}
+.main-content-2cols_dedie {
+        padding:0px 10px 0 20px;
+        width: 736px;
+        position: relative;
+}
+.main-content-3cols {
+	padding:0 0 0 20px;
+	position: relative;
+	width: 508px;
+}
+#contenu[id] { 
+}
+
+
+/*==========  Menu gauche  ==============*/
+#gauche {
+	float:left;
+	z-index:20;
+	padding:0px;
+	position: relative;
+	width: 200px;
+	overflow:hidden;
+}
+#gauche[id] {
+	margin-right:1px;
+}
+
+/*==========  Menu droit  ==============*/
+#droite {
+	position: relative;
+	top: 0px;
+	right: 0px;
+	margin: -15px 0 0 0;
+	width: 259px;
+	background: none;
+	z-index:21;
+	padding:0;
+	float:right;
+	overflow:hidden;
+}
+#droite[id] {
+	margin-left:1px;
+}
+#droite2 {
+        position: relative;
+        margin: -40px 0 0 0;
+        width: 206px;
+        background: none;
+        z-index:21;
+        padding:0;
+        top :0;
+        right:0;
+	overflow:hidden;
+}
+#droite2[id] {
+        margin-left:1px;
+}
+#droite3 {
+        position: relative;
+	right:0px;	
+	top: 0px;
+        margin: 0px 0 0 0;
+        width: 228px;
+        background: none;
+        z-index:21;
+        padding:0;
+        float: right;
+	overflow: hidden;
+}
+#droite3[id] {
+        margin-left:1px;
+}
+
+#menu2, #menu3 {
+	position: relative;  /* indispensable pour IE 5.5 */
+	padding: 0;
+}
+div#droitehaut {
+	position: relative;
+	float:right;
+	margin:0px;
+	padding:0px;
+	width: 250px;
+	background:white;
+	z-index:10;
+}
+/*==========  Pied de page  ==============*/
+div#pied, div#piedplan {
+	background: #d9d9d9 url(../plugins/interdreal/_images/bg_contentfooter_planbg2.gif) no-repeat top left;
+	margin: 0 11px;
+	text-align: center;
+	padding-top: 48px;
+	padding-bottom: 5px;
+	clear: both;
+	width: 981px;
+	position:relative;
+}
+div#piedplan {
+        background: #d9d9d9 url(../plugins/interdreal/_images/bg_contentfooter_planbg2plan.gif) no-repeat top left;
+}
+div#pied_2 {
+	text-align: center;
+}
+div#outils {
+	margin: 15px auto;
+	text-align: center;
+	font-weight: normal;
+	font-size:12px;
+	color: #454545;
+}
+#outils a {
+	text-decoration: none;
+	color: #454545;
+}
+#outils a:hover {
+	text-decoration:underline;
+}
+
+/* -----------------------------------------------------------------------------
+  Styles
+-------------------------------------------------------------------------------- */
+
+
+/*==========  Styles globaux  ==============*/
+body {
+	font-family: arial,helvetica,verdana,sans-serif;
+	font-size: 12px;
+	line-height: 1.5em;
+	color: #484848;
+	background: transparent url(../plugins/interdreal/_images/bg_body.gif) left top repeat-x;
+	margin: 0px;
+}
+form {
+	margin: 0px;
+}
+
+#liens {
+	color: #4A4A4A;
+}
+#liens h3 {
+	font-size: 0.8em;
+	margin: 1em 0px 0.5em;
+}
+#liens p {
+	font-size: 0.7em;
+	display: block;
+	border: 1px solid #B1B1B1;
+	margin: 0px 0px 2px;
+	text-align: center;
+}
+#liens a {
+	color: #4A4A4A;
+	text-decoration: none;
+}
+#liens a:hover {
+	text-decoration: underline;
+}
+.clearer {
+	line-height: 0em;
+	clear: both;
+}
+.clear-right {
+	line-height: 0em;
+	clear: right;
+}
+.invisible {
+	display:none;
+}
+
+/*==========  Arrondis ==============*/
+/*#boxsyndic .innercentrale { padding : 0px 0px 15px 0px; }*/
+
+
+/*==========  Menu principal ==============*/
+#boxmenuhaut {
+	background: transparent url("../plugins/interdreal/_images/bg_milieu.gif") center bottom no-repeat;
+	height:126px;
+	margin-bottom: -20px;
+	width: 1003px;
+}
+#menuprincipal {
+        background: none;
+        margin:0 11px;
+        width:981px;
+        padding:0;
+        z-index:10;
+        height:110px;
+}
+#menuprincipal td {
+        border:0;
+        background: none;
+        width:140px;
+        text-align: center;
+        height:110px;
+	text-transform: uppercase;
+}
+#menuprincipal a, #menuprincipal a.menu_1, #menuprincipal a.menu_2, #menuprincipal a.menu_3, #menuprincipal a.menu_4, #menuprincipal a.menu_5, #menuprincipal a.menu_6, #menuprincipal a.menu_7 {
+	font-size: 13px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #78b41b;
+	position:relative;
+	display: block;
+	height: 110px;
+}
+#menuprincipal span, #menuprincipal span:hover {
+        background-color:#FFFFFF;
+        padding: 0 0 5px 0px;
+        position:relative;
+        display:block;
+}
+#menuprincipal a:hover, #menuprincipal a.menu_1:hover, #menuprincipal a.menu_2:hover, #menuprincipal a.menu_3:hover, #menuprincipal a.menu_4:hover, #menuprincipal a.menu_5:hover, #menuprincipal a.menu_6:hover, #menuprincipal a.menu_7:hover {
+        color: #78b41b;
+        font-size: 14px;
+
+}
+#menuprincipal a.menu_1 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_1.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_1:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_1.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_2 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_2.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_2:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_2.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_3 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_3.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_3:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_3.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_4 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_4.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_4:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_4.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_5 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_5.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_5:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_5.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_6 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_6.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_6:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_6.png') center -90px no-repeat;
+}
+#menuprincipal a.menu_7 {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_7.png') center 10px no-repeat;
+}
+#menuprincipal a.menu_7:hover {
+        background: transparent url('../plugins/interdreal/_images/bg_menu_7.png') center -90px no-repeat;
+}
+
+/*==========  Menu deroulant  ==============*/
+div.menu {
+  background-color: #78BB01;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding: 0 0 2px;
+  visibility: hidden;
+  margin: -7px 0 0 0;
+  z-index: 101;
+  display: block;
+  width:140px;
+}
+
+div.menu a.menuItem {
+  background:url("../plugins/interdreal/_images/puce_menu_them4.gif") no-repeat 5px 50% #78BB01;
+  font-size: 12px;
+  color: #FFFFFF;
+  cursor: default;
+  padding: 4px 0 4px 15px;
+  margin: 0;
+  border-bottom: 1px solid #99C752;
+  text-decoration: none;
+  display:block;
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+div.menu a.menuItem span.menuItemText {}
+
+div.menu a.menuItem span.menuItemArrow {
+  margin-right: -.75em;
+}
+
+/*==========  Barre de progression ==============*/
+#navpath {
+	color: #454545;
+	font-size: 12px;
+	margin: 0px 20px;
+	padding: 5px 0px 0px 0px;
+}
+#navpath a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #454545;
+}
+#navpath a:hover {
+	text-decoration: underline;
+}
+
+/*==========  Menu 1  ==============*/
+#menu1, #navi_gauche {
+	position: relative;  /* indispensable pour IE 5.5 et 6 */	
+	background: #FFFFFF;	
+	font-size: 11px;
+	margin-left: 20px;
+}
+.decal {
+	padding-left: 10px;
+	background-color: #F1F7E8;
+}
+a.small {
+	font-size:9px;
+}
+#menu1 h2, .gauche1 h2, .gauche2 h2, .gauche3 h2, .gauche4 h2, .gauche5 h2 {
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+}
+
+/* ---- titre d'une rubrique dans squelette rubrique -- */
+#contenu div.cadrerub, #contenu div.cadrerub_dedie {
+	padding: 0px;
+	margin: 10px -5px 20px 3px;
+}
+#contenu div.cadrerub div.top {
+	background: url(../plugins/interdreal/_images/bg_cadrerub_top.png) no-repeat 0 0;
+	padding: 0;
+	margin: 0 0 -5px 0;
+}
+#contenu div.cadrerub div.center {
+        background: url(../plugins/interdreal/_images/bg_cadrerub_center.png) repeat-y 0 0;
+	padding: 10px;
+        overflow: hidden;
+}
+#contenu div.cadrerub div.bottom {
+        background: url(../plugins/interdreal/_images/bg_cadrerub_bottom.png) no-repeat 0 0;
+}
+#contenu div.cadrerub_dedie div.top {
+        background: url(../plugins/interdreal/_images/bg_cadrerub_top_dedie.png) no-repeat 0 0;
+        padding: 0;
+        margin: 0 0 -5px 0;
+		border: none;
+}
+#contenu div.cadrerub_dedie div.center {
+        background: url(../plugins/interdreal/_images/bg_cadrerub_center_dedie.png) repeat-y 0 0;
+        padding: 10px;
+        overflow: hidden;
+}
+#contenu div.cadrerub_dedie div.bottom {
+        background: url(../plugins/interdreal/_images/bg_cadrerub_bottom_dedie.png) no-repeat 0 0;
+		border: none;
+}
+#contenu div.cadrerub h2, #contenu div.cadrerub_dedie h2 {
+	font-size:18px;
+	color: #78B51C;
+	margin: 0 0 10px 0;
+	padding: 0 10px;
+	line-height: 1.5em;
+}
+#contenu div.cadrerub div.logorub, #contenu div.cadrerub_dedie div.logorub {
+        float: left;
+        margin: 0 10px 0 10px;
+}
+#contenu div.cadrerub div.texterub, #contenu div.cadrerub_dedie div.texterub {
+	text-align: justify;
+	padding: 0 10px 10px 10px;
+	/*overflow: hidden;*/
+}
+#contenu div.cadremot {
+	border: solid 1px #DDDDDD;
+	padding: 10px;
+	background: transparent url(../plugins/interdreal/_images/bg_affiner.gif) repeat-x left bottom;
+}
+#contenu div.cadremot h2 {
+        font-size:18px;
+        color: #78B51C;
+        padding: 0 0 20px 0;
+	margin: 0 0 10px 0;
+	background: transparent url(../plugins/interdreal/_images/bg_h2_mot.gif) no-repeat left bottom;
+}
+div.hrmot {
+        background: transparent url(../plugins/interdreal/_images/bg_hr_mot.gif) no-repeat right bottom;
+        margin: -20px 0 10px 0;
+}
+div.hrrub_dedie {
+	background: transparent url(../plugins/interdreal/_images/bg_list_classic_li_dedie.gif) -68px 0 no-repeat;
+        margin: 0;
+        padding: 10px 0 0 0;
+        width: 100%;
+}
+#titrerub {
+	margin: 30px 0 -15px 0 ;
+	padding: 0;
+}
+#titrerub span.titrerub, #titrerub span.titrerubm, #titrerub span.titrerubn {
+	background: #78B51C url(../plugins/interdreal/_images/bg_titre_rubrique_vert.png) center top no-repeat;
+	padding: 12px 25px 16px 25px;
+	margin-left: 20px;
+	font-weight: bold;
+	font-size: 18px;
+	color: #ffffff;
+}
+#titrerub span.titrerubm {
+	background: #837c72 url(../plugins/interdreal/_images/bg_titre_rubrique_marron.png) center top no-repeat;
+}
+#titrerub span.titrerubn {
+        background: #484848 url(../plugins/interdreal/_images/bg_titre_rubrique_noire.png) center top no-repeat;
+}
+#titrerub img {
+	margin: -30px 0 0 0;
+	padding: 0;
+}
+#menu1 ul, .gauche1 ul, .gauche2 ul, .gauche3 ul, .gauche4 ul, .gauche5 ul {
+	list-style-type: none;
+	position: relative;  /* indispensable pour IE 5.5 */
+	padding: 0;
+	margin: 0;
+}
+#menu1 ul li, .gauche1 ul li, .gauche2 ul li {
+/*	border-bottom: solid 1px #CACACA;*/
+	padding: 5px 0;
+}
+.gauche3 ul li, .gauche4 ul li, .gauche5 ul li {
+/*	border-bottom: none;*/
+        padding: 5px 0;
+}
+#menu1 ul li.on, .gauche1 ul li.on, .gauche2 ul li.on, .gauche3 ul li.on, .gauche4 ul li.on, .gauche5 ul li.on {
+	background-color: #f1f7e8;
+}
+.gauche2 ul li.noire.on2 {
+	background-color: #efefef;
+}
+#menu1 ul li a, .gauche1 ul li a, .gauche2 ul li a, .gauche3 ul li a, .gauche4 ul li a, .gauche5 ul li a{
+	font-size: 12px;
+	color: #454545;
+	border-left: solid 3px #78BB01;
+	line-height: 20px;
+	text-decoration: none;
+	padding: 4px 0 4px 9px;
+	font-weight: normal;
+}
+.gauche2 ul li.noire a, .gauche ul li.noire.on2 a {
+	border-left: solid 3px #484848;
+}
+
+#menu1 ul li a.on, .gauche1 ul li a.on, .gauche2 ul li a.on, .gauche2 ul li a.on2, .gauche3 ul li a.on, .gauche4 ul li a.on, .gauche5 ul li a.on {
+	text-decoration: none;
+	margin: 0;
+	font-weight: bold;
+}
+#menu1 a:hover, .gauche1 a:hover, .gauche2 a:hover, .gauche3 a:hover, .gauche4 a:hover, .gauche5 a:hover { 
+	text-decoration: underline;
+}
+#navi_gauche hr {
+	color: #CACACA;
+	background-color: #CACACA;
+	height: 1px;
+	border: 0;
+	margin: 0;
+}
+/*==========  Menu 2  ==============*/
+#menu2 .boxtitredroite, #menu2 .zapette {
+	width: 270px;
+	margin-left: -9px;
+	margin-bottom: -15px;
+	position:relative;
+}
+#menu2 .boxtitredroite div.top, #menu2 .zapette div.top {
+	background: transparent url(../plugins/interdreal/_images/bg_box_droite_top.png) no-repeat top left;
+	width: 270px;
+	height: 28px;
+
+}
+#menu2 .boxtitredroite div.bottom, #menu2 .zapette div.bottom {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite_bottom.png) no-repeat bottom left;
+	width: 268px;
+	height: 17px;
+}
+#menu2 h2 {
+	color: #79b51c;
+	font-size: 14px;
+	font-weight: bold; 
+	padding: 10px 10px 0px 10px;
+	width: 215px;
+	background: transparent url(../plugins/interdreal/_images/bg_b3cr_classic_h2.gif) repeat-x top left;
+}
+#menu2 div.zapette h2 {
+	border: 1px solid #ffffff;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px 10px 5px 30px;
+        width: 194px;
+        background: transparent url(../plugins/interdreal/_images/zapette.png) no-repeat center left;
+}
+#menu2 div.bottomh2 {
+	background: #79B51C url(../plugins/interdreal/_images/bg_b3cr_h2bbottom.gif) repeat-x top left;
+	height: 3px;
+	margin: 0 10px 10px 10px;
+}
+#menu2 .bloc1, #menu2 .bloc2, #menu2 .bloc3, #menu2 .bloc4, #menu2 div.zapette .center {
+	background: transparent url(../plugins/interdreal/_images/bg_box_droite_center.png) repeat-y center center;
+	padding: 0 16px 10px 16px;
+	margin-top: -12px;
+}
+#menu2 .bloc1 .colonne1 {
+	float: left;
+	width: 48%;
+	padding: 0 0 0 0;
+	margin: 0 0 3px 4px;
+	vertical-align: top;
+	font-size: 12px;
+}
+#menu2 .bloc1 .colonne2 {
+	float: left;
+	width: 48%;
+	padding: 0 0 0 0;
+	margin: 0;
+	vertical-align: top;
+	font-size: 12px;
+}
+#menu2 .bloc1 img {
+	border: 0px;
+}
+#menu2 .bloc1 a {
+	display: block;
+	padding: 3px 0 0 6px;
+	margin: 0;	
+}
+
+#menu2 .bloc1 a.lien {
+	color: #454545;
+	font-size: 12px;
+	display: block;
+	background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+	padding: 0 0 3px 13px;
+	margin: 10px 0 0 6px;	
+}
+#menu2 .bloc1 a:hover {
+	text-decoration: none;
+}
+#menu2 .bloc1 a.lien:hover {
+	text-decoration: underline;
+}
+#menu2 .bloc1 .clearer {
+	padding: 5px 0 0 0;
+	line-height: 0px;
+	clear: both;
+}
+
+#menu2 hr {
+	clear: both;
+	visibility: hidden;
+}
+#menu2 .bloc2 ul, #menu2 .zapette ul {
+	position: relative;  /* indispensable pour IE 5.5 */
+	margin: 0;
+	padding: 10px 0 0 0; 
+	font-size: 12px;
+	list-style-type: none;
+}
+#menu2 .bloc2 ul li, #menu2 .zapette ul li {
+	font-size: 12px;
+	background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+	padding: 0 0 0 14px;
+	margin: 0 0 0 10px;
+}
+.bloc2 ul li {
+	font-size: 12px;
+	background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+	padding: 0 0 0 14px;
+	margin: 0 0 0 10px;
+	list-style:none;
+}
+#menu2 .bloc3 ul {
+	position: relative;  /* indispensable pour IE 5.5 */
+	margin: 3px 0 10px 0;
+	padding: 0; 
+	list-style-type: none;
+	font-size: 11px;
+}
+#menu2 .bloc3 ul li {
+	font-size: 12px;
+	background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+	padding: 0 0 0 14px;
+	margin: 0 0 0 10px;
+	display: block;
+	width: 202px;
+	clear: both;
+}
+li.logo100 {
+	min-height: 100px;
+}
+li.logo35 {
+	min-height: 35px;
+}
+#menu2 .bloc3 .texte {
+	margin: 0 0 0.5em 0;
+	color: #454545;
+}
+#menu2 .bloc3 img { 
+	float: right;
+	margin: 0 0px 3px 0; 
+	padding: 0;
+	border: 0px;
+}
+#menu2 .bloc3 p {
+	margin: 0;
+	padding: 0;
+}
+#menu2 .bloc3 a:hover {
+	text-decoration:underline;
+}
+#menu2 .bloc4 {
+	font-size: 11px;
+	/*padding: 0.25em 0px 0px;*/
+}
+#menu2 .bloc4 a {
+	font-size: 12px;
+	margin: 0px 0px 0px 10px;
+	padding: 0px 0px 0px 10px;
+	background: url(../plugins/interdreal/_images/picto_envoie.gif) no-repeat 0px 2px;
+	color: #454545;
+	text-decoration: underline;
+}
+#menu2 a, .bloc2 a {
+	color: #454545;
+	text-decoration: none;
+	margin: 0;
+	font-weight: normal;
+}
+#menu2 a.on {
+	color: #454545;
+	text-decoration: none;
+	margin: 0;
+	font-weight: bold;
+}
+#menu2 a:hover, .bloc2 a:hover { 
+	color: #454545;
+	text-decoration: underline; 
+}
+#menu2 .blocoutil {
+	position: relative;  /* indispensable pour IE 5.5 */
+	padding: 0.25em 0px 10px;
+	font-size: 0.56em;
+	border-top: 1px solid #5b8910;
+}
+
+#menu2 a.envoiami {
+	line-height:1.5em;
+	display:block;
+	margin: 0px 0px 0px 6px;
+	padding: 0px 0px 0.5em 20px;
+	background: url(../plugins/interdreal/_images/picto_envoie.gif) no-repeat 0px 2px;
+	color: #484848;
+	text-decoration: none;
+}	
+#menu2 a.imprimer {
+	line-height:2.1em;
+	display:block;
+	margin: 0px 0px 0px 6px;
+	padding: 0px 0px 0.2em 20px;
+	background: url(../plugins/interdreal/_images/picto_print.gif) no-repeat 0px 2px;
+	color: #484848;
+	text-decoration: none;
+}	
+.ar {
+	font-size: 0.56em;
+	display:block;
+	margin: 0px 0px 0px 3px;
+	padding: 3px 0px 20px 28px;
+	background: url(../plugins/interdreal/_images/ar.gif) no-repeat 0px 2px;
+	color: #484848;
+	text-decoration: none;
+}
+.ari {
+	font-size: 0.56em;
+	display:block;
+	margin: 0px 0px 0px 1px;
+	padding: 3px 0px 20px 42px;
+	background: url(../plugins/interdreal/_images/ari.gif) no-repeat 0px 2px;
+	color: #484848;
+	text-decoration: none;
+}
+#menu2 a.acrobat {
+	line-height:2em;
+	margin: 0px 0px 0px 6px;
+	padding: 0px;
+	color: #484848;
+	text-decoration: none;
+}	
+#menu2 a.acrobat img {
+	vertical-align: middle;
+	display: inline;
+}	
+#menu2 a.acrobat span {
+	vertical-align: middle;
+	display: inline;
+	padding: 0px 0px 0px 2px;
+}
+#menu2 .visuel img {
+	margin: 0 0 10px 6px;
+	width: 145px;
+	height: 145px;
+}
+#menu2 img.logo35 {
+	border: 0;
+	width: 35px;
+	height: 35px;
+}
+#menu2 img.logo35b {
+	border: 0px;
+	width: 35px;
+	height: 35px;
+}
+#menu2 img.logo100 {
+	border: 0;
+	width: 100px;
+	height: 100px;
+}
+
+/*==========  Menu 3  ==============*/
+#menu3 .boxtitredroite, #menu3 .zapette {
+        width: 228px;
+        margin-left: 0px;
+	margin-bottom: -14px;
+}
+#menu3 .boxtitredroite div.top, #menu3 .zapette div.top {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_top.png) no-repeat top left;
+        width: 228px; 
+        height: 14px;
+}
+#menu3 .boxtitredroite div.bottom, #menu3 .zapette div.bottom {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_bottom.png) no-repeat bottom left;
+        height: 17px;
+}
+#menu3 h2 {
+        color: #79b51c;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 10px 0px 0px 10px;
+        width: 188px;
+        background: transparent url(../plugins/interdreal/_images/bg_b3cr_classic_h2.gif) repeat-x top left;
+}
+#menu3 div.zapette h2 {
+	border: 1px solid #ffffff;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px 5px 5px 30px;
+        width: 162px;
+        background: transparent url(../plugins/interdreal/_images/zapette.png) no-repeat center left;
+}
+#menu3 div.bottomh2 {
+        background: #79B51C url(../plugins/interdreal/_images/bg_b3cr_h2bbottom.gif) repeat-x top left;
+        height: 3px;
+        margin: 0 10px 10px 10px;
+}
+#menu3 .bloc1, #menu3 .bloc2, #menu3 .bloc3, #menu3 .bloc4, #menu3 div.zapette .center {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_center.png) repeat-y center center;
+        padding: 0 14px 10px 14px; 
+}
+#menu3 .bloc1 .colonne1 {
+        float: left;
+        width: 48%;
+        padding: 0 0 0 0;
+        margin: 0 0 3px 4px;
+        vertical-align: top;
+        font-size: 12px;
+}
+#menu3 .bloc1 .colonne2 {
+        float: left;
+        width: 48%;
+        padding: 0 0 0 0;
+        margin: 0;
+        vertical-align: top;
+        font-size: 12px;
+}
+#menu3 .bloc1 img {
+        border: 0px;
+}
+#menu3 .bloc1 a {
+        display: block;
+        padding: 3px 0 0 6px;
+        margin: 0;
+}
+#menu3 .bloc1 a.lien {
+        color: #454545;
+        font-size: 12px;
+        display: block;
+        background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+        padding: 0 0 3px 13px;
+        margin: 10px 0 0 6px;
+}
+#menu3 .bloc1 a:hover {
+        text-decoration: none;
+}
+#menu3 .bloc1 a.lien:hover {
+        text-decoration: underline;
+}
+#menu3 .bloc1 .clearer {
+        padding: 5px 0 0 0;
+        line-height: 0px;
+        clear: both;
+}
+#menu3 hr {
+        clear: both;
+        visibility: hidden;
+}
+#menu3 .bloc2 ul, #menu3 .zapette ul {
+        position: relative;  /* indispensable pour IE 5.5 */
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        list-style-type: none;
+}
+#menu3 .bloc2 ul li, #menu3 .zapette ul li {
+        font-size: 12px;
+        background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+        padding: 0 0 0 14px;
+        margin: 0 0 0 10px;
+}
+#menu3 .bloc3 ul {
+        position: relative;  /* indispensable pour IE 5.5 */
+        margin: 3px 0 10px 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 11px;
+}
+#menu3 .bloc3 ul li {
+        font-size: 12px;
+        background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+        padding: 0 0 0 14px;
+        margin: 0 0 0 10px;
+        display: block;
+        width: 166px;
+        clear: both;
+}
+#menu3 .bloc3 .texte {
+        margin: 0 0 0.5em 0;
+        color: #454545;
+}
+#menu3 .bloc3 img {
+        float: right;
+        margin: 0 0px 3px 0;
+        padding: 0;
+        border: 0px;
+}
+#menu3 .bloc3 p {
+        margin: 0;
+        padding: 0;
+}
+#menu3 .bloc3 a:hover {
+        text-decoration:underline;
+}
+#menu3 .bloc4 {
+        font-size: 11px;
+        /*padding: 0.25em 0px 0px;*/
+}
+#menu3 .bloc4 a {
+        font-size: 12px;
+        margin: 0px 0px 0px 10px;
+        padding: 0px 0px 0px 10px;
+        background: url(../plugins/interdreal/_images/picto_envoie.gif) no-repeat 0px 2px;
+        color: #454545;
+        text-decoration: underline;
+}
+#menu3 a {
+        color: #454545;
+        text-decoration: none;
+        margin: 0;
+        font-weight: normal;
+}
+#menu3 a.on {
+        color: #454545;
+        text-decoration: none;
+        margin: 0;
+        font-weight: bold;
+}
+#menu3 a:hover {
+        text-decoration: underline;
+}
+#menu3 .blocoutil {
+        position: relative;  /* indispensable pour IE 5.5 */
+        padding: 0.25em 0px 10px;
+        font-size: 0.56em;
+        border-top: 1px solid #5b8910;
+}
+
+#menu3 a.envoiami {
+        line-height:1.5em;
+        display:block;
+        margin: 0px 0px 0px 6px;
+        padding: 0px 0px 0.5em 20px;
+        background: url(../plugins/interdreal/_images/picto_envoie.gif) no-repeat 0px 2px;
+        color: #484848;
+        text-decoration: none;
+}
+
+#menu3 div.voir_freres, #menu3 div.mots_cles, #menu3 div.voir_aussi, #menu3 div.voir_multi, #menu3 div.voir_sites {
+        /*width: 228px;*/
+	margin-bottom: -12px;
+}
+#menu3 div.voir_freres div.top, #menu3 div.mots_cles div.top, #menu3 div.voir_aussi div.top, #menu3 div.voir_multi div.top, #menu3 div.voir_sites div.top {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_top.png) no-repeat top left;
+        /*width: 228px;*/
+        height: 14px;
+}
+#menu3 div.voir_freres div.bottom, #menu3 div.mots_cles div.bottom, #menu3 div.voir_aussi div.bottom, #menu3 div.voir_multi div.bottom, #menu3 div.voir_sites div.bottom {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_bottom.png) no-repeat bottom left;
+        width: 268px;
+        height: 17px;
+}
+#menu3 div.voir_freres h2, #menu3 div.voir_aussi h2, #menu3 div.mots_cles h2, #menu3 div.voir_multi h2, #menu3 div.voir_sites h2 {
+	border: 1px solid #ffffff;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 3px 5px 5px 30px;
+        width: 162px;
+        background: transparent url(../plugins/interdreal/_images/bg_b3cr_voir_freres_h2.png) no-repeat left center;
+}
+#menu3 div.voir_freres h2 {
+        background: transparent url(../plugins/interdreal/_images/freres.png) no-repeat left center;
+}
+#menu3 div.voir_aussi h2 {
+        background: transparent url(../plugins/interdreal/_images/voir_aussi.png) no-repeat left center;
+}
+#menu3 div.voir_multi h2 {
+        background: transparent url(../plugins/interdreal/_images/multi.png) no-repeat left center;
+}
+#menu3 div.voir_sites h2 {
+        background: transparent url(../plugins/interdreal/_images/liens_utiles.png) no-repeat left center;
+}
+#menu3 div.mots_cles h2 {
+        background: transparent url(../plugins/interdreal/_images/mots_cles.png) no-repeat left center;
+}
+#menu3 div.voir_freres div.center, #menu3 div.mots_cles div.center, #menu3 div.voir_aussi div.center, #menu3 div.voir_multi div.center, #menu3 div.voir_sites div.center {
+        background: transparent url(../plugins/interdreal/_images/bg_box_droite3_center.png) repeat-y center center;
+        padding: 0 14px 10px 14px;
+        margin-top: 0;
+}
+#menu3 .mots_cles div.center div {
+        padding: 5px;
+}
+#menu3 div.voir_freres ul, #menu3 div.mots_cles ul, #menu3 div.voir_aussi ul, #menu3 div.voir_multi ul, #menu3 div.voir_sites ul {
+        position: relative;  /* indispensable pour IE 5.5 */
+        margin: 0;
+        padding: 5px 0 0 0;
+        font-size: 12px;
+        list-style-type: none;
+	overflow: auto;
+}
+#menu3 div.voir_freres ul li, #menu3 div.mots_cles ul li, #menu3 div.voir_aussi ul li, #menu3 div.voir_multi ul li, #menu3 div.voir_sites ul li {
+        font-size: 12px;
+        background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 3px;
+        padding: 0 0 0 14px;
+        margin: 0 10px 0 10px;
+	color: #454545;
+}
+#menu3 div.voir_freres ul li a, #menu3 div.mots_cles ul li a, #menu3 div.voir_aussi ul li a, #menu3 div.voir_multi ul li a, #menu3 div.voir_sites ul li a {
+        font-size: 12px;
+	color: #454545;
+}
+#menu3 div.voir_freres ul li a:hover, #menu3 div.mots_cles ul li a:hover, #menu3 div.voir_aussi ul li a:hover, #menu3 div.voir_multi ul li a:hover, #menu3 div.voir_sites ul li a:hover {
+        font-size: 12px;
+	color: #454545;
+	text-decoration: underline;
+}
+#contenu .mots_cles ul li {
+	background: url(../plugins/interdreal/_images/tags.png) no-repeat 0px 3px;
+	float: left;
+        font-size: 12px;
+        margin: 0 0 0 10px;
+	padding: 0 0 5px 25px;
+        color: #454545;
+}
+#contenu .mots_cles ul li a {
+        font-size: 12px;
+        color: #454545;
+}
+#contenu .mots_cles ul li a:hover {
+        font-size: 12px;
+        color: #454545;
+        text-decoration: underline;
+}
+#menu3 select#num_dep, #menu3 select#nom_dep {
+        border: 1px solid #CACACA;
+        color: #484848;
+        width: 135px;
+        margin: 0 0 0 5px;
+        vertical-align: middle;
+        display: inline;
+}
+#menu3 input#validaccesnum, #menu3 input#validaccesnom {
+        width:19px;
+        height:19px;
+        vertical-align: middle;
+        display: inline;
+}
+
+/*========= Cartes cliquable ==========*/
+
+div.listerub .label {
+        display: block;
+        margin: 5px 0;
+        float: left;
+	font-size: 13px;
+        color: #484848;
+        padding: 0 0 0 6px;
+	border-left: 3px solid #78B51C;
+	font-weight: bold;
+}
+div.listerub select#num_dep {
+        color: #484848;
+        margin: 2px 0 0 5px;
+        font-weight: normal;
+        display: inline;
+	width: 360px;
+}
+div.listerub select#nom_dep {
+        color: #484848;
+        margin: 2px 0 0 5px;
+        font-weight: normal;
+        display: inline;
+	width: 360px;
+}
+div.listerub input#validaccesnum {
+        width:19px;
+        height:19px;
+        vertical-align: middle;
+        display: inline;
+}
+div.listerub input#validaccesnom {
+        width:19px;
+        height:19px;
+        vertical-align: middle;
+        display: inline;
+}
+
+/*==========  Rechercher  ==============*/
+
+#rechercher {
+	/*background:none repeat scroll 0 0 #FFFFFF;*/
+	color:#5e5e5e;
+	float:right;
+	font-weight:bold;
+	margin:99px 2px 0 0;
+	padding:0;
+	position:relative;
+	width:165px;
+}
+#rechercher input#recherche {
+	border: solid 1px #5E5E5E;
+	color: #484848;
+	width: 140px;
+	height: 12px;
+	font-size: 0.9em;
+	font-weight: normal;
+	padding : 2px 0px;
+	vertical-align: middle;
+	display: inline;
+	background-color: transparent;
+}
+#rechercher input#validsearch {
+	width:17px;
+	height:15px;
+	float: right;
+	vertical-align: bottom;
+	display: inline;
+	padding: 0 2px 0 0;
+}
+#rechercher img {
+	margin: 0 0 0 2px;
+	vertical-align: bottom;
+	border: 0px;
+}
+#rechercher p{
+	font-weight: normal;
+	color: #484848;
+	font-size:0.9em;
+	margin: 0;
+}
+#rechercher a {
+	text-decoration: underline;
+	font-weight: normal;
+	color: #484848;
+}
+#titre {
+	margin: 10px 30px 0px 30px;
+}
+#results {
+	margin: 0.5em 0px;
+	color: #484848;
+}
+#results p {
+	margin: 0px 0px 0.25em;
+}
+#results p.enteteresult {
+	margin: 0;
+    	padding: 8px 5px;
+	background: #F0F0F0;
+}
+#results div.hrenteteresult {
+	background: url(../plugins/interdreal/_images/bg_enteteresult_bottom.gif) no-repeat left top;
+	margin: 0;
+}
+#results .item {
+	background: transparent url(../plugins/interdreal/_images/bg_list_classic_li.gif) no-repeat top right;
+	padding: 20px 5px;
+	margin: 0px 0px 0.5em;
+}
+#results .titreresult a {
+	text-decoration: none;
+	color: #484848;
+	font-size: 14px;
+	font-weight: bold;
+}
+#results .titreresult a:hover {
+	text-decoration: underline;
+	color: #484848;
+}
+#results p.titreresult {
+}
+#results p.path {
+	color: #78B51C;
+}
+#results .path a {
+	color: #78B51C;
+	text-decoration: none;
+}
+#results .path a:hover {
+	color: #78B51C;
+	text-decoration: underline;
+}
+#results .path span.dateart {
+	color: #484848;
+}
+div.recherchemots {
+	background: #DDDDDD url(../plugins/interdreal/_images/bg_recherchemots.gif) no-repeat top left;
+}
+div.recherchemots a {
+	color: #454545;
+	display: block;
+	font-weight: bold;
+	padding: 5px 10px 9px 32px;
+}
+/*==========  Contenu - commun  ==============*/
+.blocoutilcentre {
+	display: none;
+}
+
+#contenu h2 {
+	font-size: 18px;
+	color: #454545;
+	font-weight: bold;
+	padding-top: 15px;
+	margin: 0;
+}
+#contenu div.rub h2 {
+	font-size: 14px;
+}
+#messagedeservice h2, #messagedeservice_spa h2 {
+        font-size: 16px;
+        color: #454545;
+        font-weight: bold;
+        margin-bottom: 15px;
+        padding: 0px;
+}
+#contenu img.leftill {
+        float: left;
+        margin: 0 10px 10px 0;
+        border: none;
+}
+#contenu img.rightill, #messagedeservice img.rightill {
+	float: right;
+	margin: 0 12px 5px 5px;
+	border: 0px;
+}
+#contenu a:hover, #messagedeservice a:hover, #messagedeservice_spa a:hover {
+	text-decoration: underline;
+}
+#contenu .texte a.tiptop {
+	text-decoration: none;
+}
+
+a.tiptop span {
+	background: url(../plugins/interdreal/_images/puce_o2paj_vert.png) no-repeat 0 0;
+	padding: 0 7px;
+    	vertical-align: middle;
+   	width: 20px;
+}
+.o2paj {
+   	border-top: 1px solid #CACACA;
+    	clear: both;
+    	font-size: 11px;
+    	margin: 15px 0;
+    	padding-top: 10px;
+    	text-align: right;
+}
+.o2paj a {
+	color: #484848;
+	background: url(../plugins/interdreal/_images/puce_o2paj_vert.png) no-repeat 0 0;
+	padding: 0px 0px 0px 21px;
+}
+.o2paj a:hover {
+	text-decoration: underline;
+	color: #484848;
+}
+
+.lien_simple a {
+	color: #484848;
+}
+.lien_simple a:hover {
+	text-decoration: underline;
+	color: #484848;
+}
+
+#contenu .texte {
+	font-size: 12px;
+	margin: 0 0 0.5em 0;
+	color: #484848;
+	text-align: justify;	
+}
+#messagedeservice .texte, #messagedeservice_spa .texte {
+        font-size: 12px;
+        margin: -25px 15px 0px 15px;
+        color: #484848;
+        text-align: justify;
+	padding: 0 15px;
+	overflow: hidden;
+}
+
+#contenu .texte a, #messagedeservice .texte a, #messagedeservice_spa .texte a {
+	color: #5b8910;
+	text-decoration: underline;
+}
+#contenu a.LienTelecharg {
+	color: #5b8910;
+	text-decoration: underline;
+}
+#contenu a.LienTelecharg:hover {
+	text-decoration: none;
+}
+#contenu .notes {
+	font-size: 11px;
+	margin: 3em 0 0.5em 0;
+	color: #484848;
+	text-align: justify;	
+}
+#contenu .notes p {
+	margin: 0px;
+}
+hr.hrart {
+	background-color: #CACACA;
+	color: #CACACA;
+	border: none;
+	height: 1px;
+	margin-top: 10px;
+	clear:both;
+}
+hr.hrrub {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+	border: none;
+	height: 1px;
+	margin: 10px 0;
+	clear: both;
+}
+#contenu div.listedoc {
+	background-color: #F1F7E8;
+	padding: 10px 5px;
+}
+#contenu div.accestitre {
+        background-color: #F1F7E8;
+        padding: 10px;
+}
+
+#contenu div.listedoc h3, #contenu div.accestitre h3 {
+	color: #5b8910;
+	font-size: 13px;
+	margin: 0;
+}
+#contenu .listedoc ul {
+	clear: both;
+	margin: 0 0 10px 0;
+	padding: 0 0 0 0; 
+	font-size: 12px;
+	color: #484848;
+	list-style-type: none;
+}
+#contenu div.accestitre ul {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        color: #484848;
+        list-style-type: none;
+}
+
+#contenu .listedoc ul li {
+	background: url(../plugins/interdreal/_images/puce_menu2_vert.png) no-repeat 0px 5px;
+	padding: 0 0 0 0; 
+	margin: 0 0 0 0; 
+}
+#contenu div.accestitre ul li {
+        background: url(../plugins/interdreal/_images/puce_vert_sommaire.png) no-repeat 0px 7px;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+}
+#contenu div.accestitre ul li a {
+	color: #484848;
+	font-weight: bold;
+	padding-left: 25px;
+}
+#contenu a.document {
+	color: #484848;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0 0 0.25em 0;
+	padding: 0 0 0 20px;
+}
+#contenu a.document:hover {
+	text-decoration: underline;
+	color: #5b8910;
+}
+#contenu .docformat {
+	font-size: 11px;
+}
+#contenu .docdesc {
+	display:block;
+	padding: 0 0 0 20px;
+	margin: 0 0 5px 0;		
+}
+
+/*==========  Contenu - Rubrique  ==============*/
+#contenu .rub {
+	margin: 0 0 0 10px;
+}
+
+#contenu .listerub1sur2 {
+	float: left;
+	width: 49%;
+	clear:both;
+}
+#contenu .listerub2sur2 {
+	float: right;
+	width: 49%;
+}
+#contenu .listeart1sur2 {
+	float: left;
+	width: 49%;
+}
+#contenu .listeart2sur2 {
+	float: right;
+	width: 49%;
+}
+#contenu .listerub1sur3 {
+	float: left;
+	width: 32%;
+	/*padding: 0 10px 0 0;*/
+	clear:both;
+}
+#contenu .listerub2sur3 {
+	float: left;
+	width: 32%;
+	padding: 0 10px 0 15px;
+}
+#contenu .listerub3sur3 {
+	float: right;
+	width: 32%;
+}
+/* ---- Rubrique avec actu -------------------------------- */
+#contenu div.actuliterub {
+        margin: 10px;
+}
+#contenu .titreacturub {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 12px 0.25em 0px;
+	margin: 0px;
+	clear: both;	
+}
+#contenu .listerub {
+	display: block; /* Indispensable pour IE 6 */
+	border: 1px solid #DDDDDD;
+	margin: 5px 0 5px 10px;
+	padding: 10px;
+	background: transparent url(../plugins/interdreal/_images/bg_affiner.gif) repeat-x left bottom;
+}
+#contenu .listerub .textesousrub {
+	font-size: 12px;
+	margin: 0 0 0 0;
+	padding: 0 0px 5px 0px;
+	text-align: justify;	
+}
+#contenu .listerub .liens {
+	clear: both;
+	padding-top: 10px;
+}
+#contenu .listerub .liens ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0 0 0px 12px;
+	margin: 0;
+}
+
+#contenu .listerub li {
+	list-style-type: none;
+}
+
+#contenu .listerub .liens ul li {
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 3px;
+	padding: 0 0 0 12px;
+	margin: 0;
+}
+#contenu .listerub .titresousrub {
+	color: #78B51C;
+	border-left: 4px solid #78B51C;
+	font-weight: bold;
+	font-size: 14px;
+	display: block;
+	padding: 0px 0px 0px 9px;
+	margin: 0px 0px 10px 0px;
+}
+#contenu .listerub a.titresousrub:hover {
+	text-decoration: underline;
+}
+#contenu .listerub .liens a {
+	color: #484848;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+#contenu .listerub .liens a:hover {
+	text-decoration: underline;
+}
+#contenu .listeart {
+	padding: 12px 0px 5px 12px;
+	margin: 0.5em 10px 0px;
+	border-top: solid 1px #CACACA;
+}
+#contenu .listeartfirst {
+        padding: 12px 0px 5px 12px;
+        margin: 0.5em 10px 0px;
+}
+#contenu .titreartliste {
+	color: #454545;
+	display: block;
+	font-weight: bold;
+	background: url(../plugins/interdreal/_images/puce_titre.gif) no-repeat 0px 0px;
+	font-size: 14px;
+	padding: 0px 0px 10px 20px;
+	margin: 0px;
+	text-decoration: none;
+}
+#contenu .listeart a:hover, #contenu .listeartfirst a:hover {
+	text-decoration: underline;
+}
+#contenu .listeetab {
+	background: #cded95; 
+	padding: 5px 5px 5px 12px;
+	margin: 10px 0 0 10px;
+}
+#contenu .listeetab .titreetabliste {
+	color: #484848;
+	display: block;
+	font-weight: bold;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 3px;
+	font-size: 0.7em;
+	padding: 0px 0px 5px 5px;
+	margin: 0px;
+	text-decoration: underline;
+}
+#contenu .listeetab p {
+	color: #484848;
+	font-size: 0.7em;
+	margin: 0px 12px;
+}
+#contenu .listeetab a:hover {
+	text-decoration: none;
+}
+#contenu .choixpage {
+	text-align: left;
+}
+#contenu .choixpage select#debut_recherche {
+	font-size: 11px;
+}
+#contenu .choixpage select {
+	font-size: 11px;
+}
+#contenu .choixpage select#date {
+	font-size: 11px;
+}
+#contenu .choixpage input {
+	font-size: 11px;
+	padding: 0px 5px;
+}
+#contenu .titrerubart {
+	font-size: 0.9em;
+	color: #484848;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 0.3em;
+	padding: 0px;
+}
+#contenu .actubox {
+	margin: 0.5em 0px;
+}
+#contenu .actubox .titremois {
+	font-size: 14px;
+	font-weight: bold;
+	color: #78bb01;
+	margin: 0px 0px 0.25em;
+	padding: 0.1em 0.5em;
+	background: #FFFFFF;
+}
+#contenu .actubox .actu {
+	margin: 0px 0px 0.5em;
+}
+#contenu .actubox .lien {
+	color: #5b8910;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 2px;
+	text-decoration: underline;
+	margin: 0 0 0.25em;
+	padding: 0 0 0 7px;
+}
+
+
+#contenu .actubox2 {
+        display: block; /* Indispensable pour IE 6 */
+        border: 1px solid #DDDDDD;
+        margin: 5px 0 5px 0px;
+        padding: 10px;
+        background: transparent url(../plugins/interdreal/_images/bg_affiner.gif) repeat-x left bottom;
+}
+#contenu .actubox2 .titresite {
+	color: #78bb01;
+	margin: 0.25em 0;
+}
+#contenu .actubox2 ul {
+	margin: 0;
+	padding: 0; 
+	list-style-type: none;
+}
+#contenu .actubox2 ul li {
+	margin: 0;
+	padding: 0; 
+	clear: both;
+}
+#contenu  .actubox2 .lien {
+	color: #5b8910;
+	text-decoration: underline;
+	margin: 0 0 0.25em;
+	padding: 0;
+}
+#contenu div.listediv {
+        background-color: #F1F7E8;
+        padding: 10px 5px;
+}
+#contenu div.listediv h3 {
+        color: #5b8910;
+        font-size: 13px;
+        margin: 0;
+}
+#contenu div.listediv ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+}
+#contenu div.listediv ul li {
+	background: url(../plugins/interdreal/_images/tags.png) no-repeat 0px 3px;
+	padding: 0 0 5px 20px;
+	margin: 0;
+}
+#contenu div.listediv a {
+	color: #484848;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+#contenu div.listediv a:hover {
+	text-decoration: underline;
+}
+
+
+/*==========  Contenu - Page d'accueil  ==============*/
+#messagedeservice {
+	width:981px;
+	background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_center.png) repeat-y;
+}
+#messagedeservice .top {
+	height:42px;
+	background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_top.png) no-repeat top left;
+	width:981px;
+}
+#messagedeservice .bottom {
+	background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_bottom.png) no-repeat bottom left;
+	height:42px;
+	width:981px;
+}
+#messagedeservice_spa {
+        width:531px;
+	margin: 10px 0 0 -12px;
+        background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_center_spa.png) repeat-y;
+}
+#messagedeservice_spa .top {
+        height:42px;
+        background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_top_spa.png) no-repeat top left;
+        width:531px;
+}
+#messagedeservice_spa .bottom {
+        background: transparent url(../plugins/interdreal/_images/bg_haut_permanent_bottom_spa.png) no-repeat bottom left;
+        height:42px;
+        width:531px;
+}
+
+#messagedeservice h3.spip, #messagedeservice_spa h3.spip {
+	font-size: 14px;
+	color: #484848;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 0.3em;
+	padding: 0px;
+}
+#contenu .titresite {
+	font-size: 14px;
+	color: #484848;
+	font-weight: bold;
+	padding: 0 0 0 14px ;
+	margin: 0px;
+	background: url("../plugins/interdreal/_images/puce_menu2_vert.png") no-repeat scroll 0 3px transparent;
+}
+#contenu a.titresite:hover {
+	text-decoration: underline;
+}
+#contenu .bienvenue h4 {
+	font-size: 0.9em;
+	color: #484848;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 0.3em;
+	padding: 0px;
+}
+#contenu .bienvenue p {
+	font-size: 0.7em;
+	margin: 0 0 1.4em 0px;
+	color: #484848;
+	line-height: 1.1em;
+}
+#boxtitreactu {
+	margin-top:30px;
+	height: 20px;
+}
+#boxtitreactu h2 {
+	font-weight: bold;
+	font-size: 16px;
+	color: #454545;
+	padding:0 0 0 9px;
+	width:383px;
+	border-left: 6px solid #79B51C;
+	float:left;
+}
+#boxtitreactu h2.medias {
+	float:left;
+	font-size: 16px;
+	font-weight: bold;	
+	width:250px;
+	margin-left: 9px;
+}
+#boxtitreactu_spa h2 span, #boxtitreactu_syndic h2 span, #boxtitreactu_commentaire h2 span {
+        font-size: 16px;
+        color: #454545;
+        border-left: solid 6px #79B51C;
+        font-weight: bold;
+        padding: 0 0 0 9px;
+}
+#boxactu {
+        background: transparent url(../plugins/interdreal/_images/bg_last_actus_bg.gif) no-repeat left top;
+        width:676px;
+	padding: 12px 7px;
+	overflow:hidden;
+}
+#contenu .listeactu {
+	background: transparent url(../plugins/interdreal/_images/bg_blocalaune_presentation_bottom.gif) repeat-y -7px top;
+}
+#boxactu_spa .listeactu, #boxsyndic .listeactu {
+	background: none;
+}
+#contenu .listeactu h2 {
+	font-size: 1.3em;
+	color: #78bb01;
+	font-weight: normal;
+	margin: 0px 0px 0.25em;
+	padding: 0px;
+	clear: both;
+}
+#contenu .listeactu ul {
+	margin: 0;
+	padding: 0; 
+	list-style-type: none;
+}
+#contenu .listeactu ul li {
+	margin: 0;
+	padding: 0; 
+	clear: both;
+}
+#contenu .actu, #contenu .actufirst, #contenu .tout {
+	margin: 0;
+	padding: 10px 0 0 5px;
+	width: 97%;
+	background-color: #ffffff;
+}
+#boxactu_spa .actu, #boxactu_spa .actufirst, #boxactu_spa .tout, #boxsyndic .actu, #boxsyndic .actufirst {
+        margin: 0;
+        padding: 10px 0 0 5px;
+	width:99%;
+}
+#contenu .actu.medias, #contenu .actufirst.medias {
+	width: 390px;
+}
+#contenu .tout.medias {
+	width: 360px;
+}
+#contenu .actu, #contenu .tout {
+	background: #ffffff url(../plugins/interdreal/_images/bg_list_classic_li.gif) no-repeat top right;
+}
+#contenu .titreactu, #contenu .titreactu a {
+	font-weight:bold;
+	font-size: 14px;
+	color: #454545;
+	margin: 0;
+	padding: 0 0 2px 0;
+}
+#contenu .actu .lien {
+	color: #5b8910;
+	font-weight:bold;
+}
+#contenu .listeactu .lien {
+	color: #5b8910;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 2px;
+	text-decoration: underline;
+	margin: 0px;
+	padding: 0 0 0 7px;
+	font-size:12px;
+}
+#contenu .dateactu {
+	font-weight: normal;
+	font-size:11px;
+	color: #454545;
+}
+#contenu .tout {
+	margin: 10px 0 0 0;
+	padding:20px 0px 20px 40px;
+	width:93%;
+}
+#contenu .tout a {
+        background: transparent url(../plugins/interdreal/_images/bg_all_actus.gif) no-repeat left 2px;
+        margin: 28px 0;
+        padding: 0 15px;
+        font-weight:bold;
+        font-size: 12px;
+        color: #454545;
+        clear: both;
+}
+#medias {
+	float:right;
+	width: 266px;
+	text-align:center;
+	margin:0px 5px 0px 15px;
+}
+#medias a img.spip_logos {
+	margin-top:5px;
+	margin-bottom:10px;
+	border:none;
+}
+#medias p.texte a {
+	font-weight: normal;
+	font-size: 12px;
+	color: #454545;
+	text-decoration: none;
+	padding-left: 10px;
+}
+p.legende {
+	margin: 0;
+	padding: 5px;
+	text-align: justify;
+}
+div.logoart {
+	float: right;
+	width: 176px;
+        margin: 0px 0px 20px 20px;
+}
+#contenu div.cadremot div.logomot {
+        float: left;
+        /*width: 176px;*/
+        margin: 0px 20px 20px 0px;
+}
+div.legende {
+	text-align: center;
+        color: #78B51C;
+        font-size:11px;
+        margin-bottom: 20px;
+        padding: 5px;
+}
+
+div.dateart{
+	color:#454545;
+	font-weight: normal;
+	font-size:12px;
+	padding: 5px 0px 20px 0px;
+}
+div.texteart, div.textemot {
+        color: #454545;
+        font-size: 12px;
+        text-align: justify;
+}
+div.texteart p, div.textemot {
+	margin: 0 0 15px;
+}
+div.texteart a, div.texteart a:hover {
+	color: #78B51C;
+	text-decoration: underline;
+}
+
+#dossier h2, #dossier_spa h2, #boxtitreactu_spa h2, #boxtitreactu_syndic h2, #boxtitreactu_commentaire h2 {
+	background: #ffffff url(../plugins/interdreal/_images/bg_h2_focus.gif) no-repeat left bottom;
+	height: 35px;
+	clear: both;
+}
+#dossier h2 span, #dossier_spa h2 span {
+        font-size: 16px;
+        color: #009ee1;
+        border-left: solid 6px #009ee1;
+        font-weight: bold;
+        padding: 0 0 0 9px;
+}
+
+#dossier ul, #dossier_spa ul {
+	margin: 0;
+	padding: 0; 
+	list-style-type: none;
+}
+#dossier ul li, #dossier_spa ul li {
+	margin: 0 5px 0 0;
+	padding: 0; 
+	clear: both;
+}
+#dossier p, #dossier_spa p {
+}
+#dossier .lien, #dossier_spa .lien {
+	font-size: 0.7em;
+	color: #5b8910;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 2px;
+	text-decoration: underline;
+	margin: 0 0 0.25em;
+	padding: 0 0 0 7px;
+}
+#dossier .colonne1 {
+	float: left;
+	width: 330px;
+}
+#dossier .colonne2 {
+	float: right;
+	width: 330px;
+	margin-right: 5px;
+}
+#dossier .colonne1 div.actu, #dossier .colonne2 div.actu {
+	background:url("../plugins/interdreal/_images/bg_balud.gif") repeat-x scroll left bottom #FFFFFF;
+	display:block;
+	height:93px;
+	margin:10px 0;
+	padding:10px;
+}
+#dossier_spa .colonne1 {
+        float: left;
+        width: 240px;
+}
+#dossier_spa .colonne2 {
+        float: right;
+        width: 240px;
+        margin-right: 5px;
+}
+#dossier_spa .colonne1 div.actu, #dossier_spa .colonne2 div.actu {
+        background:url("../plugins/interdreal/_images/bg_balud.gif") repeat-x scroll left bottom #FFFFFF;
+        display:block;
+        height:75px;
+        margin:10px 0;
+        padding:10px;
+}
+#dossier .titreactu a, #dossier_spa .titreactu a {
+	color: #b3218f;
+}
+/*==========  article photo  ==============*/
+.myGalleryText {
+	font-size: 12px;
+	color: #484848;
+	padding: 0px;
+	margin-top: -8px;
+	text-align: left;
+}
+.myGalleryText .titrephoto {
+	font-weight: bold;
+}
+.myGalleryText .creditphoto {
+	text-align: right;
+	font-size: 10px;
+}
+.myGalleryText .descphoto {
+	text-align: justify;
+}
+.myGalleryText .infophoto {
+	font-size: 10px;
+	font-weight: normal;
+	color: #78bb01;
+	background: url(../plugins/interdreal/_images/picto_photo.gif) no-repeat 0px 4px;
+	padding: 0px 0px 0px 25px;
+}
+.photo-g {
+	font-size: 12px;
+	font-weight: normal;
+        margin-top: 10px;
+	color: #484848;
+}
+.photo-g a img {
+	border: none;
+	padding: 10px;
+	border: 1px solid #CACACA;
+	float: left;
+}
+.photo-g div.infos {
+	margin-left: 140px;
+	text-align: left;
+}
+.photo-g div.titrephoto, .photo-g div.titrephoto a {
+	font-weight: bold;
+	color: #484848;
+	text-decoration: none;
+}
+.photo-g div.titrephoto a:hover {
+	color: #484848;
+	text-decoration: underline;
+}
+.photo-g div.creditphoto {
+	font-size: 10px;
+}
+.photo-g div.descphoto {
+	text-align: justify;
+}
+.photo-g div.infophoto a {
+        font-size: 10px;
+        font-weight: normal;
+        color: #78bb01;
+        background: url(../plugins/interdreal/_images/picto_photo.gif) no-repeat 0px 0px;
+        padding: 0px 0px 0px 25px;
+	text-decoration: none;
+}
+
+/* --- mosaique ---*/
+
+.mosaique {
+	float: left;
+	padding: 10px;
+	margin: 15px;
+	color: #484848;
+	border: 1px solid #CACACA;
+	display: block;
+}
+.mosaique .image {
+	display: block;
+	width: auto;
+	height: auto;
+	position: relative;
+}
+.mosaique img {
+	margin: 0;
+	padding: 0;
+	border : 0px;
+}
+.mosaique .photo-info {
+	/*background-color: #B7C878;*/
+	padding: 10px 0;
+	width: auto;
+	height:	30px;
+}
+.mosaique .titrephoto {
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 1.2em;
+	color: #484848;
+	text-decoration: none;	
+	text-align: justify;
+}
+.mosaique a:hover {
+	text-decoration: none;
+}
+.mosaique .link-paysage {
+	text-align: center;
+	position: relative;
+	color: #484848;
+	background-color: #ffffff;
+	width: auto;
+	font-size: 9px;
+}
+/*================  galerie d'images ===================*/
+.phototeque_image {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+        margin: 10px 0 30px 0;
+        padding: 0px 0px 10px 0px;
+        text-align: center;
+}
+
+.phototeque_image img {
+        border: none;
+}
+
+.phototeque_image .titrephoto {
+        font-weight: bold;
+        font-size: 0.7em;
+        color: #484848;
+        text-decoration: underline;
+}
+
+.phototeque_image .descphoto {
+        text-align: center;
+        font-size: 0.7em;
+        color: #484848;
+}
+
+.phototeque_image .taillephoto {
+        text-align: center;
+        font-size: 0.7em;
+        color: #484848;
+}
+
+.phototeque_navimage {
+        border-bottom: 1px solid #C0C0C0;
+        padding: 5px 5px;
+        margin-bottom: 5px;
+        font-size: 0.7em;
+        color: #484848;
+        text-align: center;
+}
+
+
+.phototeque_navimage .photo_nav_gauche {
+        float: left;
+        width: 25%;
+        text-align: left;
+}
+.phototeque_navimage .photo_nav_droite {
+        float: right;
+        width: 25%;
+        text-align: right;
+}
+.phototeque_navimage a {
+        color: #484848;
+        text-decoration: underline;
+}
+.phototeque_navimage a:hover {
+        text-decoration: none;
+}
+
+.phototeque_vignette {
+        float: left;
+        color: #484848;
+        margin: 8px 10px 8px 0px;
+        border: 1px solid #C0C0C0;
+	padding: 5px 5px 0;
+}
+
+.phototeque_vignette img {
+        border: none;
+}
+
+.phototeque_vignette a.logophoto {
+        border : 0px;
+}
+
+.phototeque_vignette a:hover {
+        text-decoration: none;
+}
+
+#rechercher_photo {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #FFFFFF;
+        font-size: 0.75em;
+        font-weight: bold;
+        color:#6c96c6;
+        margin: 10px 0px 10px 0px;
+        padding: 0px 0px 0px 0px;
+}
+
+#rechercher_photo input#recherche_photo {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        border: 1px solid #000000;
+        color: #484848;
+        width: 120px;
+        font-size: 0.8em;
+        font-weight: normal;
+        padding : 2px 0px 2px 5px;
+        vertical-align: middle;
+        display: inline;
+}
+#rechercher_photo input#validsearchphoto {
+        width:19px;
+        height:19px;
+        vertical-align: middle;
+        display: inline;
+}
+
+#rechercher_photo img {
+        margin: 0 0 0 2px;
+        vertical-align: middle;
+        border: 0px;
+}
+
+
+
+/*==========  Question  ==============*/
+#question {
+	color: #4A4A4A;
+}
+#question h3 {
+	font-size: 0.8em;
+	margin: 1em 0px 0.5em;
+}
+#question p {
+	font-size: 0.7em;
+	margin: 0px;
+}
+#question a {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #33698D;
+	text-decoration: underline;
+}
+#question a:hover {
+	text-decoration: none;
+}
+
+/*==========  Pied  ==============*/
+#pied, #piedplan {
+	color: #454545;
+	text-decoration: none;
+	font-size:12px;	
+	margin-top: 1em;
+}
+#piedplan div.dateactu {
+        text-align:center;
+	width: 100%;
+	margin-top: -5px;
+}
+#pied div.dateactu {
+	width:100%;
+	text-align: center;
+	margin-top: -5px;
+}
+#pied div.acces, #pied div.acces2 {
+	margin:0px -200px 0 0;
+	float:left;
+	text-align:left;
+	padding-left: 50px;
+}
+#pied div.acces {
+        background: transparent url(../plugins/interdreal/_images/puce_nav_bas_pliee.gif) no-repeat 34px 5px;
+	color:#FFFFFF;
+}
+#pied div.acces2 {
+        background: transparent url(../plugins/interdreal/_images/puce_nav_bas_depliee.gif) no-repeat 34px 5px;
+        color:#FFFFFF;
+}
+
+#pied div.acces:hover, #pied div.acces:hover {
+	cursor:pointer;
+}
+#pied a, #piedplan a {
+	color: #454545;
+	text-decoration:none;
+}
+#pied a:hover, #piedplan a:hover {
+	text-decoration: none;
+}
+#pied .navigation {
+	margin-top: 30px;
+	width: 100%;
+}
+#pied ul, #piedplan ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	text-align: left;
+}
+#pied li.item, #piedplan li.item {
+	position: relative;
+	width: 124px;
+	float: left;
+	padding: 3px 5px 3px 10px;
+	border-left: solid 1px #d9d9d9;
+}
+#pied li.item a, #piedplan li.item a {
+	color: #5b8910;
+	font-weight: bold;
+	font-size:12px;
+}
+#pied li.sous-item, #piedplan li.sous-item {
+	margin:0px;
+	padding-top:3px;
+}
+#pied li.sous-item a, #piedplan li.sous-item a {
+	color: #454545;
+	font-weight: normal;
+	font-size: 11px;
+}
+#copyright {
+	color: #656565;
+	margin-top: 30px;
+	width: 100%;
+}
+
+/*================  formulaire  ===================*/
+#f_style {
+	margin: 0px;
+	padding: 1.5em 0px 0px;
+}
+#f_style label {
+	font-size: 0.7em;
+	font-weight: bold;
+	display: block;
+	float: left;
+	width: 120px;
+	margin: 0px 0px 0.5em;
+	color: #484848;
+}
+#f_style input, #f_style textarea {
+	display: block;
+	margin: 0px 0px 0.5em;
+	float: left;
+	width: 350px;
+	padding: 0px 5px;
+}
+#f_style select {
+	display: block;
+	margin: 0px 0px 0.5em;
+	float: left;
+	width: 200px;
+	height:1.8em;
+	color: #484848;
+}
+#f_style br {
+	clear: left;
+}
+#f_style .valid {
+	margin: 0px 0px 0.5em 120px;
+}
+#f_style input#validform {
+	width: 100px;
+}
+
+.f_style2 label {
+	font-weight: bold;
+	display: block;
+	float: left;
+	width: 250px;
+	margin: 0px 0px 0.5em;
+	color: #484848;
+}
+.f_style2 br {
+	clear: left;
+}
+.f_style2 select {
+	display: block;
+	margin: 0px 0px 0.5em;
+	float: left;
+	width: 200px;
+	height:1.8em;
+	color: #484848;
+	font-weight: normal;
+	vertical-align: middle;
+	display: inline;
+}
+.f_style2 input {
+	margin: 0px 0px 0.5em 100px;
+	width: 100px;
+	margin: 0px 0px 0px 0.5em;
+	width:19px;
+	height:19px;
+	vertical-align: middle;
+	display: inline;
+}
+
+/*================  tableau  ===================*/
+#tableau {
+	width:100%;
+	margin: 20px 0px 10px 0px;
+}
+#tableau table.forme { border: 1px solid #78B51C;border-collapse: collapse;}
+#tableau th.forme {
+	padding: 2px 10px;
+	border: 1px solid #78B51C;
+	font-weight: bold;
+}
+#tableau td.forme {
+	padding: 5px 5px 5px 5px;
+	border: 1px solid #78B51C;
+}
+#tableau td.formecoltexte {
+	padding: 5px 10px 5px 5px;
+	border: 1px solid #78B51C;
+}
+#tableau a.lien {
+	color: #484848;
+	text-decoration: none;
+}
+#tableau a.lien:hover {
+	text-decoration: underline;
+}
+
+/*================  forums  ===================*/
+#tableauforum {
+	width:100%;
+	margin:10px 0;
+}
+#tableauforum table.forum {
+	background-color: #FFFFFF;
+	border: 1px solid #78B51C;
+}
+#tableauforum th.forum {
+	background-color:#78B51C;
+	color:#FFFFFF;
+	line-height: 2em;
+	padding: 2px 10px;
+}
+#tableauforum td.forumcoltexte {
+	background-color: #efefef;
+	padding: 5px 10px 5px 5px;
+}
+#tableauforum td.forum {
+	background-color: #efefef;
+	padding: 5px 5px 5px 5px;
+	color: #484848;
+}
+#tableauforum a.titreforum {
+	line-height: 2em;
+	font-weight:bold;
+	display:block;
+	color: #5b8910;
+	text-decoration: underline;
+}
+#tableauforum a.titreforum:hover {
+	text-decoration: none;
+}
+#tableauforum .texteforum { 
+	font-style:italic;
+}
+#tableauforum .titresujet{
+	font-weight:bold;
+	padding-bottom:5px;
+	text-align:left;
+}
+#tableauforum hr {
+	height: 0px;
+	border: dotted #336699 0px;
+	border-top-width: 1px;
+}
+#tableauforum a.lienmsg {color: #5b8910;text-decoration: underline;}
+#tableauforum a.lienmsg:hover {text-decoration: none;}
+
+#contenu .navforum {
+	margin: 2em 0px 0px 0px;
+	padding: 0.25em 0 0.25em 0;	
+}
+#contenu .retour {
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 4px 5px;
+	padding: 0px 0px 0px 15px;
+}
+#contenu .retour a {
+	color: #484848;
+	text-decoration: underline;
+}
+#contenu .retour2 {
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 4px 2px;
+	margin: 2em 0px 0px 0px;
+	padding: 0px 0px 0px 15px;
+}
+#contenu .retour2 a {
+	color: #484848;
+	text-decoration: underline;
+}
+#contenu .pagination {
+	color: #484848;
+	font-size: 12px;
+	padding:5px;
+	text-align: center;
+}
+#contenu .pagination span.current {
+	color: #9c3535;
+	font-weight: bold;
+	font-size: 12px;
+}
+#contenu .pagination a {
+	color: #484848;
+	text-decoration: underline;
+}
+#contenu .pagination a:hover {
+	color: #484848;
+	text-decoration: none;
+}
+
+#contenu .retour a:hover {
+	text-decoration: none;
+}
+#contenu .action {
+	background: url(../plugins/interdreal/_images/picto_ajouter.gif) no-repeat 2px 50%;
+	margin: 1em 0 0 0;
+	padding: 2px 0px 5px;
+}
+#contenu .action a {
+	font-weight: bold;
+	color: #484848;
+	text-decoration: none;
+	margin: 2px 10px 0px 0px;
+	padding: 4px 0px 5px 30px;
+}
+#contenu .action a:hover {
+	text-decoration: underline;
+}
+#contenu .titrerep {
+	font-weight:bold;
+	text-align: center;
+	background-color:#F1F7E8;
+	color:#78B51C;
+	padding: 5px;
+	margin: 10px 0px 0px 0px;
+}
+
+/*================  forums hierarchiques ===================*/
+#contenu ul.forum-total {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+#contenu .forum-fil {
+}
+#contenu .forum-fil ul {
+	margin: 0px;
+	margin-left: 2em;
+	padding: 0px;
+	list-style: none;
+}
+#contenu ul .forum {
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 0.5em;
+}
+#contenu .forum-titre a, #contenu .forum-titre a:hover {
+	color: #78bb01;
+	font-weight: bold;
+}
+#contenu .titre-forumh {
+	width:100%;
+	padding-bottom:5px;
+	text-align:center;
+	margin-bottom:1px;
+	background-color:#78B51C;
+	color:#FFFFFF;
+	font-weight:bold;
+}
+#contenu .ligne-forumh {
+	background-color: #F1F7E8;
+	position : relative;
+	padding: 5px;
+}
+#contenu .ligne-forumh .titresujet{font-weight:bold;padding-bottom:5px;text-align:left;border-bottom:1px dotted #78B51C; }
+#contenu .ligne-forumh .textesujet{padding:5px 5px 5px 5px;text-align:left;}
+#contenu .ligne-forumh .repondre{
+	text-align: right;
+}
+#contenu .ligne-forumh a.action{
+	padding:4px 5px 4px 28px;
+	background: url(../plugins/interdreal/_images/picto_ajouter.gif) no-repeat 2px 50%;
+	color: #484848;
+}
+#contenu .ligne-forumh a.repmsg{
+	padding:0px 5px 0px 6px;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 2px;
+	color: #484848;
+	text-decoration: underline;
+}
+#contenu div.com {
+	border: 1px solid #DDDDDD;
+	background: transparent url(../plugins/interdreal/_images/bg_affiner.gif) repeat-x left bottom;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 0.5em;
+}
+#contenu .ligne-com {
+	width:100%;
+	padding: 10px 0px;
+	position : relative;
+}
+#contenu .ligne-com .titresujet {
+	color: #5F930E;
+	font-weight: bold;
+	padding: 0 10px;
+	text-align: left;
+}
+#contenu .ligne-com .textesujet { 
+	padding: 0px 10px;
+	text-align:left;
+	color: #484848;
+}
+#contenu .ligne-com a.action {
+	padding:4px 5px 4px 28px;
+	background: url(../plugins/interdreal/_images/picto_ajouter.gif) no-repeat 2px 50%;
+	color: #484848;
+}
+#contenu .ligne-com .repondre {
+	text-align: right;
+	padding: 10px;
+}
+#contenu .ligne-com a.repmsg {
+	padding:5px 5px 5px 30px;
+	color: #484848;
+	text-decoration: none;
+	background: url("../plugins/interdreal/_images/picto_ajouter.gif") no-repeat scroll 2px 50% transparent;
+}
+#contenu .ligne-com a.repmsg:hover {
+	text-decoration: underline;
+}
+.photo-g .linki {
+	text-align: left;
+	font-size: 0.7em;
+}
+.photo-g .linki a {
+	font-weight: normal;
+	color: #78bb01;
+	background: url(../plugins/interdreal/_images/picto_photo.gif) no-repeat 0px 2px;
+	padding: 0px 0px 0px 25px;
+}
+
+#contenu .entetecom {
+	clear: both;
+	font-size: 12px;
+	font-weight: bold;
+	color: #5F930E;
+	background: #F1F7E8;
+	margin: 1em 0px 0.5em;
+	padding: 0.25em 0.5em;
+}
+/*=====================  style agenda =======================*/
+#calendrier {
+	margin: 10px 0px 10px 10px;
+}
+#calend table {
+	border-collapse: collapse;
+	border: thin solid #78B51C;
+}
+#calend th {
+	border: thin solid #78B51C;
+	font-weight: bold;
+	color: #FFFFFF;
+	background: #78B51C;
+	text-align: center;
+	height: 14px;
+}
+#calend td {
+	border: thin solid #78B51C;
+	font-size: 11px;
+	padding: 3px;
+	height: 100px;
+	vertical-align: top;
+}
+#calend td.agendaThisDay{
+	background: #f1f7e8;
+}
+#calend td.agendaThisMonth{
+	background-color: #FFFFFF;
+}
+#calend td.agendaNotThisMonth{
+	background: #efefef;
+}
+#calendrier div.choixmois {
+        margin: 10px 0;
+}
+.choixmois .moisprec {
+	color: #484848;
+	text-align: left;
+}
+.choixmois .moisprec a{
+	color: #484848;
+	font-weight:normal;
+	text-decoration: underline;
+}
+.choixmois .moissuiv {
+	color: #484848;
+	text-align: right;
+}
+.choixmois .moissuiv a{
+	color: #484848;
+	font-weight:normal;
+	text-decoration: underline;
+}
+.choixmois .selectmois {
+	text-align: center;
+}
+.choixmois select {
+	height:1.8em;
+	width: 8em;
+}
+
+.choixmois input {
+	padding: 0px 5px;
+}
+
+#calend a {
+	font-weight: normal;
+	display: block;
+	color: #484848;
+	text-decoration: none;
+	padding: 0 0 5px 10px;
+	background: url(../plugins/interdreal/_images/puce_menu_01.gif) no-repeat 0px 2px;
+}
+
+#calend a:hover {
+	text-decoration: underline;
+}
+#calend .casejour {
+        clear: both;
+        padding: 3px;
+}
+#calend .jour {
+	display: block;
+    	float: left;
+    	width: 14px;
+    	height: 14px;
+    	padding: 1px;
+	font-weight: bold;
+    	text-align: center;
+    	text-decoration: none;
+}
+#calend .jour:hover {
+    	text-decoration: none;
+    	background: #78b51c;
+}
+#calend a.plus {
+        background: transparent url(../plugins/interdreal/_images/plus.png) no-repeat 2px 4px;
+    	display: block;
+    	float: left;
+    	height: 12px;
+    	width: 12px;
+    	padding: 4px 0 0;
+    	margin: 0px;
+    	font-size: 6px;
+    	text-align: center;
+        text-decoration: none;
+}
+#calend a.plus:hover {
+        background: #78b51c url(../plugins/interdreal/_images/plus.png) no-repeat 2px 4px;
+}
+
+#artcal {
+	margin: 1em 0px 0.25em 0px;
+	background: #FFEFE7;
+	padding: 7px;
+	color: #484848;
+}
+#artcal .titrecal {
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	background: url(../plugins/interdreal/_images/puce_article.gif) no-repeat 0px 5px;
+}
+#artcal .datecal {
+	font-weight: normal;
+	margin: 0px 0px 1em 0px;
+	padding: 0px 0px 0px 10px;
+	background: url(../plugins/interdreal/_images/puce_article.gif) no-repeat 0px 5px;
+}
+#artcal a {
+	color: #cded95;
+	text-decoration: none;
+}
+.folio {
+	margin: 10px 0px 0px 10px;
+	background: #f1f7e8;
+}
+
+/*==========  Plan  ==============*/
+#plan2 {
+	font-size: 12px;
+	overflow:hidden;
+}
+
+#plan2 ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	line-height: 1px;
+}
+
+#plan2 ul.plansite ul { 
+	list-style-type: none;
+	margin: 0px;
+	padding: 0 0 0 1.5em;
+}
+
+#plan2 ul li { 
+	margin: 0px;
+	padding: 0px;
+}
+
+#plan2 a { 
+	color: #484848;
+	text-decoration: underline;
+	display: block;
+	line-height: 1.2em;	
+	background: transparent url(../plugins/interdreal/_images/puce_menu.gif) no-repeat 0px 7px;
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	font-weight: normal;
+}
+
+#plan2 a.plansecteur {
+	font-weight: bold;
+	line-height: 2em;
+	background: #F0F7E8 url(../plugins/interdreal/_images/picto_plan.gif) no-repeat 5px 5px;
+	margin: 0.5em 0px 0.5em;
+	padding: 0px 0px 0px 30px;
+}
+
+#plan2 a.planrubniv1 {
+	font-weight: bold;
+	margin: 0.5em 0px 0px 0px;
+	padding: 0px 0px 0px 10px;
+}
+
+#plan {
+	font-size: 12px;
+}
+#plan ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	line-height: 1px;
+}
+#plan ul li {
+	padding: 0px;
+	margin: 0px 0px 0.5em;
+}
+#plan ul li a {
+	color: #484848;
+	text-decoration: underline;
+	background: #F0F7E8 url(../plugins/interdreal/_images/picto_plan.gif) no-repeat 5px 5px;
+	display: block;
+	line-height: 2em;
+	margin: 0px;
+	padding: 0px 0px 0px 30px;
+	font-weight: bold;
+}
+#plan ul li ul {
+	margin: 0.75em 0px;
+	padding: 0px;	
+}
+#plan ul li ul li {
+	margin: 0px;
+	padding: 0px;
+}
+#plan ul li ul li a {
+	line-height: 1.2em;
+	text-decoration: underline;
+	background: transparent url(../plugins/interdreal/_images/puce_menu.gif) no-repeat 30px 7px;
+	display: block;
+	padding: 0px 0px 0px 40px;
+}
+#plan ul li ul li ul {
+	margin: 0 0 0.75em;
+	padding: 0px;
+}
+#plan ul li ul li ul li {
+	margin: 0px;
+	padding: 0px;
+}
+#plan ul li ul li ul li a {
+	font-weight: normal;
+	text-decoration: underline;
+	margin: 0px;
+	padding: 0px 0px 0px 60px;
+	background: url(../plugins/interdreal/_images/puce_menu.gif) no-repeat 50px 7px;
+}
+#plan a:hover {
+	text-decoration: none;
+}
+
+
+/*==========  Styles propres de SPIP  ==============*/
+#contenu h3.spip{
+	color: #484848;
+	font-weight: bold;
+	font-size: 1.25em;
+	padding: 1em 0px 0.2em 0px;
+	margin: 0px 0px 0.25em;
+}
+
+a {text-decoration: none;}
+a:hover.LienH2 {text-decoration: none;}
+a:hover {
+	color:#4502ba;
+	text-decoration: underline;
+}
+a.spip_url {text-decoration: underline;color: #5b8910;}
+a.spip_in {text-decoration: underline;color: #5b8910;}
+a.spip_out {
+	color: #5b8910;
+	background-image: none;
+	text-decoration: underline;
+	margin: 0;
+	padding: 0;
+}
+a.spip_glossaire { }
+
+.spip_code {
+	font-size: 1em;
+}
+
+p.spip_note { 
+}
+
+.spip_documents{
+	font-size : 100%;
+}
+
+table.spip {
+	font-size: 1em;  /* indispensable pour IE 5.5 */
+	border: 1px solid #78B51C;
+	border-collapse: collapse;
+	margin-bottom: 1em;
+}
+
+table.spip tr.row_first {
+	background-color: #cded95;
+}
+
+table.spip td {
+	padding: 0px 5px;
+	text-align: left;
+	vertical-align: top;
+	border: 1px solid #78B51C;
+}
+
+table.spip th {
+	padding: 0 5px;
+	text-align: left;
+	vertical-align: top;
+	border: 1px solid #78B51C;
+}
+
+hr.spip { }
+b.spip { }
+i.spip { }
+
+.spip_encadrer {
+	font-size: 0.7em;
+	width : 99%;
+	background-color: #efefef;
+	padding: 5px;
+	margin: 0;
+}
+.forml { 
+	font-size: 1em;
+	width: 97%;
+ }
+
+.spip_bouton { margin: 5px 5px 0 0;}
+
+.spip_cadre {
+	width : 100%;
+	background-color: #FFFFFF;
+	padding: 5px;
+}
+
+.formrecherche { width: 100% ; background-color: #FFDDAA;}
+
+.reponse_formulaire {
+	font-weight: bold;
+	font-size: 110%;
+	color: red;
+}
+
+.spip_surligne {}
+
+p.spip {
+	text-align: justify;
+	margin: 0 0 15px 0;
+}
+ol.spip
+{
+	margin: 0 0 15px 3em;
+}
+ul.spip {
+	padding: 0 0 5px 3em;
+	position: relative;  /* indispensable pour IE 5.5 */
+}
+.spip_code {
+	font-size: 1.2em;
+}
+.spip_documents_center{
+	margin: 5px 15px 5px 15px; 
+	text-align: center;
+}
+.spip_documents_left{
+	margin: 5px 15px 5px 0px;
+	text-align: center;
+}
+.spip_documents_right{
+	margin: 5px 0px 5px 15px;
+	text-align: center;
+}
+
+.diff-para-deplace {background: #e8e8ff;}
+.diff-para-ajoute {background: #d0ffc0;	color: #000000;}
+.diff-para-supprime {background: #ffd0c0;color: #904040;text-decoration: line-through;}
+.diff-deplace {background: #e8e8ff;}
+.diff-ajoute {background: #d0ffc0;}
+.diff-supprime {background: #ffd0c0;color: #802020;text-decoration: line-through;}
+.diff-para-deplace .diff-ajoute {border: 1px solid #808080;background: #b8ffb8;}
+.diff-para-deplace .diff-supprime {border: 1px solid #808080;background: #ffb8b8;}
+.diff-para-deplace .diff-deplace {border: 1px solid #808080;background: #b8b8ff;}
+
+/* Barre de raccourcis SPIP */
+a.spip_barre img {
+	vertical-align:middle;
+	padding: 3px;
+	margin: 0px;
+	background-color: #eeeeee;
+	border-right: 1px solid #C0CAD4;
+}
+a.spip_barre:hover img {
+	background-color: white;
+}
+
+blockquote.spip {
+	margin : 10px 40px 10px 40px;
+	border : solid 1px #aaaaaa;
+	background-color: #ffffff;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#text_area {
+	width: 100%;
+}
+ul.editer {
+	list-style: none;
+}
+
+/*  ------------------------------------------ */
+/*  Pour le portage sous SPIP 2                            */
+/*  ------------------------------------------ */
+
+/* Structure generale des formulaires
+----------------------------------------------- */
+.formulaire_spip {
+	clear: both;
+	margin: 20px 0;
+	padding: 0;
+	border: 0;
+	text-align: left;
+}
+.formulaire_spip form {
+	margin: 0;
+	padding: 0;
+} /* Bug IE/Win */
+
+/* Fieldset */
+.formulaire_spip fieldset {
+	clear: both;
+	margin: 0 0 10px 0;
+	padding: 5px;
+	border: 1px solid #CACACA;
+	background-color: #efefef;
+}
+.formulaire_spip fieldset legend {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	/*background-color: #fff;*/
+} /* Preciser la couleur des legend et du fond pour IE/Win */
+.formulaire_spip fieldset fieldset {
+	margin-top: 1em;
+}
+.formulaire_spip fieldset fieldset legend {
+	font-weight: normal;
+}
+
+/* Explications */
+.formulaire_spip .explication {
+	margin: 0.50em 0;
+}
+.formulaire_spip .explication a, .formulaire_spip a:hover {
+	color: #78bb01;
+	font-weight: bold;
+}
+/* Lignes */
+.formulaire_spip ul { margin: 0; padding: 0; list-style: none; }
+.formulaire_spip ul li { clear: both; margin: 0; padding: 0.50em 0; }
+
+/* Labels */
+.formulaire_spip label { display: block; text-align: left; font-weight: bold; /* pour IE/Win */ position: relative;  }
+.formulaire_spip li p { margin-top: 0; margin-bottom: 0; }
+
+.formulaire_spip .choix label{display:inline;font-weight:normal;}
+.formulaire_spip .choix input.radio,
+.formulaire_spip .choix input.checkbox {width:auto;}
+
+
+/* Champs de saisie */
+.formulaire_spip input.text { width: 99%; border: 1px solid #CACACA; }
+.formulaire_spip textarea { width: 99%; border: 1px solid #CACACA; }
+.formulaire_spip select { width: 99%; }
+
+/* Boutons */
+.formulaire_spip .boutons { clear: both; margin: 0; padding: 0; text-align: right; }
+.formulaire_spip .boutons input { margin-left: 1em; }
+.formulaire_spip .boutons input, input.submit {}
+
+/* Reponses, previsu et erreurs
+----------------------------------------------- */
+
+/* Champs obligatoires */
+.formulaire_spip li.obligatoire {}
+.formulaire_spip li.obligatoire label {}
+
+/* Previsualisation du message */
+.formulaire_spip fieldset.previsu {
+	margin: 10px 0px;
+	padding: 5px;
+	border: 1px dashed red;
+}
+.formulaire_spip fieldset.previsu legend {
+	padding: 0 0.50em;
+	font-weight: bold;
+	color: red;
+}
+.formulaire_spip fieldset.previsu li { padding: 3px; border: none; }
+
+/* Reponse du formulaire */
+.reponse_formulaire { font-weight: bold; color: #e86519; }
+fieldset.reponse_formulaire { border-color: #e86519; font-weight: normal; }
+fieldset.reponse_formulaire.reponse_formulaire legend { color: #F57900; } /* Preciser la couleur des legend et du fond pour IE/Win */
+
+/* * Erreurs */
+.formulaire_spip li.erreur .erreur_message {
+	display: block;
+	color: red;
+	font-weight: bold;
+}
+.formulaire_spip li.erreur input.text, .formulaire_spip li.erreur textarea { background-color: #FCC; border-style: solid; border-color: #C30; }
+.reponse_formulaire_erreur { margin: 0; color: #C30; font-weight: bold; }
+
+/* * OK */
+.reponse_formulaire_ok { margin: 0; color: #53AD20; font-weight: bold; }
+
+
+/* Variantes et cas particuliers
+----------------------------------------------- */
+
+/* Barre de raccourcis typographiques */
+table.spip_barre { width: 100%; }
+table.spip_barre a img { background: #eeeeee; padding: 3px; border: 1px outset #C0CAD4; }
+table.spip_barre a:focus img,
+table.spip_barre a:hover img,
+table.spip_barre a:active img { background: #FFF; border: 1px solid #C0CAD4; }
+table.spip_barre input.barre { width: 99%; background: transparent; border: 0; }
+
+/* Formulaire de forum */
+.formulaire_forum .saisie_titre input.text, .formulaire_forum .saisie_texte textarea { width: 99%;
+        font-size: 1em;
+}
+.formulaire_forum .saisie_titre #titre {margin:3px 0 0 0;}
+
+
+/* Selection des langues */
+.formulaire_menu_lang { margin: 0; padding: 0; background: none; }
+
+/* Formulaires de recherche (site / petitions) */
+.formulaire_recherche { margin: 0; padding: 0; background: none; }
+.formulaire_recherche * { display: inline; vertical-align: middle; }
+.formulaire_recherche label {}
+.formulaire_recherche input.text { width: 10em; padding-left: 25px; background: #FFF url(rechercher.gif) no-repeat left center; }
+.formulaire_recherche input.submit {}
+
+.spip_surligne {} /* Cf.: spip_style.css */
+
+/* Choix des mots-clefs */
+ul.choix_mots { display: block; margin: 0; padding: 0; list-style: none; }
+ul.choix_mots li { clear: none; float: left; display: block; width: 30%; padding: 1%; }
+ul.choix_mots li label { display: inline; font-weight: normal; }
+
+.formulaire_spip .bugajaxie { display: none; } /* Bug IE/Win */
+
+/* Formulaire de login dans une page */
+.formulaire_login ul li {clear:left;}
+.formulaire_login .editer_password .details {display:block;}
+.formulaire_login #spip_logo_auteur {float:right;}
+
+
+/* Divers
+----------------------------------------------- */
+#contenu .listeetab p {font-size: 1em;}
+#contenu .texte p {text-align: justify; margin: 0 0 15px 0;}
+.spip_documents img {border-width: 0px;}
+.spip_documents_center{display:block;display:table;clear:both;margin:0 auto;}
+.spip_documents_left{float:left;}
+.spip_documents_right{float:right;}
+
+
+/*================  formulaire questionner ===================*/
+#formulaire_questionner { margin: 0px; padding: 1.5em 0px 0px; }
+#formulaire_questionner label {font-weight: bold; display: block; float: left; width: 120px; margin: 0px 0px 0.5em; color: #484848; }
+#formulaire_questionner input, #formulaire_questionner textarea { display: block; margin: 0px 0px 0.5em; float: left; width: 350px; padding: 0px 5px; }
+#formulaire_questionner select { display: block; margin: 0px 0px 0.5em; float: left; width: 200px; height:1.8em; color: #484848; }
+#formulaire_questionner br { clear: left; }
+#formulaire_questionner .valid { margin: 0px 0px 0.5em 120px; }
+#formulaire_questionner input#validform { width: 100px; }
+
+/*================  impact plugin ciform ===================*/
+.formulaire_spip input.text {font-size: 1em;}
+.formulaire_spip textarea {font-size: 1em;}
+.formulaire_spip select {font-size: 1em;}
+.formulaire_spip .obligatoire {font-weight: normal; color: red}
+.formulaire_spip label {margin-bottom: 2px;}
+.formulaire_spip .erreur {color:red;}
+.formulaire_spip .formulaire_erreur {display: block; margin-bottom: 3px; color:red; font-weight: bold;}
+.formulaire_spip img, .spip_logos {border:0 none;margin:0;padding:0;}
+
+.cadre-padding { padding: 10px; }
+.cadre-revision { margin: 10px 0 10px 0; position: relative; border: 1px solid #CACACA; }
+.cadre-revision div.cadre-titre { background-color: #aaa; border-bottom: 1px solid #CACACA; color: #484848; }
+.cadre-revision ul {padding: 10px 0 10px 30px;}
+.cadre-revision ul.verdana3 {background: #F1F7E8;}
+.cadre-revision ul a {color: #78BB01;}
+.cadre-revision .label {color: #FFF;}
+
+.formulaire_login fieldset ul li input.text, .formulaire_login fieldset ul li input.password {display:inline; margin:0; width:20em;border:1px solid #CACACA;font-size:1.2em;}
+
+#contenu .listedocwiki ul li {margin-top: 0.25em;}
+#contenu .listedocwiki .info_resa {color: red;font-weight:bold;}
+
+/*=========================== FAQ ==========================*/
+div.faq {
+	margin:0;
+	padding:0;
+}
+div.faq h2 {
+	font-size:14px;
+}
+div.faq div.texteart {
+	margin:10px;
+	color: #000000;
+}
+div.faq span.reponse {
+	font-size: 14px;
+	color: #454545;
+	font-weight: bold;
+	line-height:2em;
+}
+table.signatures {
+	width: 100%;
+}
+
+/* Contourner le bug d'impression de Firefox 3 */	
+@-moz-document url-prefix() { .clearer {line-height:1px;} }
+
+/*-- image flottante gauche et liste a puce --*/
+ul.spip {overflow:hidden;}

@@ -1,0 +1,103 @@
+#myStaticGalleryListWrapper {
+    position: relative;
+    width: 674px;
+    overflow: hidden;
+    /*text-align: center;*/
+    background-color: #62980f;
+}
+#myStaticGallery {
+    height: 304px;
+    width: 406px;
+}
+#myStaticGallery div img.spip_logos {
+    margin:3px;
+}
+#myStaticGalleryHelper {
+    position: absolute;
+    top:0 ;
+    right: 0;
+    width: 269px;
+	height:406px;
+    background-color: #ffffff;
+}
+#myStaticGallery, #myStaticGalleryHelper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#myStaticGalleryHelper li {
+    /*margin: 5px 3px;*/
+    padding: 0px;
+    width: 100%;
+    height: 75px;
+    cursor: pointer;
+    color: #454545;
+}
+#myStaticGalleryHelper li:hover {
+}
+#myStaticGalleryHelper li.myStaticGalleryHelperItemActive {
+}
+#myStaticGalleryHelper li.myStaticGalleryHelperItemActive div.myGalleryImageText {
+    color: #ffffff;
+    background-color: #62980f;
+    margin:0;
+    height:73px;
+	padding-left:3px;
+}
+#myStaticGalleryHelper li.myStaticGalleryHelperItemActive a.myGalleryLien {
+    color: #ffffff;
+    font-size:14px;
+}
+#myStaticGallery li {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+#myStaticGallery li.myStaticGalleryItemActive {
+    z-index: 1;
+}
+#myStaticGalleryHelper li div img.spip_logos {
+    position:absolute;
+    left:3px;
+    width:100px;
+    height:70px;
+    background-color: #ffffff;
+}
+#myStaticGalleryHelper li.myStaticGalleryHelperItemActive div img.spip_logos {
+    display: none;
+}
+p.myGalleryDate {
+	font-family:arial;
+	font-weight:normal;
+	font-size:11px;
+}
+.myGalleryImageText {
+	font-family: arial;
+	font-weight: bold;
+	font-size: 12px;
+	margin:3px;
+	background-color: none;
+	/*height:64px;*/
+	text-align:left;	
+	color: #454545;
+	margin-left:106px;
+}
+a.myGalleryLien {
+	color: #454545;
+	text-decoration:none;
+}
+.myGalleryBigImageText {
+	z-index:2;
+	background-color: #62980f;
+	position:absolute;
+	bottom:0;
+	left:0;
+        color: #ffffff;
+        font-family:arial;
+        font-size:12px;
+        width:393px;
+        padding:5px 5px 5px 5px;
+	text-align: left;
+}
