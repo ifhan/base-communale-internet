@@ -10,17 +10,19 @@ require_once 'classes/utilities.inc.php';
 require_once 'classes/Zonage.class.php';
 
 /**
- *  Ce fichier sert a afficher les differents zonages recensés par epci
+ * Ce fichier sert a afficher les différents zonages recensés par EPCI
+ * @var $id_epci Identifiant de l'EPCI
  */
 $id_epci = $_REQUEST["id_epci"];
 
 $themes = getThemesByIdEpci($id_epci);
+
 /**
  *  Affichage des communes de l'EPCI
  */
 ?>
 <h3 class="spip">Communes concern&eacute;es&nbsp;:</h3>
-<?php include("inc/commune.inc.php"); ?><br />
+<?php require_once 'inc/commune.inc.php'; ?><br />
 <?php if(count($themes) > 0): ?>
     <?php foreach($themes as $theme): ?>
     <div class="listerub">
