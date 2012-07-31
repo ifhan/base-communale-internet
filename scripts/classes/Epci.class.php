@@ -9,13 +9,35 @@
  * @version 1.0
  */
 class Epci {
-    //put your code here
+    /**
+     * Sélectionne un EPCI par son identifiant
+     * @global string $pdo Paramètres de connexion à la base de données
+     * @param int $id_epci Identifiant de l'EPCI
+     */
+    public function getEpciByIdEpci($id_epci) {
+        global $pdo;
+        $table = "R_EPCI_R52";
+        $table_2 = "R_EPCI_R52_statut";
+
+        $sql = "SELECT * 
+        FROM $table, $table_2 
+        WHERE $table.id_epci = $id_epci 
+        AND $table.id_statut_epci = $table_2.id_statut_epci 
+        GROUP BY $table_2.id_statut_epci";
+        try {
+            $row = $pdo->query($sql)->fetch();
+            $this->nom_epci  = $row['nom_epci'];
+            $this->nom_statut_epci  = $row['nom_statut_epci'];
+        } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        } 
+    }
 }
 
 /**
  * Sélectionne les communes d'un EPCI par son identifiant
- * @global type $pdo
- * @param string $id_regional
+ * @global type $pdo Paramètres de connexion à la base de données
+ * @param string $id_epci
  * @return array 
  */
 function getCommunesEpciByIdEpci($id_epci) {
