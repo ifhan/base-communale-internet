@@ -32,12 +32,31 @@ class Epci {
             echo 'ERROR: ' . $e->getMessage();
         } 
     }
+    
+    /**
+     * Sélectionne un EPCI par son code SIREN
+     * @global string $pdo Paramètres de connexion à la base de données
+     * @param int $id_siren Code SIREN de l'EPCI
+     */
+    public function getEpciByCodeSiren($id_siren) {
+        global $pdo;
+        $sql = "SELECT * 
+        FROM R_EPCI_R52_videos
+        WHERE siren = $id_siren 
+        GROUP BY siren";
+        try {
+            $row = $pdo->query($sql)->fetch();
+            $this->nom_epci  = $row['nom_epci'];
+        } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        } 
+    }
 }
 
 /**
  * Sélectionne les communes d'un EPCI par son identifiant
  * @global type $pdo Paramètres de connexion à la base de données
- * @param string $id_epci
+ * @param string $id_epci Identifiant de l'EPCI
  * @return array 
  */
 function getCommunesEpciByIdEpci($id_epci) {
@@ -58,5 +77,26 @@ function getCommunesEpciByIdEpci($id_epci) {
             echo 'ERROR: ' . $e->getMessage();
         }    
     }
+
+/**
+ * Sélectionne les ECPI d'un département par le code géographique 
+ * du département
+ * @global string $pdo Paramètres de connexion à la base de données
+ * @param int $id_dpt Code géographique du département
+ * @return array 
+ */
+function getEpciByIdDpt($id_dpt) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM R_EPCI_R52_videos 
+    WHERE id_departement = $id_dpt 
+    ORDER BY nom_epci";
+    try {
+        $array_epci = $pdo->query($sql)->fetchAll();
+        return $array_epci;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 ?>
