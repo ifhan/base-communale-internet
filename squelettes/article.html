@@ -1,0 +1,128 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|supprimer_numero) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	<div id="milieu">
+	<div id="ext-main">
+	
+	    [(#REM) Fil d'Ariane ]
+	
+        <div id="boxnavpath">
+			<div id="navpath">
+				<a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero)]
+			</div>
+		</div>
+
+		<BOUCLE_titre_rubrique(RUBRIQUES) {racine} {id_secteur}>
+			<div id="titrerub">
+				<span style='text-transform: uppercase;' class='titrerub'>[(#TITRE|supprimer_numero)]</span><br />
+				<img src="plugins/interdreal/_images/bg_theme_bloc3c_h1.png" width="981px" height="46px" class="img_png">
+			</div>
+        </BOUCLE_titre_rubrique>
+		
+		<div id="milieu3">
+        	<div class="main">			
+		
+			<div id="gauche">
+				<div id="navi_gauche">
+					[(#REM) Menu de navigation par rubriques ]
+					<INCLURE{fond=inc-rubriques}{id_rubrique}{tout}>
+					<div class="clearer">&nbsp;</div>
+				</div>
+			</div><!-- gauche -->
+
+	<div id="contenu">
+		<div class="main-content-3cols">
+			<h1 class="invisible">Contenu</h1>
+			<div id="boxcentrale">
+				<div class="innercentrale">
+					<h2>[(#TITRE|supprimer_numero)]</h2>
+				<div class="dateart">
+					<p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></small></p>
+					<hr class="hrart"/>
+				</div>				
+				<div class="texteart">
+					[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+					[<div class="#EDIT{texte} texte entry-content">(#TEXTE|image_reduire{500,0})</div>]
+					
+					[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+        
+					[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
+
+					[(#REM) Gestion du portfolio et des documents
+						Le critere {env} permet de passer d'autres arguments de la page
+						par exemple l'id_document choisi pour un affichage complet
+					]
+					[(#INCLURE{fond=inc-documents}{id_article}{env})]
+
+					[(#REM) Petition :
+					La petition ayant une PAGINATION il faut absolument {env}
+					et pourquoi pas ajax
+					][(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
+
+					[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+
+					[(#REM) Forum de l'article ]
+					<a href="#forum" name="forum" id="forum"></a>
+					<INCLURE{fond=inc-forum}{id_article} />
+					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
+				</div>
+
+				<div class="o2paj">
+					<a href="#entete" title="Haut de page">Haut de page</a>
+				</div>
+	
+		</div>
+		</div>
+		</div>
+	</div>
+				
+	[(#REM) Menu de navigation laterale ]
+	<div id="droite3">
+
+		<div id="menu3">
+			<h1 class="invisible">Menu de droite</h1>
+				<div class="voir_freres">
+					<div class="top">&nbsp;</div>
+					<div class="center">
+						<h2>Dans la même rubrique</h2>
+						[(#REM) Articles dans la meme rubrique ]
+						<B_articles_rubrique>
+						<ul>
+							<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}>
+							<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
+							</BOUCLE_articles_rubrique>
+						</ul>
+						</B_articles_rubrique>
+					</div>
+					<div class="bottom">&nbsp;</div>
+				</div>
+				<div class="bottom">&nbsp;</div>
+		</div>
+                                
+				<div class="bottom">&nbsp;</div>
+			</div>
+			<div class="clearer">&nbsp;</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,228 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+<div id="milieu">
+	<div id="ext-main">
+		<div id="messagedeservice">
+                
+			<div class="top">&nbsp;</div>
+
+			<div id="boxpermanent">
+					<div class="innercentrale">
+									
+						<div class="texte">
+							<BOUCLE_edito(ARTICLES) {titre_mot=edito}>
+							<h3 class="spip">#TITRE</h3>
+							<p>#TEXTE</p>
+							</BOUCLE_edito>	
+						</div>
+
+					</div>
+			</div>
+			
+			<div class="bottom">&nbsp;</div>
+		
+		</div><!-- messagedeservice -->
+		
+		<div id="milieusommaire">
+			<div class="main">
+ 				<div id="contenu">
+					<div class="main-content-2cols">
+						<h1 class="invisible">Accueil</h1>
+					
+						<div class="actu_totale">
+							<div class="actu_totale_top">&nbsp;</div>	
+						
+	<div class="clearer">&nbsp;</div>
+
+	<table width="100%">
+	
+		<tr>
+			<td>
+				<div id="boxtitreactu"   style="margin-top:5px;">
+					<h2><span style='text-transform: uppercase;'><BOUCLE_accueil_geographique(RUBRIQUES) {id_rubrique =2}>[(#TITRE|supprimer_numero)]</BOUCLE_accueil_geographique></span></h2>				
+				</div>
+			</td>
+			<td>
+				<div id="boxtitreactu"   style="margin-top:5px;">
+					<h2><span style='text-transform: uppercase;'><BOUCLE_accueil_themes(RUBRIQUES) {id_rubrique =3}>[(#TITRE|supprimer_numero)]</BOUCLE_accueil_themes></span></h2>				
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%" align="center">				
+				<p>Cliquer sur un d&eacute;partement pour afficher la liste des communes&nbsp;:</p><br />
+						
+				<!-- Carte des Pays de la Loire -->
+
+				<img src="IMG/png/carte_pdl.png" alt="Carte des Pays de la Loire" width="186" height="130" usemap="#map" />
+				<object>
+					<map name="Map" id="Map">
+						<area shape="poly" coords="76,43,70,40,66,43,60,48,53,47,48,50,45,55,41,57,36,57,32,61,31,65,31,68,35,68,37,70,41,69,45,68,48,68,45,69,44,72,42,75,44,77,48,82,52,86,55,87,58,91,61,91,65,92,65,83,67,85,69,88,70,84,74,83,76,80,79,74,76,70,73,68,75,66,82,66,85,63,83,60,79,57,81,54,79,49" href="spip.php?page=liste_communes_departement&amp;id_dpt=44" alt="Loire-Atlantique (44)" title="Loire-Atlantique (44)" />
+						<area shape="poly" coords="83,85,90,88,97,86,105,83,115,83,120,83,126,78,127,72,131,65,132,58,122,53,115,49,109,44,101,46,95,46,89,45,83,45,79,43,82,52,85,53,82,55,84,59,86,61,87,63,85,67,80,67,76,70,80,71,80,77,80,80" href="spip.php?page=liste_communes_departement&amp;id_dpt=49" alt="Maine-et-Loire (49)" title="Maine-et-Loire (49)" />
+						<area shape="poly" coords="88,5,88,10,85,15,86,21,87,29,85,32,81,39,78,43,87,44,94,45,101,45,106,43,109,38,112,30,115,24,117,18,121,12,120,9,119,4,112,5,104,6,100,6,96,7" href="spip.php?page=liste_communes_departement&amp;id_dpt=53" alt="Mayenne (53)" title="Mayenne (53)" />
+						<area shape="poly" coords="125,12,134,9,139,12,142,18,147,20,152,23,155,27,154,36,152,43,146,51,141,53,136,55,128,55,122,51,117,49,110,44,112,36,113,30,117,24,120,13" href="spip.php?page=liste_communes_departement&amp;id_dpt=72" alt="Sarthe (72)" title="Sarthe (72)" />
+						<area shape="poly" coords="48,85,46,89,38,85,40,90,44,95,34,99,36,102,43,98,47,98,51,103,55,112,61,116,64,119,66,121,74,125,84,123,87,119,91,118,96,118,99,115,98,106,95,96,90,91,83,86,78,85,74,86,72,88,67,86,67,90,64,92,56,90,50,88" href="spip.php?page=liste_communes_departement&amp;id_dpt=85" alt="Vend&eacute;e (85)" title="Vend&eacute;e (85)" />
+					</map>
+				</object>
+
+			</td>
+			<td valign="top"><br />
+				<div class="bloc2">
+					<B_sous_rubriques_themes>
+					<ul>
+						<BOUCLE_sous_rubriques_themes(RUBRIQUES){titre_mot=theme}{par titre}{tout}>
+						<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+						</BOUCLE_sous_rubriques_themes>
+					</ul>
+					</B_sous_rubriques_themes>
+				</div>
+			</td>
+			
+		</tr>
+			
+	</table><br />
+		
+	<div id="boxtitreactu" style="margin-top:5px;"><h2><span style='text-transform: uppercase;'>Actualit&eacute;</span></h2></div>
+							
+		<div id="boxactu">
+								
+			<div class="listeactu_spa">
+
+				<div class="actufirst">
+				<B_dernier_article>
+				<BOUCLE_dernier_article(ARTICLES) {par date}{inverse} {titre_mot=actualite} {id_article != 4} {0,1}>
+					<div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
+					[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
+                    <div class="texte">
+						<span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
+						<span class="chapoactu">#DESCRIPTIF</span> 
+					</div>
+				</BOUCLE_dernier_article>	
+				</B_dernier_article> 	
+				</div><!-- actufirst -->
+				<div class="clearer">&nbsp;</div>
+				
+				<div class="actu">
+				<B_articles_recents>
+				<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {pagination 5} {titre_mot=actualite} {id_article != 4} {1,5}>
+					<div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
+					[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
+                    <div class="texte">
+						<span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
+						<span class="chapoactu">#DESCRIPTIF</span> 
+					</div>
+					<div class="clearer">&nbsp;</div>
+				</BOUCLE_articles_recents>	
+				</B_articles_recents> 	
+				</div>
+				<div class="clearer">&nbsp;</div>
+									 
+				<div class="tout">
+					<a href="spip.php?rubrique10">Toutes les actualit&eacute;s</a>
+				</div>
+
+			</div><!-- listeactu_spa -->
+
+		</div><!-- boxactu -->
+
+		<div class="actu_totale_bottom">&nbsp;</div>
+		
+		</div>
+
+	<div class="clearer">&nbsp;</div>
+
+	<!-- <div id="boxdossier">
+	
+		<div id="dossier">
+			<h2><span style='text-transform: uppercase;'>Zoom sur</span></h2>
+			<div class="colonne1">
+				<div class="actu">				
+					<div class="titreactu"><a href=""></a></div>
+				</div>
+			</div>
+			<div class="colonne2">
+				<div class="actu">
+					<div class="titreactu"><a href=""></a></div>
+				</div>
+			</div>
+			<div class='clearer'>&nbsp;</div>	
+		</div><!-- dossier -->
+	<!--</div>--><!-- boxdossier --> 
+
+	</div>
+	</div>
+
+	<div id="droite">
+		
+		<div id="menu2">
+			
+			<h1 class="invisible">Menu de droite</h1>
+						   
+				[(#REM) Donn�es ]
+				<B_syndic>
+				<div class="zapette">
+					<div class="top">&nbsp;</div>
+						<div class="center">
+							<h2><BOUCLE_catalogues(RUBRIQUES) {id_rubrique =23}>[(#TITRE|supprimer_numero)]</BOUCLE_catalogues></h2>
+							<ul>
+								<BOUCLE_syndic(SITES) {id_rubrique =23} {par nom_site}>
+									<li><a href="#URL_SITE"[ title="#NOM_SITE"] class="spip_out">#NOM_SITE</a></li>
+								</BOUCLE_syndic>
+							</ul>
+						</div>
+					<div class="bottom">&nbsp;</div>
+				</div><!-- zapette -->
+				</B_syndic>
+				
+				[(#REM) Sur le Web ]
+				<BOUCLE_rubs(RUBRIQUES) {id_secteur =20} {par titre} {id_rubrique !=20} {id_rubrique !=23}>		
+				<div class="boxtitredroite">
+						<div class="top">&nbsp;</div>
+						<div class="bloc2">
+							<h2>[(#TITRE|supprimer_numero)]</h2>
+							<div class="bottomh2">&nbsp;</div>
+							<ul>
+								<BOUCLE_test(SITES) {id_rubrique} {par nom_site}>
+									<li><a href="#URL_SITE"[ title="#NOM_SITE"] class="spip_out">#NOM_SITE</a></li>
+								</BOUCLE_test>										
+							</ul>
+						</div>
+						<div class="bottom">&nbsp;</div>
+				</div><!-- boxtitredroite -->
+				</BOUCLE_rubs>
+					
+				<div class="bottom">&nbsp;</div>
+				
+		</div><!-- menu2 -->
+		
+		<div class="clearer">&nbsp;</div>
+	</div><!-- droite -->
+
+	<div class='clearer'>&nbsp;</div>	
+	</div>
+
+	</div>      
+
+	</div>
+</div>
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</body>
+
+</html>
