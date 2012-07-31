@@ -3,9 +3,6 @@
 require_once 'config/constants.inc.php';
 require_once 'config/database.inc.php';
 
-// Utility functions  
-require_once 'classes/utilities.inc.php';
-
 // Classes
 require_once 'classes/Commune.class.php';
 
@@ -27,15 +24,11 @@ $communes = getCommunesByIdDpt($id_dpt);
         </tr>
     </thead>
     <tbody>
-        <?php foreach($communes as $commune):
-        /**
-         *  
-         */
-        ?>
+        <?php foreach($communes as $commune): ?>
         <tr valign="top">
             <td><?=$commune["nom_commune"]?> (<?=$commune["id_commune"]?>)</td>
             <td align="center">
-                <a href="spip.php?page=popup_video&commune=<?=$commune["id_commune"]?>" target="_blank"><img src="IMG/png/gtk-media-play-ltr.png" style="border:none" alt="Lire" /></a>
+                <a href="spip.php?page=popup_video&id_commune=<?=$commune["id_commune"]?>" target="_blank"><img src="IMG/png/gtk-media-play-ltr.png" style="border:none" alt="Lire" /></a>
             </td>
             <td align="center">
                 <a href="<?=URL_BASE_COMMUNALE?>data/videos/tache_urbaine/<?=$commune["id_commune"]?>.ogg"><img src="IMG/png/filesave.png" style="border:none" alt="T&eacute;l&eacute;charger" /></a>
