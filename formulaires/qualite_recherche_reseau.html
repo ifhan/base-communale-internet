@@ -10,14 +10,14 @@
             </tr>
             <tr>
                 <td>
-                    <select name="reseau" id="reseau">
+                    <select name="id_reseau" id="id_reseau">
                         <option value="-1">--- Choisir un r&eacute;seau ---</option>
                         <option value="1">Stations du RCS</option>
                         <option value="2">Anciennes stations du RNB</option>
                     </select>
                 </td>
                 <td>
-                    <select name="departement" id="departement">
+                    <select name="id_dpt" id="id_dpt">
                         <BOUCLE_departements(spip_departements)>
                             <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
                         </BOUCLE_departements>
