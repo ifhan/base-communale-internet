@@ -1,71 +1,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-<head>
-<title>Liste des stations <INCLURE(scripts/inc/cours_eau.inc.php)> en <INCLURE(scripts/query_departement.php)></title>
-<INCLURE{fond=inc-head}>
-<INCLURE{fond=inc-datatables}>
-</head>
+    <head>
+        <title>Liste des stations <INCLURE(scripts/inc/cours_eau.inc.php)> en <INCLURE(scripts/inc/departement.inc.php)></title>
+        <INCLURE{fond=inc-head}>
+        <INCLURE{fond=inc-datatables}>
+    </head>
 
-<body>
+    <body>
 
-	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=inc-entete}>
+        [(#REM) Entete de la page + titre du site ]
+        <INCLURE{fond=inc-entete}>
 	
-	<div id="milieu">
-	<div id="ext-main">	
+        <div id="milieu">
+            <div id="ext-main">	
 
-	[(#REM) Fil d'Ariane ]
-	<INCLURE{fond=inc-fil_ariane} {id_rubrique=7}{tout}>
+                [(#REM) Fil d'Ariane ]
+                <INCLURE{fond=inc-fil_ariane} {id_rubrique=7}{tout}>
 	
-	<div id="titrerub">
-		<span style='text-transform: uppercase;' class='titrerub'>Qualit&eacute; des eaux</span><br />
-		<img src="plugins/interdreal/_images/bg_theme_bloc3c_h1_dedie.png" width="981px" height="46px" class="img_png">
-	</div>
+                    <div id="titrerub">
+                        <span style='text-transform: uppercase;' class='titrerub'>Qualit&eacute; des eaux</span><br />
+                        <img src="plugins/interdreal/_images/bg_theme_bloc3c_h1_dedie.png" width="981px" height="46px" class="img_png">
+                    </div>
 
-		<div id="milieu3_dedie">
-		<div class="main">
+                    <div id="milieu3_dedie">
+                        <div class="main">
+
+                            <div id="gauche">
+                                <div id="navi_gauche">
+                                    [(#REM) Menu de navigation par rubriques ]
+                                    <INCLURE{fond=inc-rubriques}{id_rubrique=7}{tout}>
+                                        <div class="clearer">&nbsp;</div>
+                                </div>
+                            </div><!-- gauche -->			
 			
-			<div id="gauche">
-				<div id="navi_gauche">
-					[(#REM) Menu de navigation par rubriques ]
-					<INCLURE{fond=inc-rubriques}{id_rubrique=7}{tout}>
-					<div class="clearer">&nbsp;</div>
-				</div>
-			</div><!-- gauche -->			
-			
-			<div id="contenu">
-				<div class="main-content-2cols_dedie">
-					<h1 class="invisible">Contenu</h1>
-					<div id="boxcentrale">
-						<div class="innercentrale">
-						
-							<h2>Liste des stations <INCLURE(scripts/inc/cours_eau.inc.php)> en <INCLURE(scripts/inc/departement.inc.php)></h2>
-							<hr class="hrart"><br />
-							
-							<INCLURE{fond=inc-impression}>
-						
-							<div class="lien_simple"><INCLURE(scripts/liste_stations.php)></div>
+                            <div id="contenu">
+                                <div class="main-content-2cols_dedie">
+                                    <h1 class="invisible">Contenu</h1>
+                                    <div id="boxcentrale">
+                                        <div class="innercentrale">
 
-							<div class="clearer">&nbsp;</div>
+                                            <h2>Liste des stations <INCLURE(scripts/inc/cours_eau.inc.php)> en 
+                                                    <INCLURE(scripts/inc/departement.inc.php)></h2>
+                                            <hr class="hrart">
+                                            <br />
 
-							<div class="o2paj"><a href="#entete" title="Haut de page">Haut de page</a></div>
-						
-						</div><!-- innercentrale -->
-					</div><!-- boxcentrale -->
-				</div><!-- main-content-2cols_dedie -->
-			</div><!-- contenu -->
+                                            <INCLURE{fond=inc-impression}>
+                                            <div class="lien_simple">
+                                                <INCLURE(scripts/liste_stations.php)>
+                                            </div>
+                                            <div class="clearer">&nbsp;</div>
+                                            <div class="o2paj">
+                                                <a href="#entete" title="Haut de page">Haut de page</a>
+                                            </div>
+
+                                        </div><!-- innercentrale -->
+                                    </div><!-- boxcentrale -->
+                                </div><!-- main-content-2cols_dedie -->
+                            </div><!-- contenu -->
 				
-			<div class='clearer'>&nbsp;</div>
+                            <div class='clearer'>&nbsp;</div>
 					
-		</div><!-- main -->
-		</div><!-- milieu3 -->
-		
-	</div><!-- ext-main -->
-	</div><!-- milieu -->
+                        </div><!-- main -->
+                    </div><!-- milieu3 -->
 
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+            </div><!-- ext-main -->
+            </div><!-- milieu -->
 
-</div><!--#page-->
-</body>
+            [(#REM) Pied de page ]
+            <INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+        </div><!--#page-->
+    </body>
 </html>
