@@ -16,7 +16,7 @@ require_once 'classes/Zonage.class.php';
 $id_reseau = $_REQUEST["id_reseau"];
 $id_dpt = $_REQUEST["id_dpt"];
 
-$stations_qualite = getStationQualiteByIdDptByIdReseau($id_dpt, $id_reseau);
+$stations_qualite = getStationsQualiteByIdDptByIdReseau($id_dpt, $id_reseau);
 
 $zonage = new Zonage();
 $zonage->getTypeZonageByIdType("28");
