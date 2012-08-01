@@ -11,7 +11,7 @@ function formulaires_qualite_recherche_reseau_traiter_dist(){
     $id_reseau = _request('id_reseau');
     $id_dpt = _request('id_dpt');
     return array(
-        'redirect' => 'spip.php?page=liste_stations_reseaux&reseau=' . $id_reseau . '&id_dpt=' . $id_dpt
+        'redirect' => 'spip.php?page=liste_stations_reseaux&id_reseau=' . $id_reseau . '&id_dpt=' . $id_dpt
     );
 }
 ?>
