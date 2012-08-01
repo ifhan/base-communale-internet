@@ -3,11 +3,10 @@
 require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
-$reseau = $_GET["reseau"];
+$id_reseau = $_GET["id_reseau"];
 ?>
-<?php if ($reseau == "1"): ?>
+<?php if ($id_reseau == "1"): ?>
 stations du RCS
-<?php elseif ($reseau == "2"): ?>
+<?php elseif ($id_reseau == "2"): ?>
 anciennes stations du RNB non retenues dans le RCS
 <?php endif; ?>
-?>
