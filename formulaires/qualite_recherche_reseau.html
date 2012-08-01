@@ -1,0 +1,32 @@
+<h3 class="titreartliste">Recherche par r&eacute;seau</h3>
+<div class="formulaire_spip formulaire_demo">
+    <form action="#ENV{action}" method="post">
+        #ACTION_FORMULAIRE{#ENV{action}}
+        <table>
+            <tr>
+                <td>R&eacute;seau&nbsp;:</td>
+                <td>D&eacute;partement&nbsp;:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="reseau" id="reseau">
+                        <option value="-1">--- Choisir un r&eacute;seau ---</option>
+                        <option value="1">Stations du RCS</option>
+                        <option value="2">Anciennes stations du RNB</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="departement" id="departement">
+                        <BOUCLE_departements(spip_departements)>
+                            <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                        </BOUCLE_departements>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" name="ok" id="ok" value="Ok" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
