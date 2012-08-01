@@ -14,7 +14,7 @@ require_once 'classes/Departement.class.php';
 $id_type = $_REQUEST["id_type"];
 $id_regional = $_REQUEST["id_regional"];
 $apb = new Apb();
-$apb->getApbById($id_regional);
+$apb->getApbByIdRegional($id_regional);
 
 $departement = new Departement();
 $departement->getDepartementByIdRegional($id_regional, $id_type);
