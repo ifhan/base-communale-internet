@@ -14,7 +14,7 @@ class Apb {
      * @global null $pdo
      * @param string $id_regional 
      */
-    public function getApbById($id_regional) {
+    public function getApbByIdRegional($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_APB_R52, R_APB_R52_data
