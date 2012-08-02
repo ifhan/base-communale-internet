@@ -8,7 +8,28 @@
  * @version 1.0
  */
 class StationTemperature {
-    
+    /**
+     * Sélectionne une station "Hydrotempérature" par son identifiant
+     * @global string $pdo
+     * @param string $id_station 
+     */
+    public function getStationTemperatureByIdStation($id_station) {
+        global $pdo;
+        $sql = "SELECT * 
+        FROM R_STATIONS_HYDROTEMPERATURE_R52 
+        WHERE id_station = '$id_station' ";
+        try {
+            $row = $pdo->query($sql)->fetch();
+            $this->id_station = $row["id_station"];
+            $this->riviere = stripslashes($row["riviere"]);
+            $this->commune = $row["commune"];
+            $this->id_commune = $row["id_commune"];
+            $this->localite = $row["localite"];
+            $this->en_service = date("d/m/Y", strtotime($row["en_service"]));
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
 }
 
 /**
