@@ -8,6 +8,30 @@
  * @version 1.0
  */
 class StationQualite {
+    /**
+     * Sélectionne une station par son identifiant
+     * @global string $pdo
+     * @param string $id_station 
+     */
+    public function getStationQualiteByIdStation($id_station) {
+        global $pdo;
+        $table = "R_STATION_QUALITE_RCS_R52";
+        $table_2 = "R_RIVIERE_QUALITE_R52";
+        
+        $sql = "SELECT * 
+        FROM $table, $table_2 
+        WHERE $table.id_station = '$id_station' 
+        AND $table.id_riviere = $table_2.id_riviere ";
+        try {
+            $row = $pdo->query($sql)->fetch();
+            $this->nom_riviere = stripslashes($row["nom_riviere"]);
+            $this->nom_commune = $row["nom_commune"];
+            $this->id_commune = $row["id_commune"];
+            $this->localite = $row["localite"];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
  
 }
 
