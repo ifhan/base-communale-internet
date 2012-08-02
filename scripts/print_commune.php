@@ -23,12 +23,21 @@ $commune = $_GET["commune"];
             ?>
         </title>
         <?php include("inc-meta_print.php"); ?>
-        <h1 class="titre-texte">Commune de <?php include("query_commune.php") ?></h1>
-        <div class="soustitre">Liste des zonages recens&eacute;s</div>
-        <div class="ps"></div>
-        </td>
-        </tr>
+    </head>
+    <body class="white">
+        <table id="cartouche" width="100%">
+            <tr>
+                <td><img src="../IMG/jpg/Bloc-Marques_MEEDDADT-150.jpg" alt="Logo MEEDDAT"></td>
+                <td valign="middle" width="90%">
+                    <h1 class="titre-texte">Commune de <?php include("query_commune.php") ?></h1>
+                    <div class="soustitre">Liste des zonages recens&eacute;s</div>
+                    <div class="ps"></div>
+                </td>
+            </tr>
         </table><br />
-        <div class="blue_link"><?php include("commune.php"); ?></div><br />
-        </body>
+        <div class="blue_link">
+            <?php include("commune.php"); ?>
+        </div>
+        <br />
+    </body>
 </html>
