@@ -17,5 +17,7 @@ $station_temperature = new StationTemperature();
 $station_temperature->getStationTemperatureByIdStation($id_station);
 ?>
 &nbsp;<?=$station_temperature->commune?> 
-<?=$station_temperature->id_commune?>, 
-<?=$station_temperature->localite?>	
+(<?=$station_temperature->id_commune?>)
+<?php if(!empty($station_temperature->localite)): ?>
+, <?=$station_temperature->localite?>
+<?php endif;?>
