@@ -15,9 +15,8 @@ $id_station = $_REQUEST["id_station"];
 
 $station_qualite = new StationQualite();
 $station_qualite->getStationQualiteByIdStation($id_station);
-
 ?>
 <?=$station_qualite->nom_riviere?> 
-        <?=$station_qualite->nom_commune?> 
+<?=$station_qualite->nom_commune?> 
 (<?=$station_qualite->id_commune?>), 
-        <?=$station_qualite->localite?>
+<?=$station_qualite->localite?>
