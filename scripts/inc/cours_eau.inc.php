@@ -3,34 +3,29 @@
 require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
-$riviere = $_REQUEST["riviere"];
+// Classes
+require_once(dirname(__FILE__)."/../classes/CoursEau.class.php");
+
+/**
+ * Ce fichier sert à afficher le nom du cours d'eau sélectionné dans un
+ * squelette SPIP
+ * @var $id_riviere Identifiant de la rivière
+ * @var $id_station Identifiant de la station
+ */
+$id_riviere = $_REQUEST["id_riviere"];
 $id_station = $_REQUEST["id_station"];
 ?>
-<?php if($riviere!=""): ?>
+<?php if($id_riviere!="0"): ?>
     <?php
-    $query = "SELECT * 
-    FROM R_QUALITE_RIVIERE_R52 
-    WHERE id_riviere = $riviere";
-    $result = mysql_query($query);
-    $val = mysql_fetch_assoc($result);
-    
-    /**
-     *  Affiche le nom du cours d'eau sélectionné
-     */
+    $riviere = new CoursEau();
+    $riviere->getRiviereByIdRiviere($id_riviere);
     ?>
-&nbsp;sur <?=(stripslashes($val["nom_riviere"]))?>
+    &nbsp;sur <?=$riviere->nom_riviere?>
 <?php endif; ?>
 <?php if($id_station!=""): ?>
     <?php
-    $query_2 = "SELECT * 
-    FROM R_STATIONS_HYDROTEMPERATURE_R52 
-    WHERE id_station = '$id_station'";
-    $result_2 = mysql_query($query_2);
-    $val_2 = mysql_fetch_array($result_2);
-    
-    /**
-     *  Affiche le nom du cours d'eau sélectionné
-     */
+    $riviere = new CoursEau();
+    $riviere->getRiviereByIdStation($id_station);
     ?>
-    <?=(stripslashes($val_2["riviere"]))?>
+    <?=$riviere->riviere?>
 <?php endif; ?>
