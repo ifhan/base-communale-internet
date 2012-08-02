@@ -8,6 +8,7 @@ require_once 'classes/StationTemperature.class.php';
 require_once 'classes/Zonage.class.php';
 
 /**
+ * Ce fichier sert à afficher l'ensemble des fichiers PDF concernant la station
  * @var $id_station Identifiant de la station
  */
 $id_station = $_REQUEST["id_station"];
