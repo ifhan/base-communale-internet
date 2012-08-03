@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HabitatCorine
  * Classe et fonction concernant les Habitats de la nomenclature CORINE
@@ -6,8 +7,8 @@
  * @copyright 2012-06-21
  * @version 1.0
  */
-
 class HabitatCorine {
+
     public $id_corine;
     public $lb_corine;
 
@@ -19,14 +20,14 @@ class HabitatCorine {
     public function getHabitatsCorine() {
         global $pdo;
         $sql = "SELECT * 
-        FROM natura_eur15"; 
+        FROM natura_eur15";
         try {
-            $habitats_corine = $pdo->query($sql)->fetchAll();           
+            $habitats_corine = $pdo->query($sql)->fetchAll();
             return $habitats_corine;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
-    }    
+    }
 
     /**
      * Sélection d'un habitat par son identifiant
@@ -37,15 +38,16 @@ class HabitatCorine {
         global $pdo;
         $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO = '$id_corine' "; 
+        WHERE CD_TYPO = '$id_corine' ";
         try {
-            $row = $pdo->query($sql)->fetch();          
-            $this->id_corine  = $row['CD_TYPO'];
-            $this->lb_corine  = $row['LB_TYPO'];
-        } catch(PDOException $e) {
+            $row = $pdo->query($sql)->fetch();
+            $this->id_corine = $row['CD_TYPO'];
+            $this->lb_corine = $row['LB_TYPO'];
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
 }
 
 /**
@@ -56,14 +58,14 @@ class HabitatCorine {
 function getHabitatsCorine() {
     global $pdo;
     $sql = "SELECT * 
-        FROM znieff_typologie "; 
+        FROM znieff_typologie ";
     try {
-        $habitats_corine = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine = $pdo->query($sql)->fetchAll();
+        return $habitats_corine;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 1
@@ -74,14 +76,14 @@ function getHabitatsCorineByCdTypo1() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '1%' "; 
+        WHERE CD_TYPO LIKE '1%' ";
     try {
-        $habitats_corine_1 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_1;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_1 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_1;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 2
@@ -92,14 +94,14 @@ function getHabitatsCorineByCdTypo2() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '2%' "; 
+        WHERE CD_TYPO LIKE '2%' ";
     try {
-        $habitats_corine_2 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_2;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_2 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_2;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 3
@@ -110,14 +112,14 @@ function getHabitatsCorineByCdTypo3() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '3%' "; 
+        WHERE CD_TYPO LIKE '3%' ";
     try {
-        $habitats_corine_3 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_3;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_3 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_3;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 4
@@ -128,14 +130,14 @@ function getHabitatsCorineByCdTypo4() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '4%' "; 
+        WHERE CD_TYPO LIKE '4%' ";
     try {
-        $habitats_corine_4 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_4;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_4 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_4;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 5
@@ -146,14 +148,14 @@ function getHabitatsCorineByCdTypo5() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '5%' "; 
+        WHERE CD_TYPO LIKE '5%' ";
     try {
-        $habitats_corine_5 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_5;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_5 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_5;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 6
@@ -164,14 +166,14 @@ function getHabitatsCorineByCdTypo6() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '6%' "; 
+        WHERE CD_TYPO LIKE '6%' ";
     try {
-        $habitats_corine_6 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_6;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_6 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_6;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 7
@@ -182,14 +184,14 @@ function getHabitatsCorineByCdTypo7() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '7%' "; 
+        WHERE CD_TYPO LIKE '7%' ";
     try {
-        $habitats_corine_7 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_7;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_7 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_7;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 /**
  * Récupère les habitats CORINE du thème 8
@@ -200,13 +202,13 @@ function getHabitatsCorineByCdTypo8() {
     global $pdo;
     $sql = "SELECT * 
         FROM znieff_typologie 
-        WHERE CD_TYPO LIKE '8%' "; 
+        WHERE CD_TYPO LIKE '8%' ";
     try {
-        $habitats_corine_8 = $pdo->query($sql)->fetchAll();       
-        return $habitats_corine_8;       
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-} 
+        $habitats_corine_8 = $pdo->query($sql)->fetchAll();
+        return $habitats_corine_8;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
 
 ?>
