@@ -42,7 +42,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
                 ?>
                 <a class="document" 
                    href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">Consulter la fiche descriptive</a>
@@ -116,23 +116,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 <?php
                 endif;
                 break;
-            /**
-             * 2.5 Liens vers l'INPN et les sites des PNR
-             */
-            case 7:
-                $pnr = new Pnr();
-                $pnr->getPnrByIdRegional($id_regional);
-                ?>
-            <li>
-                <a class="document" 
-                   href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $pnr->id_regional ?>" target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
-            </li>
-            <li>
-                <a class="document" 
-                   href="<?= $pnr->url_site ?>" target="_blank">Consulter le site du PNR</a>
-            </li>
-            <?php
-            break;
+           
         /**
          * 2.6 Liens vers le site du Conseil Régional pour les RNR
          */
@@ -180,9 +164,29 @@ $zonage->getTypeZonageByIdType($id_type);
 endswitch;
 ?>
 </li>
-<!-- 2 bis. Fiche PDF et lien INPN pour Ramsar -->
+<!-- 2 bis. Compléments -->
 <?php
 switch ($id_type):
+     /**
+      * Liens vers l'INPN et les sites des PNR
+      */
+    case 7:
+        $pnr = new Pnr();
+        $pnr->getPnrByIdRegional($id_regional);
+?>
+<li>
+    <a class="document" 
+       href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $pnr->id_regional ?>" target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
+</li>
+<li>
+    <a class="document" 
+       href="<?= $pnr->url_site ?>" target="_blank">Consulter le site du PNR</a>
+</li>
+        <?php
+        break;
+    /**
+     *  Fiche PDF et lien INPN pour Ramsar
+     */    
     case 15:
         ?>
         <li>
