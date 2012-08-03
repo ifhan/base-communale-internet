@@ -9,10 +9,12 @@
  * @version 1.0
  */
 class Dta {
-    public $id_regional;
-    public $nom;
-    public $url_site;
     
+    /**
+     * Sélectionne la DTA par son identifiant régional
+     * @global string $pdo
+     * @param int $id_regional 
+     */
     public function getDtaByIdRegional($id_regional){
         global $pdo;
         $sql = "SELECT *
