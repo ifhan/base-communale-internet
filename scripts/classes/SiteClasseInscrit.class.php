@@ -8,7 +8,7 @@
  * @version 1.0
  */
 class SiteClasseInscrit {
-    
+
     /**
      * Sélectionne les données annexes d'un site classé ou inscrit
      * @global type $pdo
@@ -25,10 +25,11 @@ class SiteClasseInscrit {
             $this->nom = $row["nom"];
             $this->commentaires = nl2br($row["commentaires"]);
             $this->sources = nl2br($row["sources"]);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
-        }   
+        }
     }
+
 }
 
 /**
@@ -41,16 +42,16 @@ function getEntitesFromSiteByIdRegional($id_regional) {
     global $pdo;
     $table = "R_SITE_CLASSE_INSCRIT_R52";
     $table_2 = "R_SITE_CLASSE_INSCRIT_R52_data";
-        
+
     $sql = "SELECT * 
     FROM $table, $table_2
     WHERE $table.id_regional = $id_regional 
     AND $table.id_regional = $table_2.id_regional
-    GROUP BY $table.id_sp"; 
+    GROUP BY $table.id_sp";
     try {
         $entites = $pdo->query($sql)->fetchAll();
         return $entites;
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
@@ -62,7 +63,7 @@ function getEntitesFromSiteByIdRegional($id_regional) {
  * @param int $id_type
  * @return array 
  */
-function getSiteClasseInscritPhotosByIdRegional($id_regional,$id_type) {
+function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
     global $pdo;
     $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
     $table_2 = "R_SITE_CLASSE_INSCRIT_R52";
@@ -93,11 +94,11 @@ function getSitesClassesInscrits() {
     GROUP BY id_regional 
     ORDER BY id_regional";
     try {
-            $sites_classes_inscrits = $pdo->query($sql)->fetchAll();
-            return $sites_classes_inscrits;
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }   
-}    
-    
+        $sites_classes_inscrits = $pdo->query($sql)->fetchAll();
+        return $sites_classes_inscrits;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
 ?>
