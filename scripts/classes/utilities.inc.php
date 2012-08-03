@@ -1,6 +1,32 @@
 <?php
 
 /**
+ * Transforme un tableau multi-dimensionnel en objet
+ * @param type $array
+ * @return \stdClass|boolean 
+ */
+function arrayToObject($array) {
+    if(!is_array($array)) {
+        return $array;
+    }
+    
+    $object = new stdClass();
+    if (is_array($array) && count($array) > 0) {
+      foreach ($array as $name=>$value) {
+         $name = strtolower(trim($name));
+         if (!empty($name)) {
+            $object->$name = arrayToObject($value);
+         }
+      }
+      return $object; 
+    }
+    else {
+      return FALSE;
+    }
+}
+
+
+/**
  * Retourne la chaîne passée en paramètre dans un tableau de mots en 
  * conservant l'ordre de la chaîne
  * @param type $string
