@@ -9,13 +9,14 @@
  * @version 1.0
  */
 class SiteNatura {
+
     /**
      * Sélectionne un site Natura 2000 par son identifiant
      * @global string $pdo
      * @param string $id_regional
      * @param int $id_type 
      */
-    public function getSiteNaturaByIdRegionalIdType($id_regional,$id_type) {
+    public function getSiteNaturaByIdRegionalIdType($id_regional, $id_type) {
         global $pdo;
         $sql_1 = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 
@@ -23,16 +24,16 @@ class SiteNatura {
         try {
             $row = $pdo->query($sql_1)->fetch();
             $table = $row["table"];
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
         try {
-        $table_2 = $table."_data";
-        $sql_2 = "SELECT * 
+            $table_2 = $table . "_data";
+            $sql_2 = "SELECT * 
         FROM $table, $table_2
         WHERE $table.id_regional = '$id_regional'
         AND $table.id_regional = $table_2.id_regional ";
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
         try {
@@ -46,7 +47,7 @@ class SiteNatura {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
-    
+
     /**
      * Sélectionne un opérateur par l'identifiant régional 
      * du site Natura
@@ -57,11 +58,11 @@ class SiteNatura {
         global $pdo;
         $table = "R_DOCOB_R52";
         $table_2 = "R_DOCOB_ORGANISMES_R52";
-        
+
         $sql = "SELECT * 
         FROM $table, $table_2 
         WHERE $table.id_regional = '$id_regional' 
-        AND $table.id_operateur = $table_2.id_organisme"; 
+        AND $table.id_operateur = $table_2.id_organisme";
         try {
             $row = $pdo->query($sql)->fetch();
             $this->id_organisme = $row["id_organisme"];
@@ -70,7 +71,7 @@ class SiteNatura {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
-    
+
     /**
      * Sélectionne un structure animatrice par l'identifiant régional 
      * du site Natura
@@ -81,11 +82,11 @@ class SiteNatura {
         global $pdo;
         $table = "R_DOCOB_R52";
         $table_2 = "R_DOCOB_ORGANISMES_R52";
-        
+
         $sql = "SELECT * 
         FROM $table, $table_2 
         WHERE $table.id_regional = '$id_regional' 
-        AND $table.id_structure_animatrice = $table_2.id_organisme"; 
+        AND $table.id_structure_animatrice = $table_2.id_organisme";
         try {
             $row = $pdo->query($sql)->fetch();
             $this->id_organisme = $row["id_organisme"];
@@ -94,7 +95,7 @@ class SiteNatura {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
-    
+
     /**
      * Sélectionne les données d'un site Natura à partir de son 
      * identifiant régional
@@ -115,6 +116,7 @@ class SiteNatura {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
 }
 
 /**
@@ -124,9 +126,9 @@ class SiteNatura {
  * @param string $categorie
  * @return array 
  */
-function getSitesNaturaByCategorie($id_type,$categorie) {
+function getSitesNaturaByCategorie($id_type, $categorie) {
     global $pdo;
-    if($id_type == "25"):
+    if ($id_type == "25"):
         $sql_2 = "(SELECT * FROM R_ZPS_R52 WHERE categorie = '$categorie' 
         GROUP BY id_regional) 
         UNION (SELECT *  FROM R_ZSC_R52  WHERE categorie = '$categorie' 
@@ -141,17 +143,17 @@ function getSitesNaturaByCategorie($id_type,$categorie) {
         try {
             $row = $pdo->query($sql_1)->fetch();
             $table = $row["table"];
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
         try {
-        $sql_2 = "SELECT * 
+            $sql_2 = "SELECT * 
         FROM $table
         WHERE categorie = '$categorie'
         AND id_type = '$id_type'
         GROUP BY id_regional 
         ORDER BY id_regional ";
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     endif;
@@ -160,7 +162,7 @@ function getSitesNaturaByCategorie($id_type,$categorie) {
         return $sites_natura;
         $this->id_regional = $sites_natura["id_regional"];
         $this->nom = $sites_natura["nom"];
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
@@ -178,13 +180,13 @@ function getAmpbhibiensReptilesByIdRegional($id_regional) {
     FROM natura_amprep 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNUM
-    ORDER BY SPECNUM"; 
+    ORDER BY SPECNUM";
     try {
         $amphibiens_reptiles = $pdo->query($sql)->fetchAll();
         return $amphibiens_reptiles;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -200,13 +202,13 @@ function getInvertebresByIdRegional($id_regional) {
     FROM natura_invert 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNUM
-    ORDER BY SPECNUM"; 
+    ORDER BY SPECNUM";
     try {
         $invertebres = $pdo->query($sql)->fetchAll();
         return $invertebres;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -222,13 +224,13 @@ function getMammiferesByIdRegional($id_regional) {
     FROM natura_mammal 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNUM
-    ORDER BY SPECNUM"; 
+    ORDER BY SPECNUM";
     try {
         $mammiferes = $pdo->query($sql)->fetchAll();
         return $mammiferes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -244,13 +246,13 @@ function getPlantesByIdRegional($id_regional) {
     FROM natura_plant 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNUM
-    ORDER BY SPECNUM"; 
+    ORDER BY SPECNUM";
     try {
         $plantes = $pdo->query($sql)->fetchAll();
         return $plantes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -266,13 +268,13 @@ function getPoissonsByIdRegional($id_regional) {
     FROM natura_fishes 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNUM
-    ORDER BY SPECNUM"; 
+    ORDER BY SPECNUM";
     try {
         $poissons = $pdo->query($sql)->fetchAll();
         return $poissons;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -288,13 +290,13 @@ function getAutresEspecesByIdRegional($id_regional) {
     FROM natura_spec 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNAME
-    ORDER BY SPECNAME"; 
+    ORDER BY SPECNAME";
     try {
         $autres_especes = $pdo->query($sql)->fetchAll();
         return $autres_especes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -310,13 +312,13 @@ function getOiseauxByIdRegional($id_regional) {
     FROM natura_bird 
     WHERE SITECODE = '$id_regional'
     GROUP BY SPECNAME
-    ORDER BY SPECNAME"; 
+    ORDER BY SPECNAME";
     try {
         $autres_especes = $pdo->query($sql)->fetchAll();
         return $autres_especes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 /**
@@ -330,7 +332,7 @@ function getHabitatsByIdRegional($id_regional) {
     global $pdo;
     $table = "natura_eur15";
     $table_2 = "natura_habit1";
-    
+
     $sql = "SELECT * 
     FROM $table, $table_2 
     WHERE $table_2.SITECODE = '$id_regional' 
@@ -340,7 +342,7 @@ function getHabitatsByIdRegional($id_regional) {
         return $habitats;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
-    } 
+    }
 }
 
 ?>
