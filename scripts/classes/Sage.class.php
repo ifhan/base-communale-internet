@@ -9,12 +9,13 @@
  * @version 1.0
  */
 class Sage {
+
     /**
      * Sélectionne un SAGE par son identifiant régional
      * @global string $pdo
      * @param string $id_regional 
-     */    
-    public function getSageByIdRegional($id_regional){
+     */
+    public function getSageByIdRegional($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_SAGE_R52, R_SAGE_R52_data  
@@ -58,7 +59,7 @@ class Sage {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
-    
+
     /**
      * Sélectionne la situation d'un SAGE par son identifiant
      * @global string $pdo
@@ -68,7 +69,7 @@ class Sage {
         global $pdo;
         $sql = "SELECT * 
         FROM R_SAGE_SITUATION_R52 
-        WHERE id_situation = $id_situation"; 
+        WHERE id_situation = $id_situation";
         try {
             $row = $pdo->query($sql)->fetch();
             $this->nom_situation = $row['nom_situation'];
@@ -77,6 +78,7 @@ class Sage {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
 }
 
 ?>
