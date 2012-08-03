@@ -7,20 +7,20 @@
  * @copyright 2012-06-13
  * @version 0.1
  */
-
 class Commune {
+
     public $id_commune;
     public $id_departement;
     public $nom_commune;
     public $communes;
-    
+
     /**
      * Sélectionne l'ensemble des communes d'un département
      * @global type $pdo
      * @param string $id_dpt
      * @return array 
      */
-    public function getCommunesByIdDepartement($id_dpt) {   
+    public function getCommunesByIdDepartement($id_dpt) {
         global $pdo;
         $sql = "SELECT *
         FROM BDC_COMMUNE_52 
@@ -30,12 +30,11 @@ class Commune {
             $query = $pdo->query($sql);
             $communes = $query->fetchAll();
             return $communes;
-            
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
-    
+
     /**
      * Sélectionne une commune par son code géographique
      * @global type $pdo
@@ -48,9 +47,9 @@ class Commune {
         WHERE id_commune = '$id_commune' ";
         try {
             $row = $pdo->query($sql)->fetch();
-            $this->id_commune  = $row['id_commune'];
+            $this->id_commune = $row['id_commune'];
             $this->nom_commune = $row['nom_commune'];
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
@@ -73,8 +72,8 @@ function getCommunesByIdDpt($id_dpt) {
         $query = $pdo->query($sql);
         $communes = $query->fetchAll();
         return $communes;
-    } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
     }
 }
 
@@ -84,24 +83,24 @@ function getCommunesByIdDpt($id_dpt) {
  * @param string $id_regional
  * @return array 
  */
-function getCommunesByIdRegional($id_regional,$id_type) {
-        global $pdo;
-        $table = "R_ZONAGES_COMMUNES_R52";
-        $table_2 = "BDC_COMMUNE_52";
-        
-        $sql = "SELECT * 
+function getCommunesByIdRegional($id_regional, $id_type) {
+    global $pdo;
+    $table = "R_ZONAGES_COMMUNES_R52";
+    $table_2 = "BDC_COMMUNE_52";
+
+    $sql = "SELECT * 
         FROM $table, $table_2 
         WHERE $table.id_regional = '$id_regional'
         AND $table.id_commune = $table_2.id_commune 
         AND $table.id_type = $id_type 
         GROUP BY $table_2.id_commune
         ORDER BY $table_2.id_commune";
-        try {
-            $communes = $pdo->query($sql)->fetchAll();
-            return $communes;
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }    
+    try {
+        $communes = $pdo->query($sql)->fetchAll();
+        return $communes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
     }
+}
 
 ?>
