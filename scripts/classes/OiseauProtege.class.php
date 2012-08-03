@@ -19,20 +19,20 @@ class OiseauProtege {
  */
 function getOiseauxProtegesByIdArticle($id_article) {
     global $pdo;
-    if($id_article!=="0") {
+    if ($id_article !== "0"):
         $sql = "SELECT * 
         FROM R_OISEAUX_PROTEGES_2009_FRANCE 
         WHERE id_article = $id_article 
         ORDER BY id";
-    } else if($id_article=="0") {
+    elseif ($id_article == "0"):
         $sql = "SELECT * 
         FROM R_OISEAUX_PROTEGES_2009_FRANCE 
-        ORDER BY id" ;
-    }
+        ORDER BY id";
+    endif;
     try {
         $oiseaux_proteges = $pdo->query($sql)->fetchAll();
         return $oiseaux_proteges;
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
