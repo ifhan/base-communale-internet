@@ -23,6 +23,7 @@ class Pnr {
             $pnr = $pdo->query($sql)->fetch();
             $this->id_regional = $pnr["id_regional"];
             $this->nom = $pnr["nom"];
+            $this->surf_sig_l93 = $pnr["surf_sig_l93"];
             $this->url_site = $pnr["url_site"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
