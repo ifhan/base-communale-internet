@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of HabitatEur15
  * Classe et fonction concernant les Habitats de la nomemclature EUR15
@@ -7,6 +8,7 @@
  * @version 1.0
  */
 class HabitatEur15 {
+
     public $id_eur15;
     public $lb_eur15;
 
@@ -19,14 +21,14 @@ class HabitatEur15 {
     public function getHabitatsEur15() {
         global $pdo;
         $sql = "SELECT * 
-        FROM natura_eur15"; 
+        FROM natura_eur15";
         try {
-            $habitats_eur15 = $pdo->query($sql)->fetchAll();     
+            $habitats_eur15 = $pdo->query($sql)->fetchAll();
             return $habitats_eur15;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
-    }    
+    }
 
     /**
      * Sélection d'un habitat par son identifiant
@@ -37,16 +39,17 @@ class HabitatEur15 {
         global $pdo;
         $sql = "SELECT * 
         FROM natura_eur15 
-        WHERE ID_EUR15 = '$id_eur15' "; 
+        WHERE ID_EUR15 = '$id_eur15' ";
         try {
             $row = $pdo->query($sql)->fetch();
-            
-            $this->id_eur15  = $row['ID_EUR15'];
-            $this->lb_eur15  = $row['LB_EUR15'];
-        } catch(PDOException $e) {
+
+            $this->id_eur15 = $row['ID_EUR15'];
+            $this->lb_eur15 = $row['LB_EUR15'];
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
 }
 
 /**
@@ -58,14 +61,14 @@ class HabitatEur15 {
 function getHabitatsEur15() {
     global $pdo;
     $sql = "SELECT * 
-        FROM natura_eur15"; 
+        FROM natura_eur15";
     try {
         $habitats_eur15 = $pdo->query($sql)->fetchAll();
-        
+
         return $habitats_eur15;
-        
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-    } 
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
 ?>
