@@ -8,12 +8,13 @@
  * @version 1.0
  */
 class Zhim {
+
     /**
      * Sélectionne une ZHIM par son identifiant régional
      * @global string $pdo
      * @param string $id_regional 
      */
-    public function getZhimByIdRegional($id_regional){
+    public function getZhimByIdRegional($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_ZHIM_R52, R_ZHIM_R52_data  
@@ -23,23 +24,24 @@ class Zhim {
             $row = $pdo->query($sql)->fetch();
             $this->nom = $row["nom"];
             $this->id_regional = $row["id_regional"];
-            $this->presentation  = nl2br($row['presentation']);
-            $this->enjeux = nl2br($row["enjeux"]);          
+            $this->presentation = nl2br($row['presentation']);
+            $this->enjeux = nl2br($row["enjeux"]);
             $this->actions = nl2br($row["actions"]);
-            $this->geologie  = nl2br($row['geologie']);
-            $this->hydrologie  = nl2br($row['hydrologie']);
-            $this->eutrophisation  = nl2br($row['eutrophisation']);
-            $this->autres  = nl2br($row['autres']);
-            $this->occupation_sol  = nl2br($row['occupation_sol']);
-            $this->faune_flore  = nl2br($row['faune_flore']);
-            $this->habitats  = nl2br($row['habitats']);
-            $this->paysage  = nl2br($row['paysage']);
-            $this->contexte  = nl2br($row['contexte']);
-            $this->bibliographie  = nl2br($row['bibliographie']);
-        } catch(PDOException $e) {
+            $this->geologie = nl2br($row['geologie']);
+            $this->hydrologie = nl2br($row['hydrologie']);
+            $this->eutrophisation = nl2br($row['eutrophisation']);
+            $this->autres = nl2br($row['autres']);
+            $this->occupation_sol = nl2br($row['occupation_sol']);
+            $this->faune_flore = nl2br($row['faune_flore']);
+            $this->habitats = nl2br($row['habitats']);
+            $this->paysage = nl2br($row['paysage']);
+            $this->contexte = nl2br($row['contexte']);
+            $this->bibliographie = nl2br($row['bibliographie']);
+        } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
-        } 
+        }
     }
+
 }
 
 ?>
