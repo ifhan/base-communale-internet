@@ -8,6 +8,7 @@
  * @version 1.0
  */
 class CoursEau {
+
     /**
      * Sélectionne une rivière par son identifiant
      * @global string $pdo
@@ -25,6 +26,7 @@ class CoursEau {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
     /**
      * Sélectionne une rivière par un identifiant de station
      * @global string $pdo
@@ -42,6 +44,7 @@ class CoursEau {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+
 }
 
 ?>
