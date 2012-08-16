@@ -1,78 +1,73 @@
 <div id="pied">
-	<h1 class="invisible">Pied de page</h1>
-	<div>
-		<div class="dateactu">
-			<div id="nav_bas" class="acces2">Acc&egrave;s direct aux rubriques</div>	
-			Site mis &agrave; jour le 
-			<BOUCLE_maj(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>[(#DATE|nom_jour)] [(#DATE|affdate)]</BOUCLE_maj>
-		</div>
-	</div>
-	
-	<script type="text/javascript">
-		<!--
-		Xt_r = document.referrer;
-		Xt_h = new Date();
-		Xt_i = '<img width="1" height="1" src="http://logc35.xiti.com/hit.xiti?s=411406';
-		Xt_i +=  '&p=page_accueil';
-		Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
-		if(parseFloat(navigator.appVersion)>=4)
-		{Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
-		document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'" >');
-		//-->
-	</script>
-	
-	<script type="text/javascript">
-		<!--
-		function xt_clic(typecl,page,url,nvlle)
-		{
-		Xt_r = document.referrer;
-		Xt_h = new Date();
-		xt_img = new Image();
-		Xt_i = 'http://logc35.xiti.com/hit.xiti?s=411406';
-		Xt_i += '&p='+page+'&clic='+typecl+'&hl=' + Xt_h.getHours() + 'x' + Xt_h.getMinutes() + 'x' + Xt_h.getSeconds();
-		if(parseFloat(navigator.appVersion)>=4)
-		{Xiti_s=screen;Xt_i += '&r=' + Xiti_s.width + 'x' + Xiti_s.height + 'x' + Xiti_s.pixelDepth + 'x' + Xiti_s.colorDepth;}
-		Xt_i += '&ref=' + Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$');
-		xt_img.src = Xt_i;
-		if ((url != null)&&(url!=undefined))
-		{ if ((nvlle=='')||(nvlle==null)) { document.location = url;} else {xfen = window.open(url,'xfen',''); xfen.focus();}}
-		else
-		{return;}
-		}
-		//-->
-	</script>  
-	
-	<!-- Menu horizontal-->
-	<div class="navigation" style="overflow:hidden; display: block;">
-		<h1 class="invisible">Menu secondaire</h1>
-		<ul>
-			<BOUCLE_menu_bas(RUBRIQUES) {racine} {par num titre, titre} {titre_mot=menu_horizontal} {tout}>
-			<li class="item">
-				<ul><a href="#URL_RUBRIQUE" class="menu_bas__[(#COMPTEUR_BOUCLE)]"><span style='text-transform: uppercase;'>[(#TITRE|supprimer_numero)]</span></a>
-				<BOUCLE_sous_menu_bas(RUBRIQUES) {id_parent} {par num titre, titre} {tout}>
-					<li class="sous-item">
-						<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-					</li>
-				</BOUCLE_sous_menu_bas>
-				</ul>
-			</BOUCLE_menu_bas>
-		</ul>
-	</div>
-	
-	<div id="copyright">&copy;&nbsp;Minist&egrave;re de l'&Eacute;cologie, du D&eacute;veloppement durable, des Transports et du Logement</div>
+    <h1 class="invisible">Pied de page</h1>
+    <div>
+        <div class="dateactu">
+            <div id="nav_bas" class="acces2">Acc&egrave;s direct aux rubriques</div>	
+            Site mis &agrave; jour le 
+            <BOUCLE_maj(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>[(#DATE|nom_jour)] [(#DATE|affdate)]</BOUCLE_maj>
+        </div>
+    </div>
+    <script type="text/javascript">
+        <!--
+        Xt_r = document.referrer;
+        Xt_h = new Date();
+        Xt_i = '<img width="1" height="1" src="http://logc35.xiti.com/hit.xiti?s=411406';
+        Xt_i +=  '&p=page_accueil';
+        Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
+        if(parseFloat(navigator.appVersion)>=4)
+        {Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
+        document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'" >');
+        //-->
+    </script>
+    <script type="text/javascript">
+        <!--
+        function xt_clic(typecl,page,url,nvlle)
+        {
+            Xt_r = document.referrer;
+            Xt_h = new Date();
+            xt_img = new Image();
+            Xt_i = 'http://logc35.xiti.com/hit.xiti?s=411406';
+            Xt_i += '&p='+page+'&clic='+typecl+'&hl=' + Xt_h.getHours() + 'x' + Xt_h.getMinutes() + 'x' + Xt_h.getSeconds();
+            if(parseFloat(navigator.appVersion)>=4)
+            {Xiti_s=screen;Xt_i += '&r=' + Xiti_s.width + 'x' + Xiti_s.height + 'x' + Xiti_s.pixelDepth + 'x' + Xiti_s.colorDepth;}
+            Xt_i += '&ref=' + Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$');
+            xt_img.src = Xt_i;
+            if ((url != null)&&(url!=undefined))
+            { if ((nvlle=='')||(nvlle==null)) { document.location = url;} else {xfen = window.open(url,'xfen',''); xfen.focus();}}
+            else
+            {return;}
+        }
+        //-->
+    </script>           
+    <!-- Menu horizontal-->
+    <div class="navigation" style="overflow:hidden; display: block;">
+        <h1 class="invisible">Menu secondaire</h1>
+        <ul>
+            <BOUCLE_menu_bas(RUBRIQUES) {racine} {par num titre, titre} {titre_mot=menu_horizontal} {tout}>
+                <li class="item">
+                    <ul><a href="#URL_RUBRIQUE" class="menu_bas__[(#COMPTEUR_BOUCLE)]"><span style='text-transform: uppercase;'>[(#TITRE|supprimer_numero)]</span></a>
+                        <BOUCLE_sous_menu_bas(RUBRIQUES) {id_parent} {par num titre, titre} {tout}>
+                            <li class="sous-item">
+                                <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+                            </li>
+                        </BOUCLE_sous_menu_bas>
+                    </ul>
+            </BOUCLE_menu_bas>
+        </ul>
+    </div>
+    <div id="copyright">&copy;&nbsp;Minist&egrave;re de l'&Eacute;cologie, du D&eacute;veloppement durable, des Transports et du Logement</div>
 </div>
-</div>	
-	
+</div>
 <div id="outils">
-	<a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a>
-	|&nbsp;<a href="spip.php?article31">Cr&eacute;dits - Mentions l&eacute;gales</a>
-	|&nbsp;<a href="spip.php?article32">Nous &eacute;crire</a>
-	|&nbsp;<a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" /> Flux RSS</a>
-	|&nbsp;[(#SESSION{id_auteur}|?{' '}) <a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>]
-	|&nbsp;[(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>]
-	[(#AUTORISER{ecrire}) <a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
+    <a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a>
+    |&nbsp;<a href="spip.php?article31">Cr&eacute;dits - Mentions l&eacute;gales</a>
+    |&nbsp;<a href="spip.php?article32">Nous &eacute;crire</a>
+    |&nbsp;<a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" /> Flux RSS</a>
+    |&nbsp;[(#SESSION{id_auteur}|?{'',' '})<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class="login_modal"><:lien_connecter:></a>]
+    [(#AUTORISER{ecrire})<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
+    [(#SESSION{id_auteur}|?{' '})|&nbsp;<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>]
 </div>
 [(#REM)
-	Cette balise permet de deporter les calculs lourds (indexation etc)
-	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+Cette balise permet de deporter les calculs lourds (indexation etc)
+dans une image cachee, ce qui evite de ralentir l'affichage des pages.
 ]#SPIP_CRON
