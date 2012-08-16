@@ -9,15 +9,10 @@
  */
 class Commune {
 
-    public $id_commune;
-    public $id_departement;
-    public $nom_commune;
-    public $communes;
-
     /**
      * Sélectionne l'ensemble des communes d'un département
-     * @global type $pdo
-     * @param string $id_dpt
+     * @global type $pdo Connexion à la base de données
+     * @param string $id_dpt Identifiant du département
      * @return array 
      */
     public function getCommunesByIdDepartement($id_dpt) {
@@ -37,8 +32,8 @@ class Commune {
 
     /**
      * Sélectionne une commune par son code géographique
-     * @global type $pdo
-     * @param string $id_commune  
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_commune Code géographique de la commune
      */
     public function getCommuneById($id_commune) {
         global $pdo;
@@ -57,20 +52,19 @@ class Commune {
 }
 
 /**
- * Liste les communes d'un département à partir de son identifiant
- * @global type $pdo connexion à la base de données
- * @param type $id_dpt identifiant du département
- * @return type renvoie un array des communes du département sélectionné
+ * Sélectionne les communes d'un département à partir de son identifiant
+ * @global string $pdo Connexion à la base de données
+ * @param int $id_dpt Identifiant du département
+ * @return string
  */
 function getCommunesByIdDpt($id_dpt) {
     global $pdo;
     $sql = "SELECT *
-        FROM BDC_COMMUNE_52
-        WHERE id_departement = '$id_dpt' 
-        ORDER BY nom_commune";
+    FROM BDC_COMMUNE_52
+    WHERE id_departement = $id_dpt
+    ORDER BY nom_commune";
     try {
-        $query = $pdo->query($sql);
-        $communes = $query->fetchAll();
+        $communes = $pdo->query($sql)->fetchAll();
         return $communes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -79,8 +73,9 @@ function getCommunesByIdDpt($id_dpt) {
 
 /**
  * Sélectionne le(s) commune(s) d'un zonage par son identifiant régional
- * @global type $pdo
- * @param string $id_regional
+ * @global string $pdo Connexion à la base de données
+ * @param string $id_regional Identifiant régional du zonage
+ * @param type $id_type Identifiant du type de zonage
  * @return array 
  */
 function getCommunesByIdRegional($id_regional, $id_type) {
