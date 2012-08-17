@@ -69,8 +69,8 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
 /**
  * Sélectionne les stations "Qualité des eaux" par département et par rivière
  * @global string $pdo
- * @param int $id_dpt
- * @param int $id_riviere
+ * @param int $id_dpt Identifiant du département
+ * @param int $id_riviere Identifiant de la rivière
  * @return array 
  */
 function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
@@ -110,6 +110,30 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             ORDER BY $table.id_station ";
         endif;
     endif;
+    try {
+        $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
+        return $stations_qualite_rcs;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Sélectionne les stations "Qualité des eaux" par commune
+ * @global string $pdo
+ * @param type $id_commune Code géographique de la commune
+ * @return array
+ */
+function getStationsQualiteByIdCommune($id_commune) {
+    global $pdo;
+    $table = "R_STATION_QUALITE_RCS_R52";
+    $table2 = "R_RIVIERE_QUALITE_R52";
+
+    $sql = "SELECT DISTINCT * 
+    FROM $table, $table2 
+    WHERE $table.id_commune = $id_commune 
+    AND $table.id_riviere = $table2.id_riviere 
+    ORDER BY $table.id_station" ;
     try {
         $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
         return $stations_qualite_rcs;
