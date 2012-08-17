@@ -35,7 +35,7 @@ $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
         <?php
         /* Vérification de l'instanciation de l'identifiant du département et 
          * s'il est différent de -1 */
-        if (isset($id_dpt) && $id_dpt != -1):
+        if(isset($id_dpt) && $id_dpt != -1):
         ?>
         <td>
             <?php $communes = getCommunesByIdDpt($id_dpt); ?>
@@ -44,8 +44,8 @@ $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
                     <p>Commune&nbsp;:</p>
                     <select name="id_commune" id="id_commune">
                         <?php foreach ($communes as $commune): ?>
-                        <option value="<?= $commune['id_commune'] ?>">
-                        <?=$commune['nom_commune']?> (<?= $commune['id_commune'] ?>)
+                        <option value="<?=$commune['id_commune']?>">
+                        <?=$commune['nom_commune']?> (<?=$commune['id_commune']?>)
                         </option>
                         <?php endforeach; ?>
                     </select>
