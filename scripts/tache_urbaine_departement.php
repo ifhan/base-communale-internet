@@ -12,7 +12,7 @@ require_once 'classes/Departement.class.php';
  */
 
 $id_region = "18";
-$departements = getDepartementsByRegion($id_region);
+$departements = getDepartementsByIdRegion($id_region);
 ?>
 <table class="display" id="example">
     <thead>
