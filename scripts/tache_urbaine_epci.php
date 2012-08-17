@@ -13,7 +13,7 @@ require_once 'classes/Epci.class.php';
  */
 $id_dpt = $_REQUEST["id_dpt"];
 
-$array_epci = getEpciByIdDpt($id_dpt);
+$array_epci = getEpciVideosByIdDpt($id_dpt);
 ?>
 <table class="display" id="example">
     <thead>
