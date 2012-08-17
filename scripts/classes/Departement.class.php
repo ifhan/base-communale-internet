@@ -9,13 +9,10 @@
  */
 class Departement {
 
-    public $id_departement;
-    public $nom_departement;
-
     /**
      * Sélectionne un département par son code
-     * @global type $pdo
-     * @param int $id_dpt 
+     * @global type $pdo Connexion à la base de données
+     * @param int $id_dpt Identifiant du département
      */
     public function getDepartementById($id_dpt) {
         global $pdo;
@@ -33,9 +30,9 @@ class Departement {
 
     /**
      * Sélectionne le département d'un zonage par son identifiant régional
-     * @global type $pdo
-     * @param string $id_regional 
-     * @param int $id_type
+     * @global type $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
+     * @param int $id_type Identifiant du type de zonage
      */
     public function getDepartementByIdRegional($id_regional, $id_type) {
         global $pdo;
@@ -61,8 +58,8 @@ class Departement {
 
 /**
  * Sélectionne le(s) département(s) d'un zonage par son identifiant régional
- * @global type $pdo
- * @param string $id_regional
+ * @global type $pdo Connexion à la base de données
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getDepartementsByIdRegional($id_regional) {
@@ -88,7 +85,7 @@ function getDepartementsByIdRegional($id_regional) {
 /**
  * Sélection des départements de la région Pays de la Loire 
  * par l'identifiant de la région
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getDepartementByRegion() {
