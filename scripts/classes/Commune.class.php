@@ -98,4 +98,30 @@ function getCommunesByIdRegional($id_regional, $id_type) {
     }
 }
 
+/**
+ * Sélectionne les communes comportant des stations "Qualité des eaux"
+ * relevant de la DREAL Pays de la Loire par département
+ * @global string $pdo Connexion à la base de données
+ * @param int $id_dpt Identifiant du département
+ * @return array 
+ */
+function getCommunesStationsQualiteByIdDpt($id_dpt) {
+    global $pdo;
+    $table = "BDC_COMMUNE_52";
+    $table_2 = "R_STATION_QUALITE_RCS_R52";
+    
+    $sql = "SELECT $table.id_commune, $table_2.id_commune, $table.nom_commune 
+    FROM $table, $table_2
+    WHERE $table.id_departement = $id_dpt
+    AND $table.id_commune = $table_2.id_commune 
+    GROUP BY $table.nom_commune
+    ORDER BY $table.nom_commune";
+    try {
+        $communes = $pdo->query($sql)->fetchAll();
+        return $communes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
 ?>
