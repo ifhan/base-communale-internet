@@ -9,8 +9,8 @@ require_once 'classes/Departement.class.php';
 
 $departements = getDepartementByRegion();
 
-/* Récupération de la valeur du département envoyée par le formulaire 
- * si elle existe */
+/* Récupération de la valeur de l'identifiant du département envoyé 
+ * par le formulaire s'il existe */
 $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
 ?>
 <table>
@@ -32,8 +32,8 @@ $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
             </div>
         </td>
         <?php
-        /* On commence par vérifier si on a envoyé un numéro de département et le 
-         * cas échéant s'il est différent de -1 */
+        /* Vérification de l'instanciation de l'identifiant du département et 
+         * s'il est différent de -1 */
         if (isset($id_dpt) && $id_dpt != -1):
         ?>
         <td>
@@ -51,7 +51,6 @@ $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
                     <input type="submit" name="ok" id="ok" value="Ok" />
                 </form>
             </div>
-            <?php $pdo = null; ?>
         </td>
         <?php endif; ?>
     </tr>
