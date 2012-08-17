@@ -11,7 +11,8 @@ require_once 'classes/Departement.class.php';
  * les liens de visualisation et de téléchargement des vidéos correspondantes
  */
 
-$departements = getDepartementByRegion();
+$id_region = "18";
+$departements = getDepartementsByRegion($id_region);
 ?>
 <table class="display" id="example">
     <thead>
