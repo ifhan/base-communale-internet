@@ -51,7 +51,7 @@ $zonage->getTypeZonageByIdType("28");
             </td>
             <td class="cache">
                 <div class="right">
-                    <a href="spip.php?page=fiche_station_qualite&amp;station=<?=$station_qualite["id_station"]?>&reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher" /></a>
+                    <a href="spip.php?page=fiche_station_qualite&amp;id_station=<?=$station_qualite["id_station"]?>&id_reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher" /></a>
                 </div>
             </td>
         </tr>
