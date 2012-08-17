@@ -26,5 +26,5 @@ $id_station = $_REQUEST["id_station"];
     $riviere = new CoursEau();
     $riviere->getRiviereByIdRiviere($id_riviere);
     ?>
-    &nbsp;sur <?=$riviere->nom_riviere?>
+    sur <?=$riviere->nom_riviere?>
 <?php endif; ?>
