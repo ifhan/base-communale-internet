@@ -88,12 +88,34 @@ function getDepartementsByIdRegional($id_regional) {
  * @param int $id_region Identifiant de la région
  * @return array 
  */
-function getDepartementsByRegion($id_region) {
+function getDepartementsByIdRegion($id_region) {
     global $pdo;
     $sql = "SELECT * 
     FROM BDC_DEPARTEMENT_52 
     WHERE id_region = $id_region
     ORDER BY nom_departement";
+    try {
+        $departements = $pdo->query($sql)->fetchAll();
+        return $departements;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Sélectionne les départements comportant des stations "Qualité des eaux"
+ * relevant de la DREAL Pays de la Loire
+ * @global string $pdo Connexion à la base de données
+ * @return array 
+ */
+function getDepartementsStationsQualiteByIdRegion() {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM BDC_DEPARTEMENT_52 
+    WHERE id_region = 18 
+    OR id_departement = 61
+    OR id_departement = 79 
+    ORDER BY id_departement ";
     try {
         $departements = $pdo->query($sql)->fetchAll();
         return $departements;
