@@ -47,4 +47,37 @@ class CoursEau {
 
 }
 
+/**
+ * Sélectionne les rivières comportant des stations "Qualité des eaux"
+ * relevant de la DREAL Pays de la Loire par département
+ * @global string $pdo Connexion à la base de données
+ * @param int $id_dpt Identifiant du département
+ * @return array 
+ */
+function getRivieresQualiteByIdDpt($id_dpt) {
+    global $pdo;
+    $table = "R_RIVIERE_QUALITE_R52";
+    $table_2 = "R_RIVIERES_DEPARTEMENTS_QUALITE_R52";
+    
+    if ($id_dpt != 0):
+        $sql = "SELECT *
+        FROM $table, $table_2 
+        WHERE $table_2.id_departement = $id_dpt
+        AND $table.id_riviere = $table_2.id_riviere 
+        ORDER BY $table.id_riviere ";
+    else:
+        $sql = "SELECT * 
+        FROM $table, $table_2 
+        WHERE $table.id_riviere = $table_2.id_riviere 
+        GROUP BY $table.nom_riviere 
+        ORDER BY $table.id_riviere ";
+    endif;
+    try {
+        $rivieres = $pdo->query($sql)->fetchAll();
+        return $rivieres;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
 ?>
