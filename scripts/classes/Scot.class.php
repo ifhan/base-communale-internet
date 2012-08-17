@@ -13,8 +13,8 @@ class Scot {
 
 /**
  * Sélectionne le(s) commune(s) d'un SCOT par son identifiant
- * @global type $pdo
- * @param string $id_regional
+ * @global type $pdo Connexion à la base de données
+ * @param int $id_scot Identifiant du SCoT
  * @return array 
  */
 function getCommunesScotByIdScot($id_scot) {
@@ -31,6 +31,26 @@ function getCommunesScotByIdScot($id_scot) {
     try {
         $communes = $pdo->query($sql)->fetchAll();
         return $communes;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Sélectionne les SCoT d'un département
+ * @global string $pdo Connexion à la base de données
+ * @param int $id_dpt Identifiant d'un département
+ * @return array 
+ */
+function getScotsByIdDpt($id_dpt) {
+    global $pdo;
+    $sql = "SELECT * 
+    FROM R_SCOT_R52
+    WHERE id_departement = $id_dpt 
+    ORDER BY nom_scot";
+    try {
+        $array_scot = $pdo->query($sql)->fetchAll();
+        return $array_scot;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
