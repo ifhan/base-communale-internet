@@ -41,7 +41,7 @@ $id_dpt = isset($_POST['departement'])?$_POST['departement']:null;
             <div class="select">
                 <form action="spip.php?page=liste_stations_qualite" method="post">
                     <p>Cours d'eau&nbsp;:</p>
-                    <input type="hidden" name="departement" value="<?php echo $id_dpt; ?>" />
+                    <input type="hidden" name="id_dpt" value="<?php echo $id_dpt; ?>" />
                     <select name="id_riviere" id="id_riviere">
                         <option value="-1">--- Choisir un cours d'eau ---</option>
                         <?php foreach($rivieres as $riviere): ?>
