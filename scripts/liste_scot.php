@@ -8,7 +8,7 @@ require_once 'classes/Scot.class.php';
 require_once 'classes/Departement.class.php';
 
 $id_region = "18";
-$departements = getDepartementsByRegion($id_region);
+$departements = getDepartementsByIdRegion($id_region);
 
 /* Récupération de la valeur de l'identifiant du département envoyé 
  * par le formulaire s'il existe */
