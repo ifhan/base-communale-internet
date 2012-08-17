@@ -83,16 +83,16 @@ function getDepartementsByIdRegional($id_regional) {
 }
 
 /**
- * Sélection des départements de la région Pays de la Loire 
- * par l'identifiant de la région
+ * Sélection les départements d'une région par son identifiant
  * @global type $pdo Connexion à la base de données
+ * @param int $id_region Identifiant de la région
  * @return array 
  */
-function getDepartementByRegion() {
+function getDepartementsByRegion($id_region) {
     global $pdo;
     $sql = "SELECT * 
     FROM BDC_DEPARTEMENT_52 
-    WHERE id_region = 18 
+    WHERE id_region = $id_region
     ORDER BY nom_departement";
     try {
         $departements = $pdo->query($sql)->fetchAll();
