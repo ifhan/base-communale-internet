@@ -1,5 +1,6 @@
 <?php
-function formulaires_type_zonage_sites_classes_inscrits_traiter_dist(){
+
+function formulaires_type_zonage_sites_classes_inscrits_traiter_dist() {
     /**
      * Permet d'utiliser le bouton "Précédent" pour revenir au formulaire
      */
@@ -11,7 +12,8 @@ function formulaires_type_zonage_sites_classes_inscrits_traiter_dist(){
     $id_type = _request('id_type');
     $id_dpt = _request('id_dpt');
     return array(
-        'redirect' => 'spip.php?page=liste_zonages&id_type='.$id_type.'&id_dpt='.$id_dpt
+        'redirect' => 'spip.php?page=liste_zonages&id_type=' . $id_type . '&id_dpt=' . $id_dpt
     );
 }
+
 ?>
