@@ -1,33 +1,33 @@
 <div class="gauche2">
-	<ul>
-		<BOUCLE_recherche_geographique(RUBRIQUES) {id_rubrique =2}>
-			<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
-		</BOUCLE_recherche_geographique>
-		<div class="gauche3 decal">
-			<ul>
-				<li><a href="spip.php?page=departement_communes&departement=44">Loire-Atlantique (44)</a></li><hr />
-				<li><a href="spip.php?page=departement_communes&departement=49">Maine-et-Loire (49)</a></li><hr />
-				<li><a href="spip.php?page=departement_communes&departement=53">Mayenne (53)</a></li><hr />
-				<li><a href="spip.php?page=departement_communes&departement=72">Sarthe (72)</a></li><hr />
-				<li><a href="spip.php?page=departement_communes&departement=85">Vend&eacute;e (85)</a></li><hr />
-			</ul>
-		</div>
-	</ul>
+    <ul>
+        <BOUCLE_recherche_geographique(RUBRIQUES) {id_rubrique =2}>
+            <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
+        </BOUCLE_recherche_geographique>
+        <div class="gauche3 decal">
+            <ul>
+                <li><a href="spip.php?page=departement_communes&departement=44">Loire-Atlantique (44)</a></li><hr />
+                <li><a href="spip.php?page=departement_communes&departement=49">Maine-et-Loire (49)</a></li><hr />
+                <li><a href="spip.php?page=departement_communes&departement=53">Mayenne (53)</a></li><hr />
+                <li><a href="spip.php?page=departement_communes&departement=72">Sarthe (72)</a></li><hr />
+                <li><a href="spip.php?page=departement_communes&departement=85">Vend&eacute;e (85)</a></li><hr />
+            </ul>
+        </div>
+    </ul>
 </div>
-			
+
 <div class="gauche2">
-	<ul>
-		<BOUCLE_recherche_thematique(RUBRIQUES) {id_rubrique =3} {tout}>
-			<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
-		</BOUCLE_recherche_thematique>
-		<B_sous_rubriques>
-		<div class="gauche3 decal">
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES){titre_mot=theme}{par titre} {tout}>
-				<li> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</div>
-		<B_sous_rubriques>
-	</ul>
+    <ul>
+        <BOUCLE_recherche_thematique(RUBRIQUES) {id_rubrique =3} {tout}>
+            <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
+        </BOUCLE_recherche_thematique>
+        <B_sous_rubriques>
+            <div class="gauche3 decal">
+                <ul>
+                    <BOUCLE_sous_rubriques(RUBRIQUES){titre_mot=theme}{par titre} {tout}>
+                        <li> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr />
+                    </BOUCLE_sous_rubriques>
+                </ul>
+            </div>
+        <B_sous_rubriques>
+    </ul>
 </div>
