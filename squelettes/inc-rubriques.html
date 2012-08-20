@@ -1,27 +1,27 @@
 [(#REM)
-	Barre de navigation, ouverte sur la hierarchie courante
+Barre de navigation, ouverte sur la hierarchie courante
 
-	On fait un plan, et, quand on avance vers une rubrique,
-	on l'affiche si son parent est expose ou est la racine du site. ]
-	
+On fait un plan, et, quand on avance vers une rubrique,
+on l'affiche si son parent est expose ou est la racine du site. ]
+
 <B_rubriques>
-<div class="gauche2">
-	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre}>
-		<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr/>
+    <div class="gauche2">
+        <ul>
+            <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre}>
+                <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li><hr/>
 
-		<B_sous_rubriques>
-		<div class="gauche3 decal">
-		<ul>
-			<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-				<li><a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a><hr/><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re></li>
-			</B_test_expose></BOUCLE_sous_rubriques>
-		</ul>
-		</div>
-		</B_sous_rubriques>
+                <B_sous_rubriques>
+                    <div class="gauche3 decal">
+                        <ul>
+                            <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+                                <li><a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a><hr/><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re></li>
+                                </B_test_expose></BOUCLE_sous_rubriques>
+                        </ul>
+                    </div>
+                </B_sous_rubriques>
 
-	</BOUCLE_rubriques>
+            </BOUCLE_rubriques>
 
-	</ul>
-</div>
+        </ul>
+    </div>
 </B_rubriques>
