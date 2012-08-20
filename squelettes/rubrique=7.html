@@ -11,17 +11,22 @@
             [(#REM) Lien vers le flux RSS des articles la rubrique ]
             <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
     </head>
+    
     <body>
+        
         [(#REM) Entete de la page + titre du site ]
         <INCLURE{fond=inc-entete}>
+            
         <div id="milieu">
             <div id="ext-main">	
+                
                 [(#REM) Fil d'Ariane ]
                 <div id="boxnavpath">
                     <div id="navpath">
                         <a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero)]
                     </div>
                 </div>
+                
                 <BOUCLE_titre_secteur(RUBRIQUES) {racine} {id_secteur}>
                     <div id="titrerub">
                         <span style='text-transform: uppercase;' class='titrerub'>[(#TITRE|supprimer_numero)]</span><br />
