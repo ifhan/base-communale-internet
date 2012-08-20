@@ -1,29 +1,29 @@
 <!-- Chemin du site -->
 <span id="chemin"> 
-Accueil 
-<BOUCLE_rubrique_hierarchie_breve(BREVES){id_breve}>
-      <BOUCLE_chemin_breve(HIERARCHIE){id_article}>
-          <span> \ </span>
-					<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-      </BOUCLE_chemin_breve>
-  </BOUCLE_rubrique_hierarchie_breve>
-	
-  <BOUCLE_rubrique_hierarchie_article(ARTICLES){id_article}>
+    Accueil 
+    <BOUCLE_rubrique_hierarchie_breve(BREVES){id_breve}>
+        <BOUCLE_chemin_breve(HIERARCHIE){id_article}>
+            <span> \ </span>
+            <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+        </BOUCLE_chemin_breve>
+    </BOUCLE_rubrique_hierarchie_breve>
+
+    <BOUCLE_rubrique_hierarchie_article(ARTICLES){id_article}>
         <BOUCLE_chemin_article(HIERARCHIE){id_article}>
             <span> \ </span>
-						<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+            <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
         </BOUCLE_chemin_article>
     </BOUCLE_rubrique_hierarchie_article>  	
-		
-	  <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
-      <BOUCLE_chemin(HIERARCHIE){id_rubrique}>
-          <span> \ </span>
-					<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-      </BOUCLE_chemin>
-    </BOUCLE_rubrique_hierarchie>
-  
-  <//B_rubrique_hierarchie_article>
 
-<//B_rubrique_hierarchie_breve>
+    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
+        <BOUCLE_chemin(HIERARCHIE){id_rubrique}>
+            <span> \ </span>
+            <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+        </BOUCLE_chemin>
+    </BOUCLE_rubrique_hierarchie>
+
+    <//B_rubrique_hierarchie_article>
+
+    <//B_rubrique_hierarchie_breve>
 
 </span>
