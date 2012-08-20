@@ -48,7 +48,9 @@
 
                         <div id="contenu">
                             <div class="main-content-2cols_dedie">
+                                
                                 <h1 class="invisible">Contenu</h1>
+                                
                                 <div id="boxcentrale">
                                     <div class="innercentrale">
 
@@ -72,45 +74,46 @@
                                         <div class="listerub">
 
                                             <div class="titresousrub">Qualit&eacute; des eaux</div><br />
+                                            
                                             <h3 class="titreartliste">Recherche par cours d'eau</h3>
                                             <INCLURE(scripts/liste_cours_eau.php)><br />
 
-                                                <h3 class="titreartliste">Recherche par commune</h3>
-                                                <INCLURE(scripts/liste_communes_qualite.php)><br />
+                                            <h3 class="titreartliste">Recherche par commune</h3>
+                                            <INCLURE(scripts/liste_communes_qualite.php)><br />
 
-                                                    <div class="ajax">
-                                                        #FORMULAIRE_QUALITE_RECHERCHE_RESEAU
-                                                    </div><br />
+                                            <div class="ajax">
+                                                #FORMULAIRE_QUALITE_RECHERCHE_RESEAU
+                                            </div><br />
+                                            
+                                        </div><!-- listerub -->
 
-                                                    </div><!-- listerub -->
+                                        <div class="listerub">
+                                            <div class="titresousrub">Temp&eacute;rature des cours d'eau</div>
+                                            <a href="spip.php?page=liste_stations_temperature"  class="titreartliste">Liste des stations en Pays de la Loire</a>
+                                        </div>
 
-                                                    <div class="listerub">
-                                                        <div class="titresousrub">Temp&eacute;rature des cours d'eau</div>
-                                                        <a href="spip.php?page=liste_stations_temperature"  class="titreartliste">Liste des stations en Pays de la Loire</a>
+                                        [(#REM) Sites de la rubrique ]
+                                        <B_sites>
+                                            <div class="listerub">
+
+                                                <div class="titresousrub"><:sur_web:></div>
+                                                <div id ="menu3">
+                                                    <div class="voir_sites">
+                                                        <ul>
+                                                            <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+                                                                <li>
+                                                                    <a href="#URL_SITE" target="_blank">#NOM_SITE</a>
+                                                                </li><br />
+                                                            </BOUCLE_sites>
+                                                        </ul>
                                                     </div>
+                                                </div>
+                                            </div><!-- listerub -->
+                                        </B_sites>
 
-                                                    [(#REM) Sites de la rubrique ]
-                                                    <B_sites>
-                                                        <div class="listerub">
-
-                                                            <div class="titresousrub"><:sur_web:></div>
-                                                            <div id ="menu3">
-                                                                <div class="voir_sites">
-                                                                    <ul>
-                                                                        <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-                                                                            <li>
-                                                                                <a href="#URL_SITE" target="_blank">#NOM_SITE</a>
-                                                                            </li><br />
-                                                                        </BOUCLE_sites>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- listerub -->
-                                                    </B_sites>
-
-                                                    <div class="o2paj">
-                                                        <a href="#entete" title="Haut de page">Haut de page</a>
-                                                    </div>
+                                        <div class="o2paj">
+                                            <a href="#entete" title="Haut de page">Haut de page</a>
+                                        </div>
 
                                     </div><!-- innercentrale -->
                                 </div><!-- boxcentrale -->
