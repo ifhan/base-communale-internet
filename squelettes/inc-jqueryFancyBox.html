@@ -16,34 +16,34 @@
 <link rel="stylesheet" href="javascript/jquery.fancybox-2.0.6/source/helpers/jquery.fancybox-thumbs.css?v=2.0.6" type="text/css" media="screen" />
 <script type="text/javascript" src="javascript/jquery.fancybox-2.0.6/source/helpers/jquery.fancybox-thumbs.js?v=2.0.6"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
 
-	/* Using custom settings */
+        /* Using custom settings */
 	
-	$("a#inline").fancybox({
-		'hideOnContentClick': true,
-	});
+        $("a#inline").fancybox({
+            'hideOnContentClick': true,
+        });
 
-	/* Apply fancybox to multiple items */
+        /* Apply fancybox to multiple items */
 	
-	$("a.group").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false
-	});
+        $("a.group").fancybox({
+            'transitionIn'	:	'elastic',
+            'transitionOut'	:	'elastic',
+            'speedIn'		:	600, 
+            'speedOut'		:	200, 
+            'overlayShow'	:	false
+        });
 	
-	/* Iframe */
+        /* Iframe */
 	
-	$(".iframe").fancybox({
-		'width'				: '75%',
-		'height'			: '75%',
-		'autoScale'			: false,
-		'transitionIn'		: 'none',
-		'transitionOut'		: 'none',
-		'type'				: 'iframe'
-	});
+        $(".iframe").fancybox({
+            'width'				: '75%',
+            'height'			: '75%',
+            'autoScale'			: false,
+            'transitionIn'		: 'none',
+            'transitionOut'		: 'none',
+            'type'				: 'iframe'
+        });
 	
-});
+    });
 </script>
