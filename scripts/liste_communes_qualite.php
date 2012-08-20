@@ -40,7 +40,7 @@ $id_dpt = isset($_POST['departement_commune'])?$_POST['departement_commune']:nul
         <td>
             <?php $communes = getCommunesStationsQualiteByIdDpt($id_dpt); ?>
             <div class="select">
-                <form action="spip.php?page=liste_stations_communes" method="post">
+                <form action="spip.php?page=liste_stations_qualite_communes" method="post">
                     <p>Commune&nbsp;:</p>
                     <select name="id_commune" id="id_commune">
                     <?php foreach($communes as $commune): ?>
