@@ -10,17 +10,17 @@
 class StationQualite {
     /**
      * Sélectionne une station par son identifiant
-     * @global string $pdo
-     * @param string $id_station 
+     * @global string $pdo Connexion àa la base de données
+     * @param string $id_regional Identifiant de la station
      */
-    public function getStationQualiteByIdStation($id_station) {
+    public function getStationQualiteByIdStation($id_regional) {
         global $pdo;
         $table = "R_STATION_QUALITE_RCS_R52";
         $table_2 = "R_RIVIERE_QUALITE_R52";
         
         $sql = "SELECT * 
         FROM $table, $table_2 
-        WHERE $table.id_station = '$id_station' 
+        WHERE $table.id_regional = '$id_regional' 
         AND $table.id_riviere = $table_2.id_riviere ";
         try {
             $row = $pdo->query($sql)->fetch();
@@ -51,12 +51,12 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
         FROM R_STATION_QUALITE_RCS_R52 
         WHERE id_reseau = $id_reseau 
         AND id_departement = $id_dpt 
-        ORDER BY id_departement, id_station ";
+        ORDER BY id_departement, id_regional ";
     else:
         $sql = "SELECT * 
         FROM R_STATION_QUALITE_RCS_R52 
         WHERE id_reseau = $id_reseau 
-        ORDER BY id_departement, id_station ";
+        ORDER BY id_departement, id_regional ";
     endif;
     try {
         $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
@@ -85,14 +85,14 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             WHERE $table.id_commune like '$id_dpt%' 
             AND $table.id_riviere = $id_riviere 
             AND $table.id_riviere = $table2.id_riviere 
-            ORDER BY $table.id_station";
+            ORDER BY $table.id_regional";
         else:
         // Cas #2 : sélection de tous les cours d'eau dans un département
         $sql = "SELECT DISTINCT * 
             FROM $table, $table2 
             WHERE $table.id_commune like '$id_dpt%' 
             AND $table.id_riviere = $table2.id_riviere 
-            ORDER BY $table.id_station";
+            ORDER BY $table.id_regional";
         endif;
     else:
         if ($id_riviere != "0"):
@@ -101,13 +101,13 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             FROM $table, $table2
             WHERE $table.id_riviere = '$id_riviere' 
             AND $table.id_riviere = $table2.id_riviere
-            ORDER BY $table.id_station ";
+            ORDER BY $table.id_regional ";
         else:
         // Cas #4 : sélection de tous les cours d'eau de la région
         $sql = "SELECT * 
             FROM $table, $table2
             WHERE $table.id_riviere = $table2.id_riviere
-            ORDER BY $table.id_station ";
+            ORDER BY $table.id_regional ";
         endif;
     endif;
     try {
@@ -133,7 +133,7 @@ function getStationsQualiteByIdCommune($id_commune) {
     FROM $table, $table2 
     WHERE $table.id_commune = $id_commune 
     AND $table.id_riviere = $table2.id_riviere 
-    ORDER BY $table.id_station" ;
+    ORDER BY $table.id_regional" ;
     try {
         $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
         return $stations_qualite_rcs;
