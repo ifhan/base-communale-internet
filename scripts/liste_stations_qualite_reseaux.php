@@ -40,18 +40,18 @@ $zonage->getTypeZonageByIdType("28");
         <?php foreach($stations_qualite as $station_qualite): ?>
         <tr valign="top">
             <td align="center"><?=$station_qualite["id_departement"]?></td>
-            <td align="center"><?=$station_qualite["id_station"]?></td>
+            <td align="center"><?=$station_qualite["id_regional"]?></td>
             <td width="99%">
-                <?=(stripslashes($station_qualite["nom_riviere"]))?> <?=$station_qualite["nom_commune"]?> (<?=$station_qualite["id_commune"]?>) <?=$station_qualite["localite"]?>
+                <?=(stripslashes($station_qualite["nom"]))?> <?=$station_qualite["nom_commune"]?> (<?=$station_qualite["id_commune"]?>) <?=$station_qualite["localite"]?>
             </td>
             <td class="cache">
                 <div class="right">
-                    <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_station;04<?=$station_qualite["id_station"]?>" target="_blank"><img src="IMG/png/Gnome-Emblem-Web-32.png" style="border:none" alt="Icone web" /></a>
+                    <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_regional;04<?=$station_qualite["id_regional"]?>" target="_blank"><img src="IMG/png/Gnome-Emblem-Web-32.png" style="border:none" alt="Icone web" /></a>
                 </div>
             </td>
             <td class="cache">
                 <div class="right">
-                    <a href="spip.php?page=fiche_station_qualite&amp;id_station=<?=$station_qualite["id_station"]?>&id_reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher" /></a>
+                    <a href="spip.php?page=fiche_station_qualite&amp;id_regional=<?=$station_qualite["id_regional"]?>&id_reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher" /></a>
                 </div>
             </td>
         </tr>
