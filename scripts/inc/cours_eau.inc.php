@@ -10,15 +10,15 @@ require_once(dirname(__FILE__)."/../classes/CoursEau.class.php");
  * Ce fichier sert à afficher le nom du cours d'eau sélectionné dans un
  * squelette SPIP
  * @var $id_riviere Identifiant de la rivière
- * @var $id_station Identifiant de la station
+ * @var $id_regional Identifiant de la station
  */
 $id_riviere = $_REQUEST["id_riviere"];
-$id_station = $_REQUEST["id_station"];
+$id_regional = $_REQUEST["id_regional"];
 ?>
-<?php if($id_station!=""): ?>
+<?php if($id_regional!=""): ?>
     <?php
     $riviere = new CoursEau();
-    $riviere->getRiviereByIdStation($id_station);
+    $riviere->getRiviereByIdStation($id_regional);
     ?>
     <?=$riviere->riviere?>
 <?php elseif($id_riviere!="0"): ?>
@@ -26,5 +26,5 @@ $id_station = $_REQUEST["id_station"];
     $riviere = new CoursEau();
     $riviere->getRiviereByIdRiviere($id_riviere);
     ?>
-    sur <?=$riviere->nom_riviere?>
+    sur <?=$riviere->nom?>
 <?php endif; ?>
