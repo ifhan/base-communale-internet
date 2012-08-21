@@ -203,6 +203,34 @@ switch ($id_type):
         </li>
         <?php
         break;
+    /**
+     * Fiche PDF pour les sites INPG préselectionnés 
+     */
+    case 36:
+        ?>
+        <li>
+            <a class="document" href="data/fiches/inpgspre/<?= $id_regional ?>.pdf">
+                T&eacute;l&eacute;charger la fiche descriptive</a>
+            <span class="docformat"> 
+                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/inpgspre/" . $id_regional . ".pdf") ?>)
+            </span>
+        </li>
+        <?php
+        break;
+    /**
+     * Fiche PDF pour les sites INPG proposés 
+     */
+    case 37:
+        ?>
+        <li>
+            <a class="document" href="data/fiches/inpgspro/<?= $id_regional ?>.pdf">
+                T&eacute;l&eacute;charger la fiche descriptive</a>
+            <span class="docformat"> 
+                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/inpgspro/" . $id_regional . ".pdf") ?>)
+            </span>
+        </li>
+        <?php
+        break;
 endswitch;
 ?>
 <!-- 3. Formulaires standards de données pour Natura 2000 -->
