@@ -39,9 +39,9 @@ $zonage->getTypeZonageByIdType("28");
     <tbody>
         <?php foreach($stations_qualite as $station_qualite): ?>
         <tr valign="top">
-            <td align="center"><?=$station_qualite["id_station"]?></td>
+            <td align="center"><?=$station_qualite["id_regional"]?></td>
             <td width="99%">
-                <?=stripslashes($station_qualite["nom_riviere"])?> <?=$station_qualite["nom_commune"]?> (<?=$station_qualite["id_commune"]?>), <?=$station_qualite["localite"]?>
+                <?=stripslashes($station_qualite["nom"])?> <?=$station_qualite["nom_commune"]?> (<?=$station_qualite["id_commune"]?>), <?=$station_qualite["localite"]?>
             </td>
             <td align="center">
                 <a href="spip.php?page=liste_stations_reseaux&amp;id_reseau=<?=$station_qualite["id_reseau"]?>&id_dpt=<?=$station_qualite["id_id_dpt"]?>">
@@ -56,12 +56,12 @@ $zonage->getTypeZonageByIdType("28");
             </td>
             <td class="cache">
                 <div class="logo" align="right">
-                    <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_station;04<?=$station_qualite["id_station"]?>" target="_blank"><img src="IMG/png/Gnome-Emblem-Web-32.png" style="border:none" alt="Icone web" /></a>
+                    <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_regional;04<?=$station_qualite["id_regional"]?>" target="_blank"><img src="IMG/png/Gnome-Emblem-Web-32.png" style="border:none" alt="Icone web" /></a>
                 </div>
             </td>
             <td class=cache>
                 <div class=right>
-                    <a href="spip.php?page=fiche_station_qualite&amp;id_station=<?=$station_qualite["id_station"]?>&id_reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Lien vers la ressource"/></a>
+                    <a href="spip.php?page=fiche_station_qualite&amp;id_regional=<?=$station_qualite["id_regional"]?>&id_reseau=<?=$station_qualite["id_reseau"]?>"><img src="IMG/png/system-search.png" alt="Lien vers la ressource"/></a>
                     <br />
                 </div>
             </td>
