@@ -16,12 +16,14 @@ class Apb {
      */
     public function getApbByIdRegional($id_regional) {
         global $pdo;
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_APB_R52, R_APB_R52_data
-        WHERE R_APB_R52.id_regional = $id_regional
-        AND R_APB_R52.id_regional = R_APB_R52_data.id_regional ";
+        WHERE R_APB_R52.id_regional = :id_regional
+        AND R_APB_R52.id_regional = R_APB_R52_data.id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_regional = $row['id_regional'];
             $this->id_national = $row['id_national'];
             $this->nom = $row['nom'];
