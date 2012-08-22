@@ -11,6 +11,7 @@ require_once 'classes/Docob.class.php';
 require_once 'classes/Zonage.class.php';
 
 $docobs = getDocob();
+define('URL_DREAL', 'http://www.pays-de-la-loire.developpement-durable.gouv.fr/article.php3?id_article=');
 ?>
 <table class="display" id="example">
     <thead>
