@@ -31,6 +31,7 @@ $zonage->getTypeZonageByIdType("28");
         </tr>
     </table>
 </div><br />
+<div class="listedoc">
 <?php
 $dir = "data/fiches/qualite/";
 /**
@@ -40,7 +41,6 @@ if (@is_dir($dir)):
     if ($dh = @opendir($dir)):
         while (($file = @readdir($dh)) !== false):
             if ($file != "." && $file != ".."): ?>
-<div class="listedoc">
     <?php if((file_exists("data/fiches/qualite/$file/Physico-chimie/" . $id_regional . ".pdf")) || (file_exists("data/fiches/qualite/$file/Pesticides/" . $id_regional . ".pdf"))): ?>
     <h3><?=$file?></h3>
     <?php endif; ?>
@@ -80,9 +80,10 @@ if (@is_dir($dir)):
             </span>
         </li>
         <?php endif; ?>
-</div>
+    </ul>
     <?php endif;
         endwhile;
         closedir($dh);
     endif;
 endif; ?>
+</div>
