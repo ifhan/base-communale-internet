@@ -3,10 +3,22 @@
 require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
-$id_reseau = $_GET["id_reseau"];
+
+// Classes
+require_once (dirname(__FILE__) . "/../classes/StationQualite.class.php");
+
+/**
+ * Ce fichier sert à récupérer le type de réseau auquel appartient la station
+ * Qualité
+ * @var $id_regional Identifiant de la station
+ */
+$id_regional = $_REQUEST["id_regional"];
+
+$station_qualite = new StationQualite();
+$station_qualite->getStationQualiteByIdStation($id_regional);
 ?>
-<?php if ($id_reseau == "1"): ?>
+<?php if ($station_qualite->id_reseau == "1"): ?>
 stations du RCS
-<?php elseif ($id_reseau == "2"): ?>
+<?php elseif ($station_qualite->id_reseau == "2"): ?>
 anciennes stations du RNB non retenues dans le RCS
 <?php endif; ?>
