@@ -12,6 +12,7 @@ require_once 'classes/Pnr.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
 require_once 'classes/SiteClasseInscrit.class.php';
+require_once 'classes/StationQualite.class.php';
 require_once 'classes/Unesco.class.php';
 require_once 'classes/Zonage.class.php';
 require_once 'classes/Znieff2G.class.php';
@@ -44,45 +45,51 @@ $zonage->getTypeZonageByIdType($id_type);
              */
             case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
                 ?>
-                <a class="document" 
-                   href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">Consulter la fiche descriptive</a>
-                   <?php
-                   break;
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+            Consulter la fiche descriptive
+        </a>
+                <?php
+                break;
+            /**
+             * 2.2 ZNIEFF de deuxième génération	
+             */
+            case 10: case 11:
+                ?>
+        <a class="document"       
+           href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+            Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)
+        </a>
+               <?php
+               break;
+           /**
+            *  2.3 Natura 2000 : Fiches descriptives des ZPS, ZSC, SIC et PSIC
+            */
+           case 5: case 6: case 21: case 30:
                /**
-                * 2.2 ZNIEFF de deuxième génération	
-                */
-               case 10: case 11:
-                   ?>
-                <a class="document" 
-                   href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)</a>
-                   <?php
-                   break;
-               /**
-                *  2.3 Natura 2000 : Fiches descriptives des ZPS, ZSC, SIC et PSIC
-                */
-               case 5: case 6: case 21: case 30:
-                   /**
-                    *  2.3.1 Fiches des sites en Pays de la Loire	
-                    */
-                   if (ereg("^FR52", $id_regional)):
-                       ?>
-                    <a class="document" 
-                       href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">Consulter la fiche descriptive</a>
-                       <?php
-                   /**
-                    * 2.3.2 Lien vers des sites extérieurs pour les sites 
-                    * relevant d'autres DREAL
-                    */
-                   else:
-                       $zonage_data = new Zonage();
-                       $zonage_data->getZonageDataById($id_type, $id_regional);
+                 *  2.3.1 Fiches des sites en Pays de la Loire	
+                 */
+               if (ereg("^FR52", $id_regional)): ?>
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">Consulter la fiche descriptive</a>
+                <?php
+                /**
+                 * 2.3.2 Lien vers des sites extérieurs pour les sites 
+                 * relevant d'autres DREAL
+                 */
+                else:
+                    $zonage_data = new Zonage();
+                    $zonage_data->getZonageDataById($id_type, $id_regional);
 
-                       if (($zonage_data->region == '0') && (isset($zonage_data->url_fiche))):
-                           ?>
-                        <a class="document" href="<?= $zonage_data->url_fiche ?>" target="_blank">
-                            Consulter la fiche descriptive sur le site de la DREAL <?= $zonage_data->dreal ?>
-                        </a>
-                        <?php
+                    if (($zonage_data->region == '0') && (isset($zonage_data->url_fiche))):
+                        ?>
+        <a class="document" 
+           href="<?= $zonage_data->url_fiche ?>" 
+           target="_blank">
+            Consulter la fiche descriptive sur le site de la DREAL 
+                        <?= $zonage_data->dreal ?>
+        </a>
+                    <?php
                     endif;
                 endif;
                 break;
@@ -93,15 +100,15 @@ $zonage->getTypeZonageByIdType($id_type);
                 /**
                  * 2.4.1 Fiches des Projets de PSIC en PdL au format PDF
                  */
-                if (ereg("^FR52", $id_regional)):
-                    ?>
-                    <a class="document" href="data/fiches/ppsic/<?= $id_regional ?>.pdf">
-                        T&eacute;l&eacute;charger la fiche descriptive
-                    </a>
-                    <span class="docformat"> 
-                        (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/ppsic/" . $id_regional . ".pdf") ?>.")
-                    </span>
-                    <?php
+                if (ereg("^FR52", $id_regional)): ?>
+        <a class="document" 
+           href="data/fiches/ppsic/<?= $id_regional ?>.pdf">
+            T&eacute;l&eacute;charger la fiche descriptive
+        </a>
+        <span class="docformat">
+            (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/ppsic/" . $id_regional . ".pdf") ?>.")
+        </span>
+            <?php
                 /**
                  * 2.4.2 Lien vers des sites extérieurs pour les sites 
                  * relevant d'autres DREAL
@@ -110,59 +117,69 @@ $zonage->getTypeZonageByIdType($id_type);
                     $zonage_data = new Zonage();
                     $zonage_data->getZonageDataById($id_type, $id_regional);
                     ?>
-                    <a class="document" 
-                       href="<?= $zonage_data->url_fiche ?>" target="_blank">Consulter la fiche descriptive sur le site de la DREAL <?= $zonage_data->dreal ?></a>
-                    <br />
-                <?php
+        <a class="document" 
+           href="<?= $zonage_data->url_fiche ?>" 
+           target="_blank">
+            Consulter la fiche descriptive sur le site de la DREAL 
+                            <?= $zonage_data->dreal ?>
+        </a><br />
+            <?php
                 endif;
                 break;
            
-        /**
-         * 2.6 Liens vers le site du Conseil Régional pour les RNR
-         */
-        case 33:
-            $rnr = new Rnr();
-            $rnr->getRnrByIdRegional($id_regional);
-            ?>
-            <li>
-                <a class="document" href="<?= $rnr->url_site ?>" target="_blank">
-                    Consulter la fiche de pr&eacute;sentation de la r&eacute;serve sur le site du Conseil R&eacute;gional
-                </a>        
-            </li>   
-            <?php
-            break;
+            /**
+             * 2.6 Liens vers le site du Conseil Régional pour les RNR
+             */
+            case 33:
+                $rnr = new Rnr();
+                $rnr->getRnrByIdRegional($id_regional);
+                ?>
+        <a class="document" href="<?= $rnr->url_site ?>" target="_blank">
+            Consulter la fiche de pr&eacute;sentation de la r&eacute;serve 
+            sur le site du Conseil R&eacute;gional
+        </a>          
+                <?php
+                break;
 
-        /**
-         * 2.8 Rubrique DTA sur le site de la Préfecture de région
-         */
-        case 17:
-            $dta = new Dta();
-            $dta->getDtaByIdRegional($id_regional);
-            ?>
-            <li>
-                <a class="document" href="<?= $dta->url_site ?>" target="_blank">
-                    Consulter la rubrique DTA sur le site de la Pr&eacute;fecture de Loire-Atlantique
-                </a> 
-            </li>
-        <?php
-        break;
-
-    /**
-     * 2.9 Lien vers le site de l'UNESCO
-     */
-    case 18:
-        $unesco = new Unesco();
-        $unesco->getUnescoByIdRegional($id_regional);
-        ?>
-            <li>
-                <a class="document" href="<?= $unesco->url_site ?>" target="_blank">
-                    Consulter le site de l'UNESCO
-                </a>
-            </li>
-        <?php
-        break;
-endswitch;
-?>
+            /**
+             * 2.8 Rubrique DTA sur le site de la Préfecture de région
+             */
+            case 17:
+                $dta = new Dta();
+                $dta->getDtaByIdRegional($id_regional);
+                ?>
+        <a class="document" href="<?= $dta->url_site ?>" target="_blank">
+            Consulter la rubrique DTA sur le site de la Pr&eacute;fecture 
+            de Loire-Atlantique
+        </a> 
+                <?php
+                break;
+    
+            /**
+             * 2.9 Lien vers le site de l'UNESCO
+             */
+            case 18:
+                $unesco = new Unesco();
+                $unesco->getUnescoByIdRegional($id_regional);
+                ?>
+        <a class="document" href="<?= $unesco->url_site ?>" target="_blank">
+            Consulter le site de l'UNESCO
+        </a>
+                <?php
+                break;
+            /**
+             * 3.0 Lien vers les fiches Résultats par campagne des stations
+             * Qualité des eaux (RNB + RCS)
+             */
+            case 28: case 38:
+                ?>
+        <a class="document" 
+           href="spip.php?page=fiche_station_qualite&amp;id_regional=<?=$id_regional?>">
+            Consulter la fiche de résultats par campagne
+        </a>
+                <?php
+                break;
+        endswitch; ?>
 </li>
 <!-- 2 bis. Compléments -->
 <?php
