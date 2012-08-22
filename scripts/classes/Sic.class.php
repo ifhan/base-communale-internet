@@ -41,5 +41,3 @@ function getSicByIdEur15($id_eur15) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
