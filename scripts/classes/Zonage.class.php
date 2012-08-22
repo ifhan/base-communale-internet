@@ -212,7 +212,7 @@ function getThemesByIdCommune($id_commune) {
     AND $table.id_type = $table_2.id_type 
     AND $table_2.id_theme = $table_3.id_theme
     GROUP BY $table_3.id_theme 
-    ORDER BY $table_3.theme";
+    ORDER BY $table_3.id_theme";
     try {
         $query = $pdo->query($sql);
         $themes = $query->fetchAll();
@@ -317,7 +317,7 @@ function getThemesByIdEpci($id_epci) {
     AND $table_2.id_theme = $table_3.id_theme
     AND $table_4.id_commune = $table.id_commune
     GROUP BY $table_3.id_theme 
-    ORDER BY $table_3.theme";
+    ORDER BY $table_3.id_theme";
     try {
         $query = $pdo->query($sql);
         $themes = $query->fetchAll();
@@ -425,7 +425,7 @@ function getThemesByIdScot($id_scot) {
     AND $table_2.id_theme = $table_3.id_theme
     AND $table_4.id_commune = $table.id_commune
     GROUP BY $table_3.id_theme 
-    ORDER BY $table_3.theme";
+    ORDER BY $table_3.id_theme";
     try {
         $query = $pdo->query($sql);
         $themes = $query->fetchAll();
