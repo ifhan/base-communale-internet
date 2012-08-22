@@ -29,14 +29,14 @@ class CoursEau {
 
     /**
      * Sélectionne une rivière par un identifiant de station
-     * @global string $pdo
-     * @param string $id_station 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant de la station
      */
-    public function getRiviereByIdStation($id_station) {
+    public function getRiviereByIdStation($id_regional) {
         global $pdo;
         $sql = "SELECT * 
         FROM R_STATIONS_HYDROTEMPERATURE_R52 
-        WHERE id_station = '$id_station'";
+        WHERE id_regional = '$id_regional'";
         try {
             $row = $pdo->query($sql)->fetch();
             $this->riviere = stripslashes($row["riviere"]);
