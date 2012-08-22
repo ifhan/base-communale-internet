@@ -3,7 +3,6 @@
 require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
-
 // Classes
 require_once (dirname(__FILE__) . "/../classes/StationQualite.class.php");
 
