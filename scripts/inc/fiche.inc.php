@@ -48,5 +48,11 @@ switch ($id_type):
     case 16:
         include(dirname(__FILE__)."/../fiche_sage.php");
         break;
+    case 36:
+        include(dirname(__FILE__)."/../fiche_site_preselectionne_inpg.php");
+        break;
+    case 37:
+        include(dirname(__FILE__)."/../fiche_site_propose_inpg.php");
+        break;
     endswitch;
 ?>
