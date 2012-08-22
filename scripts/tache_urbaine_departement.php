@@ -13,6 +13,9 @@ require_once 'classes/Departement.class.php';
 
 $id_region = "18";
 $departements = getDepartementsByIdRegion($id_region);
+
+define('URL_BASE_COMMUNALE', 
+        'http://www.donnees.pays-de-la-loire.developpement-durable.gouv.fr/');
 ?>
 <table class="display" id="example">
     <thead>
@@ -30,7 +33,7 @@ $departements = getDepartementsByIdRegion($id_region);
                 <a href="spip.php?page=popup_video&id_dpt=<?=$departement["id_departement"]?>" target="_blank"><img src="IMG/png/gtk-media-play-ltr.png" style="border:none" alt="Lire" /></a>
             </td>
             <td align="center">
-                <a href="http://www.donnees.pays-de-la-loire.developpement-durable.gouv.fr/data/videos/tache_urbaine/<?=$departement["id_departement"]?>.ogg"><img src="IMG/png/filesave.png" style="border:none" alt="T&eacute;l&eacute;charger" /></a>
+                <a href="<?=URL_BASE_COMMUNALE?>data/videos/tache_urbaine/<?=$departement["id_departement"]?>.ogg"><img src="IMG/png/filesave.png" style="border:none" alt="T&eacute;l&eacute;charger" /></a>
             </td>
         </tr>
         <?php endforeach; ?>
