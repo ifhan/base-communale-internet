@@ -29,13 +29,16 @@ $zonage = new Zonage();
 $zonage->getTypeZonageByIdType($id_type);
 ?>	
 <ul>
+    <?php if (!empty($zonage->map)): ?>
     <!-- 1. Lien vers un zoom dans la carte CARMEN -->
     <li>
         <a class="document" 
-           href="<?= URL_CARMEN ?><?= $zonage->map ?>.map&object=<?= $zonage->path ?>;<?php if ($id_type == "18"): ?>id_bien<?php elseif (($id_type == "12") OR ($id_type == "15")): ?>id_national<?php else: ?>id_regional;<?php endif; ?><?= $id_regional ?>" target="_blank">
+           href="<?= URL_CARMEN ?><?= $zonage->map ?>.map&object=<?= $zonage->path ?>;<?php if ($id_type == "18"): ?>id_bien<?php elseif (($id_type == "12") OR ($id_type == "15")): ?>id_national<?php else: ?>id_regional;<?php endif; ?><?= $id_regional ?>" 
+           target="_blank">
             Consulter la carte interactive du zonage sur CARMEN
         </a>
     </li>
+    <?php endif; ?>
     <!-- 2. Fiches descriptives et liens -->
     <li>
         <?php
@@ -43,7 +46,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29: case 36: case 37:
                 ?>
         <a class="document" 
            href="spip.php?page=fiche&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
@@ -193,11 +196,13 @@ switch ($id_type):
 ?>
 <li>
     <a class="document" 
-       href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $pnr->id_regional ?>" target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
+       href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $pnr->id_regional ?>" 
+       target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
 </li>
 <li>
     <a class="document" 
-       href="<?= $pnr->url_site ?>" target="_blank">Consulter le site du PNR</a>
+       href="<?= $pnr->url_site ?>" 
+       target="_blank">Consulter le site du PNR</a>
 </li>
         <?php
         break;
@@ -221,32 +226,20 @@ switch ($id_type):
         <?php
         break;
     /**
-     * Fiche PDF pour les sites INPG préselectionnés 
+     * Fiche PDF pour les sites INPG préselectionnés et proposés
      */
-    case 36:
+    case 36: case 37:
+        if (file_exists("data/fiches/$zonage->path/$id_regional.pdf")):
         ?>
         <li>
-            <a class="document" href="data/fiches/inpgspre/<?= $id_regional ?>.pdf">
+            <a class="document" href="data/fiches/<?=$zonage->path?>/<?=$id_regional?>.pdf">
                 T&eacute;l&eacute;charger la fiche descriptive</a>
             <span class="docformat"> 
-                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/inpgspre/" . $id_regional . ".pdf") ?>)
+                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/$zonage->path/$id_regional.pdf") ?>)
             </span>
         </li>
         <?php
-        break;
-    /**
-     * Fiche PDF pour les sites INPG proposés 
-     */
-    case 37:
-        ?>
-        <li>
-            <a class="document" href="data/fiches/inpgspro/<?= $id_regional ?>.pdf">
-                T&eacute;l&eacute;charger la fiche descriptive</a>
-            <span class="docformat"> 
-                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/inpgspro/" . $id_regional . ".pdf") ?>)
-            </span>
-        </li>
-        <?php
+        endif;
         break;
 endswitch;
 ?>
