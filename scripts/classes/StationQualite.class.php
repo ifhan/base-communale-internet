@@ -28,6 +28,7 @@ class StationQualite {
             $this->nom_commune = $row["nom_commune"];
             $this->id_commune = $row["id_commune"];
             $this->localite = $row["localite"];
+            $this->id_reseau = $row["id_reseau"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
