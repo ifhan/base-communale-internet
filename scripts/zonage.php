@@ -8,6 +8,7 @@ require_once 'classes/utilities.inc.php';
 
 // Classes
 require_once 'classes/Dta.class.php';
+require_once 'classes/Docob.class.php';
 require_once 'classes/Pnr.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
@@ -86,8 +87,7 @@ $zonage->getTypeZonageByIdType($id_type);
 
                     if (($zonage_data->region == '0') && (isset($zonage_data->url_fiche))):
                         ?>
-        <a class="document" 
-           href="<?= $zonage_data->url_fiche ?>" 
+        <a class="document" href="<?= $zonage_data->url_fiche ?>" 
            target="_blank">
             Consulter la fiche descriptive sur le site de la DREAL 
                         <?= $zonage_data->dreal ?>
@@ -212,14 +212,17 @@ switch ($id_type):
     case 15:
         ?>
         <li>
-            <a class="document" href="data/fiches/ramsar/<?= $id_regional ?>.pdf">
+            <a class="document" 
+               href="data/fiches/ramsar/<?= $id_regional ?>.pdf">
                 T&eacute;l&eacute;charger la fiche descriptive</a>
             <span class="docformat"> 
                 (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/ramsar/" . $id_regional . ".pdf") ?>)
             </span>
         </li>
         <li>
-            <a class="document" href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $id_regional ?>" target="_blank">
+            <a class="document" 
+               href="<?= URL_INPN_ESPACE_PROTEGE ?><?= $id_regional ?>" 
+               target="_blank">
                 Consulter la fiche descriptive sur le site de l'INPN
             </a>
         </li>
@@ -232,7 +235,8 @@ switch ($id_type):
         if (file_exists("data/fiches/$zonage->path/$id_regional.pdf")):
         ?>
         <li>
-            <a class="document" href="data/fiches/<?=$zonage->path?>/<?=$id_regional?>.pdf">
+            <a class="document" 
+               href="data/fiches/<?=$zonage->path?>/<?=$id_regional?>.pdf">
                 T&eacute;l&eacute;charger la fiche descriptive</a>
             <span class="docformat"> 
                 (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/$zonage->path/$id_regional.pdf") ?>)
@@ -249,7 +253,9 @@ endswitch;
     switch ($id_type):
         case 5: case 6: case 30:
             ?>
-            <a class="document" href="<?= URL_INPN_NATURA_2000 ?><?= $id_regional ?>" target="_blank">
+            <a class="document" 
+               href="<?= URL_INPN_NATURA_2000 ?><?= $id_regional ?>" 
+               target="_blank">
                 Consulter le Formulaire Standard des Donn&eacute;es sur le site de l'INPN
             </a>
             <?php
@@ -258,7 +264,9 @@ endswitch;
         case 21:
             if (ereg("^FR25", $id_regional)):
                 ?>
-                <a class="document" href="<?= URL_INPN_NATURA_2000 ?><?= $id_regional ?>" target="_blank">
+                <a class="document" 
+                   href="<?= URL_INPN_NATURA_2000 ?><?= $id_regional ?>" 
+                   target="_blank">
                     Consulter le Formulaire Standard des Donn&eacute;es sur le site de l'INPN
                 </a>
                 <?php
@@ -275,7 +283,9 @@ switch ($id_type):
         $znieff = new Znieff2G();
         $znieff->getZnieff2GByIdRegional($id_regional);
         ?>
-            <a class="document" href="<?= URL_INPN_ZNIEFF ?><?= $znieff->id_national ?>" target="_blank">
+            <a class="document" 
+               href="<?= URL_INPN_ZNIEFF ?><?= $znieff->id_national ?>" 
+               target="_blank">
                 Consulter la fiche ZNIEFF actualis&eacute;e sur le site de l'INPN
             </a>
             <?php
@@ -290,7 +300,8 @@ switch ($id_type):
         case 5: case 6: case 21: case 30:
             if (ereg("^FR52", $id_regional)):
                 ?>
-                <a class="document" href="spip.php?page=liste_especes&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                <a class="document" 
+                   href="spip.php?page=liste_especes&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Consulter la liste d'esp&egrave;ces
                 </a>
                 <?php
@@ -298,7 +309,8 @@ switch ($id_type):
             break;
         case 10: case 11:
             ?>
-            <a class="document" href="spip.php?page=liste_especes&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+            <a class="document" 
+               href="spip.php?page=liste_especes&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                 Consulter la liste d'esp&egrave;ces
             </a>
             <?php
@@ -313,7 +325,8 @@ switch ($id_type):
         case 6: case 21: case 30:
             if (ereg("^FR52", $id_regional)):
                 ?>
-                <a class="document" href="spip.php?page=liste_habitats&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                <a class="document" 
+                   href="spip.php?page=liste_habitats&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Consulter la liste d'habitats
                 </a>
                 <?php
@@ -340,7 +353,9 @@ switch ($id_type):
             $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
             if (file_exists("data/docs/decrets/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf")):
                 ?>
-                <a class="document" href="data/docs/decrets/<?= $zonage->path ?>/<?= $site_classe_inscrit->id_dpt ?><?= $site_classe_inscrit->type_site ?><?= $site_classe_inscrit->id_site ?><?= $site_classe_inscrit->id_entite ?>.pdf" target="_blank">
+                <a class="document" 
+                   href="data/docs/decrets/<?= $zonage->path ?>/<?= $site_classe_inscrit->id_dpt ?><?= $site_classe_inscrit->type_site ?><?= $site_classe_inscrit->id_site ?><?= $site_classe_inscrit->id_entite ?>.pdf" 
+                   target="_blank">
                     T&eacute;l&eacute;charger le d&eacute;cret
                 </a>
                 <span class="docformat">
@@ -348,7 +363,9 @@ switch ($id_type):
                 </span>
             <?php elseif (($site_classe_inscrit->url_texte != "") && ($site_classe_inscrit->texte_protection == "Décret")):
             ?>
-                <a class="document" href="<?= $site_classe_inscrit->url_texte ?>" target="_blank">
+                <a class="document" 
+                   href="<?= $site_classe_inscrit->url_texte ?>" 
+                   target="_blank">
                     Consulter le texte du d&eacute;cret sur L&eacute;gifrance
                 </a>
                 <?php
@@ -360,7 +377,9 @@ switch ($id_type):
 <!-- 8. Arrêtés -->
 <li>
 <?php if (file_exists("data/docs/arretes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-        <a class="document" href="data/docs/arretes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" target="_blank">
+        <a class="document" 
+           href="data/docs/arretes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
+           target="_blank">
             T&eacute;l&eacute;charger l'arr&ecirc;t&eacute;
         </a>
         <span class="docformat">
@@ -373,14 +392,18 @@ switch ($id_type):
 
         if (file_exists("data/docs/arretes/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf")):
             ?> 
-            <a class="document" href="data/docs/arretes/<?= $zonage->path ?>/<?= $site_classe_inscrit->id_dpt ?><?= $site_classe_inscrit->type_site ?><?= $site_classe_inscrit->id_site ?><?= $site_classe_inscrit->id_entite ?>.pdf" target="_blank">
+            <a class="document" 
+               href="data/docs/arretes/<?= $zonage->path ?>/<?= $site_classe_inscrit->id_dpt ?><?= $site_classe_inscrit->type_site ?><?= $site_classe_inscrit->id_site ?><?= $site_classe_inscrit->id_entite ?>.pdf" target="_blank">
                 T&eacute;l&eacute;charger l'arr&ecirc;t&eacute;
             </a>
             <span class="docformat">
                 (PDF,&nbsp;";<?= @ConvertirTaille("data/docs/arretes/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf") ?>)
             </span>
-        <?php elseif (($site_classe_inscrit->url_texte != "") && ($site_classe_inscrit->texte_protection == "Arrêté")): ?>	
-            <a class="document" href="<?= $site_classe_inscrit->url_texte ?>" target="_blank">
+        <?php elseif (($site_classe_inscrit->url_texte != "") 
+                && ($site_classe_inscrit->texte_protection == "Arrêté")): ?>	
+            <a class="document" 
+               href="<?= $site_classe_inscrit->url_texte ?>" 
+               target="_blank">
                 Consulter le texte de l'arr&ecirc;&eacute; sur L&eacute;gifrance
             </a>
             <?php
@@ -388,40 +411,38 @@ switch ($id_type):
     endif;
     ?>
 </li>
-<!-- 9. Documents d'objectifs pour Natura 2000 -->
+<!-- 9. Documents d'objectifs pour Natura 2000 sur le portail SIDE-->
+<?php
+$docob = new Docob();
+$docob->getDocobByIdRegional($id_regional);
+?>
 <li>
-    <?php if (file_exists("data/docs/docob/" . $id_regional . ".pdf")): ?>
-        <a class="document" href="data/docs/docob/<?= $id_regional ?>.pdf" target="_blank">
-            T&eacute;l&eacute;charger le document d'objectifs
+    <?php if ($docob->id_side !== "0"): ?>
+        <a class="document" href="<?= URL_SIDE ?><?= $docob->id_side ?>" 
+           target="_blank">
+            Consulter la fiche du DOCOB sur le portail documentaire 
+            <abbr title="Syst&egrave;me d'Information Documentaire 
+                  de l'Environnement">
+                SIDE
+            </abbr>
         </a>
-        <span class="docformat">
-            (PDF,&nbsp;<?= @ConvertirTaille("data/docs/docob/" . $id_regional . ".pdf") ?>)
-        </span>
-    <?php elseif ($id_type == 30): ?>
-        <?php
-        $zsc = new Zsc();
-        $zsc->getZscDataByIdRegional($id_regional);
-        ?>
-        <a class="document" href="<?= $zsc->url_docob ?>" target="_blank">
-            Consulter le document d'objectifs sur le site de la DREAL <?= $zsc->dreal ?>
-        </a>
-<?php endif; ?>
+    <?php endif; ?>
 </li>
-<!-- 10. Chartes pour Natura 2000 -->
+<!-- 10. Arrêtés pour Natura 2000 sur le site Internet de la DREAL-->
 <li>
-    <?php if (file_exists("data/docs/chartes/" . $id_regional . ".pdf")): ?>
-        <a class="document" href="data/docs/chartes/<?= $id_regional ?>.pdf" target="_blank">
-            T&eacute;l&eacute;charger la Charte Natura 2000
+    <?php if ($docob->id_article !== "0"): ?>
+        <a class="document" href="<?= URL_DREAL ?><?= $docob->id_article ?>" 
+           target="_blank">
+            Consulter les arr&ecirc;t&eacute;s sur le site Internet de la DREAL 
         </a>
-        <span class="docformat">
-            (PDF,&nbsp;<?= @ConvertirTaille("data/docs/chartes/" . $id_regional . ".pdf") ?>)
-        </span>
-<?php endif; ?>
+    <?php endif; ?>
 </li>
 <!-- 11. Plans de gestion pour les RNN -->
 <li>
     <?php if (file_exists("data/docs/plans_gestion/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-        <a class="document" href="data/docs/plans_gestion/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" target="_blank">
+        <a class="document" 
+           href="data/docs/plans_gestion/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
+           target="_blank">
             T&eacute;l&eacute;charger le plan de gestion
         </a>
         <span class="docformat">
@@ -433,7 +454,9 @@ switch ($id_type):
 <li>
 <?php if ($id_type == '13'): ?>
     <?php if (file_exists("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-            <a class="document" href="data/cartes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" target="_blank">
+            <a class="document" 
+               href="data/cartes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
+               target="_blank">
                 T&eacute;l&eacute;charger la carte de localisation
             </a>
             <span class="docformat">
@@ -441,10 +464,12 @@ switch ($id_type):
             </span>
         <?php endif; ?>
         <?php if (file_exists("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-            <a class="document" href='data/docs/rapports/<?= $zonage->path ?>/<?= $id_regional ?>.pdf' target=_blank>
+            <a class="document" 
+               href='data/docs/rapports/<?= $zonage->path ?>/<?= $id_regional ?>.pdf' 
+               target=_blank>
                 T&eacute;l&eacute;charger le rapport de pr&eacute;sentation
             </a>
-            <span class=docformat>
+            <span class="docformat">
                 (PDF,&nbsp;<?= @ConvertirTaille("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
             </span>
         <?php endif; ?>
@@ -461,7 +486,8 @@ switch ($id_type):
             $znieff_photos = getZnieff2GPhotosByIdRegional($id_regional, $id_type);
             if (count($znieff_photos) > 0):
                 ?>
-                <a class="document" href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                <a class="document" 
+                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
                 <?php
@@ -474,7 +500,8 @@ switch ($id_type):
             $rnn_photos = getRnnPhotosByIdRegional($id_regional);
             if (count($rnn_photos) > 0):
                 ?>
-                <a class="document" href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                <a class="document" 
+                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
             <?php
@@ -487,7 +514,8 @@ switch ($id_type):
         $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
         if (count($site_classe_inscrit_photos) > 0):
             ?>
-                <a class="document" href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                <a class="document" 
+                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
             <?php
