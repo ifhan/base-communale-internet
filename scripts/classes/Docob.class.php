@@ -15,22 +15,25 @@ class Docob {
      * @global string $pdo Connexion à la base de données
      * @return array 
      */
-    public function getDocob() {
+    public function getDocobByIdRegional($id_regional) {
         global $pdo;
-        $sql = "(SELECT * FROM R_ZPS_R52_data) 
-        UNION  (SELECT * FROM R_ZSC_R52_data)
-        UNION(SELECT * FROM R_SIC_R52_data)
-        ORDER BY id_regional";
+        $sql = $pdo->prepare('(SELECT * 
+        FROM R_ZPS_R52_data
+        WHERE R_ZPS_R52_data.id_regional = :id_regional) 
+        UNION  (SELECT * 
+        FROM R_ZSC_R52_data
+        WHERE R_ZSC_R52_data.id_regional = :id_regional)
+        UNION(SELECT * 
+        FROM R_SIC_R52_data
+        WHERE R_SIC_R52_data.id_regional = :id_regional)');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $docobs = array();
-            while ($docobs = $pdo->query($sql)->fetchAll()) {
-                $docobs[] = $row;
-            }
-            return $docobs;
-            $this->id_regional = $docobs["id_regional"];
-            $this->nom = $docobs["nom"];
-            $this->id_article = $docobs["id_article"];
-            $this->id_type = $docobs["id_type"];
+            $row = $sql->fetch();
+            $this->id_regional = $row["id_regional"];
+            $this->nom = $row["nom"];
+            $this->id_article = $row["id_article"];
+            $this->id_side = $row["id_side"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -55,10 +58,6 @@ function getDocob() {
     try {
         $docob = $sql->fetchAll();
         return $docob;
-        $this->id_regional = $docob["id_regional"];
-        $this->nom = $docob["nom"];
-        $this->id_article = $docob["id_article"];
-        $this->id_type = $docob["id_type"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
