@@ -11,7 +11,10 @@ require_once 'classes/Docob.class.php';
 require_once 'classes/Zonage.class.php';
 
 $docobs = getDocob();
-define('URL_DREAL', 'http://www.pays-de-la-loire.developpement-durable.gouv.fr/article.php3?id_article=');
+define('URL_SIDE', 
+        'http://www.side.developpement-durable.gouv.fr/clientBookline/service/reference.asp?INSTANCE=exploitation&OUTPUT=PORTAL&DOCBASE=IFD_SIDE&DOCID=');
+define('URL_DREAL', 
+        'http://www.pays-de-la-loire.developpement-durable.gouv.fr/article.php3?id_article=');
 ?>
 <table class="display" id="example">
     <thead>
@@ -43,21 +46,34 @@ define('URL_DREAL', 'http://www.pays-de-la-loire.developpement-durable.gouv.fr/a
                 ?>
             </td>
             <td>
-                <?php if (file_exists("data/docs/docob/".$docob["id_regional"].".pdf")): ?>
+                <?php if ($docob["id_side"] !== "0"): ?>
                 <div align="center">
-                    <a href="data/docs/docob/<?=$docob["id_regional"]?>.pdf" target="_blank">
-                        <img src="IMG/png/filesave.png" style="border:none" alt="T&eacute;l&eacute;charger" />
-                        <br />
-                        <strong>T&eacute;l&eacute;charger le DOCOB</strong>
+                    <a href="<?=URL_SIDE?><?=$docob["id_side"]?>" 
+                       target="_blank"><img 
+                            src="IMG/png/gnome-globe.png" 
+                            style="border:none" 
+                            alt="T&eacute;l&eacute;charger" /><br />
+                        <strong>Consulter le DOCOB</strong> sur le portail 
+                        <abbr 
+                            title="Syst&egrave;me d'Information Documentaire 
+                            de l'Environnement">
+                            SIDE
+                        </abbr>
                     </a>
                     <br />
-                    <em>(PDF,&nbsp;<?=@ConvertirTaille("data/docs/docob/".$docob["id_regional"].".pdf")?>)</em>
                 <?php endif; ?>
             </td>
             <td>
                 <?php if ($docob["id_article"] !== "0"): ?>
                 <div align="center">
-                    <a href="<?=URL_DREAL?><?=$docob["id_article"]?>" target="_blank"><img src="IMG/png/gnome-globe.png" style="border:none" alt="T&eacute;l&eacute;charger" /><br /><strong>Consulter les arr&ecirc;t&eacute;s</strong> sur le site Internet de la DREAL </a>
+                    <a href="<?=URL_DREAL?><?=$docob["id_article"]?>" 
+                       target="_blank"><img 
+                            src="IMG/png/gnome-globe.png" 
+                            style="border:none" 
+                            alt="T&eacute;l&eacute;charger" /><br />
+                        <strong>Consulter les arr&ecirc;t&eacute;s</strong> 
+                        sur le site Internet de la DREAL 
+                    </a>
                     <br />
                 <?php endif; ?>
             </td>
