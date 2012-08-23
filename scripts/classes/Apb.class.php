@@ -11,8 +11,8 @@ class Apb {
 
     /**
      * Sélectionne un APB par son identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional  Identifiant régional du zonage
      */
     public function getApbByIdRegional($id_regional) {
         global $pdo;
