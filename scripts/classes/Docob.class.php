@@ -62,5 +62,3 @@ function getDocob() {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
