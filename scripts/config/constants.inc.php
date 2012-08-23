@@ -20,3 +20,6 @@ define('URL_INPN_ZNIEFF', 'http://inpn.mnhn.fr/isb/zone/znieff/');
 define('URL_PRIM_NET', 'http://macommune.prim.net/d_commune.php?insee=');
 define('URL_INSEE', 
         'http://www.statistiques-locales.insee.fr/esl/default.asp?page=statistiques-locales/chiffres-cles/recherche-zonage/choix-pdf&IdSelGeo=');
+define('URL_SIDE', 
+        'http://www.side.developpement-durable.gouv.fr/clientBookline/service/reference.asp?INSTANCE=exploitation&OUTPUT=PORTAL&DOCBASE=IFD_SIDE&DOCID=');
+
