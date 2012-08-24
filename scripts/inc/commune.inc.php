@@ -23,20 +23,20 @@ $id_type = $_REQUEST["id_type"];
 $id_commune = $_REQUEST["id_commune"];
 $id_epci = $_REQUEST["id_epci"];
 $id_scot = $_REQUEST["id_scot"];
-?>
-<?php if (isset($id_regional)): ?>
-    <?php $communes = getCommunesByIdRegional($id_regional, $id_type); ?>
-<?php elseif (isset($id_epci)): ?>
-    <?php $communes = getCommunesEpciByIdEpci($id_epci); ?>
-<?php elseif (isset($id_scot)): ?>
-    <?php $communes = getCommunesScotByIdScot($id_scot); ?>
-<?php endif; ?>
-<?php if (isset($communes)): ?>
+
+if (isset($id_regional)):
+    $communes = getCommunesByIdRegional($id_regional,$id_type);
+elseif (isset($id_epci)):
+    $communes = getCommunesEpciByIdEpci($id_epci);
+elseif (isset($id_scot)):
+    $communes = getCommunesScotByIdScot($id_scot);
+endif;
+if (isset($communes)): ?>
     <table width="99%">
         <?php foreach ($communes as $commune): ?>
             <tr>
                 <td bgcolor="<?= switchcolor() ?>">
-                    <?= $commune["id_commune"] ?>
+                    <?=$commune["id_commune"]?>
                     <?php
                     $str = $commune["id_commune"];
                     $str = mb_strcut($str, 0, 2);
@@ -45,7 +45,7 @@ $id_scot = $_REQUEST["id_scot"];
                         echo "";
                         ?> 
                     <?php else: ?>
-                        <a href="spip.php?page=fiche_commune&amp;id_commune=<?= $commune["id_commune"] ?>">
+                        <a href="spip.php?page=fiche_commune&amp;id_commune=<?=$commune["id_commune"]?>">
                         <?php endif; ?>
                         <?= $commune["nom_commune"] ?>
                     </a>
@@ -53,9 +53,10 @@ $id_scot = $_REQUEST["id_scot"];
             </tr>
         <?php endforeach; ?>
     </table>
-<?php endif; ?>
-<?php if (isset($id_commune)): ?>
-    <?php $commune = new Commune(); ?>
-    <?php $commune->getCommuneById($id_commune); ?>
+<?php
+endif;
+if (isset($id_commune)):
+    $commune = new Commune();
+    $commune->getCommuneById($id_commune); ?>
     <?= $commune->nom_commune ?> (<?= $commune->id_commune ?>)
 <?php endif; ?>
