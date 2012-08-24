@@ -11,16 +11,18 @@ class CoursEau {
 
     /**
      * Sélectionne une rivière par son identifiant
-     * @global string $pdo
-     * @param int $id_riviere 
+     * @global string $pdo Connexion à la base de données
+     * @param int $id_riviere Identifiant de la rivière
      */
     public function getRiviereByIdRiviere($id_riviere) {
         global $pdo;
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_RIVIERE_QUALITE_R52 
-        WHERE id_riviere = '$id_riviere' ";
+        WHERE id_riviere = :id_riviere');
+        $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom_riviere = stripslashes($row["nom_riviere"]);
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -32,13 +34,15 @@ class CoursEau {
      * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant de la station
      */
-    public function getRiviereByIdStation($id_regional) {
+    public function getRiviereByIdStation($id_station) {
         global $pdo;
-        $sql = "SELECT * 
-        FROM R_STATIONS_HYDROTEMPERATURE_R52 
-        WHERE id_regional = '$id_regional'";
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_STATION_HYDROTEMPERATURE_R52 
+        WHERE id_station = :id_station');
+        $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 9);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->riviere = stripslashes($row["riviere"]);
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -55,29 +59,28 @@ class CoursEau {
  * @return array 
  */
 function getRivieresQualiteByIdDpt($id_dpt) {
-    global $pdo;
-    $table = "R_RIVIERE_QUALITE_R52";
-    $table_2 = "R_RIVIERES_DEPARTEMENTS_QUALITE_R52";
-    
+    global $pdo;    
     if ($id_dpt != 0):
-        $sql = "SELECT *
-        FROM $table, $table_2 
-        WHERE $table_2.id_departement = $id_dpt
-        AND $table.id_riviere = $table_2.id_riviere 
-        ORDER BY $table.id_riviere ";
+        $sql = $pdo->prepare('SELECT *
+        FROM R_RIVIERE_QUALITE_R52, R_RIVIERES_DEPARTEMENTS_QUALITE_R52
+        WHERE R_RIVIERES_DEPARTEMENTS_QUALITE_R52.id_departement = :id_dpt
+        AND R_RIVIERE_QUALITE_R52.id_riviere = 
+        R_RIVIERES_DEPARTEMENTS_QUALITE_R52.id_riviere 
+        ORDER BY R_RIVIERE_QUALITE_R52.id_riviere');
+        $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
     else:
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_riviere = $table_2.id_riviere 
-        GROUP BY $table.nom_riviere 
-        ORDER BY $table.id_riviere ";
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_RIVIERE_QUALITE_R52, R_RIVIERES_DEPARTEMENTS_QUALITE_R52
+        WHERE R_RIVIERE_QUALITE_R52.id_riviere = 
+        R_RIVIERES_DEPARTEMENTS_QUALITE_R52.id_riviere 
+        GROUP BY R_RIVIERE_QUALITE_R52.nom_riviere 
+        ORDER BY R_RIVIERE_QUALITE_R52.id_riviere');
     endif;
+    $sql->execute();
     try {
-        $rivieres = $pdo->query($sql)->fetchAll();
+        $rivieres = $sql->fetchAll();
         return $rivieres;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
