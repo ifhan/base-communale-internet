@@ -11,17 +11,19 @@ class Rnn {
 
     /**
      * Sélectionne une RNN par son identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getRnnByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_RNN_R52, R_RNN_R52_data  
-        WHERE R_RNN_R52.id_regional = $id_regional 
-        AND R_RNN_R52.id_regional = R_RNN_R52_data.id_regional ";
+        WHERE R_RNN_R52.id_regional = :id_regional 
+        AND R_RNN_R52.id_regional = R_RNN_R52_data.id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->id_national = $row["id_national"];
             $this->nom = $row["nom"];
@@ -43,26 +45,20 @@ class Rnn {
 
 /**
  * Sélectionne les photographies d'une RNN par l'identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @global string $pdo Connexion à la base de données
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getRnnPhotosByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT *
-    FROM R_RNN_R52_photos 
-    WHERE id_regional = '$id_regional' ";
+    $sql = $pdo->prepare('SELECT * FROM R_RNN_R52_photos 
+    WHERE id_regional = :id_regional');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+    $sql->execute();
     try {
-        $rnn_photos = $pdo->query($sql)->fetchAll();
+        $rnn_photos = $sql->fetchAll();
         return $rnn_photos;
-        $this->id_regional = $rnn_photos["id_regional"];
-        $this->id_photo = $rnn_photos["id_photo"];
-        $this->titre = $rnn_photos["titre"];
-        $this->auteur = $rnn_photos["auteur"];
-        $this->fournisseur = $rnn_photos["fournisseur"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
