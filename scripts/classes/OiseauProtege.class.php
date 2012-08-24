@@ -18,7 +18,6 @@ class OiseauProtege {
  * @return array
  */
 function getOiseauxProtegesByIdArticle($id_article) {
-    // $pdo = Connection::getConnection();
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_article !== "0"):
         $sql = $pdo->prepare('SELECT * 
