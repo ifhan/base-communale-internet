@@ -13,25 +13,27 @@ class OiseauProtege {
 
 /**
  * Sélectionne les oiseaux protégés par identifiant de l'article
- * @global type $pdo
- * @param type $id_article
- * @return type 
+ * @global type $pdo Connexion à la base de données
+ * @param type $id_article Identifiant de l'article
+ * @return array
  */
 function getOiseauxProtegesByIdArticle($id_article) {
     // $pdo = Connection::getConnection();
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_article !== "0"):
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_OISEAUX_PROTEGES_2009_FRANCE 
-        WHERE id_article = $id_article 
-        ORDER BY id";
+        WHERE id_article = :id_article
+        ORDER BY id');
+        $sql->bindParam(':id_article', $id_article, PDO::PARAM_INT, 1);
     elseif ($id_article == "0"):
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_OISEAUX_PROTEGES_2009_FRANCE 
-        ORDER BY id";
+        ORDER BY id');
     endif;
+    $sql->execute();
     try {
-        $oiseaux_proteges = $pdo->query($sql)->fetchAll();
+        $oiseaux_proteges = $sql->fetchAll();
         return $oiseaux_proteges;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
