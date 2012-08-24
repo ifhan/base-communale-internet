@@ -11,25 +11,25 @@ class Pnr {
 
     /**
      * Sélectionne un PNR par son identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getPnrByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_PNR_R52 
-        WHERE id_regional = '$id_regional' ";
+        WHERE id_regional = :id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $pnr = $pdo->query($sql)->fetch();
-            $this->id_regional = $pnr["id_regional"];
-            $this->nom = $pnr["nom"];
-            $this->surf_sig_l93 = $pnr["surf_sig_l93"];
-            $this->url_site = $pnr["url_site"];
+            $row = $sql->fetch();
+            $this->id_regional = $row["id_regional"];
+            $this->nom = $row["nom"];
+            $this->surf_sig_l93 = $row["surf_sig_l93"];
+            $this->url_site = $row["url_site"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
 
 }
-
-?>
