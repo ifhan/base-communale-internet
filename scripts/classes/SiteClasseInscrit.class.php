@@ -15,7 +15,7 @@ class SiteClasseInscrit {
      * @param string $id_regional 
      */
     public function getSiteClasseInscritDataByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_SITE_CLASSE_INSCRIT_R52_data 
         WHERE id_regional = '$id_regional' ";
@@ -39,7 +39,7 @@ class SiteClasseInscrit {
  * @return array 
  */
 function getEntitesFromSiteByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_SITE_CLASSE_INSCRIT_R52";
     $table_2 = "R_SITE_CLASSE_INSCRIT_R52_data";
 
@@ -64,7 +64,7 @@ function getEntitesFromSiteByIdRegional($id_regional) {
  * @return array 
  */
 function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
     $table_2 = "R_SITE_CLASSE_INSCRIT_R52";
     $table_3 = "R_TYPE_ZONAGE_R52";
@@ -88,7 +88,7 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
  * @return array 
  */
 function getSitesClassesInscrits() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM R_SITE_CLASSE_INSCRIT_R52 
     GROUP BY id_regional 

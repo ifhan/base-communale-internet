@@ -16,7 +16,7 @@ class Znieff2G {
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getZnieff2GByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM znieff_znieff, znieff_comment 
         WHERE znieff_znieff.NM_REGZN = $id_regional
@@ -53,7 +53,7 @@ class Znieff2G {
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getProspectionZnieff($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "znieff_znieff";
         $table_2 = "znieff_bilan";
 
@@ -183,7 +183,7 @@ class Znieff2G {
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getCommentCriteresDelimitationZnieff($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "znieff_znieff";
         $table_4 = "znieff_comment";
 
@@ -208,7 +208,7 @@ class Znieff2G {
      * @param int $id_type 
      */
     public function getPhotosZnieff($id_regional, $id_type) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "R_ZNIEFF_R52_photos";
         $table_2 = "znieff_znieff";
         $table_3 = "R_TYPE_ZONAGE_R52";
@@ -237,7 +237,7 @@ class Znieff2G {
  * @return ARRAY 
  */
 function getZnieffByIdCorine($id_corine) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_typologie";
     $table_2 = "znieff_znieff";
     $table_3 = "znieff_zni_typo";
@@ -268,7 +268,7 @@ function getZnieffByIdCorine($id_corine) {
  * @return array 
  */
 function getMilieuxZnieff($id_regional, $fg_typo) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_typo";
     $table_3 = "znieff_typologie";
@@ -299,7 +299,7 @@ function getMilieuxZnieff($id_regional, $fg_typo) {
  * @return array 
  */
 function getGeomorphologieZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_geo";
     $table_3 = "znieff_geomorphologie";
@@ -329,7 +329,7 @@ function getGeomorphologieZnieff($id_regional) {
  * @return array 
  */
 function getActivitesHumainesZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_act";
     $table_3 = "znieff_act_humaine";
@@ -359,7 +359,7 @@ function getActivitesHumainesZnieff($id_regional) {
  * @return type 
  */
 function getStatutsProprieteZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_stat";
     $table_3 = "znieff_statut_propri";
@@ -389,7 +389,7 @@ function getStatutsProprieteZnieff($id_regional) {
  * @return array 
  */
 function getMesuresProtectionZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_mpro";
     $table_3 = "znieff_mes_protection";
@@ -419,7 +419,7 @@ function getMesuresProtectionZnieff($id_regional) {
  * @return array 
  */
 function getFacteursEvolutionZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_fact";
     $table_3 = "znieff_facteur";
@@ -449,7 +449,7 @@ function getFacteursEvolutionZnieff($id_regional) {
  * @return array 
  */
 function getCriteresInteretZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
@@ -475,7 +475,7 @@ function getCriteresInteretZnieff($id_regional) {
  * @return array 
  */
 function getCriteresPatrimoniauxZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
@@ -504,7 +504,7 @@ function getCriteresPatrimoniauxZnieff($id_regional) {
  * @return array 
  */
 function getCriteresFonctionnelsZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
@@ -534,7 +534,7 @@ function getCriteresFonctionnelsZnieff($id_regional) {
  * @return array 
  */
 function getCriteresComplementairesZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
@@ -565,7 +565,7 @@ function getCriteresComplementairesZnieff($id_regional) {
  * @return array 
  */
 function getNbEspecesCitees($id_regional, $cd_esp) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
 
@@ -591,7 +591,7 @@ function getNbEspecesCitees($id_regional, $cd_esp) {
  * @return array 
  */
 function getNbAutresEspecesFauneCitees($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
 
@@ -629,7 +629,7 @@ function getNbAutresEspecesFauneCitees($id_regional) {
  * @return array 
  */
 function getNbEspecesPhaneroCitees($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
 
@@ -655,7 +655,7 @@ function getNbEspecesPhaneroCitees($id_regional) {
  * @return array 
  */
 function getNbAlguesCitees($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
 
@@ -681,7 +681,7 @@ function getNbAlguesCitees($id_regional) {
  * @return array 
  */
 function getCriteresDelimitationZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_delim";
     $table_3 = "znieff_delimitation";
@@ -710,7 +710,7 @@ function getCriteresDelimitationZnieff($id_regional) {
  * @return array 
  */
 function getLiensAutresZnieff($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_zni";
 
@@ -735,7 +735,7 @@ function getLiensAutresZnieff($id_regional) {
  * @return array 
  */
 function getSourcesZnieff($id_regional, $ty_source) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_source";
     $table_3 = "znieff_sources";
@@ -764,7 +764,7 @@ function getSourcesZnieff($id_regional, $ty_source) {
  * @return array 
  */
 function getZnieff2GPhotosByIdRegional($id_regional, $id_type) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZNIEFF_R52_photos";
     $table_2 = "znieff_znieff";
     $table_3 = "R_TYPE_ZONAGE_R52";
@@ -791,7 +791,7 @@ function getZnieff2GPhotosByIdRegional($id_regional, $id_type) {
  * @return array 
  */
 function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_liste_esp";
     $table_3 = "znieff_espece";
@@ -819,7 +819,7 @@ function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
  * @return array 
  */
 function getEmbranchementsEspece($id_ms_arbo_pere) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT MS_ARBO, LB_ESP, MS_ARBO_PERE, CD_ESP
         FROM znieff_espece
         WHERE MS_ARBO = '$id_ms_arbo_pere'";
@@ -839,7 +839,7 @@ function getEmbranchementsEspece($id_ms_arbo_pere) {
  * @return array 
  */
 function getSousRegnes($ms_arbo_pere) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT LB_NIVEAU, MS_ARBO, LB_ESP, MS_ARBO_PERE
         FROM znieff_espece
         WHERE MS_ARBO = '$ms_arbo_pere'
@@ -853,7 +853,7 @@ function getSousRegnes($ms_arbo_pere) {
 }
 
 function getNomVernaculaireFlore($CD_ESP) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table_3 = "znieff_espece";
     $table_5 = "R_ESPECES_DETERMINANTES_FLORE_R52";
     $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
@@ -873,7 +873,7 @@ function getNomVernaculaireFlore($CD_ESP) {
 }
 
 function getNomVernaculaireFaune($CD_ESP) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table_3 = "znieff_espece";
     $table_5 = "R_ESPECES_DETERMINANTES_FAUNE_R52";
     $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
@@ -902,7 +902,7 @@ function getNomVernaculaireFaune($CD_ESP) {
  * @return array 
  */
 function getSourcesEspeces($id_regional, $fg_esp) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_liste_esp";
     $table_3 = "znieff_espece";

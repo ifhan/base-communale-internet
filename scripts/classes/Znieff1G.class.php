@@ -18,7 +18,7 @@ class Znieff1G {
      * @param type $id_type 
      */
     public function getZnieff1GByIdRegional($id_regional, $id_type) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         if ($id_type == 8):
             $table = R_ZNIEFF1_G1_R52;
             $table_2 = R_ZNIEFF1_G1_R52_data;

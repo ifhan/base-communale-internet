@@ -8,7 +8,7 @@
  * @version 1.0
  */
 class OiseauProtege {
-    //put your code here
+
 }
 
 /**
@@ -18,7 +18,8 @@ class OiseauProtege {
  * @return type 
  */
 function getOiseauxProtegesByIdArticle($id_article) {
-    global $pdo;
+    // $pdo = Connection::getConnection();
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_article !== "0"):
         $sql = "SELECT * 
         FROM R_OISEAUX_PROTEGES_2009_FRANCE 
@@ -36,5 +37,3 @@ function getOiseauxProtegesByIdArticle($id_article) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>

@@ -8,7 +8,7 @@
  * @version 1.0
  */
 class Scot {
-    //put your code here
+
 }
 
 /**
@@ -18,7 +18,7 @@ class Scot {
  * @return array 
  */
 function getCommunesScotByIdScot($id_scot) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "BDC_COMMUNE_52";
     $table_2 = "R_SCOT_COMMUNES_R52";
 
@@ -43,7 +43,7 @@ function getCommunesScotByIdScot($id_scot) {
  * @return array 
  */
 function getScotsByIdDpt($id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM R_SCOT_R52
     WHERE id_departement = $id_dpt 

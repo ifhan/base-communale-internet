@@ -15,7 +15,7 @@ class Rnn {
      * @param string $id_regional 
      */
     public function getRnnByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_RNN_R52, R_RNN_R52_data  
         WHERE R_RNN_R52.id_regional = $id_regional 
@@ -48,7 +48,7 @@ class Rnn {
  * @return array 
  */
 function getRnnPhotosByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT *
     FROM R_RNN_R52_photos 
     WHERE id_regional = '$id_regional' ";

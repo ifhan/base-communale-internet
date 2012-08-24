@@ -16,7 +16,7 @@ class Unesco {
      * @param string $id_regional 
      */
     public function getUnescoByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_UNESCO_049
         WHERE id_regional = '$id_regional' ";

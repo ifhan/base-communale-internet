@@ -15,7 +15,7 @@ class Rnv {
      * @param string $id_regional 
      */
     public function getRnvById($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_RNV_R52, R_RNV_R52_data  
         WHERE R_RNV_R52.id_regional = $id_regional 

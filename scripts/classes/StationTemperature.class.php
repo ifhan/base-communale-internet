@@ -14,7 +14,7 @@ class StationTemperature {
      * @param string $id_station Identifiant de la station
      */
     public function getStationTemperatureByIdStation($id_station) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
         WHERE id_station = :id_station');
         $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 10);
@@ -40,7 +40,7 @@ class StationTemperature {
  * @return array 
  */
 function getStationsTemperatures() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
     ORDER BY id_dpt, id_station');
     $sql->execute();

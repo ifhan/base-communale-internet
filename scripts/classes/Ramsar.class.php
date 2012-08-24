@@ -17,7 +17,7 @@ class Ramsar {
      * @param string $id_regional 
      */
     public function getRamsarByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_RAMSAR_R52
         WHERE id_regional = '$id_regional' ";

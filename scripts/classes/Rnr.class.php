@@ -15,7 +15,7 @@ class Rnr {
      * @param int $id_regional 
      */
     public function getRnrByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_RNR_R52 
         WHERE id_regional = '$id_regional' ";

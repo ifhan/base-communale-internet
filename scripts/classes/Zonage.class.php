@@ -16,7 +16,7 @@ class Zonage {
      * @param int $id_type 
      */
     public function getTypeZonageByIdType($id_type) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = '$id_type' ";
@@ -39,7 +39,7 @@ class Zonage {
      * @param string $id_regional 
      */
     public function getZonageByIdRegional($id_type, $id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql_1 = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = '$id_type' ";
@@ -68,7 +68,7 @@ class Zonage {
      * @param string $id_regional 
      */
     public function getZonageDataById($id_type, $id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql_1 = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = '$id_type' ";
@@ -99,7 +99,7 @@ class Zonage {
      * @global type $pdo 
      */
     public function getZonages() {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 ";
         try {
@@ -125,7 +125,7 @@ class Zonage {
  * @return array 
  */
 function getZonagesByIdTypeByIdDpt($id_type, $id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
@@ -163,7 +163,7 @@ function getZonagesByIdTypeByIdDpt($id_type, $id_dpt) {
  * @return string 
  */
 function getZonagesByIdTypeByRegion($id_type) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
@@ -201,7 +201,7 @@ function getZonagesByIdTypeByRegion($id_type) {
  * @return array 
  */
 function getThemesByIdCommune($id_commune) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -232,7 +232,7 @@ function getThemesByIdCommune($id_commune) {
  * @return array 
  */
 function getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -262,7 +262,7 @@ function getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) {
  * @return string 
  */
 function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
@@ -304,7 +304,7 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
  * @return array 
  */
 function getThemesByIdEpci($id_epci) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -336,7 +336,7 @@ function getThemesByIdEpci($id_epci) {
  * @return array 
  */
 function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -368,7 +368,7 @@ function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
  * @return string 
  */
 function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
@@ -412,7 +412,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
  * @return array 
  */
 function getThemesByIdScot($id_scot) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -444,7 +444,7 @@ function getThemesByIdScot($id_scot) {
  * @return array 
  */
 function getTypesZonagesByIdScotByIdTheme($id_scot, $id_theme) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZONAGES_COMMUNES_R52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
@@ -476,7 +476,7 @@ function getTypesZonagesByIdScotByIdTheme($id_scot, $id_theme) {
  * @return string 
  */
 function getZonagesByIdTypeByIdScot($id_type, $id_scot) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */

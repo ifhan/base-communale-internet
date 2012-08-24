@@ -10,8 +10,6 @@
  */
 class Sic {
 
-    public $id_regional;
-
 }
 
 /**
@@ -21,7 +19,7 @@ class Sic {
  * @return array 
  */
 function getSicByIdEur15($id_eur15) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "natura_eur15";
     $table_2 = "natura_habit1";
     $table_3 = "R_SIC_R52";

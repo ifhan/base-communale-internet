@@ -15,7 +15,7 @@ class Zhim {
      * @param string $id_regional 
      */
     public function getZhimByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_ZHIM_R52, R_ZHIM_R52_data  
         WHERE R_ZHIM_R52.id_regional = '$id_regional'

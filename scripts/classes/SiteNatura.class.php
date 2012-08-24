@@ -17,7 +17,7 @@ class SiteNatura {
      * @param int $id_type 
      */
     public function getSiteNaturaByIdRegionalIdType($id_regional, $id_type) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql_1 = "SELECT * 
         FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = '$id_type' ";
@@ -55,7 +55,7 @@ class SiteNatura {
      * @param type $id_regional 
      */
     public function getOperateurByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "R_DOCOB_R52";
         $table_2 = "R_DOCOB_ORGANISMES_R52";
 
@@ -79,7 +79,7 @@ class SiteNatura {
      * @param string $id_regional 
      */
     public function getStructureAnimatriceByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "R_DOCOB_R52";
         $table_2 = "R_DOCOB_ORGANISMES_R52";
 
@@ -103,7 +103,7 @@ class SiteNatura {
      * @param string $id_regional 
      */
     public function getDataByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM natura_biotop 
         WHERE SITECODE = '$id_regional'";
@@ -127,7 +127,7 @@ class SiteNatura {
  * @return array 
  */
 function getSitesNaturaByCategorie($id_type, $categorie) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_type == "25"):
         $sql_2 = "(SELECT * FROM R_ZPS_R52 WHERE categorie = '$categorie' 
         GROUP BY id_regional) 
@@ -175,7 +175,7 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
  * @return array 
  */
 function getAmpbhibiensReptilesByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_amprep 
     WHERE SITECODE = '$id_regional'
@@ -197,7 +197,7 @@ function getAmpbhibiensReptilesByIdRegional($id_regional) {
  * @return array 
  */
 function getInvertebresByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_invert 
     WHERE SITECODE = '$id_regional'
@@ -219,7 +219,7 @@ function getInvertebresByIdRegional($id_regional) {
  * @return array 
  */
 function getMammiferesByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_mammal 
     WHERE SITECODE = '$id_regional'
@@ -241,7 +241,7 @@ function getMammiferesByIdRegional($id_regional) {
  * @return array 
  */
 function getPlantesByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_plant 
     WHERE SITECODE = '$id_regional'
@@ -263,7 +263,7 @@ function getPlantesByIdRegional($id_regional) {
  * @return array 
  */
 function getPoissonsByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_fishes 
     WHERE SITECODE = '$id_regional'
@@ -285,7 +285,7 @@ function getPoissonsByIdRegional($id_regional) {
  * @return array 
  */
 function getAutresEspecesByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_spec 
     WHERE SITECODE = '$id_regional'
@@ -307,7 +307,7 @@ function getAutresEspecesByIdRegional($id_regional) {
  * @return array 
  */
 function getOiseauxByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
     FROM natura_bird 
     WHERE SITECODE = '$id_regional'
@@ -329,7 +329,7 @@ function getOiseauxByIdRegional($id_regional) {
  * @return type 
  */
 function getHabitatsByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "natura_eur15";
     $table_2 = "natura_habit1";
 

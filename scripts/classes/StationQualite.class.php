@@ -14,7 +14,7 @@ class StationQualite {
      * @param string $id_regional Identifiant de la station
      */
     public function getStationQualiteByIdStation($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "R_STATION_QUALITE_RCS_R52";
         $table_2 = "R_RIVIERE_QUALITE_R52";
         
@@ -46,7 +46,7 @@ class StationQualite {
  * @return array 
  */
 function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     if($id_dpt!="0"):
         $sql = "SELECT * 
         FROM R_STATION_QUALITE_RCS_R52 
@@ -75,7 +75,7 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
  * @return array 
  */
 function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_STATION_QUALITE_RCS_R52";
     $table2 = "R_RIVIERE_QUALITE_R52";
     if ($id_dpt != "0"):
@@ -126,7 +126,7 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
  * @return array
  */
 function getStationsQualiteByIdCommune($id_commune) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_STATION_QUALITE_RCS_R52";
     $table2 = "R_RIVIERE_QUALITE_R52";
 

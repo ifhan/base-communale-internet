@@ -9,16 +9,13 @@
  */
 class HabitatCorine {
 
-    public $id_corine;
-    public $lb_corine;
-
     /**
      * Sélection de l'ensemble des habitats ZNIEFF (nomenclature CORINE)
-     * @global type $pdo
+     * @global type $pdo Connexion à la base de données
      * @return array 
      */
     public function getHabitatsCorine() {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM natura_eur15";
         try {
@@ -31,11 +28,11 @@ class HabitatCorine {
 
     /**
      * Sélection d'un habitat par son identifiant
-     * @global type $pdo
-     * @param string $id_corine
+     * @global type $pdo Connexion à la base de données
+     * @param string $id_corine Identifiant CORINE de l'habitat
      */
     public function getHabitatCorineById($id_corine) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO = '$id_corine' ";
@@ -52,11 +49,11 @@ class HabitatCorine {
 
 /**
  * Sélection de l'ensemble des habitats ZNIEFF (nomenclature CORINE)
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorine() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie ";
     try {
@@ -69,11 +66,11 @@ function getHabitatsCorine() {
 
 /**
  * Récupère les habitats CORINE du thème 1
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo1() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '1%' ";
@@ -87,11 +84,11 @@ function getHabitatsCorineByCdTypo1() {
 
 /**
  * Récupère les habitats CORINE du thème 2
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo2() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '2%' ";
@@ -105,11 +102,11 @@ function getHabitatsCorineByCdTypo2() {
 
 /**
  * Récupère les habitats CORINE du thème 3
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo3() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '3%' ";
@@ -123,11 +120,11 @@ function getHabitatsCorineByCdTypo3() {
 
 /**
  * Récupère les habitats CORINE du thème 4
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo4() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '4%' ";
@@ -141,11 +138,11 @@ function getHabitatsCorineByCdTypo4() {
 
 /**
  * Récupère les habitats CORINE du thème 5
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo5() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '5%' ";
@@ -159,11 +156,11 @@ function getHabitatsCorineByCdTypo5() {
 
 /**
  * Récupère les habitats CORINE du thème 6
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo6() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '6%' ";
@@ -177,11 +174,11 @@ function getHabitatsCorineByCdTypo6() {
 
 /**
  * Récupère les habitats CORINE du thème 7
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo7() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '7%' ";
@@ -195,11 +192,11 @@ function getHabitatsCorineByCdTypo7() {
 
 /**
  * Récupère les habitats CORINE du thème 8
- * @global type $pdo
+ * @global type $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsCorineByCdTypo8() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM znieff_typologie 
         WHERE CD_TYPO LIKE '8%' ";
@@ -210,5 +207,3 @@ function getHabitatsCorineByCdTypo8() {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>

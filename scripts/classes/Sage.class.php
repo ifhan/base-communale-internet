@@ -16,7 +16,7 @@ class Sage {
      * @param string $id_regional 
      */
     public function getSageByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_SAGE_R52, R_SAGE_R52_data  
         WHERE R_SAGE_R52.id_regional = '$id_regional'
@@ -66,7 +66,7 @@ class Sage {
      * @param int $id_situation 
      */
     public function getSageSituationByIdSituation($id_situation) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_SAGE_SITUATION_R52 
         WHERE id_situation = $id_situation";

@@ -16,7 +16,7 @@ class Zico {
      * @param string $id_regional 
      */
     public function getZicoByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_ZICO_R52, R_ZICO_R52_data  
         WHERE R_ZICO_R52.id_regional = '$id_regional'

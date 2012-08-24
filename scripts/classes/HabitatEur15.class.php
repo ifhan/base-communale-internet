@@ -9,17 +9,14 @@
  */
 class HabitatEur15 {
 
-    public $id_eur15;
-    public $lb_eur15;
-
     /**
      * Sélection de l'ensemble de la liste des habitats Natura 2000 
      * (nomenclature EUR15)
-     * @global string $pdo
+     * @global string $pdo Connexion à la base de données
      * @return array 
      */
     public function getHabitatsEur15() {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM natura_eur15";
         try {
@@ -32,11 +29,11 @@ class HabitatEur15 {
 
     /**
      * Sélection d'un habitat par son identifiant
-     * @global string $pdo
-     * @param int $id_eur15  
+     * @global string $pdo Connexion à la base de données
+     * @param int $id_eur15 Identifiant EUR15 de l'habitat
      */
     public function getHabitatEur15ById($id_eur15) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM natura_eur15 
         WHERE ID_EUR15 = '$id_eur15' ";
@@ -55,20 +52,17 @@ class HabitatEur15 {
 /**
  * Sélection de l'ensemble de la liste des habitats Natura 2000 
  * (nomenclature EUR15)
- * @global string $pdo
+ * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsEur15() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = "SELECT * 
         FROM natura_eur15";
     try {
         $habitats_eur15 = $pdo->query($sql)->fetchAll();
-
         return $habitats_eur15;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>

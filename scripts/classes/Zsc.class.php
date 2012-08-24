@@ -16,7 +16,7 @@ class Zsc {
      * @param string $id_regional 
      */
     public function getZscDataByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = "SELECT * 
         FROM R_ZSC_R52_data 
         WHERE id_regional = '$id_regional' ";
