@@ -16,16 +16,15 @@ class Epci {
      */
     public function getEpciByIdEpci($id_epci) {
         global $pdo;
-        $table = "R_EPCI_R52";
-        $table_2 = "R_EPCI_R52_statut";
-
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_epci = $id_epci 
-        AND $table.id_statut_epci = $table_2.id_statut_epci 
-        GROUP BY $table_2.id_statut_epci";
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_EPCI_R52, R_EPCI_R52_statut
+        WHERE R_EPCI_R52.id_epci = :id_epci 
+        AND R_EPCI_R52.id_statut_epci = R_EPCI_R52_statut.id_statut_epci 
+        GROUP BY R_EPCI_R52_statut.id_statut_epci');
+        $sql->bindParam(':id_epci', $id_epci, PDO::PARAM_STR, 3);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom_epci  = $row['nom_epci'];
             $this->nom_statut_epci  = $row['nom_statut_epci'];
         } catch(PDOException $e) {
@@ -40,12 +39,13 @@ class Epci {
      */
     public function getEpciByCodeSiren($id_siren) {
         global $pdo;
-        $sql = "SELECT * 
-        FROM R_EPCI_R52_videos
-        WHERE siren = $id_siren 
-        GROUP BY siren";
+        $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
+        WHERE siren = :id_siren 
+        GROUP BY siren');
+        $sql->bindParam(':id_siren', $id_siren, PDO::PARAM_STR, 20);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom_epci  = $row['nom_epci'];
         } catch(PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -60,23 +60,22 @@ class Epci {
  * @return array 
  */
 function getCommunesEpciByIdEpci($id_epci) {
-        global $pdo;
-        $table = "BDC_COMMUNE_52";
-        $table_2 = "R_EPCI_COMMUNES_R52";
-        
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table_2.id_epci = $id_epci
-        AND $table.id_commune = $table_2.id_commune 
-        GROUP BY $table.id_commune 
-        ORDER BY $table.id_commune";
-        try {
-            $communes = $pdo->query($sql)->fetchAll();
-            return $communes;
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }    
-    }
+    global $pdo;
+    $sql = $pdo->prepare('SELECT * 
+    FROM BDC_COMMUNE_52, R_EPCI_COMMUNES_R52
+    WHERE R_EPCI_COMMUNES_R52.id_epci = :id_epci
+    AND BDC_COMMUNE_52.id_commune = R_EPCI_COMMUNES_R52.id_commune 
+    GROUP BY BDC_COMMUNE_52.id_commune 
+    ORDER BY BDC_COMMUNE_52.id_commune');
+    $sql->bindParam(':id_epci', $id_epci, PDO::PARAM_STR, 3);
+    $sql->execute();
+    try {
+        $communes = $sql->fetchAll();
+        return $communes;
+    } catch(PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+    }    
+}
 
 /**
  * Sélectionne les ECPI d'un département par le code géographique 
@@ -87,12 +86,13 @@ function getCommunesEpciByIdEpci($id_epci) {
  */
 function getEpciByIdDpt($id_dpt) {
     global $pdo;
-    $sql = "SELECT * 
-    FROM R_EPCI_R52
-    WHERE id_departement = $id_dpt 
-    ORDER BY nom_epci";
+    $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52
+    WHERE id_departement = :id_dpt 
+    ORDER BY nom_epci');
+    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
+    $sql->execute();
     try {
-        $array_epci = $pdo->query($sql)->fetchAll();
+        $array_epci = $sql->fetchAll();
         return $array_epci;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -108,16 +108,15 @@ function getEpciByIdDpt($id_dpt) {
  */
 function getEpciVideosByIdDpt($id_dpt) {
     global $pdo;
-    $sql = "SELECT * 
-    FROM R_EPCI_R52_videos 
-    WHERE id_departement = $id_dpt 
-    ORDER BY nom_epci";
+    $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
+    WHERE id_departement = :id_dpt 
+    ORDER BY nom_epci');
+    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
+    $sql->execute();
     try {
-        $array_epci = $pdo->query($sql)->fetchAll();
+        $array_epci = $sql->fetchAll();
         return $array_epci;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
