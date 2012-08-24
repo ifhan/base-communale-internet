@@ -5,30 +5,9 @@
  * Classe et fonction concernant les commuens
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-13
- * @version 0.1
+ * @version 1.0
  */
 class Commune {
-
-    /**
-     * Sélectionne l'ensemble des communes d'un département
-     * @global type $pdo Connexion à la base de données
-     * @param string $id_dpt Identifiant du département
-     * @return array 
-     */
-    public function getCommunesByIdDepartement($id_dpt) {
-        global $pdo;
-        $sql = "SELECT *
-        FROM BDC_COMMUNE_52 
-        WHERE id_departement = '$id_dpt' 
-        ORDER BY nom_commune";
-        try {
-            $query = $pdo->query($sql);
-            $communes = $query->fetchAll();
-            return $communes;
-        } catch (PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-    }
 
     /**
      * Sélectionne une commune par son code géographique
@@ -37,11 +16,13 @@ class Commune {
      */
     public function getCommuneById($id_commune) {
         global $pdo;
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM BDC_COMMUNE_52 
-        WHERE id_commune = '$id_commune' ";
+        WHERE id_commune = :id_commune');
+        $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_commune = $row['id_commune'];
             $this->nom_commune = $row['nom_commune'];
         } catch (PDOException $e) {
@@ -59,12 +40,14 @@ class Commune {
  */
 function getCommunesByIdDpt($id_dpt) {
     global $pdo;
-    $sql = "SELECT *
-    FROM BDC_COMMUNE_52
-    WHERE id_departement = $id_dpt
-    ORDER BY nom_commune";
+    $sql = $pdo->prepare('SELECT *
+    FROM BDC_COMMUNE_52 
+    WHERE id_departement = :id_dpt
+    ORDER BY nom_commune');
+    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
+    $sql->execute();
     try {
-        $communes = $pdo->query($sql)->fetchAll();
+        $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -80,18 +63,18 @@ function getCommunesByIdDpt($id_dpt) {
  */
 function getCommunesByIdRegional($id_regional, $id_type) {
     global $pdo;
-    $table = "R_ZONAGES_COMMUNES_R52";
-    $table_2 = "BDC_COMMUNE_52";
-
-    $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_regional = '$id_regional'
-        AND $table.id_commune = $table_2.id_commune 
-        AND $table.id_type = $id_type 
-        GROUP BY $table_2.id_commune
-        ORDER BY $table_2.id_commune";
+    $sql = $pdo->prepare('SELECT * 
+    FROM R_ZONAGES_COMMUNES_R52, BDC_COMMUNE_52
+    WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
+    AND R_ZONAGES_COMMUNES_R52.id_commune = BDC_COMMUNE_52.id_commune 
+    AND R_ZONAGES_COMMUNES_R52.id_type = :id_type
+    GROUP BY BDC_COMMUNE_52.id_commune
+    ORDER BY BDC_COMMUNE_52.id_commune');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
+    $sql->execute();
     try {
-        $communes = $pdo->query($sql)->fetchAll();
+        $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -107,21 +90,19 @@ function getCommunesByIdRegional($id_regional, $id_type) {
  */
 function getCommunesStationsQualiteByIdDpt($id_dpt) {
     global $pdo;
-    $table = "BDC_COMMUNE_52";
-    $table_2 = "R_STATION_QUALITE_RCS_R52";
-    
-    $sql = "SELECT $table.id_commune, $table_2.id_commune, $table.nom_commune 
-    FROM $table, $table_2
-    WHERE $table.id_departement = $id_dpt
-    AND $table.id_commune = $table_2.id_commune 
-    GROUP BY $table.nom_commune
-    ORDER BY $table.nom_commune";
+    $sql = $pdo->prepare('SELECT BDC_COMMUNE_52.id_commune, 
+        BDC_COMMUNE_52.nom_commune, R_STATION_QUALITE_RCS_R52.id_commune 
+    FROM BDC_COMMUNE_52, R_STATION_QUALITE_RCS_R52
+    WHERE BDC_COMMUNE_52.id_departement = :id_dpt
+    AND BDC_COMMUNE_52.id_commune = R_STATION_QUALITE_RCS_R52.id_commune 
+    GROUP BY BDC_COMMUNE_52.nom_commune
+    ORDER BY BDC_COMMUNE_52.nom_commune');
+    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
+    $sql->execute();
     try {
-        $communes = $pdo->query($sql)->fetchAll();
+        $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
