@@ -64,7 +64,7 @@ define('URL_BASE_COMMUNALE',
 <?php endif; ?>
 <?php if(!empty($id_dpt)): ?>
 <?php $departement = new Departement(); ?>
-<?php $departement->getDepartementById($id_dpt); ?>
+<?php $departement->getDepartementByIdDpt($id_dpt); ?>
 <h2>Tache urbaine : <?=$departement->nom_dpt?> (<?=$departement->id_dpt?>)</h2>
 <div class="center">
     <video width="1024" height="768" controls="controls" autoplay="true">
