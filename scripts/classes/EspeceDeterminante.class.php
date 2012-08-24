@@ -2,7 +2,7 @@
 
 /**
  * Description of EspeceDeterminante
- *
+ * Classe et fonctions concernant les espèces déterminantes
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-07-26
  * @version 1.0
