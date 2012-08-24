@@ -64,15 +64,15 @@ $departement->getDepartementByIdRegional($id_regional,$id_type);
 <h3 class="spip">Parcelles cadastrales&nbsp;:</h3>
 <?php endif; ?>
 <p><?=$rnn->parcelles?></p>
-<?php if(isset($rnn->statut_foncier)): ?>
+<?php if(!empty($rnn->statut_foncier)): ?>
 <h3 class="spip">Statut foncier&nbsp;:</h3>
 <p><?=$rnn->statut_foncier?></p>
 <?php endif; ?>
-<?php if(isset($rnn->interet_bio)): ?>
+<?php if(!empty($rnn->interet_bio)): ?>
 <h3 class="spip">Int&eacute;r&ecirc;t biologique&nbsp;:</h3>
 <p><?=$rnn->interet_bio?></p>
 <?php endif; ?>
-<?php if(isset($rnn->effets_protection)): ?>
+<?php if(!empty($rnn->effets_protection)): ?>
 <h3 class="spip">Effets de la protection&nbsp;:</h3>
 <p><?=$rnn->effets_protection?></p>
 <?php endif; ?>
