@@ -15,7 +15,7 @@ class CoursEau {
      * @param int $id_riviere Identifiant de la rivière
      */
     public function getRiviereByIdRiviere($id_riviere) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
         FROM R_RIVIERE_QUALITE_R52 
         WHERE id_riviere = :id_riviere');
@@ -35,7 +35,7 @@ class CoursEau {
      * @param string $id_regional Identifiant de la station
      */
     public function getRiviereByIdStation($id_station) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
         FROM R_STATION_HYDROTEMPERATURE_R52 
         WHERE id_station = :id_station');
@@ -59,7 +59,7 @@ class CoursEau {
  * @return array 
  */
 function getRivieresQualiteByIdDpt($id_dpt) {
-    global $pdo;    
+    $pdo = ConnectionFactory::getFactory()->getConnection();    
     if ($id_dpt != 0):
         $sql = $pdo->prepare('SELECT *
         FROM R_RIVIERE_QUALITE_R52, R_RIVIERES_DEPARTEMENTS_QUALITE_R52

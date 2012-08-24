@@ -15,7 +15,7 @@ class Departement {
      * @param int $id_dpt Identifiant du département
      */
     public function getDepartementByIdDpt($id_dpt) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * FROM BDC_DEPARTEMENT_52 
         WHERE id_departement = :id_dpt');
         $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
@@ -36,7 +36,7 @@ class Departement {
      * @param int $id_type Identifiant du type de zonage
      */
     public function getDepartementByIdRegional($id_regional, $id_type) {
-        global $pdo;        
+        $pdo = ConnectionFactory::getFactory()->getConnection();        
         $sql = $pdo->prepare('SELECT * 
         FROM R_ZONAGES_COMMUNES_R52, BDC_DEPARTEMENT_52
         WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
@@ -65,7 +65,7 @@ class Departement {
  * @return array 
  */
 function getDepartementsByIdRegional($id_regional) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
     FROM R_ZONAGES_COMMUNES_R52, BDC_COMMUNE_52, BDC_DEPARTEMENT_52
     WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
@@ -89,7 +89,7 @@ function getDepartementsByIdRegional($id_regional) {
  * @return array 
  */
 function getDepartementsByIdRegion($id_region) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM BDC_DEPARTEMENT_52 
     WHERE id_region = :id_region
     ORDER BY nom_departement');
@@ -110,7 +110,7 @@ function getDepartementsByIdRegion($id_region) {
  * @return array 
  */
 function getDepartementsStationsQualiteByIdRegion() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM BDC_DEPARTEMENT_52 
     WHERE id_region = 18 
     OR id_departement = 61

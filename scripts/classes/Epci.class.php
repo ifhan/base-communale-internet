@@ -15,7 +15,7 @@ class Epci {
      * @param int $id_epci Identifiant de l'EPCI
      */
     public function getEpciByIdEpci($id_epci) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
         FROM R_EPCI_R52, R_EPCI_R52_statut
         WHERE R_EPCI_R52.id_epci = :id_epci 
@@ -38,7 +38,7 @@ class Epci {
      * @param int $id_siren Code SIREN de l'EPCI
      */
     public function getEpciByCodeSiren($id_siren) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
         WHERE siren = :id_siren 
         GROUP BY siren');
@@ -60,7 +60,7 @@ class Epci {
  * @return array 
  */
 function getCommunesEpciByIdEpci($id_epci) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
     FROM BDC_COMMUNE_52, R_EPCI_COMMUNES_R52
     WHERE R_EPCI_COMMUNES_R52.id_epci = :id_epci
@@ -85,7 +85,7 @@ function getCommunesEpciByIdEpci($id_epci) {
  * @return array 
  */
 function getEpciByIdDpt($id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52
     WHERE id_departement = :id_dpt 
     ORDER BY nom_epci');
@@ -107,7 +107,7 @@ function getEpciByIdDpt($id_dpt) {
  * @return array 
  */
 function getEpciVideosByIdDpt($id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
     WHERE id_departement = :id_dpt 
     ORDER BY nom_epci');

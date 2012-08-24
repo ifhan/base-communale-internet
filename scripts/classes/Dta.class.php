@@ -16,7 +16,7 @@ class Dta {
      * @param int $id_regional Identifiant régional du zonage
      */
     public function getDtaByIdRegional($id_regional){
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * FROM R_DTA_R52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);

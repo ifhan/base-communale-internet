@@ -17,7 +17,7 @@ class EspeceDeterminante {
  * @return array 
  */
 function getEspecesDeterminantesFlore() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
     FROM R_ESPECES_DETERMINANTES_FLORE_R52, R_ESPECES_DETERMINANTES_ZNIEFF_R52
     WHERE R_ESPECES_DETERMINANTES_FLORE_R52.ID = R_ESPECES_DETERMINANTES_ZNIEFF_R52.ID 
@@ -38,7 +38,7 @@ function getEspecesDeterminantesFlore() {
  * @return array 
  */
 function getEspecesDeterminantesFaune() {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM R_ESPECES_DETERMINANTES_FAUNE_R52
     ORDER BY GENRE');
     $sql->execute();

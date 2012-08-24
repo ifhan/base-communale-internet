@@ -15,7 +15,7 @@ class Commune {
      * @param string $id_commune Code géographique de la commune
      */
     public function getCommuneById($id_commune) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
         FROM BDC_COMMUNE_52 
         WHERE id_commune = :id_commune');
@@ -39,7 +39,7 @@ class Commune {
  * @return string
  */
 function getCommunesByIdDpt($id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT *
     FROM BDC_COMMUNE_52 
     WHERE id_departement = :id_dpt
@@ -62,7 +62,7 @@ function getCommunesByIdDpt($id_dpt) {
  * @return array 
  */
 function getCommunesByIdRegional($id_regional, $id_type) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
     FROM R_ZONAGES_COMMUNES_R52, BDC_COMMUNE_52
     WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
@@ -89,7 +89,7 @@ function getCommunesByIdRegional($id_regional, $id_type) {
  * @return array 
  */
 function getCommunesStationsQualiteByIdDpt($id_dpt) {
-    global $pdo;
+    $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT BDC_COMMUNE_52.id_commune, 
         BDC_COMMUNE_52.nom_commune, R_STATION_QUALITE_RCS_R52.id_commune 
     FROM BDC_COMMUNE_52, R_STATION_QUALITE_RCS_R52
