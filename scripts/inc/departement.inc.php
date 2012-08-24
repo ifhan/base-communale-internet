@@ -24,7 +24,7 @@ if(isset($id_regional)):
     echo "<strong>".$departement["nom_departement"]." (".$departement["id_departement"].")</strong>";
 elseif($id_dpt!="0"):
     $departement = new Departement();
-    $departement->getDepartementById($id_dpt);
+    $departement->getDepartementByIdDpt($id_dpt);
     /**
      *  Affiche le nom et le code géographique du département
      */
