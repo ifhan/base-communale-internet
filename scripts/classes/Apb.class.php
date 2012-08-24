@@ -15,7 +15,7 @@ class Apb {
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getApbByIdRegional($id_regional) {
-        global $pdo;
+        $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
         FROM R_APB_R52, R_APB_R52_data
         WHERE R_APB_R52.id_regional = :id_regional
