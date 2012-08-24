@@ -14,7 +14,7 @@ class Departement {
      * @global type $pdo Connexion à la base de données
      * @param int $id_dpt Identifiant du département
      */
-    public function getDepartementById($id_dpt) {
+    public function getDepartementByIdDpt($id_dpt) {
         global $pdo;
         $sql = $pdo->prepare('SELECT * FROM BDC_DEPARTEMENT_52 
         WHERE id_departement = :id_dpt');
