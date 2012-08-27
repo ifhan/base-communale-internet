@@ -128,7 +128,7 @@ $milieux_znieff = getMilieuxZnieff($id_regional,$fg_typo);
 <table>
     <?php  foreach($milieux_znieff as $milieu_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$milieu_znieff["CD_TYPO"]?> <?=$milieu_znieff["LB_TYPO"]?>
         </td>
     </tr>
@@ -151,7 +151,7 @@ $milieux_znieff = getMilieuxZnieff($id_regional,$fg_typo);
 <table>
     <?php  foreach($milieux_znieff as $milieu_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$milieu_znieff["CD_TYPO"]?> <?=$milieu_znieff["LB_TYPO"]?>
         </td>
     </tr>
@@ -174,7 +174,7 @@ $milieux_znieff = getMilieuxZnieff($id_regional,$fg_typo);
 <table>
     <?php  foreach($milieux_znieff as $milieu_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$milieu_znieff["CD_TYPO"]?> <?=$milieu_znieff["LB_TYPO"]?>
         </td>
     </tr>
@@ -203,7 +203,7 @@ $geomorphologies_znieff = getGeomorphologieZnieff($id_regional);
 <table>
     <?php foreach ($geomorphologies_znieff as $geomorphologie_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$geomorphologie_znieff["CD_GEO"]?> <?=$geomorphologie_znieff["LB_GEO"]?>
         </td>
     </tr>
@@ -230,7 +230,7 @@ $activites_humaines_znieff = getActivitesHumainesZnieff($id_regional); ?>
 <table>
     <?php foreach ($activites_humaines_znieff as $activite_humaine_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$activite_humaine_znieff["CD_ACTH"]?> <?=$activite_humaine_znieff["LB_ACTH"]?>
         </td>
     </tr> 
@@ -258,7 +258,7 @@ $statuts_propriete_znieff = getStatutsProprieteZnieff($id_regional);
 <table>
     <?php foreach($statuts_propriete_znieff as $statut_propriete_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$statut_propriete_znieff["CD_STPRO"]?> <?=$statut_propriete_znieff["LB_STPRO"]?>
         </td>
     </tr>
@@ -286,7 +286,7 @@ $mesures_protection_znieff = getMesuresProtectionZnieff($id_regional);
 <table>
     <?php foreach($mesures_protection_znieff as $mesure_protection_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
         <?=$mesure_protection_znieff["CD_MPRO"]?> <?=$mesure_protection_znieff["LB_MPRO"]?>
         </td>
     </tr>
@@ -319,7 +319,7 @@ $mesures_protection_znieff = getMesuresProtectionZnieff($id_regional);
 <table>
     <?php foreach($facteurs_evolution_znieff as $facteur_evolution_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$facteur_evolution_znieff["CD_FACT"]?> <?=$facteur_evolution_znieff["LB_FACT"]?>
         </td>
     </tr>
@@ -350,7 +350,7 @@ $mesures_protection_znieff = getMesuresProtectionZnieff($id_regional);
 <table>
     <?php foreach($criteres_patrimoniaux_znieff as $critere_patrimonial_znieff): ?> 
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$critere_patrimonial_znieff["CD_INTER"]?> <?=$critere_patrimonial_znieff["LB_INTER"]?>
         </td>
     </tr>
@@ -373,7 +373,7 @@ $mesures_protection_znieff = getMesuresProtectionZnieff($id_regional);
 <table>
     <?php foreach($criteres_fonctionnels_znieff as $critere_fonctionnel_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$critere_fonctionnel_znieff["CD_INTER"]?> <?=$critere_fonctionnel_znieff["LB_INTER"]?>
         </td>
     </tr>
@@ -396,7 +396,7 @@ $mesures_protection_znieff = getMesuresProtectionZnieff($id_regional);
 <table>
     <?php foreach($criteres_complementaires_znieff as $critere_complementaire_znieff): ?> 
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
             <?=$critere_complementaire_znieff["CD_INTER"]?> <?=$critere_complementaire_znieff["LB_INTER"]?>
         </td>
     </tr>
@@ -680,7 +680,7 @@ $criteres_delim_znieff = getCriteresDelimitationZnieff($id_regional);
 <table>
     <?php foreach($criteres_delim_znieff as $critere_delim_znieff): ?>
     <tr>
-        <td bgcolor="<?=switchcolor()?>">
+        <td bgcolor="<?=switchColor()?>">
         <?=$critere_delim_znieff["CD_DELIM"]?> <?=$critere_delim_znieff["LB_DELIM"]?>
         </td>
     </tr>
