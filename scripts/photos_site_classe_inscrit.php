@@ -51,8 +51,7 @@ $site_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
                 <a class="group" 
                    rel="fancybox-button" 
                    href="data/photos/<?=$zonage->path?>/<?=$site_photo["id_photo"]?>.jpg" 
-                   title="
-		<?php if($site_photo["titre"]!="") { echo $site_photo["titre"]." - "; }
+                   title="<?php if($site_photo["titre"]!="") { echo $site_photo["titre"]." - "; }
 		if($site_photo["auteur"]!="") { echo $site_photo["auteur"]; }
 		if($site_photo["fournisseur"]!="") { echo " &copy;".$site_photo["fournisseur"]; } ?>">
                     <img src="data/photos/<?=$zonage->path?>_small/<?=$site_photo["id_photo"]?>_small.jpg" alt="<?=$site_photo["titre"]?> - <?=$site_photo["id"]?> (<?=$site_photo["resolution"]?>)"/></a>
