@@ -156,7 +156,7 @@ $especes_determinantes = getEspecesByIdRegionalByFgEsp($id_regional,"D");
                 $especes_faune = getNomVernaculaireFaune($CD_ESP);*/
                 ?>
                 <tr>
-                    <td class="left" bgcolor="<?= switchcolor() ?>">
+                    <td class="left" bgcolor="<?= switchColor() ?>">
                         <?php foreach ($sous_regnes as $sous_regne): ?>
                             <?php if ($sous_regne["LB_ESP"] != ""): ?>
                                 <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
@@ -311,7 +311,7 @@ $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
                 $especes_faune = getNomVernaculaireFaune($CD_ESP);*/
                 ?>
                 <tr>
-                    <td class="left" bgcolor="<?= switchcolor() ?>">
+                    <td class="left" bgcolor="<?= switchColor() ?>">
                         <?php foreach ($sous_regnes as $sous_regne): ?>
                             <?php if ($sous_regne["LB_ESP"] != ""): ?>
                                 <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>

@@ -78,7 +78,7 @@ $oiseaux = getOiseauxByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($oiseaux as $oiseau): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $oiseau["SPECNUM"] ?> | 
             <em><?= $oiseau["SPECNAME"] ?></em> | 

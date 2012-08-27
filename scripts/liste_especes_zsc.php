@@ -83,7 +83,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($amphibiens_reptiles as $amphibien_reptile): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $amphibien_reptile["SPECNUM"] ?> | 
             <em><?= $amphibien_reptile["SPECNAME"] ?></em> | 
@@ -111,7 +111,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($invertebres as $invertebre): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $invertebre["SPECNUM"] ?> | 
             <em><?= $invertebre["SPECNAME"] ?></em> | 
@@ -139,7 +139,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($mammiferes as $mammifere): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $mammifere["SPECNUM"] ?> | 
             <em><?= $mammifere["SPECNAME"] ?></em> | 
@@ -167,7 +167,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($plantes as $plante): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $plante["SPECNUM"] ?> | 
             <em><?= $plante["SPECNAME"] ?></em> | 
@@ -195,7 +195,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Code  | Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($poissons as $poisson): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <?= $poisson["SPECNUM"] ?> | 
             <em><?= $poisson["SPECNAME"] ?></em> | 
@@ -223,7 +223,7 @@ $autres_especes = getAutresEspecesByIdRegional($id_regional);
         <th>Nom | Esp&egrave;ce de l'annexe 2</th>
     </tr>
     <?php foreach ($autres_especes as $autre_espece): ?>
-    <tr bgcolor="<?= switchcolor() ?>">
+    <tr bgcolor="<?= switchColor() ?>">
         <td>
             <em><?= $autre_espece["SPECNAME"] ?></em> | 
             <?php if($autre_espece["ANNEX_II"]=='Y'): ?>

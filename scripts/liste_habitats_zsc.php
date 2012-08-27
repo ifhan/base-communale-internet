@@ -79,7 +79,7 @@ $habitats = getHabitatsByIdRegional($id_regional);
     </thead>
     <tbody>
         <?php foreach ($habitats as $habitat): ?>
-        <tr bgcolor="<?=switchcolor()?>">
+        <tr bgcolor="<?=switchColor()?>">
             <td><?=$habitat["ID_EUR15"]?></td>
             <td width=100%> <?=$habitat["LB_EUR15"]?></td>
         </tr>
