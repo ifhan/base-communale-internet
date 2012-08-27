@@ -12,17 +12,19 @@ class Sage {
 
     /**
      * Sélectionne un SAGE par son identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du SAGE
      */
     public function getSageByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_SAGE_R52, R_SAGE_R52_data  
-        WHERE R_SAGE_R52.id_regional = '$id_regional'
-        AND R_SAGE_R52.id_regional = R_SAGE_R52_data.id_regional ";
+        WHERE R_SAGE_R52.id_regional = :id_regional
+        AND R_SAGE_R52.id_regional = R_SAGE_R52_data.id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->avancement = $row['avancement'];
             $this->nom = $row['nom'];
             $this->referent_sema = $row['referent_sema'];
@@ -62,16 +64,17 @@ class Sage {
 
     /**
      * Sélectionne la situation d'un SAGE par son identifiant
-     * @global string $pdo
-     * @param int $id_situation 
+     * @global string $pdo Connexion à la base de données
+     * @param int $id_situation Identifiant de la situation du SAGE
      */
     public function getSageSituationByIdSituation($id_situation) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
-        FROM R_SAGE_SITUATION_R52 
-        WHERE id_situation = $id_situation";
+        $sql = $pdo->prepare('SELECT * FROM R_SAGE_SITUATION_R52 
+        WHERE id_situation = :id_situation');
+        $sql->bindParam(':id_situation', $id_situation, PDO::PARAM_INT, 11);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom_situation = $row['nom_situation'];
             $this->code_couleur = $row['code_couleur'];
         } catch (PDOException $e) {
@@ -80,5 +83,3 @@ class Sage {
     }
 
 }
-
-?>
