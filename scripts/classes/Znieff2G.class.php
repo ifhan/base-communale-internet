@@ -16,12 +16,13 @@ class Znieff2G {
      */
     public function getZnieff2GByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
-        FROM znieff_znieff, znieff_comment 
-        WHERE znieff_znieff.NM_REGZN = $id_regional
-        AND znieff_znieff.NM_SFFZN  = znieff_comment.NM_SFFZN ";
+        $sql = $pdo->prepare("SELECT * FROM znieff_znieff, znieff_comment 
+        WHERE znieff_znieff.NM_REGZN = :id_regional
+        AND znieff_znieff.NM_SFFZN  = znieff_comment.NM_SFFZN");
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
         try {
-            $row = $pdo->query($sql)->fetch();
+            $sql->execute();
+            $row = $sql->fetch();
             $this->id_regional = $row["NM_REGZN"];
             $this->id_national = $row["NM_SFFZN"];
             $this->nom = $row["LB_ZN"];
@@ -54,13 +55,13 @@ class Znieff2G {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "znieff_znieff";
         $table_2 = "znieff_bilan";
-
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE NM_REGZN = $id_regional 
-        AND $table.MS_BILAN = $table_2.MS_BILAN";
+        $sql = $pdo->prepare("SELECT * FROM $table, $table_2 
+        WHERE NM_REGZN = :id_regional 
+        AND $table.MS_BILAN = $table_2.MS_BILAN");
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
         try {
-            $prospection = $pdo->query($sql)->fetch();
+            $sql->execute();
+            $prospection = $sql->fetch();
             /**
              * Faune 
              */
@@ -183,15 +184,16 @@ class Znieff2G {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "znieff_znieff";
         $table_4 = "znieff_comment";
-
-        $sql = "SELECT 
+        $sql = $pdo->prepare("SELECT 
         DISTINCT $table.NM_SFFZN, $table.NM_REGZN, $table_4.CM_DELIM, 
         $table_4.NM_SFFZN 
         FROM $table, $table_4 
-        WHERE $table.NM_REGZN = '$id_regional' 
-        AND  $table.NM_SFFZN = $table_4.NM_SFFZN ";
+        WHERE $table.NM_REGZN = :id_regional
+        AND  $table.NM_SFFZN = $table_4.NM_SFFZN");
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
         try {
-            $comment_znieff = $pdo->query($sql)->fetch();
+            $sql->execute();
+            $comment_znieff = $sql->fetch();
             $this->CM_DELIM = $comment_znieff["CM_DELIM"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -208,14 +210,15 @@ class Znieff2G {
         $table = "R_ZNIEFF_R52_photos";
         $table_2 = "znieff_znieff";
         $table_3 = "R_TYPE_ZONAGE_R52";
-
-        $sql = "SELECT * 
-        FROM $table, $table_2, $table_3
-        WHERE $table.NM_REGZN = '$id_regional' 
+        $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3
+        WHERE $table.NM_REGZN = :id_regional
         AND $table.NM_REGZN = $table_2.NM_REGZN
-        AND $table_3.id_type = $id_type ";
+        AND $table_3.id_type = :id_type ");
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+        $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         try {
-            $znieff = $pdo->query($sql)->fetch();
+            $sql->execute();
+            $znieff = $sql->fetch();
             $this->id_regional = $znieff["NM_REGZN"];
             $this->id_national = $znieff["NM_SFFZN"];
             $this->nom = $znieff["LB_ZN"];
@@ -236,17 +239,16 @@ function getZnieffByIdCorine($id_corine) {
     $table = "znieff_typologie";
     $table_2 = "znieff_znieff";
     $table_3 = "znieff_zni_typo";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2, $table_3
-    WHERE $table.CD_TYPO = '$id_corine' 
+    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3
+    WHERE $table.CD_TYPO = :id_corine
     AND $table.CD_TYPO = $table_3.CD_TYPO
     AND $table_2.NM_SFFZN = $table_3.NM_SFFZN
     GROUP BY $table_2.NM_REGZN 
-    ORDER BY $table_2.NM_REGZN";
+    ORDER BY $table_2.NM_REGZN");
+    $sql->bindParam(':id_corine', $id_corine, PDO::PARAM_STR, 5);
     try {
-        $query = $pdo->query($sql);
-        $array_znieff = $query->fetchAll();
+        $sql->execute();
+        $array_znieff = $sql->fetchAll();
         return $array_znieff;
         $count = $sql->fetchColumn() > 0;
         return $count;
@@ -267,19 +269,20 @@ function getMilieuxZnieff($id_regional, $fg_typo) {
     $table_2 = "znieff_zni_typo";
     $table_3 = "znieff_typologie";
     $table_4 = "znieff_comment";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_TYPO, $table_3.CD_TYPO, $table_3.LB_TYPO
     FROM $table, $table_2, $table_3, $table_4
     WHERE $table_4.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_TYPO = $table_2.CD_TYPO 
-    AND $table.NM_REGZN = $id_regional
+    AND $table.NM_REGZN = :id_regional
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    AND $table_2.FG_TYPO= '$fg_typo'
-    ORDER BY $table_2.CD_TYPO";
+    AND $table_2.FG_TYPO= :fg_typo
+    ORDER BY $table_2.CD_TYPO");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':fg_typo', $fg_typo, PDO::PARAM_STR, 1);
     try {
-        $query = $pdo->query($sql);
-        $milieux_znieff = $query->fetchAll();
+        $sql->execute();
+        $milieux_znieff = $sql->fetchAll();
         return $milieux_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -297,18 +300,18 @@ function getGeomorphologieZnieff($id_regional) {
     $table_2 = "znieff_zni_geo";
     $table_3 = "znieff_geomorphologie";
     $table_4 = "znieff_comment";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_GEO, $table_3.CD_GEO, $table_3.LB_GEO 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_GEO = $table_2.CD_GEO 
-    AND $table.NM_REGZN = $id_regional
+    AND $table.NM_REGZN = :id_regional
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    ORDER BY $table_2.CD_GEO ";
+    ORDER BY $table_2.CD_GEO ");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $geomorphologies_znieff = $query->fetchAll();
+        $sql->execute();
+        $geomorphologies_znieff = $sql->fetchAll();
         return $geomorphologies_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -326,18 +329,18 @@ function getActivitesHumainesZnieff($id_regional) {
     $table_2 = "znieff_zni_act";
     $table_3 = "znieff_act_humaine";
     $table_4 = "znieff_comment";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_ACTH, $table_3.CD_ACTH, $table_3.LB_ACTH 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_ACTH = $table_2.CD_ACTH 
-    AND $table.NM_REGZN = $id_regional 
+    AND $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    ORDER BY $table_2.CD_ACTH";
+    ORDER BY $table_2.CD_ACTH");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $activites_humaines_znieff = $query->fetchAll();
+        $sql->execute();
+        $activites_humaines_znieff = $sql->fetchAll();
         return $activites_humaines_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -356,17 +359,18 @@ function getStatutsProprieteZnieff($id_regional) {
     $table_3 = "znieff_statut_propri";
     $table_4 = "znieff_comment";
 
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_STPRO, $table_3.CD_STPRO, $table_3.LB_STPRO 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_STPRO = $table_2.CD_STPRO 
-    AND $table.NM_REGZN = $id_regional 
+    AND $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    ORDER BY $table_2.CD_STPRO";
+    ORDER BY $table_2.CD_STPRO");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $statuts_propriete_znieff = $query->fetchAll();
+        $sql->execute();
+        $statuts_propriete_znieff = $sql->fetchAll();
         return $statuts_propriete_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -384,18 +388,18 @@ function getMesuresProtectionZnieff($id_regional) {
     $table_2 = "znieff_zni_mpro";
     $table_3 = "znieff_mes_protection";
     $table_4 = "znieff_comment";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_MESPRO, $table_3.CD_MPRO, $table_3.LB_MPRO 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_MPRO = $table_2.CD_MPRO 
-    AND $table.NM_REGZN = $id_regional 
+    AND $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    ORDER BY $table_2.CD_MPRO";
+    ORDER BY $table_2.CD_MPRO");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $mesures_protection_znieff = $query->fetchAll();
+        $sql->execute();
+        $mesures_protection_znieff = $sql->fetchAll();
         return $mesures_protection_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -413,18 +417,18 @@ function getFacteursEvolutionZnieff($id_regional) {
     $table_2 = "znieff_zni_fact";
     $table_3 = "znieff_facteur";
     $table_4 = "znieff_comment";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_4.TX_FACT, $table_3.CD_FACT, $table_3.LB_FACT 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_3.CD_FACT = $table_2.CD_FACT 
-    AND $table.NM_REGZN = $id_regional 
+    AND $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN  = $table_4.NM_SFFZN 
-    GROUP BY $table_2.CD_FACT";
+    GROUP BY $table_2.CD_FACT");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $facteurs_evolution_znieff = $query->fetchAll();
+        $sql->execute();
+        $facteurs_evolution_znieff = $sql->fetchAll();
         return $facteurs_evolution_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -441,15 +445,15 @@ function getCriteresInteretZnieff($id_regional) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
-
-    $sql = "SELECT * 
+    $sql = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3 
     WHERE $table.NM_REGZN = '$id_regional'
     AND  $table.NM_SFFZN  = $table_2.NM_SFFZN 
-    AND $table_2.CD_INTER = $table_3.CD_INTER ";
+    AND $table_2.CD_INTER = $table_3.CD_INTER");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $criteres_interet_znieff = $query->fetchAll();
+        $sql->execute();
+        $criteres_interet_znieff = $sql->fetchAll();
         return $criteres_interet_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -466,18 +470,18 @@ function getCriteresPatrimoniauxZnieff($id_regional) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepape("SELECT 
     DISTINCT $table_3.CD_INTER, $table_3.LB_INTER
     FROM $table, $table_2, $table_3
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN
     AND $table_3.CD_INTER = $table_2.CD_INTER
-    AND $table.NM_REGZN = $id_regional
+    AND $table.NM_REGZN = :id_regional
     AND $table_3.CD_INTER <= '36'
-    ORDER BY $table_2.CD_INTER";
+    ORDER BY $table_2.CD_INTER");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $criteres_patrimoniaux_znieff = $query->fetchAll();
+        $sql->execute();
+        $criteres_patrimoniaux_znieff = $sql->fetchAll();
         return $criteres_patrimoniaux_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -494,19 +498,19 @@ function getCriteresFonctionnelsZnieff($id_regional) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_3.CD_INTER, $table_3.LB_INTER
     FROM $table, $table_2, $table_3
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN
     AND $table_3.CD_INTER = $table_2.CD_INTER
-    AND $table.NM_REGZN = $id_regional
+    AND $table.NM_REGZN = :id_regional
     AND $table_3.CD_INTER > '36'
     AND $table_3.CD_INTER <= '70'
-    ORDER BY $table_2.CD_INTER";
+    ORDER BY $table_2.CD_INTER");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $criteres_fonctionnels_znieff = $query->fetchAll();
+        $sql->execute();
+        $criteres_fonctionnels_znieff = $sql->fetchAll();
         return $criteres_fonctionnels_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -523,18 +527,18 @@ function getCriteresComplementairesZnieff($id_regional) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_int";
     $table_3 = "znieff_interet";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table_3.CD_INTER, $table_3.LB_INTER
     FROM $table, $table_2, $table_3
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN
     AND $table_3.CD_INTER = $table_2.CD_INTER
-    AND $table.NM_REGZN = $id_regional
+    AND $table.NM_REGZN = :id_regional
     AND $table_3.CD_INTER > '70'
-    ORDER BY $table_2.CD_INTER";
+    ORDER BY $table_2.CD_INTER");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $criteres_complementaires_znieff = $query->fetchAll();
+        $sql->execute();
+        $criteres_complementaires_znieff = $sql->fetchAll();
         return $criteres_complementaires_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -552,16 +556,15 @@ function getNbEspecesCitees($id_regional, $cd_esp) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
-
-    $sql = "SELECT 
-    DISTINCT * 
-    FROM $table, $table_3
-    WHERE $table.NM_REGZN = $id_regional 
+    $sql = $pdo->prepare("SELECT DISTINCT * FROM $table, $table_3
+    WHERE $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN = $table_3.NM_SFFZN
-    AND $table_3.CD_ESP LIKE '$cd_esp'";
+    AND $table_3.CD_ESP LIKE :cd_esp");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':cd_esp', $cd_esp, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $nb_especes_citees = $query->fetchAll();
+        $sql->execute();
+        $nb_especes_citees = $sql->fetchAll();
         return $nb_especes_citees;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -577,11 +580,8 @@ function getNbAutresEspecesFauneCitees($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
-
-    $sql = "SELECT 
-    DISTINCT * 
-    FROM $table, $table_3
-    WHERE $table.NM_REGZN = $id_regional 
+    $sql = $pdo->prepare("SELECT DISTINCT * FROM $table, $table_3
+    WHERE $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN = $table_3.NM_SFFZN
     AND  ($table_3.CD_ESP LIKE '3%' 
     OR $table_3.CD_ESP LIKE '4%' 
@@ -595,10 +595,11 @@ function getNbAutresEspecesFauneCitees($id_regional) {
     OR $table_3.CD_ESP LIKE '55%' 
     OR $table_3.CD_ESP LIKE '56%' 
     OR $table_3.CD_ESP LIKE '58%'
-    OR $table_3.CD_ESP LIKE '59%')";
+    OR $table_3.CD_ESP LIKE '59%')");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $nb_autres_especes_citees = $query->fetchAll();
+        $sql->execute();
+        $nb_autres_especes_citees = $sql->fetchAll();
         return $nb_autres_especes_citees;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -614,16 +615,14 @@ function getNbEspecesPhaneroCitees($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
-
-    $sql = "SELECT 
-    DISTINCT * 
-    FROM $table, $table_3 
-    WHERE $table.NM_REGZN = $id_regional
+    $sql = $pdo->prepare("SELECT DISTINCT * FROM $table, $table_3 
+    WHERE $table.NM_REGZN = :id_regional
     AND $table.NM_SFFZN = $table_3.NM_SFFZN
-    AND  ($table_3.CD_ESP LIKE '82%' OR $table_3.CD_ESP LIKE '83%')";
+    AND ($table_3.CD_ESP LIKE '82%' OR $table_3.CD_ESP LIKE '83%')");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $nb_especes_phanero_citees = $query->fetchAll();
+        $sql->execute();
+        $nb_especes_phanero_citees = $sql->fetchAll();
         return $nb_especes_phanero_citees;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -639,16 +638,14 @@ function getNbAlguesCitees($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_3 = "znieff_liste_esp";
-
-    $sql = "SELECT 
-    DISTINCT * 
-    FROM $table, $table_3 
-    WHERE $table.NM_REGZN = $id_regional 
+    $sql = $pdo->prepare("SELECT DISTINCT * FROM $table, $table_3 
+    WHERE $table.NM_REGZN = :id_regional 
     AND $table.NM_SFFZN = $table_3.NM_SFFZN
-    AND  ($table_3.CD_ESP LIKE '0%' OR $table_3.CD_ESP LIKE '1%')";
+    AND ($table_3.CD_ESP LIKE '0%' OR $table_3.CD_ESP LIKE '1%')");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $nb_algues_citees = $query->fetchAll();
+        $sql->execute();
+        $nb_algues_citees = $sql->fetchAll();
         return $nb_algues_citees;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -665,18 +662,18 @@ function getCriteresDelimitationZnieff($id_regional) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_delim";
     $table_3 = "znieff_delimitation";
-
-    $sql = "SELECT 
+    $sql = $pdo->prepare("SELECT 
     DISTINCT $table.NM_SFFZN, $table.NM_REGZN, $table_2.NM_SFFZN, 
     $table_2.CD_DELIM, $table_3.CD_DELIM, $table_3.LB_DELIM
     FROM $table, $table_2, $table_3 
-    WHERE $table.NM_REGZN = '$id_regional' 
+    WHERE $table.NM_REGZN = :id_regional
     AND $table.NM_SFFZN  = $table_2.NM_SFFZN 
     AND $table_2.CD_DELIM = $table_3.CD_DELIM 
-    ORDER BY $table_2.CD_DELIM";
+    ORDER BY $table_2.CD_DELIM");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $criteres_delim_znieff = $query->fetchAll();
+        $sql->execute();
+        $criteres_delim_znieff = $sql->fetchAll();
         return $criteres_delim_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -692,14 +689,13 @@ function getLiensAutresZnieff($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_zni";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2 
+    $sql = $pdo->prepare("SELECT * FROM $table, $table_2 
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN
-    AND $table.NM_REGZN = '$id_regional' ";
+    AND $table.NM_REGZN = :id_regional");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
     try {
-        $query = $pdo->query($sql);
-        $liens_autres_znieff = $query->fetchAll();
+        $sql->execute();
+        $liens_autres_znieff = $sql->fetchAll();
         return $liens_autres_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -717,17 +713,17 @@ function getSourcesZnieff($id_regional, $ty_source) {
     $table = "znieff_znieff";
     $table_2 = "znieff_zni_source";
     $table_3 = "znieff_sources";
-
-    $sql = "SELECT 
-    DISTINCT $table_3.MS_SOURCE, $table_3.LB_SOURCE
+    $sql = $pdo->prepare("SELECT DISTINCT $table_3.MS_SOURCE, $table_3.LB_SOURCE
     FROM $table, $table_2, $table_3
     WHERE $table.NM_SFFZN  = $table_2.NM_SFFZN  
     AND $table_3.MS_SOURCE = $table_2.MS_SOURCE 
-    AND $table.NM_REGZN = '$id_regional'
-    AND $table_3.TY_SOURCE = '$ty_source' ";
+    AND $table.NM_REGZN = :id_regional
+    AND $table_3.TY_SOURCE = :ty_source");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':ty_source', $ty_source, PDO::PARAM_STR, 1);
     try {
-        $query = $pdo->query($sql);
-        $sources_znieff = $query->fetchAll();
+        $sql->execute();
+        $sources_znieff = $sql->fetchAll();
         return $sources_znieff;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -745,15 +741,16 @@ function getZnieff2GPhotosByIdRegional($id_regional, $id_type) {
     $table = "R_ZNIEFF_R52_photos";
     $table_2 = "znieff_znieff";
     $table_3 = "R_TYPE_ZONAGE_R52";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2, $table_3 
-    WHERE $table.NM_REGZN = '$id_regional' 
+    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
+    WHERE $table.NM_REGZN = :id_regional 
     AND $table.NM_REGZN = $table_2.NM_REGZN 
-    AND $table_3.id_type = $id_type 
-    ORDER BY $table.id_photo ";
+    AND $table_3.id_type = :id_type 
+    ORDER BY $table.id_photo");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
-        $znieff2g_photos = $pdo->query($sql)->fetchAll();
+        $sql->execute();
+        $znieff2g_photos = $sql->fetchAll();
         return $znieff2g_photos;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -771,16 +768,18 @@ function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
     $table = "znieff_znieff";
     $table_2 = "znieff_liste_esp";
     $table_3 = "znieff_espece";
-
-    $sql = "SELECT *
+    $sql = $pdo->prepare("SELECT * 
     FROM ($table INNER JOIN $table_2 USING (NM_SFFZN)) 
     INNER JOIN $table_3 USING (CD_ESP)
-    WHERE $table.NM_REGZN = '$id_regional' 
-    AND $table_2.FG_ESP = '$fg_esp'
+    WHERE $table.NM_REGZN = :id_regional
+    AND $table_2.FG_ESP = :fg_esp
     GROUP BY MS_ARBO
-    ORDER BY MS_ARBO_PERE";
+    ORDER BY MS_ARBO_PERE");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':fg_esp', $fg_esp, PDO::PARAM_STR, 1);
     try {
-        $especes = $pdo->query($sql)->fetchAll();
+        $sql->execute();
+        $especes = $sql->fetchAll();
         return $especes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -795,11 +794,12 @@ function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
  */
 function getEmbranchementsEspece($id_ms_arbo_pere) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT MS_ARBO, LB_ESP, MS_ARBO_PERE, CD_ESP
-        FROM znieff_espece
-        WHERE MS_ARBO = '$id_ms_arbo_pere'";
+    $sql = $pdo->prepare("SELECT MS_ARBO, LB_ESP, MS_ARBO_PERE, CD_ESP
+    FROM znieff_espece
+    WHERE MS_ARBO = :id_ms_arbo_pere");
+    $sql->bindParam(':id_ms_arbo_pere', $id_ms_arbo_pere, PDO::PARAM_STR, 7);
     try {
-        $embranchements = $pdo->query($sql)->fetchAll();
+        $embranchements = $sql->fetchAll();
         return $embranchements;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -814,12 +814,14 @@ function getEmbranchementsEspece($id_ms_arbo_pere) {
  */
 function getSousRegnes($ms_arbo_pere) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT LB_NIVEAU, MS_ARBO, LB_ESP, MS_ARBO_PERE
-        FROM znieff_espece
-        WHERE MS_ARBO = '$ms_arbo_pere'
-        AND LB_NIVEAU != 'RG'";
+    $sql = $pdo->prepare("SELECT LB_NIVEAU, MS_ARBO, LB_ESP, MS_ARBO_PERE
+    FROM znieff_espece 
+    WHERE MS_ARBO = :ms_arbo_pere
+    AND LB_NIVEAU != 'RG'");
+    $sql->bindParam(':ms_arbo_pere', $ms_arbo_pere, PDO::PARAM_STR, 7);
     try {
-        $sous_regnes = $pdo->query($sql)->fetchAll();
+        $sql->execute();
+        $sous_regnes = $sql->fetchAll();
         return $sous_regnes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -836,15 +838,15 @@ function getNomVernaculaireFlore($CD_ESP) {
     $table_3 = "znieff_espece";
     $table_5 = "R_ESPECES_DETERMINANTES_FLORE_R52";
     $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
-
-    $sql = "SELECT * 
-        FROM $table_3, $table_5, $table_6
-        WHERE $table_3.CD_ESP = '$CD_ESP'
-        AND $table_5.ID = $table_6.ID
-        AND $table_3.CD_ESP = $table_6.CD_ESP
-        AND $table_3.MS_ARBO NOT LIKE '4%'";
+    $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
+    WHERE $table_3.CD_ESP = :CD_ESP
+    AND $table_5.ID = $table_6.ID
+    AND $table_3.CD_ESP = $table_6.CD_ESP
+    AND $table_3.MS_ARBO NOT LIKE '4%'");
+    $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
     try {
-        $especes_flore = $pdo->query($sql)->fetch();
+        $sql->execute();
+        $especes_flore = $sql->fetch();
         return $especes_flore;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -861,16 +863,16 @@ function getNomVernaculaireFaune($CD_ESP) {
     $table_3 = "znieff_espece";
     $table_5 = "R_ESPECES_DETERMINANTES_FAUNE_R52";
     $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
-
-    $sql = "SELECT * 
-        FROM $table_3, $table_5, $table_6
-        WHERE $table_3.CD_ESP = '$CD_ESP'
-        AND $table_3.CD_ESP = $table_5.CD_ESP
-        AND $table_3.CD_ESP = $table_6.CD_ESP
-        AND $table_3.MS_ARBO LIKE '4%'
-        GROUP BY $table_3.CD_ESP";
+    $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
+    WHERE $table_3.CD_ESP = :CD_ESP
+    AND $table_3.CD_ESP = $table_5.CD_ESP
+    AND $table_3.CD_ESP = $table_6.CD_ESP
+    AND $table_3.MS_ARBO LIKE '4%'
+    GROUP BY $table_3.CD_ESP");
+    $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
     try {
-        $especes_faune = $pdo->query($sql)->fetch();
+        $sql->execute();
+        $especes_faune = $sql->fetch();
         return $especes_faune;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -890,19 +892,21 @@ function getSourcesEspeces($id_regional, $fg_esp) {
     $table_2 = "znieff_liste_esp";
     $table_3 = "znieff_espece";
     $table_4 = "znieff_sources";
-
-    $sql = "SELECT 
-        DISTINCT $table.NM_SFFZN, $table_2.NM_SFFZN, $table_2.CD_ESP, 
-        $table_3.CD_ESP, $table_4.MS_SOURCE, $table.NM_REGZN, $table_2.FG_ESP, 
-        $table_4.LB_SOURCE
-        FROM $table_4, ($table INNER JOIN $table_2 USING (NM_SFFZN)) 
-        INNER JOIN $table_3 USING (CD_ESP) 
-        WHERE $table.NM_REGZN = '$id_regional' 
-        AND $table_2.FG_ESP = '$fg_esp' 
-        AND $table_2.MS_SOURCE = $table_4.MS_SOURCE 
-        GROUP BY $table_4.MS_SOURCE";
+    $sql = $pdo->prepare("SELECT 
+    DISTINCT $table.NM_SFFZN, $table_2.NM_SFFZN, $table_2.CD_ESP, 
+    $table_3.CD_ESP, $table_4.MS_SOURCE, $table.NM_REGZN, $table_2.FG_ESP, 
+    $table_4.LB_SOURCE
+    FROM $table_4, ($table INNER JOIN $table_2 USING (NM_SFFZN)) 
+    INNER JOIN $table_3 USING (CD_ESP) 
+    WHERE $table.NM_REGZN = :id_regional
+    AND $table_2.FG_ESP = :fg_esp
+    AND $table_2.MS_SOURCE = $table_4.MS_SOURCE 
+    GROUP BY $table_4.MS_SOURCE");
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 8);
+    $sql->bindParam(':fg_esp', $fg_esp, PDO::PARAM_STR, 1);
     try {
-        $sources_especes = $pdo->query($sql)->fetchAll();
+        $sql->execute();
+        $sources_especes = $sql->fetchAll();
         return $sources_especes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
