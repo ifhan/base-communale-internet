@@ -12,7 +12,6 @@ class Znieff2G {
 
     /**
      * Sélectionne une ZNIEFF par son identifiant régional
-     * @global string $pdo Connexion à la base de données
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getZnieff2GByIdRegional($id_regional) {
@@ -49,7 +48,6 @@ class Znieff2G {
 
     /**
      * Récupère le nombre d'espèces faunistiques prospectées par ZNIEFF
-     * @global string $pdo Connexion à la base de données
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getProspectionZnieff($id_regional) {
@@ -179,7 +177,6 @@ class Znieff2G {
 
     /**
      * Sélection du commentaire sur les critères de délimitation d'une ZNIEFF
-     * @global string $pdo Connexion à la base de données
      * @param varchar $id_regional Identifiant régional de la ZNIEFF 
      */
     public function getCommentCriteresDelimitationZnieff($id_regional) {
@@ -203,7 +200,6 @@ class Znieff2G {
 
     /**
      * Sélectionne les photographies d'une ZNIEFF
-     * @global string $pdo Connexion à la base de données
      * @param varchar $id_regional Identifiant régional de la ZNIEFF
      * @param int $id_type 
      */
@@ -232,7 +228,6 @@ class Znieff2G {
 
 /**
  * Sélectionne les ZNIEFF concernées par un habitat de la nomenclature CORINE
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_corine
  * @return ARRAY 
  */
@@ -262,7 +257,6 @@ function getZnieffByIdCorine($id_corine) {
 
 /**
  * Sélection des milieux d'une ZNIEFF par typologie
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @param char $fg_typo
  * @return array 
@@ -294,7 +288,6 @@ function getMilieuxZnieff($id_regional, $fg_typo) {
 
 /**
  * Sélection de la géomorphologie d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -324,7 +317,6 @@ function getGeomorphologieZnieff($id_regional) {
 
 /**
  * Sélection des activités humaines d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -354,7 +346,6 @@ function getActivitesHumainesZnieff($id_regional) {
 
 /**
  * Sélection des statuts de propriété d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return type 
  */
@@ -384,7 +375,6 @@ function getStatutsProprieteZnieff($id_regional) {
 
 /**
  * Sélection des mesures de protection d'une ZNIEFF
- * @global string $pdo
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -414,7 +404,6 @@ function getMesuresProtectionZnieff($id_regional) {
 
 /**
  * Sélectionne les facteurs influençant l'évolution d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -444,7 +433,6 @@ function getFacteursEvolutionZnieff($id_regional) {
 
 /**
  * Sélectionne les critères d'intérêt d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -470,7 +458,6 @@ function getCriteresInteretZnieff($id_regional) {
 
 /**
  * Sélectionne les critères d'intérêt patrimonial d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -499,7 +486,6 @@ function getCriteresPatrimoniauxZnieff($id_regional) {
 
 /**
  * Sélectionne les critères d'intérêt fonctionnel d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -529,7 +515,6 @@ function getCriteresFonctionnelsZnieff($id_regional) {
 
 /**
  * Sélectionne les critères d'intérêt complémentaire d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -559,7 +544,6 @@ function getCriteresComplementairesZnieff($id_regional) {
 /**
  * Récupère un tableau des espèces faunistiques et floristiques citées 
  * dans la ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF 
  * @param varchar $cd_esp Code de l'espèce
  * @return array 
@@ -586,7 +570,6 @@ function getNbEspecesCitees($id_regional, $cd_esp) {
 
 /**
  * Récupère un tableau des autres espèces faunistiques citées dans la ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -624,7 +607,6 @@ function getNbAutresEspecesFauneCitees($id_regional) {
 
 /**
  * Récupère un tableau des espèces phanéro. citées dans la ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -650,7 +632,6 @@ function getNbEspecesPhaneroCitees($id_regional) {
 
 /**
  * Récupère un tableau des algues citées dans la ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -675,8 +656,7 @@ function getNbAlguesCitees($id_regional) {
 }
 
 /**
- *
- * @global string $pdo Connexion à la base de données
+ * Sélectionne les critères de délimitation d'une ZNIEFF
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -705,7 +685,6 @@ function getCriteresDelimitationZnieff($id_regional) {
 
 /**
  * Sélectionne les liens avec d'autres ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @return array 
  */
@@ -729,7 +708,6 @@ function getLiensAutresZnieff($id_regional) {
 
 /**
  * Sélectionne les sources d'une ZNIEFF
- * @global string $pdo Connexion à la base de données
  * @param varchar $id_regional Identifiant régional de la ZNIEFF
  * @param char $ty_source Type de source
  * @return array 
@@ -757,8 +735,7 @@ function getSourcesZnieff($id_regional, $ty_source) {
 }
 
 /**
- *
- * @global string $pdo
+ * Sélectionne les photographies d'une ZNIEFF
  * @param string $id_regional Identifiant régional
  * @param int $id_type Identifiant du type de zonage
  * @return array 
@@ -786,7 +763,6 @@ function getZnieff2GPhotosByIdRegional($id_regional, $id_type) {
 /**
  * Sélectionne les espèces confidentielles d'une ZNIEFF par son identifiant 
  * régional et le code FG_ESP (D, C ou A)
- * @global string $pdo
  * @param string $id_regional
  * @return array 
  */
@@ -814,7 +790,6 @@ function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
 
 /**
  * Sélectionne l'embranchement, la classe ou l'ordre d'une espèce
- * @global string $pdo
  * @param string $id_ms_arbo_pere
  * @return array 
  */
@@ -834,7 +809,6 @@ function getEmbranchementsEspece($id_ms_arbo_pere) {
 /**
  * Sélectionne le sous-règne, l'embranchement, le super embranchement, 
  * la classe ou la super classe de l'espèce
- * @global string $pdo
  * @param string $ms_arbo_pere
  * @return array 
  */
@@ -852,6 +826,11 @@ function getSousRegnes($ms_arbo_pere) {
     }
 }
 
+/**
+ * 
+ * @param type $CD_ESP
+ * @return array 
+ */
 function getNomVernaculaireFlore($CD_ESP) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table_3 = "znieff_espece";
@@ -872,6 +851,11 @@ function getNomVernaculaireFlore($CD_ESP) {
     }
 }
 
+/**
+ *
+ * @param type $CD_ESP
+ * @return array 
+ */
 function getNomVernaculaireFaune($CD_ESP) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table_3 = "znieff_espece";
@@ -896,8 +880,7 @@ function getNomVernaculaireFaune($CD_ESP) {
 /**
  * Sélectionne les sources de la liste d'espèces pour les espèces déterminantes
  * ou les autres espèces
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @param string $fg_esp
  * @return array 
  */
@@ -925,5 +908,3 @@ function getSourcesEspeces($id_regional, $fg_esp) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
