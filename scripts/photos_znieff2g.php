@@ -116,7 +116,10 @@ $znieff2g_photos = getZnieff2GPhotosByIdRegional($id_regional,$id_type);
         <?php foreach($znieff2g_photos as $znieff2g_photo): ?>   
         <div class="mosaique">
             <div class="image" align="center">
-                <a class="group" rel="fancybox-button" href="data/photos/znieff2g/<?=$znieff2g_photo["id_photo"]?>.jpg" title="<?php 
+                <a class="group" 
+                   rel="fancybox-button" 
+                   href="data/photos/znieff2g/<?=$znieff2g_photo["id_photo"]?>.jpg" 
+                   title="<?php 
                 if ($znieff2g_photo["titre"] != "") { echo $znieff2g_photo["titre"] . " - "; }
                 if ($znieff2g_photo["auteur"] != "") { echo $znieff2g_photo["auteur"]; }
                 if ($znieff2g_photo["fournisseur"] != "") { echo " &copy;" . utf8_encode($znieff2g_photo["fournisseur"]); }
@@ -144,7 +147,7 @@ $znieff2g_photos = getZnieff2GPhotosByIdRegional($id_regional,$id_type);
                 echo "R&eacute;solution : " . $exif['COMPUTED']['Width'] . "x" . $exif['COMPUTED']['Height'] . "<br />\n";
                 echo "Type de fichier : " . $exif['FILE']['MimeType'] . "<br />\n";
                 echo "Taille du fichier : ";
-                echo ConvertirTaille('data/photos/znieff2g/' . $znieff2g_photo["id_photo"] . '.jpg');
+                echo convertFilesize('data/photos/znieff2g/' . $znieff2g_photo["id_photo"] . '.jpg');
                 ?>
             </div>
         </div>
