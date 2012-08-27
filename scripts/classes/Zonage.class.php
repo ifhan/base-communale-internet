@@ -348,7 +348,7 @@ function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
     $sql->bindParam(':id_theme', $id_theme, PDO::PARAM_STR, 2);
     try {
         $sql->execute();
-        $types_zonages = $query->fetchAll();
+        $types_zonages = $sql->fetchAll();
         return $types_zonages;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
