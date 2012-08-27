@@ -18,7 +18,7 @@ $id_article = $_REQUEST["id_article"];
 $oiseaux_proteges = getOiseauxProtegesByIdArticle($id_article);
 ?>
 <?php if ($id_article !== "0"): ?>
-    <p>Esp&egrave;ces list&eacute;es &agrave; l'article <?= $id_article ?> 
+    <p>Esp&egrave;ces list&eacute;es &agrave; l'article <?=$id_article?> 
         de l'arr&ecirc;t&eacute; du 29 octobre 2009 :</p><br />
 <?php endif; ?>
 <table class="display" id="example">
@@ -34,16 +34,16 @@ $oiseaux_proteges = getOiseauxProtegesByIdArticle($id_article);
     <tbody>
         <?php foreach ($oiseaux_proteges as $oiseau_protege): ?>
             <tr>
-                <td><?= $oiseau_protege["id"] ?></td>
+                <td><?=$oiseau_protege["id"]?></td>
                 <td></td>
                 <td>
-                    <?= $partie = explode("(", $oiseau_protege["nom"]) ?>
-                    <?= $partie[0] ?>
+                    <?=$partie = explode("(", $oiseau_protege["nom"])?>
+                    <?=$partie[0]?>
                 </td>
                 <td>
-                    <em><?= $label = str_replace(").", '', $partie[1]) ?><?= $label ?></em>
+                    <em><?=$label = str_replace(").", '', $partie[1])?><?=$label?></em>
                 </td>
-                <td><?= $oiseau_protege["id_article"] ?></td>
+                <td><?=$oiseau_protege["id_article"]?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
