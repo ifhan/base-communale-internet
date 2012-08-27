@@ -28,12 +28,17 @@ $sites_classes_inscrits = getSitesClassesInscrits();
                 <div align="right">
                     <?php if (file_exists("data/docs/rapports/sites/".$site_classe_inscrit["id_regional"].".pdf")): ?>
                     <div align="center">
-                        <a href="data/docs/rapports/sites/<?=$site_classe_inscrit["id_regional"]?>.pdf" target="_blank"><img src="IMG/png/filesave.png" style="border:none" alt="T&eacute;l&eacute;charger" /><br />
+                        <a href="data/docs/rapports/sites/<?=$site_classe_inscrit["id_regional"]?>.pdf" 
+                           target="_blank"><img 
+                                src="IMG/png/filesave.png" 
+                                style="border:none" 
+                                alt="T&eacute;l&eacute;charger" /><br />
                             <strong>T&eacute;l&eacute;charger le rapport de pr&eacute;sentation</strong></a>
                         <br />
-                        <em>(PDF,&nbsp;<?=@ConvertirTaille("data/docs/rapports/sites/".$site_classe_inscrit["id_regional"].".pdf")?></em>
+                        <em>(PDF,&nbsp;<?=@convertFilesize("data/docs/rapports/sites/".$site_classe_inscrit["id_regional"].".pdf")?></em>
                     <?php else: ?>
-                        <div class=align valign=top>Document non disponible</div>
+                        <div class="align" 
+                             valign="top">Document non disponible</div>
                     <?php endif; ?>
                     </div>
                 </td>
