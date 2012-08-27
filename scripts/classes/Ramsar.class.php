@@ -13,17 +13,15 @@ class Ramsar {
     /**
      * Sélectionne un secteur d'application de la convention de Ramsar 
      * par son identifiant régional
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getRamsarByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * 
-        FROM R_RAMSAR_R52
+        $sql = $pdo->prepare('SELECT * FROM R_RAMSAR_R52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];

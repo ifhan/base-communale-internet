@@ -11,7 +11,6 @@ class Rnn {
 
     /**
      * Sélectionne une RNN par son identifiant régional
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getRnnByIdRegional($id_regional) {
@@ -21,8 +20,8 @@ class Rnn {
         WHERE R_RNN_R52.id_regional = :id_regional 
         AND R_RNN_R52.id_regional = R_RNN_R52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->id_national = $row["id_national"];
@@ -45,7 +44,6 @@ class Rnn {
 
 /**
  * Sélectionne les photographies d'une RNN par l'identifiant régional
- * @global string $pdo Connexion à la base de données
  * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
@@ -54,8 +52,8 @@ function getRnnPhotosByIdRegional($id_regional) {
     $sql = $pdo->prepare('SELECT * FROM R_RNN_R52_photos 
     WHERE id_regional = :id_regional');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-    $sql->execute();
     try {
+        $sql->execute();
         $rnn_photos = $sql->fetchAll();
         return $rnn_photos;
     } catch (PDOException $e) {

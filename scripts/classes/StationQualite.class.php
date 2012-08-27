@@ -20,8 +20,8 @@ class StationQualite {
         AND R_STATION_QUALITE_RCS_R52.id_riviere = 
         R_RIVIERE_QUALITE_R52.id_riviere');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 6);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->nom_riviere = stripslashes($row["nom_riviere"]);
             $this->nom_commune = $row["nom_commune"];
@@ -59,8 +59,8 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
         ORDER BY id_departement, id_regional');
         $sql->bindParam(':id_reseau', $id_reseau, PDO::PARAM_STR, 3);
     endif;
-    $sql->execute();
     try {
+        $sql->execute();
         $stations_qualite_rcs =  $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {
@@ -117,8 +117,8 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
         endif;
     endif;
-    $sql->execute();
     try {
+        $sql->execute();
         $stations_qualite_rcs = $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {
@@ -139,8 +139,8 @@ function getStationsQualiteByIdCommune($id_commune) {
     AND R_STATION_QUALITE_RCS_R52.id_riviere = R_RIVIERE_QUALITE_R52.id_riviere 
     ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
     $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_INT, 5);
-    $sql->execute();
     try {
+        $sql->execute();
         $stations_qualite_rcs = $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {

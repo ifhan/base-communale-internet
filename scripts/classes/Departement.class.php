@@ -11,7 +11,6 @@ class Departement {
 
     /**
      * Sélectionne un département par son code
-     * @global type $pdo Connexion à la base de données
      * @param int $id_dpt Identifiant du département
      */
     public function getDepartementByIdDpt($id_dpt) {
@@ -19,8 +18,8 @@ class Departement {
         $sql = $pdo->prepare('SELECT * FROM BDC_DEPARTEMENT_52 
         WHERE id_departement = :id_dpt');
         $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_dpt = $row["id_departement"];
             $this->nom_dpt = $row["nom_departement"];
@@ -31,7 +30,6 @@ class Departement {
 
     /**
      * Sélectionne le département d'un zonage par son identifiant régional
-     * @global type $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      * @param int $id_type Identifiant du type de zonage
      */
@@ -46,8 +44,8 @@ class Departement {
         GROUP BY BDC_DEPARTEMENT_52.id_departement');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
         $sql->bindParam(':id_type', $id_type, PDO::PARAM_STR, 3);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_departement = $row["id_departement"];
             $this->nom_departement = $row["nom_departement"];
@@ -60,7 +58,6 @@ class Departement {
 
 /**
  * Sélectionne le(s) département(s) d'un zonage par son identifiant régional
- * @global type $pdo Connexion à la base de données
  * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
@@ -73,8 +70,8 @@ function getDepartementsByIdRegional($id_regional) {
     AND BDC_COMMUNE_52.id_departement = BDC_DEPARTEMENT_52.id_departement
     GROUP BY BDC_DEPARTEMENT_52.id_departement');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $departements = $sql->fetchAll();
         return $departements;
     } catch (PDOException $e) {
@@ -84,7 +81,6 @@ function getDepartementsByIdRegional($id_regional) {
 
 /**
  * Sélection les départements d'une région par son identifiant
- * @global type $pdo Connexion à la base de données
  * @param int $id_region Identifiant de la région
  * @return array 
  */
@@ -94,8 +90,8 @@ function getDepartementsByIdRegion($id_region) {
     WHERE id_region = :id_region
     ORDER BY nom_departement');
     $sql->bindParam(':id_region', $id_region, PDO::PARAM_INT, 4);
-    $sql->execute();
     try {
+        $sql->execute();
         $departements = $sql->fetchAll();
         return $departements;
     } catch (PDOException $e) {
@@ -106,7 +102,6 @@ function getDepartementsByIdRegion($id_region) {
 /**
  * Sélectionne les départements comportant des stations "Qualité des eaux"
  * relevant de la DREAL Pays de la Loire
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getDepartementsStationsQualiteByIdRegion() {
@@ -116,8 +111,8 @@ function getDepartementsStationsQualiteByIdRegion() {
     OR id_departement = 61
     OR id_departement = 79 
     ORDER BY id_departement');
-    $sql->execute();
     try {
+        $sql->execute();
         $departements = $sql->fetchAll();
         return $departements;
     } catch (PDOException $e) {

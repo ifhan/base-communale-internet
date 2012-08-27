@@ -12,7 +12,6 @@ class SiteInpg {
     
     /**
      * Sélectionne un site INPG préselectionné par son identifiant régional
-     * @global type $pdo Connexion à la base de données
      * @param type $id_regional Identifiant régional du site
      */
     public function getSiteInpgPreselectionneByIdRegional($id_regional) {
@@ -20,8 +19,8 @@ class SiteInpg {
         $sql = $pdo->prepare('SELECT * FROM R_SITE_PRESELECTIONNE_INPG_R52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row['id_regional'];
             $this->nom = $row['nom'];
@@ -35,7 +34,6 @@ class SiteInpg {
     
    /**
      * Sélectionne un site INPG proposé par son identifiant régional
-     * @global type $pdo Connexion à la base de données
      * @param type $id_regional Identifiant régional du site
      */
     public function getSiteInpgProposeByIdRegional($id_regional) {
@@ -43,8 +41,8 @@ class SiteInpg {
         $sql = $pdo->prepare('SELECT * FROM R_SITE_PROPOSE_INPG_R52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row['id_regional'];
             $this->nom = $row['nom'];

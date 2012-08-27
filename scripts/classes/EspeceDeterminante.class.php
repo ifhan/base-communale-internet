@@ -13,7 +13,6 @@ class EspeceDeterminante {
 
 /**
  * Sélectionne les espèces déterminantes pour la flore en Pays de la Loire
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getEspecesDeterminantesFlore() {
@@ -34,7 +33,6 @@ function getEspecesDeterminantesFlore() {
 
 /**
  * Sélectionne les espèces déterminantes pour la faune en Pays de la Loire
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getEspecesDeterminantesFaune() {

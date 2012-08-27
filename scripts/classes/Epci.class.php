@@ -11,7 +11,6 @@
 class Epci {
     /**
      * Sélectionne un EPCI par son identifiant
-     * @global string $pdo Paramètres de connexion à la base de données
      * @param int $id_epci Identifiant de l'EPCI
      */
     public function getEpciByIdEpci($id_epci) {
@@ -34,7 +33,6 @@ class Epci {
     
     /**
      * Sélectionne un EPCI par son code SIREN
-     * @global string $pdo Paramètres de connexion à la base de données
      * @param int $id_siren Code SIREN de l'EPCI
      */
     public function getEpciByCodeSiren($id_siren) {
@@ -55,7 +53,6 @@ class Epci {
 
 /**
  * Sélectionne les communes d'un EPCI par son identifiant
- * @global type $pdo Paramètres de connexion à la base de données
  * @param string $id_epci Identifiant de l'EPCI
  * @return array 
  */
@@ -80,7 +77,6 @@ function getCommunesEpciByIdEpci($id_epci) {
 /**
  * Sélectionne les ECPI d'un département par le code géographique 
  * du département
- * @global string $pdo Paramètres de connexion à la base de données
  * @param int $id_dpt Code géographique du département
  * @return array 
  */
@@ -102,7 +98,6 @@ function getEpciByIdDpt($id_dpt) {
 /**
  * Sélectionne les ECPI d'un département par le code géographique 
  * du département
- * @global string $pdo Paramètres de connexion à la base de données
  * @param int $id_dpt Code géographique du département
  * @return array 
  */
@@ -112,8 +107,8 @@ function getEpciVideosByIdDpt($id_dpt) {
     WHERE id_departement = :id_dpt 
     ORDER BY nom_epci');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
-    $sql->execute();
     try {
+        $sql->execute();
         $array_epci = $sql->fetchAll();
         return $array_epci;
     } catch (PDOException $e) {

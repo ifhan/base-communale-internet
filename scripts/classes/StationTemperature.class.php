@@ -10,7 +10,6 @@
 class StationTemperature {
     /**
      * Sélectionne une station "Hydrotempérature" par son identifiant
-     * @global string $pdo Connexion à la base de données
      * @param string $id_station Identifiant de la station
      */
     public function getStationTemperatureByIdStation($id_station) {
@@ -18,8 +17,8 @@ class StationTemperature {
         $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
         WHERE id_station = :id_station');
         $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_station = $row["id_station"];
             $this->riviere = stripslashes($row["riviere"]);
@@ -36,15 +35,14 @@ class StationTemperature {
 /**
  * Sélectionne l'ensemble des stations d'hydrotempérature 
  * en Pays de la Loire
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getStationsTemperatures() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
     ORDER BY id_dpt, id_station');
-    $sql->execute();
     try {
+        $sql->execute();
         $stations_temperature = $sql->fetchAll();
         return $stations_temperature;
     } catch (PDOException $e) {

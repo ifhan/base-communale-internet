@@ -27,8 +27,8 @@ function getSicByIdEur15($id_eur15) {
     GROUP BY R_SIC_R52.id_regional
     ORDER BY R_SIC_R52.id_regional');
     $sql->bindParam(':id_eur15', $id_eur15, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $array_sic = $sql->fetchAll();
         return $array_sic;
     } catch (PDOException $e) {

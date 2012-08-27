@@ -11,7 +11,6 @@ class Rnr {
 
     /**
      * Sélectionne une RNR par son identifiant régional
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getRnrByIdRegional($id_regional) {
@@ -19,8 +18,8 @@ class Rnr {
         $sql = $pdo->prepare('SELECT * FROM R_RNR_R52 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 5);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];

@@ -11,7 +11,6 @@ class Commune {
 
     /**
      * Sélectionne une commune par son code géographique
-     * @global string $pdo Connexion à la base de données
      * @param string $id_commune Code géographique de la commune
      */
     public function getCommuneById($id_commune) {
@@ -20,8 +19,8 @@ class Commune {
         FROM BDC_COMMUNE_52 
         WHERE id_commune = :id_commune');
         $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_STR, 5);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_commune = $row['id_commune'];
             $this->nom_commune = $row['nom_commune'];
@@ -34,7 +33,6 @@ class Commune {
 
 /**
  * Sélectionne les communes d'un département à partir de son identifiant
- * @global string $pdo Connexion à la base de données
  * @param int $id_dpt Identifiant du département
  * @return string
  */
@@ -45,8 +43,8 @@ function getCommunesByIdDpt($id_dpt) {
     WHERE id_departement = :id_dpt
     ORDER BY nom_commune');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
-    $sql->execute();
     try {
+        $sql->execute();
         $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
@@ -56,7 +54,6 @@ function getCommunesByIdDpt($id_dpt) {
 
 /**
  * Sélectionne le(s) commune(s) d'un zonage par son identifiant régional
- * @global string $pdo Connexion à la base de données
  * @param string $id_regional Identifiant régional du zonage
  * @param type $id_type Identifiant du type de zonage
  * @return array 
@@ -72,8 +69,8 @@ function getCommunesByIdRegional($id_regional, $id_type) {
     ORDER BY BDC_COMMUNE_52.id_commune');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
     $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
-    $sql->execute();
     try {
+        $sql->execute();
         $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
@@ -84,7 +81,6 @@ function getCommunesByIdRegional($id_regional, $id_type) {
 /**
  * Sélectionne les communes comportant des stations "Qualité des eaux"
  * relevant de la DREAL Pays de la Loire par département
- * @global string $pdo Connexion à la base de données
  * @param int $id_dpt Identifiant du département
  * @return array 
  */
@@ -98,8 +94,8 @@ function getCommunesStationsQualiteByIdDpt($id_dpt) {
     GROUP BY BDC_COMMUNE_52.nom_commune
     ORDER BY BDC_COMMUNE_52.nom_commune');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
-    $sql->execute();
     try {
+        $sql->execute();
         $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {

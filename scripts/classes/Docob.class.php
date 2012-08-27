@@ -12,7 +12,6 @@ class Docob {
     /**
      * Sélectionne l'ensemble des sites Natura 2000 pour afficher 
      * un tableau des DOCOB
-     * @global string $pdo Connexion à la base de données
      * @return array 
      */
     public function getDocobByIdRegional($id_regional) {
@@ -27,8 +26,8 @@ class Docob {
         FROM R_SIC_R52_data
         WHERE R_SIC_R52_data.id_regional = :id_regional)');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
@@ -44,7 +43,6 @@ class Docob {
 /**
  * Sélectionne l'ensemble des sites Natura 2000 pour afficher 
  * un tableau des DOCOB
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getDocob() {
@@ -54,8 +52,8 @@ function getDocob() {
         UNION  (SELECT * FROM R_ZSC_R52_data) 
         UNION(SELECT * FROM R_SIC_R52_data) 
         ORDER BY id_regional');
-    $sql->execute();
     try {
+        $sql->execute();
         $docob = $sql->fetchAll();
         return $docob;
     } catch (PDOException $e) {

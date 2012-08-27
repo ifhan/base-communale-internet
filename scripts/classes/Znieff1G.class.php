@@ -13,7 +13,6 @@ class Znieff1G {
     /**
      * Sélectionne une ZNIEFF de 1ère génération par son identifiant régional
      * et l'identifiant du type de zonage 
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      * @param int $id_type Identifiant du type de zonage
      */
@@ -33,8 +32,8 @@ class Znieff1G {
             R_ZNIEFF2_G1_R52_data.id_regional');
         endif;
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];

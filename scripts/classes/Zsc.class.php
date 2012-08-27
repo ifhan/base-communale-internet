@@ -12,7 +12,6 @@ class Zsc {
 
     /**
      * Sélectionne les données annexes d'une ZSC
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getZscDataByIdRegional($id_regional) {
@@ -20,8 +19,8 @@ class Zsc {
         $sql = $pdo->prepare('SELECT * FROM R_ZSC_R52_data 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];

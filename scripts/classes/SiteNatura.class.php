@@ -20,25 +20,20 @@ class SiteNatura {
         $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
-        $sql_1->execute();
         try {
+            $sql_1->execute();
             $row = $sql_1->fetch();
             $table = $row["table"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
+        $table_2 = $table . "_data";
+        $sql_2 = $pdo->prepare("SELECT * FROM $table, $table_2
+        WHERE $table.id_regional = :id_regional
+        AND $table.id_regional = $table_2.id_regional");
+        $sql_2->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
-            $table_2 = $table . "_data";
-            $sql_2 = $pdo->prepare("SELECT * 
-            FROM $table, $table_2
-            WHERE $table.id_regional = :id_regional
-            AND $table.id_regional = $table_2.id_regional");
-            $sql_2->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
             $sql_2->execute();
-        } catch (PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-        try {
             $row = $sql_2->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
@@ -62,8 +57,8 @@ class SiteNatura {
         WHERE R_DOCOB_R52.id_regional = :id_regional
         AND R_DOCOB_R52.id_operateur = R_DOCOB_ORGANISMES_R52.id_organisme');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_organisme = $row["id_organisme"];
             $this->sigle = $row["sigle"];
@@ -84,8 +79,8 @@ class SiteNatura {
         WHERE R_DOCOB_R52.id_regional = :id_regional
         AND R_DOCOB_R52.id_structure_animatrice = R_DOCOB_ORGANISMES_R52.id_organisme');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_organisme = $row["id_organisme"];
             $this->sigle = $row["sigle"];
@@ -104,8 +99,8 @@ class SiteNatura {
         $sql = $pdo->prepare('SELECT * FROM natura_biotop 
         WHERE SITECODE = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->QUALITY = nl2br($row["QUALITY"]);
             $this->VULNAR = nl2br($row["VULNAR"]);
@@ -142,26 +137,23 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
         FROM R_TYPE_ZONAGE_R52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
-        $sql_1->execute();
         try {
+            $sql_1->execute();
             $row = $sql_1->fetch();
             $table = $row["table"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
-        } try {
-            $sql_2 = $pdo->prepare("SELECT * FROM $table
-            WHERE categorie = :categorie
-            AND id_type = :id_type
-            GROUP BY id_regional 
-            ORDER BY id_regional");
-            $sql_2->bindParam(':categorie', $categorie, PDO::PARAM_STR, 10);
-            $sql_2->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
-        } catch (PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
+        } 
+        $sql_2 = $pdo->prepare("SELECT * FROM $table
+        WHERE categorie = :categorie
+        AND id_type = :id_type
+        GROUP BY id_regional 
+        ORDER BY id_regional");
+        $sql_2->bindParam(':categorie', $categorie, PDO::PARAM_STR, 10);
+        $sql_2->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     endif;
-    $sql_2->execute();
     try {
+        $sql_2->execute();
         $sites_natura = $sql_2->fetchAll();
         return $sites_natura;
         $this->id_regional = $sites_natura["id_regional"];
@@ -184,8 +176,8 @@ function getAmpbhibiensReptilesByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $amphibiens_reptiles = $sql->fetchAll();
         return $amphibiens_reptiles;
     } catch (PDOException $e) {
@@ -206,8 +198,8 @@ function getInvertebresByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $invertebres = $sql->fetchAll();
         return $invertebres;
     } catch (PDOException $e) {
@@ -228,8 +220,8 @@ function getMammiferesByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $mammiferes = $sql->fetchAll();
         return $mammiferes;
     } catch (PDOException $e) {
@@ -250,8 +242,8 @@ function getPlantesByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $plantes = $sql->fetchAll();
         return $plantes;
     } catch (PDOException $e) {
@@ -272,8 +264,8 @@ function getPoissonsByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $poissons = $sql->fetchAll();
         return $poissons;
     } catch (PDOException $e) {
@@ -294,8 +286,8 @@ function getAutresEspecesByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $autres_especes = $sql->fetchAll();
         return $autres_especes;
     } catch (PDOException $e) {
@@ -316,8 +308,8 @@ function getOiseauxByIdRegional($id_regional) {
     GROUP BY SPECNUM
     ORDER BY SPECNUM');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $oiseaux = $sql->fetchAll();
         return $oiseaux;
     } catch (PDOException $e) {
@@ -338,8 +330,8 @@ function getHabitatsByIdRegional($id_regional) {
     WHERE natura_habit1.SITECODE = :id_regional
     AND natura_habit1.HBCDAX = natura_eur15.ID_EUR15');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
-    $sql->execute();
     try {
+        $sql->execute();
         $habitats = $sql->fetchAll();
         return $habitats;
     } catch (PDOException $e) {

@@ -11,7 +11,6 @@ class Apb {
 
     /**
      * Sélectionne un APB par son identifiant régional
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant régional du zonage
      */
     public function getApbByIdRegional($id_regional) {
@@ -21,8 +20,8 @@ class Apb {
         WHERE R_APB_R52.id_regional = :id_regional
         AND R_APB_R52.id_regional = R_APB_R52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row['id_regional'];
             $this->id_national = $row['id_national'];

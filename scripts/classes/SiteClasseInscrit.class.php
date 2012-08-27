@@ -18,8 +18,8 @@ class SiteClasseInscrit {
         $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52_data 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
@@ -46,8 +46,8 @@ function getEntitesFromSiteByIdRegional($id_regional) {
     R_SITE_CLASSE_INSCRIT_R52_data.id_regional
     GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_sp');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
-    $sql->execute();
     try {
+        $sql->execute();
         $entites = $sql->fetchAll();
         return $entites;
     } catch (PDOException $e) {
@@ -72,8 +72,8 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
     R_SITE_CLASSE_INSCRIT_R52.id_regional');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
     $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
-    $sql->execute();
     try {
+        $sql->execute();
         $site_photos = $sql->fetchAll();
         return $site_photos;
     } catch (PDOException $e) {
@@ -91,8 +91,8 @@ function getSitesClassesInscrits() {
     $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52 
     GROUP BY id_regional 
     ORDER BY id_regional');
-    $sql->execute();
     try {
+        $sql->execute();
         $sites_classes_inscrits = $sql->fetchAll();
         return $sites_classes_inscrits;
     } catch (PDOException $e) {

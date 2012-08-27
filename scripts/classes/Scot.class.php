@@ -25,8 +25,8 @@ function getCommunesScotByIdScot($id_scot) {
     GROUP BY BDC_COMMUNE_52.id_commune 
     ORDER BY BDC_COMMUNE_52.id_commune');
     $sql->bindParam(':id_scot', $id_scot, PDO::PARAM_STR, 2);
-    $sql->execute();
     try {
+        $sql->execute();
         $communes = $sql->fetchAll();
         return $communes;
     } catch (PDOException $e) {
@@ -45,8 +45,8 @@ function getScotsByIdDpt($id_dpt) {
     WHERE id_departement = :id_dpt 
     ORDER BY nom_scot');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
-    $sql->execute();
     try {
+        $sql->execute();
         $array_scot = $sql->fetchAll();
         return $array_scot;
     } catch (PDOException $e) {

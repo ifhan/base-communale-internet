@@ -11,7 +11,6 @@ class CoursEau {
 
     /**
      * Sélectionne une rivière par son identifiant
-     * @global string $pdo Connexion à la base de données
      * @param int $id_riviere Identifiant de la rivière
      */
     public function getRiviereByIdRiviere($id_riviere) {
@@ -20,8 +19,8 @@ class CoursEau {
         FROM R_RIVIERE_QUALITE_R52 
         WHERE id_riviere = :id_riviere');
         $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->nom_riviere = stripslashes($row["nom_riviere"]);
         } catch (PDOException $e) {
@@ -31,7 +30,6 @@ class CoursEau {
 
     /**
      * Sélectionne une rivière par un identifiant de station
-     * @global string $pdo Connexion à la base de données
      * @param string $id_regional Identifiant de la station
      */
     public function getRiviereByIdStation($id_station) {
@@ -40,8 +38,8 @@ class CoursEau {
         FROM R_STATION_HYDROTEMPERATURE_R52 
         WHERE id_station = :id_station');
         $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 9);
-        $sql->execute();
         try {
+            $sql->execute();
             $row = $sql->fetch();
             $this->riviere = stripslashes($row["riviere"]);
         } catch (PDOException $e) {
@@ -54,7 +52,6 @@ class CoursEau {
 /**
  * Sélectionne les rivières comportant des stations "Qualité des eaux"
  * relevant de la DREAL Pays de la Loire par département
- * @global string $pdo Connexion à la base de données
  * @param int $id_dpt Identifiant du département
  * @return array 
  */
@@ -76,8 +73,8 @@ function getRivieresQualiteByIdDpt($id_dpt) {
         GROUP BY R_RIVIERE_QUALITE_R52.nom_riviere 
         ORDER BY R_RIVIERE_QUALITE_R52.id_riviere');
     endif;
-    $sql->execute();
     try {
+        $sql->execute();
         $rivieres = $sql->fetchAll();
         return $rivieres;
     } catch (PDOException $e) {
