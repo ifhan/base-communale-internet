@@ -13,25 +13,29 @@ class Znieff1G {
     /**
      * Sélectionne une ZNIEFF de 1ère génération par son identifiant régional
      * et l'identifiant du type de zonage 
-     * @global type $pdo
-     * @param type $id_regional
-     * @param type $id_type 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
+     * @param int $id_type Identifiant du type de zonage
      */
     public function getZnieff1GByIdRegional($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         if ($id_type == 8):
-            $table = R_ZNIEFF1_G1_R52;
-            $table_2 = R_ZNIEFF1_G1_R52_data;
+            $sql = $pdo->prepare('SELECT * 
+            FROM R_ZNIEFF1_G1_R52, R_ZNIEFF1_G1_R52_data
+            WHERE R_ZNIEFF1_G1_R52.id_regional = :id_regional 
+            AND R_ZNIEFF1_G1_R52.id_regional = 
+            R_ZNIEFF1_G1_R52_data.id_regional');
         elseif ($id_type == 9):
-            $table = R_ZNIEFF2_G1_R52;
-            $table_2 = R_ZNIEFF2_G1_R52_data;
+            $sql = $pdo->prepare('SELECT * 
+            FROM R_ZNIEFF2_G1_R52, R_ZNIEFF2_G1_R52_data
+            WHERE R_ZNIEFF2_G1_R52.id_regional = :id_regional 
+            AND R_ZNIEFF2_G1_R52.id_regional = 
+            R_ZNIEFF2_G1_R52_data.id_regional');
         endif;
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_regional = $id_regional 
-        AND $table.id_regional = $table_2.id_regional ";
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
             $this->annee_description = $row["annee_description"];
@@ -48,5 +52,3 @@ class Znieff1G {
     }
 
 }
-
-?>
