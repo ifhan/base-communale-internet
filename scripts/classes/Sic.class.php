@@ -14,26 +14,22 @@ class Sic {
 
 /**
  * Sélectionne un SIC par un identifiant EUR15
- * @global string $pdo
- * @param int $id_eur15
+ * @param int $id_eur15 Identifiant de l'habitat EUR15
  * @return array 
  */
 function getSicByIdEur15($id_eur15) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "natura_eur15";
-    $table_2 = "natura_habit1";
-    $table_3 = "R_SIC_R52";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2, $table_3 
-    WHERE $table.ID_EUR15 = '$id_eur15' 
-    AND $table.ID_EUR15 = $table_2.HBCDAX 
-    AND $table_2.SITECODE = $table_3.id_regional
-    GROUP BY $table_3.id_regional
-    ORDER BY $table_3.id_regional";
+    $sql = $pdo->prepare('SELECT * 
+    FROM natura_eur15, natura_habit1, R_SIC_R52
+    WHERE natura_eur15.ID_EUR15 = :id_eur15
+    AND natura_eur15.ID_EUR15 = natura_habit1.HBCDAX 
+    AND $table_2.SITECODE = R_SIC_R52.id_regional
+    GROUP BY R_SIC_R52.id_regional
+    ORDER BY R_SIC_R52.id_regional');
+    $sql->bindParam(':id_eur15', $id_eur15, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $query = $pdo->query($sql);
-        $array_sic = $query->fetchAll();
+        $array_sic = $sql->fetchAll();
         return $array_sic;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
