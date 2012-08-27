@@ -12,26 +12,25 @@ class Zsc {
 
     /**
      * Sélectionne les données annexes d'une ZSC
-     * @global type $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getZscDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
-        FROM R_ZSC_R52_data 
-        WHERE id_regional = '$id_regional' ";
+        $sql = $pdo->prepare('SELECT * FROM R_ZSC_R52_data 
+        WHERE id_regional = :id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $zsc = $pdo->query($sql)->fetch();
-            $this->id_regional = $zsc["id_regional"];
-            $this->nom = $zsc["nom"];
-            $this->dreal = $zsc["dreal"];
-            $this->url_fiche = $zsc["url_fiche"];
-            $this->url_docob = $zsc["url_docob"];
+            $row = $sql->fetch();
+            $this->id_regional = $row["id_regional"];
+            $this->nom = $row["nom"];
+            $this->dreal = $row["dreal"];
+            $this->url_fiche = $row["url_fiche"];
+            $this->url_docob = $row["url_docob"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
 
 }
-
-?>
