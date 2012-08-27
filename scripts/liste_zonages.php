@@ -71,7 +71,7 @@ elseif (isset($id_corine)):
         <br />
         <table class="encadre">
                 <?php foreach ($array_znieff as $znieff): ?>
-                <tr bgcolor="<?= switchcolor() ?>" valign=""top>
+                <tr bgcolor="<?= switchColor() ?>" valign=""top>
             <?php if ($znieff["NM_REGZN"] != "0"): ?>
                         <td>
                             <strong><?= $znieff["NM_REGZN"] ?></strong>
