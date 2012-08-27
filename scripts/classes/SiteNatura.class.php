@@ -17,26 +17,29 @@ class SiteNatura {
      */
     public function getSiteNaturaByIdRegionalIdType($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql_1 = "SELECT * 
-        FROM R_TYPE_ZONAGE_R52 
-        WHERE id_type = '$id_type' ";
+        $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        WHERE id_type = :id_type');
+        $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
+        $sql_1->execute();
         try {
-            $row = $pdo->query($sql_1)->fetch();
+            $row = $sql_1->fetch();
             $table = $row["table"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
         try {
             $table_2 = $table . "_data";
-            $sql_2 = "SELECT * 
-        FROM $table, $table_2
-        WHERE $table.id_regional = '$id_regional'
-        AND $table.id_regional = $table_2.id_regional ";
+            $sql_2 = $pdo->prepare("SELECT * 
+            FROM $table, $table_2
+            WHERE $table.id_regional = :id_regional
+            AND $table.id_regional = $table_2.id_regional");
+            $sql_2->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+            $sql_2->execute();
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
         try {
-            $row = $pdo->query($sql_2)->fetch();
+            $row = $sql_2->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
             $this->date_transmission = $row["date_transmission"];
@@ -54,15 +57,14 @@ class SiteNatura {
      */
     public function getOperateurByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $table = "R_DOCOB_R52";
-        $table_2 = "R_DOCOB_ORGANISMES_R52";
-
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_regional = '$id_regional' 
-        AND $table.id_operateur = $table_2.id_organisme";
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_DOCOB_R52, R_DOCOB_ORGANISMES_R52
+        WHERE R_DOCOB_R52.id_regional = :id_regional
+        AND R_DOCOB_R52.id_operateur = R_DOCOB_ORGANISMES_R52.id_organisme');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_organisme = $row["id_organisme"];
             $this->sigle = $row["sigle"];
         } catch (PDOException $e) {
@@ -77,15 +79,14 @@ class SiteNatura {
      */
     public function getStructureAnimatriceByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $table = "R_DOCOB_R52";
-        $table_2 = "R_DOCOB_ORGANISMES_R52";
-
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_regional = '$id_regional' 
-        AND $table.id_structure_animatrice = $table_2.id_organisme";
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_DOCOB_R52, R_DOCOB_ORGANISMES_R52 
+        WHERE R_DOCOB_R52.id_regional = :id_regional
+        AND R_DOCOB_R52.id_structure_animatrice = R_DOCOB_ORGANISMES_R52.id_organisme');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_organisme = $row["id_organisme"];
             $this->sigle = $row["sigle"];
         } catch (PDOException $e) {
@@ -100,11 +101,12 @@ class SiteNatura {
      */
     public function getDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
-        FROM natura_biotop 
-        WHERE SITECODE = '$id_regional'";
+        $sql = $pdo->prepare('SELECT * FROM natura_biotop 
+        WHERE SITECODE = :id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->QUALITY = nl2br($row["QUALITY"]);
             $this->VULNAR = nl2br($row["VULNAR"]);
             $this->CHARACT = nl2br($row["CHARACT"]);
@@ -124,36 +126,43 @@ class SiteNatura {
 function getSitesNaturaByCategorie($id_type, $categorie) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_type == "25"):
-        $sql_2 = "(SELECT * FROM R_ZPS_R52 WHERE categorie = '$categorie' 
+        $sql_2 = $pdo->prepare('(SELECT * FROM R_ZPS_R52 
+        WHERE categorie = :categorie
         GROUP BY id_regional) 
-        UNION (SELECT *  FROM R_ZSC_R52  WHERE categorie = '$categorie' 
+        UNION (SELECT * FROM R_ZSC_R52 
+        WHERE categorie = :categorie
         GROUP BY id_regional)
-        UNION (SELECT *  FROM R_SIC_R52  WHERE categorie = '$categorie' 
+        UNION (SELECT * FROM R_SIC_R52 
+        WHERE categorie = :categorie
         GROUP BY id_regional) 
-        ORDER BY id_regional ";
+        ORDER BY id_regional');
+        $sql_2->bindParam(':categorie', $categorie, PDO::PARAM_STR, 10);
     else:
-        $sql_1 = "SELECT * 
+        $sql_1 = $pdo->prepare('SELECT * 
         FROM R_TYPE_ZONAGE_R52 
-        WHERE id_type = '$id_type' ";
+        WHERE id_type = :id_type');
+        $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
+        $sql_1->execute();
         try {
-            $row = $pdo->query($sql_1)->fetch();
+            $row = $sql_1->fetch();
             $table = $row["table"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
-        }
-        try {
-            $sql_2 = "SELECT * 
-        FROM $table
-        WHERE categorie = '$categorie'
-        AND id_type = '$id_type'
-        GROUP BY id_regional 
-        ORDER BY id_regional ";
+        } try {
+            $sql_2 = $pdo->prepare("SELECT * FROM $table
+            WHERE categorie = :categorie
+            AND id_type = :id_type
+            GROUP BY id_regional 
+            ORDER BY id_regional");
+            $sql_2->bindParam(':categorie', $categorie, PDO::PARAM_STR, 10);
+            $sql_2->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
     endif;
+    $sql_2->execute();
     try {
-        $sites_natura = $pdo->query($sql_2)->fetchAll();
+        $sites_natura = $sql_2->fetchAll();
         return $sites_natura;
         $this->id_regional = $sites_natura["id_regional"];
         $this->nom = $sites_natura["nom"];
@@ -170,13 +179,14 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
  */
 function getAmpbhibiensReptilesByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_amprep 
-    WHERE SITECODE = '$id_regional'
+    $sql = $pdo->prepare('SELECT * FROM natura_amprep 
+    WHERE SITECODE = :id_regional
     GROUP BY SPECNUM
-    ORDER BY SPECNUM";
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $amphibiens_reptiles = $pdo->query($sql)->fetchAll();
+        $amphibiens_reptiles = $sql->fetchAll();
         return $amphibiens_reptiles;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -191,13 +201,14 @@ function getAmpbhibiensReptilesByIdRegional($id_regional) {
  */
 function getInvertebresByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_invert 
-    WHERE SITECODE = '$id_regional'
+    $sql = $pdo->prepare('SELECT * FROM natura_invert 
+    WHERE SITECODE = :id_regional
     GROUP BY SPECNUM
-    ORDER BY SPECNUM";
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $invertebres = $pdo->query($sql)->fetchAll();
+        $invertebres = $sql->fetchAll();
         return $invertebres;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -212,13 +223,14 @@ function getInvertebresByIdRegional($id_regional) {
  */
 function getMammiferesByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_mammal 
-    WHERE SITECODE = '$id_regional'
+    $sql = $pdo->prepare('SELECT * FROM natura_mammal
+    WHERE SITECODE = :id_regional
     GROUP BY SPECNUM
-    ORDER BY SPECNUM";
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $mammiferes = $pdo->query($sql)->fetchAll();
+        $mammiferes = $sql->fetchAll();
         return $mammiferes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -233,13 +245,14 @@ function getMammiferesByIdRegional($id_regional) {
  */
 function getPlantesByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_plant 
-    WHERE SITECODE = '$id_regional'
+    $sql = $pdo->prepare('SELECT * FROM natura_plant
+    WHERE SITECODE = :id_regional
     GROUP BY SPECNUM
-    ORDER BY SPECNUM";
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $plantes = $pdo->query($sql)->fetchAll();
+        $plantes = $sql->fetchAll();
         return $plantes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -254,13 +267,14 @@ function getPlantesByIdRegional($id_regional) {
  */
 function getPoissonsByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_fishes 
-    WHERE SITECODE = '$id_regional'
+    $sql = $pdo->prepare('SELECT * FROM natura_fishes
+    WHERE SITECODE = :id_regional
     GROUP BY SPECNUM
-    ORDER BY SPECNUM";
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $poissons = $pdo->query($sql)->fetchAll();
+        $poissons = $sql->fetchAll();
         return $poissons;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -275,13 +289,14 @@ function getPoissonsByIdRegional($id_regional) {
  */
 function getAutresEspecesByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_spec 
-    WHERE SITECODE = '$id_regional'
-    GROUP BY SPECNAME
-    ORDER BY SPECNAME";
+    $sql = $pdo->prepare('SELECT * FROM natura_spec
+    WHERE SITECODE = :id_regional
+    GROUP BY SPECNUM
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $autres_especes = $pdo->query($sql)->fetchAll();
+        $autres_especes = $sql->fetchAll();
         return $autres_especes;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -296,14 +311,15 @@ function getAutresEspecesByIdRegional($id_regional) {
  */
 function getOiseauxByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM natura_bird 
-    WHERE SITECODE = '$id_regional'
-    GROUP BY SPECNAME
-    ORDER BY SPECNAME";
+    $sql = $pdo->prepare('SELECT * FROM natura_bird
+    WHERE SITECODE = :id_regional
+    GROUP BY SPECNUM
+    ORDER BY SPECNUM');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $autres_especes = $pdo->query($sql)->fetchAll();
-        return $autres_especes;
+        $oiseaux = $sql->fetchAll();
+        return $oiseaux;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
@@ -317,15 +333,14 @@ function getOiseauxByIdRegional($id_regional) {
  */
 function getHabitatsByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "natura_eur15";
-    $table_2 = "natura_habit1";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2 
-    WHERE $table_2.SITECODE = '$id_regional' 
-    AND $table_2.HBCDAX = $table.ID_EUR15";
+    $sql = $pdo->prepare('SELECT * 
+    FROM natura_eur15, natura_habit1 
+    WHERE natura_habit1.SITECODE = :id_regional
+    AND natura_habit1.HBCDAX = natura_eur15.ID_EUR15');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
+    $sql->execute();
     try {
-        $habitats = $pdo->query($sql)->fetchAll();
+        $habitats = $sql->fetchAll();
         return $habitats;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
