@@ -52,8 +52,8 @@ function getHabitatsCorine() {
  */
 function getHabitatsCorineByCdTypo1() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 1%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '1%'");
     $sql->execute();
     try {
         $habitats_corine_1 = $sql->fetchAll();
@@ -69,8 +69,8 @@ function getHabitatsCorineByCdTypo1() {
  */
 function getHabitatsCorineByCdTypo2() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 2%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '2%'");
     $sql->execute();
     try {
         $habitats_corine_2 = $sql->fetchAll();
@@ -86,8 +86,8 @@ function getHabitatsCorineByCdTypo2() {
  */
 function getHabitatsCorineByCdTypo3() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 3%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '3%'");
     $sql->execute();
     try {
         $habitats_corine_3 = $sql->fetchAll();
@@ -103,8 +103,8 @@ function getHabitatsCorineByCdTypo3() {
  */
 function getHabitatsCorineByCdTypo4() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 4%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '4%'");
     $sql->execute();
     try {
         $habitats_corine_4 = $sql->fetchAll();
@@ -120,8 +120,8 @@ function getHabitatsCorineByCdTypo4() {
  */
 function getHabitatsCorineByCdTypo5() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 5%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '5%'");
     $sql->execute();
     try {
         $habitats_corine_5 = $sql->fetchAll();
@@ -137,8 +137,8 @@ function getHabitatsCorineByCdTypo5() {
  */
 function getHabitatsCorineByCdTypo6() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 6%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '6%'");
     $sql->execute();
     try {
         $habitats_corine_6 = $sql->fetchAll();
@@ -154,8 +154,8 @@ function getHabitatsCorineByCdTypo6() {
  */
 function getHabitatsCorineByCdTypo7() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 7%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '7%'");
     $sql->execute();
     try {
         $habitats_corine_7 = $sql->fetchAll();
@@ -171,8 +171,8 @@ function getHabitatsCorineByCdTypo7() {
  */
 function getHabitatsCorineByCdTypo8() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM znieff_typologie 
-    WHERE CD_TYPO LIKE 8%');
+    $sql = $pdo->prepare("SELECT * FROM znieff_typologie 
+    WHERE CD_TYPO LIKE '8%'");
     $sql->execute();
     try {
         $habitats_corine_8 = $sql->fetchAll();
