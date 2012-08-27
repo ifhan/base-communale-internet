@@ -121,7 +121,7 @@ $zonage->getTypeZonageByIdType($id_type);
             T&eacute;l&eacute;charger la fiche descriptive
         </a>
         <span class="docformat">
-            (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/ppsic/$id_regional.pdf") ?>.")
+            (PDF,&nbsp;<?= @convertFilesize("data/fiches/ppsic/$id_regional.pdf") ?>.")
         </span>
             <?php
                 /**
@@ -228,7 +228,7 @@ switch ($id_type):
                href="data/fiches/ramsar/<?=$id_regional?>.pdf">
                 T&eacute;l&eacute;charger la fiche descriptive</a>
             <span class="docformat"> 
-                (PDF,&nbsp;<?=@ConvertirTaille("data/fiches/ramsar/$id_regional.pdf")?>)
+                (PDF,&nbsp;<?=@convertFilesize("data/fiches/ramsar/$id_regional.pdf")?>)
             </span>
         </li>
         <li>
@@ -251,7 +251,7 @@ switch ($id_type):
                href="data/fiches/<?=$zonage->path?>/<?=$id_regional?>.pdf">
                 T&eacute;l&eacute;charger la fiche descriptive</a>
             <span class="docformat"> 
-                (PDF,&nbsp;<?= @ConvertirTaille("data/fiches/$zonage->path/$id_regional.pdf") ?>)
+                (PDF,&nbsp;<?= @convertFilesize("data/fiches/$zonage->path/$id_regional.pdf") ?>)
             </span>
         </li>
         <?php
@@ -371,7 +371,7 @@ switch ($id_type):
                 T&eacute;l&eacute;charger le d&eacute;cret
             </a>
             <span class="docformat">
-                (PDF,&nbsp;";<?= @ConvertirTaille("data/docs/decrets/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf") ?>)
+                (PDF,&nbsp;";<?= @convertFilesize("data/docs/decrets/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf") ?>)
             </span>
         <?php
         elseif (($site_classe_inscrit->url_texte != "") 
@@ -397,7 +397,7 @@ endswitch;
             T&eacute;l&eacute;charger l'arr&ecirc;t&eacute;
         </a>
         <span class="docformat">
-            (PDF,&nbsp;<?= @ConvertirTaille("data/docs/arretes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+            (PDF,&nbsp;<?= @convertFilesize("data/docs/arretes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
         </span>
         <?php
     elseif ($id_type == '13'):
@@ -411,7 +411,7 @@ endswitch;
                 T&eacute;l&eacute;charger l'arr&ecirc;t&eacute;
             </a>
             <span class="docformat">
-                (PDF,&nbsp;";<?= @ConvertirTaille("data/docs/arretes/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf") ?>)
+                (PDF,&nbsp;";<?= @convertFilesize("data/docs/arretes/" . $zonage->path . "/" . $site_classe_inscrit->id_dpt . $site_classe_inscrit->type_site . $site_classe_inscrit->id_site . $site_classe_inscrit->id_entite . ".pdf") ?>)
             </span>
         <?php elseif (($site_classe_inscrit->url_texte != "") 
                 && ($site_classe_inscrit->texte_protection == "Arrêté")): ?>	
@@ -467,7 +467,7 @@ endswitch;
             T&eacute;l&eacute;charger le plan de gestion
         </a>
         <span class="docformat">
-            (PDF,&nbsp;<?= @ConvertirTaille("data/docs/plans_gestion/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+            (PDF,&nbsp;<?= @convertFilesize("data/docs/plans_gestion/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
         </span>
 <?php endif; ?>
 </li>
@@ -481,7 +481,7 @@ endswitch;
                 T&eacute;l&eacute;charger la carte de localisation
             </a>
             <span class="docformat">
-                (PDF,&nbsp;<?= @ConvertirTaille("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+                (PDF,&nbsp;<?= @convertFilesize("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
             </span>
         <?php endif; ?>
         <?php if (file_exists("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
@@ -491,7 +491,7 @@ endswitch;
                 T&eacute;l&eacute;charger le rapport de pr&eacute;sentation
             </a>
             <span class="docformat">
-                (PDF,&nbsp;<?= @ConvertirTaille("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
             </span>
         <?php endif; ?>
     <?php endif; ?>
