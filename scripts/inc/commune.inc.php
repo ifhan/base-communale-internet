@@ -35,7 +35,7 @@ if (isset($communes)): ?>
     <table width="99%">
         <?php foreach ($communes as $commune): ?>
             <tr>
-                <td bgcolor="<?= switchcolor() ?>">
+                <td bgcolor="<?=switchColor()?>">
                     <?=$commune["id_commune"]?>
                     <?php
                     $str = $commune["id_commune"];
