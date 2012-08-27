@@ -48,10 +48,13 @@ $site_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
         <?php foreach ($site_photos as $site_photo): ?>
         <div class="mosaique">
             <div class="image" align="center">
-                <a class="group" rel="fancybox-button" href="data/photos/<?=$zonage->path?>/<?=$site_photo["id_photo"]?>.jpg" title="
-		<?php if($site_photo["titre"]!="") { echo utf8_encode($site_photo["titre"])." - "; }
-		if($site_photo["auteur"]!="") { echo utf8_encode($site_photo["auteur"]); }
-		if($site_photo["fournisseur"]!="") { echo " &copy;".utf8_encode($site_photo["fournisseur"]); } ?>">
+                <a class="group" 
+                   rel="fancybox-button" 
+                   href="data/photos/<?=$zonage->path?>/<?=$site_photo["id_photo"]?>.jpg" 
+                   title="
+		<?php if($site_photo["titre"]!="") { echo $site_photo["titre"]." - "; }
+		if($site_photo["auteur"]!="") { echo $site_photo["auteur"]; }
+		if($site_photo["fournisseur"]!="") { echo " &copy;".$site_photo["fournisseur"]; } ?>">
                     <img src="data/photos/<?=$zonage->path?>_small/<?=$site_photo["id_photo"]?>_small.jpg" alt="<?=$site_photo["titre"]?> - <?=$site_photo["id"]?> (<?=$site_photo["resolution"]?>)"/></a>
             </div>
 		<div class=link-paysage>
@@ -74,7 +77,7 @@ $site_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
                     echo "R&eacute;solution : " . $exif['COMPUTED']['Width'] . "x" . $exif['COMPUTED']['Height'] . "<br />\n";
                     echo "Type de fichier : " . $exif['FILE']['MimeType'] . "<br />\n";
                     echo "Taille du fichier : ";
-                    echo ConvertirTaille('data/photos/' . $zonage->path . '/' . $site_photo["id_photo"] . '.jpg');
+                    echo convertFilesize('data/photos/' . $zonage->path . '/' . $site_photo["id_photo"] . '.jpg');
                     ?>	
                 </div>
         </div>           
