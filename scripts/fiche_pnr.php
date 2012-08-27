@@ -50,10 +50,12 @@ $departements = getDepartementsByIdRegional($id_regional);
     <table>
         <tr>
             <td style="vertical-align:bottom;">
-                <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web" />
+                <img src="IMG/png/gnome-globe.png" 
+                     style="border:none" alt="Icone web" />
             </td>
             <td>
-                <a href="<?=$pnr->url_site?>" target="_blank">Consulter le site du Parc Naturel R&eacute;gional</a>.   
+                <a href="<?=$pnr->url_site?>" 
+                   target="_blank">Consulter le site du Parc Naturel R&eacute;gional</a>.   
             </td>
         </tr>
     </table>
