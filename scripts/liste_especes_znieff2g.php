@@ -256,7 +256,8 @@ $sources_especes = getSourcesEspeces($id_regional, "D");
 <?php $especes_confidentielles = getEspecesByIdRegionalByFgEsp($id_regional,"C"); ?>
 <?php if (count($especes_confidentielles) > 0): ?>
     <p>
-        <strong><?= count($especes_confidentielles) ?> esp&egrave;ce(s) confidentielle(s)</strong> 
+        <strong><?= count($especes_confidentielles) ?> esp&egrave;ce(s) 
+            confidentielle(s)</strong> 
         sont recens&eacute;es dans cette ZNIEFF.
     </p>
 <?php else: ?>
@@ -314,10 +315,14 @@ $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
                     <td class="left" bgcolor="<?= switchColor() ?>">
                         <?php foreach ($sous_regnes as $sous_regne): ?>
                             <?php if ($sous_regne["LB_ESP"] != ""): ?>
-                                <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
+                                <strong>
+                                <?= $sous_regne["LB_ESP"] ?> &raquo; 
+                                </strong>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                        <strong><?= $embranchement["LB_ESP"] ?> &raquo; </strong><br />
+                        <strong>
+                        <?= $embranchement["LB_ESP"] ?> &raquo; 
+                        </strong><br />
                         <?php
                         /**
                          *  Affichage du nom latin de l'espèce
