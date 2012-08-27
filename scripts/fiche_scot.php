@@ -40,7 +40,7 @@ $themes = getThemesByIdScot($id_scot);
                  * Affichage du type de zonage 
                  */
                 ?>
-                <strong><?= $type_zonage["type"] ?> :</strong><br />
+                <strong><?=$type_zonage["type"]?> :</strong><br />
                 <?php $id_type = $type_zonage["id_type"]; ?>
                 <?php $zonages = getZonagesByIdTypeByIdScot($id_type, $id_scot) ?>
                 <table class="encadre">
@@ -51,9 +51,9 @@ $themes = getThemesByIdScot($id_scot);
                          * du lien vers la liste des ressources associées
                          */
                         ?>
-                        <tr bgcolor="<?= switchcolor() ?>" valign="top">
+                        <tr bgcolor="<?=switchColor()?>" valign="top">
                             <td>
-                                <strong><?= $zonage["id_regional"] ?></strong>
+                                <strong><?=$zonage["id_regional"]?></strong>
                             </td>
                             <td width="99%">&nbsp;<?= $zonage["nom"] ?></td>
                             <td class="cache">

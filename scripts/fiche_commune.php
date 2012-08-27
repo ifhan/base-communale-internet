@@ -45,7 +45,7 @@ $themes = getThemesByIdCommune($id_commune);
                  * du lien vers la liste des ressources associées
                  */
                 ?>
-                <tr bgcolor="<?=switchcolor()?>" valign="top">
+                <tr bgcolor="<?=switchColor()?>" valign="top">
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>
                     </td>
