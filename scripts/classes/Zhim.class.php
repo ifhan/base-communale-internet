@@ -11,17 +11,19 @@ class Zhim {
 
     /**
      * Sélectionne une ZHIM par son identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @global string $pdo Connexion à la base de données
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getZhimByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
+        $sql = $pdo->prepare('SELECT * 
         FROM R_ZHIM_R52, R_ZHIM_R52_data  
-        WHERE R_ZHIM_R52.id_regional = '$id_regional'
-        AND R_ZHIM_R52.id_regional = R_ZHIM_R52_data.id_regional ";
+        WHERE R_ZHIM_R52.id_regional = :id_regional
+        AND R_ZHIM_R52.id_regional = R_ZHIM_R52_data.id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom = $row["nom"];
             $this->id_regional = $row["id_regional"];
             $this->presentation = nl2br($row['presentation']);
@@ -43,5 +45,3 @@ class Zhim {
     }
 
 }
-
-?>
