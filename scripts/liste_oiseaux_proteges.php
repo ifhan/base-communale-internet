@@ -18,7 +18,8 @@ $id_article = $_REQUEST["id_article"];
 $oiseaux_proteges = getOiseauxProtegesByIdArticle($id_article);
 ?>
 <?php if ($id_article !== "0"): ?>
-    <p>Esp&egrave;ces list&eacute;es &agrave; l'article <?= $id_article ?> de l'arr&ecirc;t&eacute; du 29 octobre 2009 :</p><br />
+    <p>Esp&egrave;ces list&eacute;es &agrave; l'article <?= $id_article ?> 
+        de l'arr&ecirc;t&eacute; du 29 octobre 2009 :</p><br />
 <?php endif; ?>
 <table class="display" id="example">
     <thead>
