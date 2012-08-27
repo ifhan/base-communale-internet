@@ -10,20 +10,19 @@
 class StationQualite {
     /**
      * Sélectionne une station par son identifiant
-     * @global string $pdo Connexion àa la base de données
      * @param string $id_regional Identifiant de la station
      */
     public function getStationQualiteByIdStation($id_regional) {
-        $pdo = ConnectionFactory::getFactory()->getConnection();
-        $table = "R_STATION_QUALITE_RCS_R52";
-        $table_2 = "R_RIVIERE_QUALITE_R52";
-        
-        $sql = "SELECT * 
-        FROM $table, $table_2 
-        WHERE $table.id_regional = '$id_regional' 
-        AND $table.id_riviere = $table_2.id_riviere ";
+        $pdo = ConnectionFactory::getFactory()->getConnection();        
+        $sql = $pdo->prepare('SELECT * 
+        FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+        WHERE R_STATION_QUALITE_RCS_R52.id_regional = :id_regional 
+        AND R_STATION_QUALITE_RCS_R52.id_riviere = 
+        R_RIVIERE_QUALITE_R52.id_riviere');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 6);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->nom_riviere = stripslashes($row["nom_riviere"]);
             $this->nom_commune = $row["nom_commune"];
             $this->id_commune = $row["id_commune"];
@@ -40,25 +39,27 @@ class StationQualite {
  * Sélectionne les stations "Qualité des eaux" par le code géographique du
  * département (ou sur l'ensemble de la région) et par l'identifiant du réseau 
  * (RCS ou RNB)
- * @global string $pdo
- * @param int $id_dpt
- * @param int $id_reseau
+ * @param int $id_dpt Identifiant du département
+ * @param int $id_reseau Identifiant du réseau 
  * @return array 
  */
 function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if($id_dpt!="0"):
-        $sql = "SELECT * 
-        FROM R_STATION_QUALITE_RCS_R52 
-        WHERE id_reseau = $id_reseau 
-        AND id_departement = $id_dpt 
-        ORDER BY id_departement, id_regional ";
+        $sql = $pdo->prepare('SELECT * FROM R_STATION_QUALITE_RCS_R52 
+        WHERE id_departement = :id_dpt 
+        AND id_reseau = :id_reseau 
+        ORDER BY id_departement, id_regional');
+        $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
+        $sql->bindParam(':id_reseau', $id_reseau, PDO::PARAM_STR, 3);
+        
     else:
-        $sql = "SELECT * 
-        FROM R_STATION_QUALITE_RCS_R52 
-        WHERE id_reseau = $id_reseau 
-        ORDER BY id_departement, id_regional ";
+        $sql = $pdo->prepare('SELECT * FROM R_STATION_QUALITE_RCS_R52 
+        WHERE id_reseau = :id_reseau 
+        ORDER BY id_departement, id_regional');
+        $sql->bindParam(':id_reseau', $id_reseau, PDO::PARAM_STR, 3);
     endif;
+    $sql->execute();
     try {
         $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
         return $stations_qualite_rcs;
@@ -69,50 +70,54 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
 
 /**
  * Sélectionne les stations "Qualité des eaux" par département et par rivière
- * @global string $pdo
  * @param int $id_dpt Identifiant du département
  * @param int $id_riviere Identifiant de la rivière
  * @return array 
  */
 function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_STATION_QUALITE_RCS_R52";
-    $table2 = "R_RIVIERE_QUALITE_R52";
     if ($id_dpt != "0"):
         if ($id_riviere != "0"):
-        // Cas #1 : sélection d'un cours d'eau dans un département
-        $sql = "SELECT DISTINCT * 
-            FROM $table, $table2 
-            WHERE $table.id_commune like '$id_dpt%' 
-            AND $table.id_riviere = $id_riviere 
-            AND $table.id_riviere = $table2.id_riviere 
-            ORDER BY $table.id_regional";
+            // Cas #1 : sélection d'un cours d'eau dans un département
+            $sql = $pdo->prepare("SELECT DISTINCT * 
+            FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE ':id_dpt%' 
+            AND R_STATION_QUALITE_RCS_R52.id_riviere = :id_riviere 
+            AND R_STATION_QUALITE_RCS_R52.id_riviere = 
+            R_RIVIERE_QUALITE_R52.id_riviere 
+            ORDER BY R_STATION_QUALITE_RCS_R52.id_regional");
         else:
-        // Cas #2 : sélection de tous les cours d'eau dans un département
-        $sql = "SELECT DISTINCT * 
-            FROM $table, $table2 
-            WHERE $table.id_commune like '$id_dpt%' 
-            AND $table.id_riviere = $table2.id_riviere 
-            ORDER BY $table.id_regional";
+            // Cas #2 : sélection de tous les cours d'eau dans un département
+            $sql = $pdo->prepare("SELECT DISTINCT * 
+            FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE ':id_dpt%' 
+            AND R_STATION_QUALITE_RCS_R52.id_riviere = 
+            R_RIVIERE_QUALITE_R52.id_riviere 
+            ORDER BY R_STATION_QUALITE_RCS_R52.id_regional");
         endif;
     else:
         if ($id_riviere != "0"):
-        // Cas #3 : sélection d'un cours d'eau dans la région
-        $sql = "SELECT * 
-            FROM $table, $table2
-            WHERE $table.id_riviere = '$id_riviere' 
-            AND $table.id_riviere = $table2.id_riviere
-            ORDER BY $table.id_regional ";
+            // Cas #3 : sélection d'un cours d'eau dans la région
+            $sql = $pdo->prepare('SELECT * 
+            FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+            WHERE R_STATION_QUALITE_RCS_R52.id_riviere = :id_riviere
+            AND R_STATION_QUALITE_RCS_R52.id_riviere = 
+            R_RIVIERE_QUALITE_R52.id_riviere
+            ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
         else:
         // Cas #4 : sélection de tous les cours d'eau de la région
-        $sql = "SELECT * 
-            FROM $table, $table2
-            WHERE $table.id_riviere = $table2.id_riviere
-            ORDER BY $table.id_regional ";
+            $sql = $pdo->prepare('SELECT * 
+            FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+            WHERE R_STATION_QUALITE_RCS_R52.id_riviere = 
+            R_RIVIERE_QUALITE_R52.id_riviere
+            ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
         endif;
     endif;
+    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
+    $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
+    $sql->execute();
     try {
-        $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
+        $stations_qualite_rcs = $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -121,20 +126,18 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
 
 /**
  * Sélectionne les stations "Qualité des eaux" par commune
- * @global string $pdo
  * @param type $id_commune Code géographique de la commune
  * @return array
  */
 function getStationsQualiteByIdCommune($id_commune) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_STATION_QUALITE_RCS_R52";
-    $table2 = "R_RIVIERE_QUALITE_R52";
-
-    $sql = "SELECT DISTINCT * 
-    FROM $table, $table2 
-    WHERE $table.id_commune = $id_commune 
-    AND $table.id_riviere = $table2.id_riviere 
-    ORDER BY $table.id_regional" ;
+    $sql = $pdo->prepare('SELECT DISTINCT * 
+    FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
+    WHERE R_STATION_QUALITE_RCS_R52.id_commune = :id_commune 
+    AND R_STATION_QUALITE_RCS_R52.id_riviere = R_RIVIERE_QUALITE_R52.id_riviere 
+    ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
+    $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_INT, 5);
+    $sql->execute();
     try {
         $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
         return $stations_qualite_rcs;
@@ -142,5 +145,3 @@ function getStationsQualiteByIdCommune($id_commune) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
