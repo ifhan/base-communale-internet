@@ -19,7 +19,7 @@ class Commune {
         $sql = $pdo->prepare('SELECT * 
         FROM BDC_COMMUNE_52 
         WHERE id_commune = :id_commune');
-        $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_STR, 10);
+        $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_STR, 5);
         $sql->execute();
         try {
             $row = $sql->fetch();
