@@ -287,11 +287,11 @@ endswitch;
     endswitch;
     ?>
 </li>
-<!-- 4. Fiches ZNIEFF de deuxième générations sur le site de l'INPN -->
+<!-- 4. Fiches ZNIEFF de l'inventaire permanent sur le site de l'INPN -->
 <li>
 <?php
 switch ($id_type):
-    case 10: case 11:
+    case 34: case 35:
         $znieff = new Znieff2G();
         $znieff->getZnieff2GByIdRegional($id_regional);
         ?>
