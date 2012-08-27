@@ -33,7 +33,6 @@ class HabitatEur15 {
 /**
  * Sélection de l'ensemble de la liste des habitats Natura 2000 
  * (nomenclature EUR15)
- * @global string $pdo Connexion à la base de données
  * @return array 
  */
 function getHabitatsEur15() {
