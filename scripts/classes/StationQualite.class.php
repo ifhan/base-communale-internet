@@ -61,7 +61,7 @@ function getStationsQualiteByIdDptByIdReseau($id_dpt,$id_reseau) {
     endif;
     $sql->execute();
     try {
-        $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
+        $stations_qualite_rcs =  $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -81,19 +81,22 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             // Cas #1 : sélection d'un cours d'eau dans un département
             $sql = $pdo->prepare("SELECT DISTINCT * 
             FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
-            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE ':id_dpt%' 
+            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE CONCAT(:id_dpt,'%')
             AND R_STATION_QUALITE_RCS_R52.id_riviere = :id_riviere 
             AND R_STATION_QUALITE_RCS_R52.id_riviere = 
             R_RIVIERE_QUALITE_R52.id_riviere 
             ORDER BY R_STATION_QUALITE_RCS_R52.id_regional");
+            $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
+            $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
         else:
             // Cas #2 : sélection de tous les cours d'eau dans un département
             $sql = $pdo->prepare("SELECT DISTINCT * 
             FROM R_STATION_QUALITE_RCS_R52, R_RIVIERE_QUALITE_R52
-            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE ':id_dpt%' 
+            WHERE R_STATION_QUALITE_RCS_R52.id_commune LIKE CONCAT(:id_dpt,'%')
             AND R_STATION_QUALITE_RCS_R52.id_riviere = 
             R_RIVIERE_QUALITE_R52.id_riviere 
             ORDER BY R_STATION_QUALITE_RCS_R52.id_regional");
+            $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
         endif;
     else:
         if ($id_riviere != "0"):
@@ -104,6 +107,7 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             AND R_STATION_QUALITE_RCS_R52.id_riviere = 
             R_RIVIERE_QUALITE_R52.id_riviere
             ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
+            $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
         else:
         // Cas #4 : sélection de tous les cours d'eau de la région
             $sql = $pdo->prepare('SELECT * 
@@ -113,8 +117,6 @@ function getStationsQualiteByIdDptByIdRiviere($id_dpt,$id_riviere) {
             ORDER BY R_STATION_QUALITE_RCS_R52.id_regional');
         endif;
     endif;
-    $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
-    $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
     $sql->execute();
     try {
         $stations_qualite_rcs = $sql->fetchAll();
@@ -139,7 +141,7 @@ function getStationsQualiteByIdCommune($id_commune) {
     $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_INT, 5);
     $sql->execute();
     try {
-        $stations_qualite_rcs = $pdo->query($sql)->fetchAll();
+        $stations_qualite_rcs = $sql->fetchAll();
         return $stations_qualite_rcs;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
