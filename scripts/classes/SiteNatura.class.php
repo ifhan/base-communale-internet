@@ -12,9 +12,8 @@ class SiteNatura {
 
     /**
      * Sélectionne un site Natura 2000 par son identifiant
-     * @global string $pdo
-     * @param string $id_regional
-     * @param int $id_type 
+     * @param string $id_regional Identifiant régional du zonage
+     * @param int $id_type Identifiant du type de zonage
      */
     public function getSiteNaturaByIdRegionalIdType($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
@@ -51,8 +50,7 @@ class SiteNatura {
     /**
      * Sélectionne un opérateur par l'identifiant régional 
      * du site Natura
-     * @global string $pdo
-     * @param type $id_regional 
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getOperateurByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
@@ -75,8 +73,7 @@ class SiteNatura {
     /**
      * Sélectionne un structure animatrice par l'identifiant régional 
      * du site Natura
-     * @global string $pdo
-     * @param string $id_regional 
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getStructureAnimatriceByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
@@ -99,8 +96,7 @@ class SiteNatura {
     /**
      * Sélectionne les données d'un site Natura à partir de son 
      * identifiant régional
-     * @global string $pdo
-     * @param string $id_regional 
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
@@ -121,9 +117,8 @@ class SiteNatura {
 
 /**
  * Sélectionne les sites Natura par catégorie (marin, mixte, terrestre)
- * @global string $pdo
- * @param int $id_type
- * @param string $categorie
+ * @param int $id_type Identifiant du type de zonage
+ * @param string $categorie Identifiant de la catégorie du zonage
  * @return array 
  */
 function getSitesNaturaByCategorie($id_type, $categorie) {
@@ -170,8 +165,7 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
 /**
  * Sélectionne les amphibiens et reptiles présents sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getAmpbhibiensReptilesByIdRegional($id_regional) {
@@ -192,8 +186,7 @@ function getAmpbhibiensReptilesByIdRegional($id_regional) {
 /**
  * Sélectionne les invertébrés présents sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getInvertebresByIdRegional($id_regional) {
@@ -214,8 +207,7 @@ function getInvertebresByIdRegional($id_regional) {
 /**
  * Sélectionne les mammifères présents sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getMammiferesByIdRegional($id_regional) {
@@ -236,8 +228,7 @@ function getMammiferesByIdRegional($id_regional) {
 /**
  * Sélectionne les plantes présentes sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getPlantesByIdRegional($id_regional) {
@@ -258,8 +249,7 @@ function getPlantesByIdRegional($id_regional) {
 /**
  * Sélectionne les poissons présentes sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getPoissonsByIdRegional($id_regional) {
@@ -280,8 +270,7 @@ function getPoissonsByIdRegional($id_regional) {
 /**
  * Sélectionne les autres espèces présentes sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getAutresEspecesByIdRegional($id_regional) {
@@ -302,8 +291,7 @@ function getAutresEspecesByIdRegional($id_regional) {
 /**
  * Sélectionne les oiseaux présents sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getOiseauxByIdRegional($id_regional) {
@@ -324,8 +312,7 @@ function getOiseauxByIdRegional($id_regional) {
 /**
  * Sélectionne les habitats présents sur le site Natura 2000 
  * par son identifiant régional
- * @global string $pdo
- * @param type $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return type 
  */
 function getHabitatsByIdRegional($id_regional) {
@@ -344,5 +331,3 @@ function getHabitatsByIdRegional($id_regional) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
