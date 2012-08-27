@@ -21,7 +21,7 @@ $sites_classes_inscrits = getSitesClassesInscrits();
     </thead>
     <tbody>
         <?php foreach($sites_classes_inscrits as $site_classe_inscrit): ?>
-        <tr bgcolor="<?=switchColor()?>" valign="top">
+        <tr valign="top">
             <td><?=$site_classe_inscrit["id_regional"]?></td>
             <td>&nbsp;<?=$site_classe_inscrit["nom"]?></td>
             <td class="cache">
