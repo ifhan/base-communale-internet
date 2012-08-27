@@ -23,10 +23,13 @@ $zonage->getTypeZonageByIdType("28");
     <table>
         <tr>
             <td style="vertical-align:bottom;">
-                <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web">
+                <img src="IMG/png/gnome-globe.png" 
+                     style="border:none" 
+                     alt="Icone web">
             </td>
             <td>
-                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_regional;04<?=$id_regional?>" target="_blank">Consulter la localisation de la station sur CARMEN</a>.    
+                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_qualite_rcs;id_regional;04<?=$id_regional?>" 
+                   target="_blank">Consulter la localisation de la station sur CARMEN</a>.    
             </td>
         </tr>
     </table>
@@ -47,36 +50,40 @@ if (@is_dir($dir)):
     <ul>
         <?php if(file_exists("data/fiches/qualite/$file/Physico-chimie/" . $id_regional . ".pdf")): ?>
         <li><a class="document" 
-               href="data/fiches/qualite/$file/Physico-chimie/<?=$id_regional?>.pdf" target="_blank">Physico-chimie</a>
+               href="data/fiches/qualite/$file/Physico-chimie/<?=$id_regional?>.pdf" 
+               target="_blank">Physico-chimie</a>
             <span class="docformat"> 
-                <em>(PDF, <?=@ConvertirTaille("data/fiches/qualite/$file/Physico-chimie/" . $id_regional . ".pdf")?>)</em>
+                <em>(PDF, <?=@convertFilesize("data/fiches/qualite/$file/Physico-chimie/" . $id_regional . ".pdf")?>)</em>
             </span>
         </li>
         <?php endif; ?>
         <?php if(file_exists("data/fiches/qualite/$file/Pesticides/" . $id_regional . ".pdf")):  ?>
         <li>
             <a class="document" 
-               href="data/fiches/qualite/$file/Pesticides/<?=$id_regional?>.pdf" target="_blank">Pesticides</a>
+               href="data/fiches/qualite/$file/Pesticides/<?=$id_regional?>.pdf" 
+               target="_blank">Pesticides</a>
             <span class="docformat">
-                <em>(PDF, <?=@ConvertirTaille("data/fiches/qualite/$file/Pesticides/" . $id_regional . ".pdf")?>)</em>
+                <em>(PDF, <?=@convertFilesize("data/fiches/qualite/$file/Pesticides/" . $id_regional . ".pdf")?>)</em>
             </span>
         </li>
         <?php endif; ?>
         <?php if(file_exists("data/fiches/qualite/$file/IBGN/" . $id_regional . ".pdf")):  ?>
         <li>
             <a class="document" 
-               href="data/fiches/qualite/$file/IBGN/<?=$id_regional?>.pdf" target="_blank">IBGN</a>
+               href="data/fiches/qualite/$file/IBGN/<?=$id_regional?>.pdf" 
+               target="_blank">IBGN</a>
             <span class="docformat">
-                <em>(PDF, <?=@ConvertirTaille("data/fiches/qualite/$file/IBGN/" . $id_regional . ".pdf")?>)</em>
+                <em>(PDF, <?=@convertFilesize("data/fiches/qualite/$file/IBGN/" . $id_regional . ".pdf")?>)</em>
             </span>
         </li>
         <?php endif; ?>
         <?php if(file_exists("data/fiches/qualite/$file/IBD/" . $id_regional . ".pdf")):  ?>
         <li>
             <a class="document" 
-               href="data/fiches/qualite/$file/IBD/<?=$id_regional?>.pdf" target="_blank">IBD</a>
+               href="data/fiches/qualite/$file/IBD/<?=$id_regional?>.pdf" 
+               target="_blank">IBD</a>
             <span class="docformat">
-                <em>(PDF, <?=@ConvertirTaille("data/fiches/qualite/$file/IBD/" . $id_regional . ".pdf")?>)</em>
+                <em>(PDF, <?=@convertFilesize("data/fiches/qualite/$file/IBD/" . $id_regional . ".pdf")?>)</em>
             </span>
         </li>
         <?php endif; ?>

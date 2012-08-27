@@ -23,10 +23,13 @@ $zonage->getTypeZonageByIdType("28");
     <table>
         <tr>
             <td style="vertical-align:bottom;">
-                <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web" />
+                <img src="IMG/png/gnome-globe.png" 
+                     style="border:none" 
+                     alt="Icone web" />
             </td>
             <td>
-                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;id_station;04<?=$id_station?>" target="_blank">Consulter la localisation de la station sur CARMEN</a>.   
+                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;id_station;04<?=$id_station?>" 
+                   target="_blank">Consulter la localisation de la station sur CARMEN</a>.   
             </td>
         </tr>
     </table>
@@ -65,10 +68,11 @@ if(@is_dir($dir)):
                 if (file_exists("data/fiches/temperature/$file/" . $id_station . ".pdf")): ?>
         <li>
             <a class="document" 
-               href="data/fiches/temperature/<?=$file?>/<?=$id_station?>.pdf" target="_blank">Temp&eacute;ratures en continu en <?=$file?></a>
+               href="data/fiches/temperature/<?=$file?>/<?=$id_station?>.pdf" 
+               target="_blank">Temp&eacute;ratures en continu en <?=$file?></a>
             <span class=docformat>
                 <em>
-                    (PDF, <?=@ConvertirTaille("data/fiches/temperature/$file/" . $id_station . ".pdf")?>)
+                    (PDF, <?=@convertFilesize("data/fiches/temperature/$file/" . $id_station . ".pdf")?>)
                 </em>
             </span>
         </li>
