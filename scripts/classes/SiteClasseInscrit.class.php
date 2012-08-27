@@ -11,16 +11,16 @@ class SiteClasseInscrit {
 
     /**
      * Sélectionne les données annexes d'un site classé ou inscrit
-     * @global type $pdo
-     * @param string $id_regional 
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getSiteClasseInscritDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = "SELECT * 
-        FROM R_SITE_CLASSE_INSCRIT_R52_data 
-        WHERE id_regional = '$id_regional' ";
+        $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52_data 
+        WHERE id_regional = :id_regional');
+        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+        $sql->execute();
         try {
-            $row = $pdo->query($sql)->fetch();
+            $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
             $this->commentaires = nl2br($row["commentaires"]);
@@ -34,22 +34,21 @@ class SiteClasseInscrit {
 
 /**
  * Sélectionne les entités d'un site à partir de son identifiant régional
- * @global string $pdo
- * @param string $id_regional
+ * @param string $id_regional Identifiant régional du zonage
  * @return array 
  */
 function getEntitesFromSiteByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_SITE_CLASSE_INSCRIT_R52";
-    $table_2 = "R_SITE_CLASSE_INSCRIT_R52_data";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2
-    WHERE $table.id_regional = $id_regional 
-    AND $table.id_regional = $table_2.id_regional
-    GROUP BY $table.id_sp";
+    $sql = $pdo->prepare('SELECT * 
+    FROM R_SITE_CLASSE_INSCRIT_R52, R_SITE_CLASSE_INSCRIT_R52_data
+    WHERE R_SITE_CLASSE_INSCRIT_R52.id_regional = :id_regional 
+    AND R_SITE_CLASSE_INSCRIT_R52.id_regional = 
+    R_SITE_CLASSE_INSCRIT_R52_data.id_regional
+    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_sp');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+    $sql->execute();
     try {
-        $entites = $pdo->query($sql)->fetchAll();
+        $entites = $sql->fetchAll();
         return $entites;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -58,24 +57,24 @@ function getEntitesFromSiteByIdRegional($id_regional) {
 
 /**
  * Sélectionne les photographies d'un site à partir de son identifiant régional
- * @global string $pdo
- * @param string $id_regional
- * @param int $id_type
+ * @param string $id_regional Identifiant régional du zonage
+ * @param int $id_type Identifiant du type de zonage
  * @return array 
  */
 function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_SITE_CLASSE_INSCRIT_R52_photos";
-    $table_2 = "R_SITE_CLASSE_INSCRIT_R52";
-    $table_3 = "R_TYPE_ZONAGE_R52";
-
-    $sql = "SELECT * 
-    FROM $table, $table_2, $table_3
-    WHERE $table.id_regional = '$id_regional'
-    AND $table.id_regional = $table_2.id_regional
-    AND $table_3.id_type = $id_type ";
+    $sql = $pdo->prepare('SELECT * 
+    FROM R_SITE_CLASSE_INSCRIT_R52_photos, R_SITE_CLASSE_INSCRIT_R52, 
+    R_TYPE_ZONAGE_R52
+    WHERE R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = :id_regional
+    AND R_TYPE_ZONAGE_R52.id_type = :id_type
+    AND R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = 
+    R_SITE_CLASSE_INSCRIT_R52.id_regional');
+    $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
+    $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
+    $sql->execute();
     try {
-        $site_photos = $pdo->query($sql)->fetchAll();
+        $site_photos = $sql->fetchAll();
         return $site_photos;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -84,21 +83,19 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
 
 /**
  * Sélectionne l'ensemble des sites classés et inscrit de la région
- * @global string $pdo
  * @return array 
  */
 function getSitesClassesInscrits() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "SELECT * 
-    FROM R_SITE_CLASSE_INSCRIT_R52 
+    $sql = "";
+    $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52 
     GROUP BY id_regional 
-    ORDER BY id_regional";
+    ORDER BY id_regional');
+    $sql->execute();
     try {
-        $sites_classes_inscrits = $pdo->query($sql)->fetchAll();
+        $sites_classes_inscrits = $sql->fetchAll();
         return $sites_classes_inscrits;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
 }
-
-?>
