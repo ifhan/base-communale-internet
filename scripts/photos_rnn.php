@@ -74,7 +74,10 @@ $rnn_photos = getRnnPhotosByIdRegional($id_regional);
         <?php foreach ($rnn_photos as $rnn_photo): ?>
         <div class="mosaique">
             <div class="image" align="center">
-                <a class="group" rel="fancybox-button" href="data/photos/<?=$zonage->path?>/<?=$rnn_photo["id_photo"]?>.jpg" title="<?php 
+                <a class="group" 
+                   rel="fancybox-button" 
+                   href="data/photos/<?=$zonage->path?>/<?=$rnn_photo["id_photo"]?>.jpg" 
+                   title="<?php 
                 if($rnn_photo["titre"]!="") { echo $rnn_photo["titre"]." - "; }
 		if($rnn_photo["auteur"]!="") { echo $rnn_photo["auteur"]; }
 		if($rnn_photo["fournisseur"]!="") { echo " &copy;".$rnn_photo["fournisseur"]; }
@@ -102,7 +105,7 @@ $rnn_photos = getRnnPhotosByIdRegional($id_regional);
 		echo "R&eacute;solution : " . $exif['COMPUTED']['Width'] . "x" . $exif['COMPUTED']['Height'] ."<br />\n";
 		echo "Type de fichier : " . $exif['FILE']['MimeType'] . "<br />\n";
 		echo "Taille du fichier : ";
-		echo ConvertirTaille('data/photos/'.$zonage->path.'/'.$rnn_photo["id_photo"].'.jpg');
+		echo convertFilesize('data/photos/'.$zonage->path.'/'.$rnn_photo["id_photo"].'.jpg');
 		?>
             </div>
         </div>
