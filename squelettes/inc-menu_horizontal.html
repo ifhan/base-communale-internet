@@ -1,13 +1,25 @@
 <!-- Menu horizontal-->
 <div id="boxmenuhaut">
-	<div id="menuprincipal">
-		<h2 class="invisible">Menu principal</h2>	
-		<table>   
-			<tr>
-				<BOUCLE_menu_horizontal(RUBRIQUES) {racine} {par num titre, titre} {titre_mot=menu_horizontal}>
-				<td><a href="#URL_RUBRIQUE" class="menu_[(#COMPTEUR_BOUCLE)]" onmouseover="buttonMouseover(event, 'menuRub189');"><span>[(#TITRE|supprimer_numero)]</span></a></td>
-				</BOUCLE_menu_horizontal>
-			</tr>
-		</table>
-	</div>
+    <div id="menuprincipal">
+        <h2 class="invisible">Menu principal</h2>	
+        <table>   
+            <tr>
+            <BOUCLE_menu_horizontal(RUBRIQUES) {racine} {par num titre, titre} {titre_mot=menu_horizontal}>
+                <td>
+                    <a href="#URL_RUBRIQUE"
+                       class="menu_[(#COMPTEUR_BOUCLE)]"         
+                       onmouseover="buttonMouseover(event, 'menuRub#ID_RUBRIQUE');">
+                        <span>[(#TITRE|supprimer_numero)]</span>
+                    </a>
+                </td>
+            </BOUCLE_menu_horizontal>
+            </tr>
+        </table>
+    </div>
 </div>
+
+<script type="text/javascript">
+<!--
+if(document.getElementById && typeof(menu_contenu) != "undefined") {document.write(menu_contenu);}
+-->
+</script>
