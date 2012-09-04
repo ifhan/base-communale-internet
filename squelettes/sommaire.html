@@ -102,34 +102,36 @@
 								
 			<div class="listeactu_spa">
 
-				<div class="actufirst">
-				<B_dernier_article>
-				<BOUCLE_dernier_article(ARTICLES) {par date}{inverse} {titre_mot=actualite} {id_article != 4} {0,1}>
-					<div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
-					[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
-                    <div class="texte">
-						<span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
-						<span class="chapoactu">#DESCRIPTIF</span> 
-					</div>
-				</BOUCLE_dernier_article>	
-				</B_dernier_article> 	
-				</div><!-- actufirst -->
-				<div class="clearer">&nbsp;</div>
+                            <B_dernier_article>
+                                <BOUCLE_dernier_article(ARTICLES) {par date}{inverse} {titre_mot=actualite} {id_article != 4} {0,1}>
+                                    <div class="actufirst">
+                                        <div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
+                                        [(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
+                                        <div class="texte">
+                                            <span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
+                                                <span class="chapoactu">#DESCRIPTIF</span> 
+                                        </div>
+                                    </div><!-- actufirst -->
+                                </BOUCLE_dernier_article>	
+                            </B_dernier_article> 	
 				
-				<div class="actu">
-				<B_articles_recents>
-				<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {pagination 5} {titre_mot=actualite} {id_article != 4} {1,5}>
-					<div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
-					[(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
-                    <div class="texte">
-						<span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
-						<span class="chapoactu">#DESCRIPTIF</span> 
-					</div>
-					<div class="clearer">&nbsp;</div>
-				</BOUCLE_articles_recents>	
-				</B_articles_recents> 	
-				</div>
-				<div class="clearer">&nbsp;</div>
+                            <div class="clearer">&nbsp;</div>
+
+                            <B_articles_recents>
+                                <BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {pagination 5} {titre_mot=actualite} {id_article != 4} {1,5}>
+                                    <div class="actu">
+                                        <div class="titreactu"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
+                                        [(#LOGO_ARTICLE_RUBRIQUE{#URL_ARTICLE}|image_reduire{150,100})]		 
+                                        <div class="texte">
+                                            <span class="dateactu">[(#DATE|affdate_jourcourt)]</span><br>
+                                                <span class="chapoactu">#DESCRIPTIF</span> 
+                                        </div>
+                                        <div class="clearer">&nbsp;</div>
+                                    </div>
+                                </BOUCLE_articles_recents>	
+                            </B_articles_recents> 	
+
+                        <div class="clearer">&nbsp;</div>
 									 
 				<div class="tout">
 					<a href="spip.php?rubrique10">Toutes les actualit&eacute;s</a>
