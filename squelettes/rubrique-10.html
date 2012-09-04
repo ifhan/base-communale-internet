@@ -94,19 +94,31 @@
                                                 </BOUCLE_sous_rubriques>
                                             </div>
                                         </B_sous_rubriques>
-							
-                                        [(#REM) Articles de la rubrique ]
-                                        <B_articles>
-                                            <div class="listeartfirst">
-                                                #ANCRE_PAGINATION
-                                                <BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination}>
+                                        
+                                        [(#REM) Premier article de la rubrique ]
+                                        <B_premier_article>     
+                                            <BOUCLE_premier_article(ARTICLES) {id_rubrique} {par date}{inverse} {0,1}>
+                                                <div class="listeartfirst">
                                                     [(#LOGO_ARTICLE{#URL_ARTICLE}|image_reduire{150,100})]
-                                                    <a href="#URL_ARTICLE" class="titreartliste">[(#TITRE|supprimer_numero)]</a>
+                                                    <a href="#URL_ARTICLE" 
+                                                       class="titreartliste">[(#TITRE|supprimer_numero)]</a>
                                                     <div class="texte">#DESCRIPTIF</div>
                                                     <div class="clearer">&nbsp;</div>
-                                                </BOUCLE_articles>
-                                                [<p class="pagination">(#PAGINATION)</p>]
-                                            </div>
+                                                </div>
+                                            </BOUCLE_premier_article>
+                                        </B_premier_article>
+							
+                                        [(#REM) Autres articles de la rubrique ]
+                                        <B_articles>     
+                                            <BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {1,20}>
+                                                <div class="listeart">
+                                                    [(#LOGO_ARTICLE{#URL_ARTICLE}|image_reduire{150,100})]
+                                                    <a href="#URL_ARTICLE" 
+                                                       class="titreartliste">[(#TITRE|supprimer_numero)]</a>
+                                                    <div class="texte">#DESCRIPTIF</div>
+                                                    <div class="clearer">&nbsp;</div>
+                                                </div>
+                                            </BOUCLE_articles>
                                         </B_articles>
 
                                         <div class="o2paj"><a href="#entete" title="Haut de page">Haut de page</a></div>
