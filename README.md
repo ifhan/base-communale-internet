@@ -19,7 +19,7 @@ Architecture technique
 ----------------------
 
 L'application s'appuie sur le CMS SPIP (http://www.spip.net).
-La 2.0 de la Base communale utilise la version 2.1.8 de SPIP.
+La version 2.0 de la Base communale utilise la version 2.1.17 de SPIP.
 Des scripts PHP sont développés pour ajouter les fonctionnalités spécifiques 
 à la Base communale, la passerelle s'effectue via des squelettes et des 
 formualires SPIP adaptés.
