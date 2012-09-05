@@ -3,18 +3,21 @@
 require_once 'config/constants.inc.php';
 require_once 'config/database.inc.php';
 
+// Utility functions  
+require_once 'classes/utilities.inc.php';
+
 // Classes
 require_once 'classes/StationTemperature.class.php';
 require_once 'classes/Zonage.class.php';
 
 /**
  * Ce fichier sert à afficher l'ensemble des fichiers PDF concernant la station
- * @var $id_station Identifiant de la station
+ * @var $code_hydro Identifiant de la station
  */
-$id_station = $_REQUEST["id_station"];
+$code_hydro = $_REQUEST["code_hydro"];
 
 $station_temperature = new StationTemperature();
-$station_temperature->getStationTemperatureByIdStation($id_station);
+$station_temperature->getStationTemperatureByIdStation($code_hydro);
 
 $zonage = new Zonage();
 $zonage->getTypeZonageByIdType("28");
@@ -28,7 +31,7 @@ $zonage->getTypeZonageByIdType("28");
                      alt="Icone web" />
             </td>
             <td>
-                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;id_station;04<?=$id_station?>" 
+                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;code_hydro;04<?=$code_hydro?>" 
                    target="_blank">Consulter la localisation de la station sur CARMEN</a>.   
             </td>
         </tr>
@@ -46,10 +49,10 @@ $zonage->getTypeZonageByIdType("28");
     </thead>
     <tbody>
         <tr valign="top">
-            <td><?=$station_temperature->id_station?></td>
+            <td><?=$station_temperature->code_hydro?></td>
             <td><?=$station_temperature->riviere?></td>
             <td><?=$station_temperature->commune?> (<?=$station_temperature->id_commune?>) <?=$station_temperature->localite?></td>
-            <td><?=$station_temperature->en_service?></td>
+            <td><?=$station_temperature->mise_en_service?></td>
         </tr>
     </tbody>
 </table>
@@ -65,14 +68,14 @@ if(@is_dir($dir)):
     if($dh = @opendir($dir)):
         while(($file = @readdir($dh)) !== false):
             if($file != "." && $file != ".."):
-                if (file_exists("data/fiches/temperature/$file/" . $id_station . ".pdf")): ?>
+                if (file_exists("data/fiches/temperature/$file/" . $code_hydro . ".pdf")): ?>
         <li>
             <a class="document" 
-               href="data/fiches/temperature/<?=$file?>/<?=$id_station?>.pdf" 
+               href="data/fiches/temperature/<?=$file?>/<?=$code_hydro?>.pdf" 
                target="_blank">Temp&eacute;ratures en continu en <?=$file?></a>
-            <span class=docformat>
+            <span class="docformat">
                 <em>
-                    (PDF, <?=@convertFilesize("data/fiches/temperature/$file/" . $id_station . ".pdf")?>)
+                    (PDF, <?=@convertFilesize("data/fiches/temperature/$file/" . $code_hydro . ".pdf")?>)
                 </em>
             </span>
         </li>

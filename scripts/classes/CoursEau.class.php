@@ -15,8 +15,7 @@ class CoursEau {
      */
     public function getRiviereByIdRiviere($id_riviere) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * 
-        FROM R_RIVIERE_QUALITE_R52 
+        $sql = $pdo->prepare('SELECT * FROM R_RIVIERE_QUALITE_R52 
         WHERE id_riviere = :id_riviere');
         $sql->bindParam(':id_riviere', $id_riviere, PDO::PARAM_INT, 2);
         try {
@@ -29,15 +28,15 @@ class CoursEau {
     }
 
     /**
-     * Sélectionne une rivière par un identifiant de station
-     * @param string $id_regional Identifiant de la station
+     * Sélectionne une rivière par un identifiant de station pour les stations 
+     * Hydrotempératures
+     * @param string $code_hydro Code hydro de la station
      */
-    public function getRiviereByIdStation($id_station) {
+    public function getRiviereByIdStation($code_hydro) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * 
-        FROM R_STATION_HYDROTEMPERATURE_R52 
-        WHERE id_station = :id_station');
-        $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 9);
+        $sql = $pdo->prepare('SELECT * FROM r_station_hydrotemperature_r52 
+        WHERE code_hydro = :code_hydro');
+        $sql->bindParam(':code_hydro', $code_hydro, PDO::PARAM_STR, 9);
         try {
             $sql->execute();
             $row = $sql->fetch();

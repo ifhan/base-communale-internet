@@ -10,22 +10,22 @@
 class StationTemperature {
     /**
      * Sélectionne une station "Hydrotempérature" par son identifiant
-     * @param string $id_station Identifiant de la station
+     * @param string $code_hydro Identifiant de la station
      */
-    public function getStationTemperatureByIdStation($id_station) {
+    public function getStationTemperatureByIdStation($code_hydro) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
-        WHERE id_station = :id_station');
-        $sql->bindParam(':id_station', $id_station, PDO::PARAM_STR, 10);
+        $sql = $pdo->prepare('SELECT * FROM r_station_hydrotemperature_r52
+        WHERE code_hydro = :code_hydro');
+        $sql->bindParam(':code_hydro', $code_hydro, PDO::PARAM_STR, 10);
         try {
             $sql->execute();
             $row = $sql->fetch();
-            $this->id_station = $row["id_station"];
+            $this->code_hydro = $row["code_hydro"];
             $this->riviere = stripslashes($row["riviere"]);
             $this->commune = $row["commune"];
             $this->id_commune = $row["id_commune"];
-            $this->localite = $row["localite"];
-            $this->en_service = date("d/m/Y", strtotime($row["en_service"]));
+            $this->localite = $row["localisation"];
+            $this->mise_en_service = date("d/m/Y", strtotime($row["mise_en_service"]));
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -39,8 +39,8 @@ class StationTemperature {
  */
 function getStationsTemperatures() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_STATION_HYDROTEMPERATURE_R52 
-    ORDER BY id_dpt, id_station');
+    $sql = $pdo->prepare('SELECT * FROM r_station_hydrotemperature_r52
+    ORDER BY id_dpt, code_hydro');
     try {
         $sql->execute();
         $stations_temperature = $sql->fetchAll();

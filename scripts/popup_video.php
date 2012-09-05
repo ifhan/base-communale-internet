@@ -24,7 +24,7 @@ define('URL_BASE_COMMUNALE',
 ?>
 <?php if(!empty($id_commune)): ?>
 <?php $commune = new Commune(); ?>
-<?php $commune->getCommuneById($id_commune); ?>
+<?php $commune->getCommuneByIdCommune($id_commune); ?>
 <h2>Tache urbaine : <?=$commune->nom_commune?> (<?=$commune->id_commune?>)</h2>
 <div class="center">
     <video width="1024" height="768" controls="controls" autoplay="true">

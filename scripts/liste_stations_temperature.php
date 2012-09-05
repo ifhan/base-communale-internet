@@ -28,12 +28,12 @@ $stations_temperature = getStationsTemperatures();
         <?php foreach($stations_temperature as $station_temperature): ?>
         <tr valign="top">
             <td align="center"><?=$station_temperature["id_dpt"]?></td>
-            <td align="center"><?=$station_temperature["id_station"]?></td>
+            <td align="center"><?=$station_temperature["code_hydro"]?></td>
             <td><?=stripslashes($station_temperature["riviere"])?></td>
             <td><?=$station_temperature["commune"]?> (<?=$station_temperature["id_commune"]?>) <?=$station_temperature["localite"]?></td>
-            <td><?=date("d/m/Y", strtotime($station_temperature["en_service"]))?></td>
+            <td><?=date("d/m/Y", strtotime($station_temperature["mise_en_service"]))?></td>
             <td>
-                <a href="spip.php?page=fiche_station_temperature&id_station=<?=$station_temperature["id_station"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher la fiche du zonage" /></a>
+                <a href="spip.php?page=fiche_station_temperature&code_hydro=<?=$station_temperature["code_hydro"]?>"><img src="IMG/png/system-search.png" alt="Icone afficher la fiche du zonage" /></a>
             </td>
         </tr>
         <?php endforeach; ?>

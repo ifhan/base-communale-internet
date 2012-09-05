@@ -57,6 +57,6 @@ if (isset($communes)): ?>
 endif;
 if (isset($id_commune)):
     $commune = new Commune();
-    $commune->getCommuneById($id_commune); ?>
+    $commune->getCommuneByIdCommune($id_commune); ?>
     <?= $commune->nom_commune ?> (<?= $commune->id_commune ?>)
 <?php endif; ?>

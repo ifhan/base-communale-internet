@@ -9,12 +9,12 @@ require_once(dirname(__FILE__)."/../classes/StationTemperature.class.php");
 /**
  * Ce fichier sert à afficher le nom de la station sélectionnée dans un 
  * squelette SPIP
- * @var $id_station Identifiant de la station
+ * @var $code_hydro Identifiant de la station
  */ 
-$id_station = $_REQUEST["id_station"];
+$code_hydro = $_REQUEST["code_hydro"];
 
 $station_temperature = new StationTemperature();
-$station_temperature->getStationTemperatureByIdStation($id_station);
+$station_temperature->getStationTemperatureByIdStation($code_hydro);
 ?>
 &nbsp;<?=$station_temperature->commune?> 
 (<?=$station_temperature->id_commune?>)

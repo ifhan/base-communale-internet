@@ -14,7 +14,7 @@ require_once 'classes/Commune.class.php';
 $id_commune = $_REQUEST["id_commune"];
 
 $commune = new Commune();
-$commune->getCommuneById($id_commune);
+$commune->getCommuneByIdCommune($id_commune);
 ?>
 <br />
 <div class="listerub">
