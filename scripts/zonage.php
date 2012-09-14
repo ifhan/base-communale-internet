@@ -56,11 +56,24 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29: case 36: case 37:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
                 ?>
         <a class="document" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Consulter la fiche descriptive
+        </a>
+                <?php
+                break;
+           /**
+             *  2.1 bis Affichage uniquement des communes concernées si la
+             *  fiche est sur le site de l'INPN ou autre 
+             */
+            case 36: case 37:
+                ?>
+        <a class="document" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>"
+           target="_self">
+            Afficher les communes concern&eacute;es
         </a>
                 <?php
                 break;
