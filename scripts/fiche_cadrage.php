@@ -25,10 +25,12 @@ $commune->getCommuneByIdCommune($id_commune);
         <table>
             <tr>
                 <td style="vertical-align:bottom;">
-                    <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web" />
+                    <img src="IMG/png/gnome-globe.png" style="border:none" 
+                         alt="Icone web" />
                 </td>
                 <td>
-                    <a href="<?=URL_PRIM_NET?><?=$commune->id_commune?>"  target="_blank">
+                    <a href="<?=URL_PRIM_NET?><?=$commune->id_commune?>"  
+                       target="_blank">
                        Consulter la fiche de la commune sur le site prim.net
                     </a>.
                 </td>
@@ -45,10 +47,13 @@ $commune->getCommuneByIdCommune($id_commune);
         <table>
             <tr>
                 <td style="vertical-align:bottom;">
-                    <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web" />
+                    <img src="IMG/png/gnome-globe.png" 
+                         style="border:none" alt="Icone web" />
                 </td>
                 <td>
-                    <a href='<?=URL_INSEE?><?=$commune->id_commune?>&Niveau=COM' target="_blank">
+                    <a 
+                        href='<?=URL_INSEE?><?=$commune->id_commune?>&Niveau=COM' 
+                        target="_blank">
                         Consulter les donn&eacute;es de cadrage de la commune sur le site de l'INSEE
                     </a>.
                 </td>
