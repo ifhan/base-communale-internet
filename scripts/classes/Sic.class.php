@@ -23,7 +23,7 @@ function getSicByIdEur15($id_eur15) {
     FROM natura_eur15, natura_habit1, R_SIC_R52
     WHERE natura_eur15.ID_EUR15 = :id_eur15
     AND natura_eur15.ID_EUR15 = natura_habit1.HBCDAX 
-    AND $table_2.SITECODE = R_SIC_R52.id_regional
+    AND natura_habit1.SITECODE = R_SIC_R52.id_regional
     GROUP BY R_SIC_R52.id_regional
     ORDER BY R_SIC_R52.id_regional');
     $sql->bindParam(':id_eur15', $id_eur15, PDO::PARAM_STR, 11);
