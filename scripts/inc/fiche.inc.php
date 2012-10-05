@@ -54,6 +54,9 @@ switch ($id_type):
     case 37:
         include(dirname(__FILE__)."/../fiche_site_propose_inpg.php");
         break;
+    case 34: case 35:
+            include(dirname(__FILE__)."/../fiche_znieff_ip.php");
+        break; 
     case 39:
             include(dirname(__FILE__)."/../fiche_zde.php");
         break;    
