@@ -68,7 +68,7 @@ $zonage->getTypeZonageByIdType($id_type);
              *  2.1 bis Affichage uniquement des communes concernées si la
              *  fiche est sur le site de l'INPN ou autre 
              */
-            case 36: case 37:
+            case 34: case 35: case 36: case 37:
                 ?>
         <a class="document" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>"
