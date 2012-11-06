@@ -190,7 +190,7 @@ else:
                         <td width="99%">&nbsp;<?= $zonage["nom"] ?></td>
                         <td class="cache">
                             <div align="right">
-                                <a href="spip.php?page=zonage&id_type=<?= $id_type ?>;&amp;id_regional=<?= $zonage["id_regional"] ?>"><img src="IMG/png/system-search.png" alt="Icone" /></a><br />
+                                <a href="spip.php?page=zonage&id_type=<?= $id_type ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><img src="IMG/png/system-search.png" alt="Icone" /></a><br />
                             </div>
                         </td>
                     </tr>
