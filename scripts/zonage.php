@@ -58,10 +58,8 @@ $zonage->getTypeZonageByIdType($id_type);
              */
             case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
                 ?>
-        <a class="document" 
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive
-        </a>
+        <a class="link" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
                 <?php
                 break;
            /**
@@ -70,9 +68,8 @@ $zonage->getTypeZonageByIdType($id_type);
              */
             case 34: case 35: case 36: case 37:
                 ?>
-        <a class="document" 
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>"
-           target="_self">
+        <a class="link" 
+           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Afficher les communes concern&eacute;es
         </a>
                 <?php
@@ -82,7 +79,7 @@ $zonage->getTypeZonageByIdType($id_type);
              */
             case 10: case 11:
                 ?>
-        <a class="document"       
+        <a class="link"       
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)
         </a>
@@ -96,7 +93,7 @@ $zonage->getTypeZonageByIdType($id_type);
                  *  2.3.1 Fiches des sites en Pays de la Loire	
                  */
                if (ereg("^FR52", $id_regional)): ?>
-        <a class="document" 
+        <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Consulter la fiche descriptive
         </a>
@@ -325,7 +322,7 @@ switch ($id_type):
         case 5: case 6: case 21: case 30:
             if (ereg("^FR52", $id_regional)):
                 ?>
-                <a class="document" 
+                <a class="link" 
                    href="spip.php?page=liste_especes&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
                     Consulter la liste d'esp&egrave;ces
                 </a>
@@ -334,7 +331,7 @@ switch ($id_type):
             break;
         case 10: case 11:
             ?>
-            <a class="document" 
+            <a class="link" 
                href="spip.php?page=liste_especes&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
                 Consulter la liste d'esp&egrave;ces
             </a>
@@ -350,7 +347,7 @@ switch ($id_type):
         case 6: case 21: case 30:
             if (ereg("^FR52", $id_regional)):
                 ?>
-                <a class="document" 
+                <a class="link" 
                    href="spip.php?page=liste_habitats&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
                     Consulter la liste d'habitats
                 </a>
@@ -520,7 +517,7 @@ endswitch;
             $znieff_photos = getZnieff2GPhotosByIdRegional($id_regional, $id_type);
             if (count($znieff_photos) > 0):
                 ?>
-                <a class="document" 
+                <a class="link" 
                    href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
@@ -534,7 +531,7 @@ endswitch;
             $rnn_photos = getRnnPhotosByIdRegional($id_regional);
             if (count($rnn_photos) > 0):
                 ?>
-                <a class="document" 
+                <a class="link" 
                    href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
@@ -548,7 +545,7 @@ endswitch;
         $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
         if (count($site_classe_inscrit_photos) > 0):
             ?>
-                <a class="document" 
+                <a class="link" 
                    href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
                     Afficher les photographies
                 </a>
