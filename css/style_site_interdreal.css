@@ -1609,6 +1609,17 @@ hr.hrrub {
 	text-decoration: underline;
 	color: #5b8910;
 }
+#contenu a.link {
+	color: #484848;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0 0 0.25em 0;
+	padding: 0 0 0 20px;
+}
+#contenu a.link:hover {
+	text-decoration: underline;
+	color: #5b8910;
+}
 #contenu .docformat {
 	font-size: 11px;
 }
