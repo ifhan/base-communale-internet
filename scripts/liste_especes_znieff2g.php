@@ -111,8 +111,8 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <br />
 <h3 class="spip">Commune(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
-<h3 class="spip">Esp&egrave;ces d&eacute;terminantes&nbsp;:</h3>
 <?php include ("squelettes/nomenclature.html"); ?>
+<h3 class="spip">Esp&egrave;ces d&eacute;terminantes&nbsp;:</h3>
 <?php
 $especes_determinantes = getEspecesByIdRegionalByFgEsp($id_regional,"D");
 ?>
@@ -129,106 +129,96 @@ $especes_determinantes = getEspecesByIdRegionalByFgEsp($id_regional,"D");
             <th>Effectif<br />Min.-Max.</th>
             <th>P&eacute;riode d'obs.<br />D&eacute;but-Fin</th>
         </tr>
-        <?php
-        foreach ($especes_determinantes as $espece_determinante):
-            /**
-             *  Affichage de l'embranchement, de la classe ou de l'ordre
-             */
-            $ms_arbo_pere = $espece_determinante["MS_ARBO_PERE"];
-            $embranchements = getEmbranchementsEspece($ms_arbo_pere);
-
-            foreach ($embranchements as $embranchement):
-
+        <?php foreach ($especes_determinantes as $espece_determinante): ?>
+        <tr>
+            <td class="left" bgcolor="<?= switchColor() ?>">
+                <?php
+                /**
+                 * Affichage de l'embranchement, de la classe ou de 
+                 * l'ordre
+                 */
+                $id_ms_arbo_pere = $espece_determinante["MS_ARBO_PERE"];
+                $embranchement = new Znieff2G();
+                $embranchement->getEmbranchementsEspece($id_ms_arbo_pere);
+                ?>
+                <strong><?= $embranchement->LB_ESP ?> &raquo; </strong><br />
+                <?php
                 /**
                  *  Affichage du sous-règne, de l'embranchement, 
                  *  du super embranchement, de la classe ou de la super classe
                  */
-                $ms_arbo_pere = $embranchement["MS_ARBO_PERE"];
-                $sous_regnes = getSousRegnes($ms_arbo_pere);
-
+                /*$ms_arbo_pere = $embranchement["MS_ARBO_PERE"];
+                $sous_regne = new Znieff2G();
+                $sous_regne->getSousRegnes($ms_arbo_pere);
+                if ($sous_regne["LB_ESP"] != ""): ?>
+                <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
+                <?php endif; */?>
+                <?php       
                 /**
-                 *  Affichage du nom vernaculaire de l'espèce
+                 * Affichage du nom latin de l'espèce
                  */
-                /*$CD_ESP = $espece_determinante["CD_ESP"];
-                $especes_flore = getNomVernaculaireFlore($CD_ESP);
+                if (ereg("^(1)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(2)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(3)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(5)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                endif;
 
                 $CD_ESP = $espece_determinante["CD_ESP"];
-                $especes_faune = getNomVernaculaireFaune($CD_ESP);*/
+                $espece_flore = new Znieff2G();
+                $espece_flore->getNomVernaculaireFlore($CD_ESP);
+                
+                $CD_ESP = $espece_determinante["CD_ESP"];
+                $espece_faune = new Znieff2G();
+                $espece_faune->getNomVernaculaireFaune($CD_ESP);
+                /**
+                 * Affichage du nom vernaculaire de l'espèce
+                 */
+                if (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])): 
+                    if($espece_faune->NOM_VERNAC != ""):
+                        echo "(" . $espece_faune->NOM_VERNAC . ")";
+                    endif;
+                else:
+                    if($espece_flore->NOM_VERNAC != ""):
+                        echo "(" . $espece_flore->NOM_VERNAC . ")";
+                    endif;
+                endif;
                 ?>
-                <tr>
-                    <td class="left" bgcolor="<?= switchColor() ?>">
-                        <?php foreach ($sous_regnes as $sous_regne): ?>
-                            <?php if ($sous_regne["LB_ESP"] != ""): ?>
-                                <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                        <strong><?= $embranchement["LB_ESP"] ?> &raquo; </strong><br />
-                        <?php
-                        /**
-                         *  Affichage du nom latin de l'espèce
-                         */
-                        if (ereg("^(1)", $espece_determinante["MS_ARBO_PERE"])):
-                            echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(2)", $espece_determinante["MS_ARBO_PERE"])):
-                            echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(3)", $espece_determinante["MS_ARBO_PERE"])):
-                            echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])):
-                            echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(5)", $espece_determinante["MS_ARBO_PERE"])):
-                            echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
-                        endif;
-                        ?>
-                        <?php
-                        /**
-                         * Affichage du nom vernaculaire de l'espèce
-                         */
-                        /*if (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])):
-                            foreach ($especes_faune as $espece_faune):
-                                if($espece_faune["NOM_VERNAC"] != ""):
-                                    echo "(" . $espece_faune["NOM_VERNAC"] . ")";
-                                endif;
-                            endforeach;
-                        else:
-                            foreach ($especes_flore as $espece_flore):
-                                if($espece_flore["NOM_VERNAC"] != ""):
-                                    echo "(" . $espece_flore["NOM_VERNAC"] . ")";
-                                endif;
-                            endforeach;
-                        endif;*/
-                        ?>
-                    </td>
-                    <td class="align"><?= $espece_determinante["CD_STATUT"] ?>
-                    </td>
-                    <td class="align"><?= $espece_determinante["CD_ABOND"] ?></td>
-                    <td class="align">
-                        <?php
-                        if ($espece_determinante["NB_I_ABOND"] != "0"):
-                            echo $espece_determinante["NB_I_ABOND"];
-                        else: echo "?";
-                        endif;
-                        echo " - ";
-                        if ($espece_determinante["NB_S_ABOND"] != "0"):
-                            echo $espece_determinante["NB_S_ABOND"];
-                        else: echo "?";
-                        endif;
-                        ?>
-                    </td>
-                    <td class="align">
-                        <?php
-                        if ($espece_determinante["AN_I_OBS"] != ""):
-                            echo $espece_determinante["AN_I_OBS"];
-                        else: echo "?";
-                        endif;
-                        echo " - ";
-                        if ($espece_determinante["AN_S_OBS"] != ""):
-                            echo $espece_determinante["AN_S_OBS"];
-                        else: echo "?";
-                        endif;
-                        ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+            </td>
+            <td class="align"><?= $espece_determinante["CD_STATUT"] ?></td>
+            <td class="align"><?= $espece_determinante["CD_ABOND"] ?></td>
+            <td class="align">
+                <?php
+                if ($espece_determinante["NB_I_ABOND"] != "0"):
+                    echo $espece_determinante["NB_I_ABOND"];
+                else: echo "?";
+                endif;
+                echo " - ";
+                if ($espece_determinante["NB_S_ABOND"] != "0"):
+                    echo $espece_determinante["NB_S_ABOND"];
+                else: echo "?";
+                endif;
+                ?>
+            </td>
+            <td class="align">
+                <?php
+                if ($espece_determinante["AN_I_OBS"] != ""):
+                    echo $espece_determinante["AN_I_OBS"];
+                else: echo "?";
+                endif;
+                echo " - ";
+                if ($espece_determinante["AN_S_OBS"] != ""):
+                    echo $espece_determinante["AN_S_OBS"];
+                else: echo "?";
+                endif;
+                ?>
+            </td>
+        </tr>
     <?php endforeach; ?>
     </table>
 <?php else: ?>
@@ -268,14 +258,20 @@ $sources_especes = getSourcesEspeces($id_regional, "D");
 <?php endif; ?>
 <?php include ("squelettes/haut-page.html"); ?>
 <h3 class="spip">Autres esp&egrave;ces&nbsp;:</h3>
-<?php include ("squelettes/nomenclature.html"); ?>
 <?php
 $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
 ?>
-<p>
-    <strong><?=count($autres_especes)?> autre(s) esp&egrave;ce(s)</strong> 
-    recens&eacute;e(s) dans cette ZNIEFF.
-</p><br />
+<?php if(count($autres_especes) > 0): ?>
+    <p>
+        <strong><?= count($autres_especes) ?> autre(s) esp&egrave;ce(s)</strong> 
+        recens&eacute;e(s) dans cette ZNIEFF.
+    </p><br />
+<?php else: ?>
+    <p>
+        <strong>Aucune autre esp&egrave;ce</strong> 
+        n'est recens&eacute;e dans cette ZNIEFF.
+    </p><br />
+<?php endif; ?>
 <?php if(count($autres_especes) > 0): ?>
     <table class="encadre" width="99%">
         <tr>
@@ -285,117 +281,100 @@ $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
             <th>Effectif<br />Min.-Max.</th>
             <th>P&eacute;riode d'obs.<br />D&eacute;but-Fin</th>
         </tr>
-        <?php
-        foreach ($autres_especes as $autre_espece):
-            /**
-             *  Affichage de l'embranchement, de la classe ou de l'ordre
-             */
-            $ms_arbo_pere = $autre_espece["MS_ARBO_PERE"];
-            $embranchements = getEmbranchementsEspece($ms_arbo_pere);
-
-            foreach ($embranchements as $embranchement):
-
+       <?php foreach ($especes_determinantes as $espece_determinante): ?>
+        <tr>
+            <td class="left" bgcolor="<?= switchColor() ?>">
+                <?php
+                /**
+                 * Affichage de l'embranchement, de la classe ou de 
+                 * l'ordre
+                 */
+                $id_ms_arbo_pere = $espece_determinante["MS_ARBO_PERE"];
+                $embranchement = new Znieff2G();
+                $embranchement->getEmbranchementsEspece($id_ms_arbo_pere);
+                ?>
+                <strong><?= $embranchement->LB_ESP ?> &raquo; </strong><br />
+                <?php
                 /**
                  *  Affichage du sous-règne, de l'embranchement, 
                  *  du super embranchement, de la classe ou de la super classe
                  */
-                $ms_arbo_pere = $embranchement["MS_ARBO_PERE"];
-                $sous_regnes = getSousRegnes($ms_arbo_pere);
-
+                /*$ms_arbo_pere = $embranchement["MS_ARBO_PERE"];
+                $sous_regne = new Znieff2G();
+                $sous_regne->getSousRegnes($ms_arbo_pere);
+                if ($sous_regne["LB_ESP"] != ""): ?>
+                <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
+                <?php endif; ?>
+                <?php       
                 /**
-                 *  Affichage du nom vernaculaire de l'espèce
+                 * Affichage du nom latin de l'espèce
                  */
-                /*$CD_ESP = $autre_espece["CD_ESP"];
-                $especes_flore = getNomVernaculaireFlore($CD_ESP);
+                if (ereg("^(1)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(2)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(3)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                elseif (ereg("^(5)", $espece_determinante["MS_ARBO_PERE"])):
+                    echo "<em>" . $espece_determinante["LB_ESP"] . "</em> ";
+                endif;
+                /**
+                 * Affichage du nom vernaculaire de l'espèce
+                 */
+                $CD_ESP = $espece_determinante["CD_ESP"];
+                $espece_flore = new Znieff2G();
+                $espece_flore->getNomVernaculaireFlore($CD_ESP);
+                
 
-                $CD_ESP = $autre_espece["CD_ESP"];
-                $especes_faune = getNomVernaculaireFaune($CD_ESP);*/
+                $CD_ESP = $espece_determinante["CD_ESP"];
+                $espece_faune = new Znieff2G();
+                $espece_faune->getNomVernaculaireFaune($CD_ESP);
+                
+
+                if (ereg("^(4)", $espece_determinante["MS_ARBO_PERE"])): 
+                    if($espece_faune->NOM_VERNAC != ""):
+                        echo "(" . $espece_faune->NOM_VERNAC . ")";
+                    endif;
+                else:
+                    if($espece_flore->NOM_VERNAC != ""):
+                        echo "(" . $espece_flore->NOM_VERNAC . ")";
+                    endif;
+                endif;
                 ?>
-                <tr>
-                    <td class="left" bgcolor="<?= switchColor() ?>">
-                        <?php foreach ($sous_regnes as $sous_regne): ?>
-                            <?php if ($sous_regne["LB_ESP"] != ""): ?>
-                                <strong>
-                                <?= $sous_regne["LB_ESP"] ?> &raquo; 
-                                </strong>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                        <strong>
-                        <?= $embranchement["LB_ESP"] ?> &raquo; 
-                        </strong><br />
-                        <?php
-                        /**
-                         *  Affichage du nom latin de l'espèce
-                         */
-                        if (ereg("^(1)", $autre_espece["MS_ARBO_PERE"])):
-                            echo "<em>" . $autre_espece["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(2)", $autre_espece["MS_ARBO_PERE"])):
-                            echo "<em>" . $autre_espece["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(3)", $autre_espece["MS_ARBO_PERE"])):
-                            echo "<em>" . $autre_espece["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(4)", $autre_espece["MS_ARBO_PERE"])):
-                            echo "<em>" . $autre_espece["LB_ESP"] . "</em> ";
-                        elseif (ereg("^(5)", $autre_espece["MS_ARBO_PERE"])):
-                            echo "<em>" . $autre_espece["LB_ESP"] . "</em> ";
-                        endif;
-                        ?>
-                        <?php
-                        /**
-                         * Affichage du nom vernaculaire de l'espèce
-                         */
-                        /*if (ereg("^(4)", $autre_espece["MS_ARBO_PERE"])):
-                            foreach ($especes_faune as $espece_faune):
-                                if($espece_faune["NOM_VERNAC"] != ""):
-                                    echo "(" . $espece_faune["NOM_VERNAC"] . ")";
-                                endif;
-                            endforeach;
-                        else:
-                            foreach ($especes_flore as $espece_flore):
-                                if($espece_flore["NOM_VERNAC"] != ""):
-                                    echo "(" . $espece_flore["NOM_VERNAC"] . ")";
-                                endif;
-                            endforeach;
-                        endif;*/
-                        ?>
-                    </td>
-                    <td class="align"><?= $autre_espece["CD_STATUT"] ?>
-                    </td>
-                    <td class="align"><?= $autre_espece["CD_ABOND"] ?></td>
-                    <td class="align">
-                        <?php
-                        if ($autre_espece["NB_I_ABOND"] != "0"):
-                            echo $autre_espece["NB_I_ABOND"];
-                        else: echo "?";
-                        endif;
-                        echo " - ";
-                        if ($autre_espece["NB_S_ABOND"] != "0"):
-                            echo $autre_espece["NB_S_ABOND"];
-                        else: echo "?";
-                        endif;
-                        ?>
-                    </td>
-                    <td class="align">
-                        <?php
-                        if ($autre_espece["AN_I_OBS"] != ""):
-                            echo $autre_espece["AN_I_OBS"];
-                        else: echo "?";
-                        endif;
-                        echo " - ";
-                        if ($autre_espece["AN_S_OBS"] != ""):
-                            echo $autre_espece["AN_S_OBS"];
-                        else: echo "?";
-                        endif;
-                        ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+            </td>
+            <td class="align"><?= $espece_determinante["CD_STATUT"] ?></td>
+            <td class="align"><?= $espece_determinante["CD_ABOND"] ?></td>
+            <td class="align">
+                <?php
+                if ($espece_determinante["NB_I_ABOND"] != "0"):
+                    echo $espece_determinante["NB_I_ABOND"];
+                else: echo "?";
+                endif;
+                echo " - ";
+                if ($espece_determinante["NB_S_ABOND"] != "0"):
+                    echo $espece_determinante["NB_S_ABOND"];
+                else: echo "?";
+                endif;
+                ?>
+            </td>
+            <td class="align">
+                <?php
+                if ($espece_determinante["AN_I_OBS"] != ""):
+                    echo $espece_determinante["AN_I_OBS"];
+                else: echo "?";
+                endif;
+                echo " - ";
+                if ($espece_determinante["AN_S_OBS"] != ""):
+                    echo $espece_determinante["AN_S_OBS"];
+                else: echo "?";
+                endif;
+                ?>
+            </td>
+        </tr>
     <?php endforeach; ?>
     </table>
-<?php else: ?>
-    <p>
-        <strong>Aucune autre esp&egrave;ce</strong> 
-        n'est recens&eacute;e dans cette ZNIEFF.
-    </p>
 <?php endif; ?>
 <?php
 /**
