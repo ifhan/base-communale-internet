@@ -70,7 +70,7 @@ $habitats = getHabitatsByIdRegional($id_regional);
 ?>
 <?php if (count($habitats) > 0): ?>
 <br />
-<table>
+<table class="encadre" width="99%">
     <thead>
         <tr>
             <th>Identifiant</th>
