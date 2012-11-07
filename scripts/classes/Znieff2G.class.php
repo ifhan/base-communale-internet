@@ -226,7 +226,99 @@ class Znieff2G {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+    
+    /**
+     * Sélectionne l'embranchement, la classe ou l'ordre d'une espèce
+     * @param string $id_ms_arbo_pere
+     * @return array 
+     */
+    public function getEmbranchementsEspece($id_ms_arbo_pere) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare("SELECT MS_ARBO, LB_ESP, MS_ARBO_PERE, CD_ESP
+        FROM znieff_espece
+        WHERE MS_ARBO = :id_ms_arbo_pere");
+        $sql->bindParam(':id_ms_arbo_pere', $id_ms_arbo_pere, PDO::PARAM_STR, 7);
+        try {
+            $sql->execute();
+            $row = $sql->fetch();
+            $this->LB_ESP = $row["LB_ESP"];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
 
+    /**
+     * Sélectionne le sous-règne, l'embranchement, le super embranchement, 
+     * la classe ou la super classe de l'espèce
+     * @param string $ms_arbo_pere
+     * @return array 
+     */
+    function getSousRegnes($ms_arbo_pere) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare("SELECT LB_NIVEAU, MS_ARBO, LB_ESP, MS_ARBO_PERE
+        FROM znieff_espece 
+        WHERE MS_ARBO = :ms_arbo_pere
+        AND LB_NIVEAU != 'RG'");
+        $sql->bindParam(':ms_arbo_pere', $ms_arbo_pere, PDO::PARAM_STR, 7);
+        try {
+            $sql->execute();
+            $row = $sql->fetch();
+            $this->LB_ESP = $row["LB_ESP"];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
+    
+    /**
+     * Sélectionne le nom vernaculaire d'une espèce floristique
+     * @param type $CD_ESP
+     * @return array 
+     */
+    public function getNomVernaculaireFlore($CD_ESP) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $table_3 = "znieff_espece";
+        $table_5 = "R_ESPECES_DETERMINANTES_FLORE_R52";
+        $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
+        $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
+        WHERE $table_3.CD_ESP = :CD_ESP
+        AND $table_5.ID = $table_6.ID
+        AND $table_3.CD_ESP = $table_6.CD_ESP
+        AND $table_3.MS_ARBO NOT LIKE '4%'");
+        $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
+        try {
+            $sql->execute();
+            $row = $sql->fetch();
+            $this->NOM_VERNAC = $row["NOM_VERNAC"];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
+
+    /**
+     * Sélectionne le nom vernaculaire d'une espèce faunistique
+     * @param type $CD_ESP
+     * @return array 
+     */
+    public function getNomVernaculaireFaune($CD_ESP) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $table_3 = "znieff_espece";
+        $table_5 = "R_ESPECES_DETERMINANTES_FAUNE_R52";
+        $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
+        $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
+        WHERE $table_3.CD_ESP = :CD_ESP
+        AND $table_3.CD_ESP = $table_5.CD_ESP
+        AND $table_3.CD_ESP = $table_6.CD_ESP
+        AND $table_3.MS_ARBO LIKE '4%'");
+        $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
+        try {
+            $sql->execute();
+            $row = $sql->fetch();
+            $this->NOM_VERNAC = $row["NOM_VERNAC"];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
+    
 }
 
 /**
@@ -785,98 +877,6 @@ function getEspecesByIdRegionalByFgEsp($id_regional,$fg_esp) {
         echo 'ERROR: ' . $e->getMessage();
     }
 
-}
-
-/**
- * Sélectionne l'embranchement, la classe ou l'ordre d'une espèce
- * @param string $id_ms_arbo_pere
- * @return array 
- */
-function getEmbranchementsEspece($id_ms_arbo_pere) {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare("SELECT MS_ARBO, LB_ESP, MS_ARBO_PERE, CD_ESP
-    FROM znieff_espece
-    WHERE MS_ARBO = :id_ms_arbo_pere");
-    $sql->bindParam(':id_ms_arbo_pere', $id_ms_arbo_pere, PDO::PARAM_STR, 7);
-    try {
-        $embranchements = $sql->fetchAll();
-        return $embranchements;
-    } catch (PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-    }
-}
-
-/**
- * Sélectionne le sous-règne, l'embranchement, le super embranchement, 
- * la classe ou la super classe de l'espèce
- * @param string $ms_arbo_pere
- * @return array 
- */
-function getSousRegnes($ms_arbo_pere) {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare("SELECT LB_NIVEAU, MS_ARBO, LB_ESP, MS_ARBO_PERE
-    FROM znieff_espece 
-    WHERE MS_ARBO = :ms_arbo_pere
-    AND LB_NIVEAU != 'RG'");
-    $sql->bindParam(':ms_arbo_pere', $ms_arbo_pere, PDO::PARAM_STR, 7);
-    try {
-        $sql->execute();
-        $sous_regnes = $sql->fetchAll();
-        return $sous_regnes;
-    } catch (PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-    }
-}
-
-/**
- * 
- * @param type $CD_ESP
- * @return array 
- */
-function getNomVernaculaireFlore($CD_ESP) {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table_3 = "znieff_espece";
-    $table_5 = "R_ESPECES_DETERMINANTES_FLORE_R52";
-    $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
-    $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
-    WHERE $table_3.CD_ESP = :CD_ESP
-    AND $table_5.ID = $table_6.ID
-    AND $table_3.CD_ESP = $table_6.CD_ESP
-    AND $table_3.MS_ARBO NOT LIKE '4%'");
-    $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
-    try {
-        $sql->execute();
-        $especes_flore = $sql->fetch();
-        return $especes_flore;
-    } catch (PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-    }
-}
-
-/**
- *
- * @param type $CD_ESP
- * @return array 
- */
-function getNomVernaculaireFaune($CD_ESP) {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table_3 = "znieff_espece";
-    $table_5 = "R_ESPECES_DETERMINANTES_FAUNE_R52";
-    $table_6 = "R_ESPECES_DETERMINANTES_ZNIEFF_R52";
-    $sql = $pdo->prepare("SELECT * FROM $table_3, $table_5, $table_6
-    WHERE $table_3.CD_ESP = :CD_ESP
-    AND $table_3.CD_ESP = $table_5.CD_ESP
-    AND $table_3.CD_ESP = $table_6.CD_ESP
-    AND $table_3.MS_ARBO LIKE '4%'
-    GROUP BY $table_3.CD_ESP");
-    $sql->bindParam(':CD_ESP', $CD_ESP, PDO::PARAM_STR, 9);
-    try {
-        $sql->execute();
-        $especes_faune = $sql->fetch();
-        return $especes_faune;
-    } catch (PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-    }
 }
 
 /**
