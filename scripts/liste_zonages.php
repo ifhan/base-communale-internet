@@ -111,19 +111,31 @@ elseif ($id_dpt != "0"):
      */
     ?>
     <?php if ($id_type == 10): ?>
-        <p>
-            <a href="data/listes/<?= $id_dpt ?>.pdf">
-                T&eacute;l&eacute;charger la liste officielle des
-                ZNIEFF valid&eacute;es par le CSRPN (format PDF)
-            </a>
-        </p>
+        <br /><div class="listedoc">
+            <h3>T&eacute;l&eacute;charger :</h3>      
+            <ul>
+                <li>
+                    <a class="document" href="data/docs/listes/<?= $id_dpt ?>.pdf">
+                        T&eacute;l&eacute;charger la liste officielle des
+                        ZNIEFF valid&eacute;es par le CSRPN 
+                        (format PDF,&nbsp;<?= @convertFilesize("data/docs/listes/$id_dpt.pdf") ?>).
+                    </a>
+                </li>
+            </ul>
+        </div><br />
     <?php elseif ($id_type == 11): ?>
-        <p>
-            <a href="data/listes/<?= $id_dpt ?>.pdf">
-                T&eacute;l&eacute;charger la liste officielle des 
-                ZNIEFF valid&eacute;es par le CSRPN (format PDF)
-            </a>
-        </p>
+        <br /><div class="listedoc">
+            <h3>T&eacute;l&eacute;charger :</h3>
+            <ul>
+                <li>
+                    <a class="document" href="data/docs/listes/<?= $id_dpt ?>.pdf">
+                        T&eacute;l&eacute;charger la liste officielle des  
+                        ZNIEFF valid&eacute;es par le CSRPN 
+                        (format PDF,&nbsp;<?= @convertFilesize("data/docs/listes/$id_dpt.pdf") ?>).
+                    </a>
+                </li>
+            </ul>
+        </div><br />
     <?php endif; ?>
     <?php $zonages = getZonagesByIdTypeByIdDpt($id_type, $id_dpt); ?>
     <?php // Affiche le nombre de résultats retourne par la requête  ?>
