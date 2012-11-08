@@ -8,7 +8,7 @@
  * @version 1.0
  */
 class SiteClasseInscrit {
-
+    
     /**
      * Sélectionne les données annexes d'un site classé ou inscrit
      * @param string $id_regional Identifiant régional du zonage
@@ -25,6 +25,7 @@ class SiteClasseInscrit {
             $this->nom = $row["nom"];
             $this->commentaires = nl2br($row["commentaires"]);
             $this->sources = nl2br($row["sources"]);
+            $this->id_side = $row["id_side"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -87,10 +88,11 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
  */
 function getSitesClassesInscrits() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = "";
-    $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52 
-    GROUP BY id_regional 
-    ORDER BY id_regional');
+    $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52, 
+    R_SITE_CLASSE_INSCRIT_R52_data
+    WHERE R_SITE_CLASSE_INSCRIT_R52.id_sp = R_SITE_CLASSE_INSCRIT_R52_data.id_sp
+    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_regional 
+    ORDER BY R_SITE_CLASSE_INSCRIT_R52.id_regional');
     try {
         $sql->execute();
         $sites_classes_inscrits = $sql->fetchAll();
