@@ -55,8 +55,7 @@ define('URL_DREAL',
                             alt="T&eacute;l&eacute;charger" /><br />
                         <strong>Consulter le DOCOB</strong> sur le portail 
                         <abbr 
-                            title="Syst&egrave;me d'Information Documentaire 
-                            de l'Environnement">
+                            title="Syst&egrave;me d'Information Documentaire de l'Environnement">
                             SIDE
                         </abbr>
                     </a>
