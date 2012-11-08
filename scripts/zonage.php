@@ -448,8 +448,8 @@ $docob->getDocobByIdRegional($id_regional);
         <a class="document" href="<?= URL_SIDE ?><?= $docob->id_side ?>" 
            target="_blank">
             Consulter la fiche du DOCOB sur le portail documentaire 
-            <abbr title="Syst&egrave;me d'Information Documentaire 
-                  de l'Environnement">
+            <abbr 
+                title="Syst&egrave;me d'Information Documentaire de l'Environnement">
                 SIDE
             </abbr>
         </a>
@@ -482,30 +482,49 @@ endswitch;
 <?php endif; ?>
 </li>
 <!-- 12. Cartes PDF et rapports de présentation pour les sites classés -->
-<li>
 <?php if ($id_type == '13'): ?>
     <?php if (file_exists("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-            <a class="document" 
-               href="data/cartes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
-               target="_blank">
-                T&eacute;l&eacute;charger la carte de localisation
-            </a>
-            <span class="docformat">
-                (PDF,&nbsp;<?= @convertFilesize("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
-            </span>
-        <?php endif; ?>
-        <?php if (file_exists("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-            <a class="document" 
-               href='data/docs/rapports/<?= $zonage->path ?>/<?= $id_regional ?>.pdf' 
-               target=_blank>
-                T&eacute;l&eacute;charger le rapport de pr&eacute;sentation
-            </a>
-            <span class="docformat">
-                (PDF,&nbsp;<?= @convertFilesize("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
-            </span>
-        <?php endif; ?>
+    <li>
+        <a class="document" 
+           href="data/cartes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
+           target="_blank">
+            T&eacute;l&eacute;charger la carte de localisation
+        </a>
+        <span class="docformat">
+            (PDF,&nbsp;<?= @convertFilesize("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+        </span>
+    </li>
     <?php endif; ?>
-</li>
+    <?php if (file_exists("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
+    <li>
+        <a class="document" 
+           href='data/docs/rapports/<?= $zonage->path ?>/<?= $id_regional ?>.pdf' 
+           target=_blank>
+            T&eacute;l&eacute;charger le rapport de pr&eacute;sentation
+        </a>
+        <span class="docformat">
+            (PDF,&nbsp;<?= @convertFilesize("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
+        </span>
+    </li>
+    <?php endif; ?>
+    <?php 
+    $site_classe_inscrit = new SiteClasseInscrit();
+    $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
+    ?>
+    <?php if (!empty($site_classe_inscrit->id_side)): ?>
+    <li>
+        <a class="document" 
+           href="<?=URL_SIDE?><?=$site_classe_inscrit->id_side?>" 
+           target="_blank">
+            Consulter le rapport de pr&eacute;sentation sur le portail 
+            <abbr 
+                title="Syst&egrave;me d'Information Documentaire de l'Environnement">
+                SIDE
+            </abbr>
+        </a>
+    </li>
+    <?php endif; ?>
+<?php endif; ?>
 <!-- 13. Photographies -->
 <li>
     <?php
