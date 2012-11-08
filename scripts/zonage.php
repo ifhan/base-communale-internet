@@ -495,18 +495,6 @@ endswitch;
         </span>
     </li>
     <?php endif; ?>
-    <?php if (file_exists("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-    <li>
-        <a class="document" 
-           href='data/docs/rapports/<?= $zonage->path ?>/<?= $id_regional ?>.pdf' 
-           target=_blank>
-            T&eacute;l&eacute;charger le rapport de pr&eacute;sentation
-        </a>
-        <span class="docformat">
-            (PDF,&nbsp;<?= @convertFilesize("data/docs/rapports/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
-        </span>
-    </li>
-    <?php endif; ?>
     <?php 
     $site_classe_inscrit = new SiteClasseInscrit();
     $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
