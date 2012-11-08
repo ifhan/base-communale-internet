@@ -10,6 +10,8 @@ require_once 'classes/utilities.inc.php';
 require_once 'classes/SiteClasseInscrit.class.php';
 
 $sites_classes_inscrits = getSitesClassesInscrits();
+define('URL_SIDE', 
+        'http://www.side.developpement-durable.gouv.fr/clientBookline/service/reference.asp?INSTANCE=exploitation&OUTPUT=PORTAL&DOCBASE=IFD_SIDE&DOCID=');
 ?>
 <table class="display" id="example">
     <thead>
@@ -25,24 +27,26 @@ $sites_classes_inscrits = getSitesClassesInscrits();
             <td><?=$site_classe_inscrit["id_regional"]?></td>
             <td>&nbsp;<?=$site_classe_inscrit["nom"]?></td>
             <td class="cache">
-                <div align="right">
-                    <?php if (file_exists("data/docs/rapports/sites/".$site_classe_inscrit["id_regional"].".pdf")): ?>
-                    <div align="center">
-                        <a href="data/docs/rapports/sites/<?=$site_classe_inscrit["id_regional"]?>.pdf" 
-                           target="_blank"><img 
-                                src="IMG/png/filesave.png" 
-                                style="border:none" 
-                                alt="T&eacute;l&eacute;charger" /><br />
-                            <strong>T&eacute;l&eacute;charger le rapport de pr&eacute;sentation</strong></a>
-                        <br />
-                        <em>(PDF,&nbsp;<?=@convertFilesize("data/docs/rapports/sites/".$site_classe_inscrit["id_regional"].".pdf")?></em>
+                <?php if (!empty($site_classe_inscrit["id_side"])): ?>
+                <div align="center">
+                    <a href="<?=URL_SIDE?><?=$site_classe_inscrit["id_side"]?>" 
+                       target="_blank"><img 
+                            src="IMG/png/gnome-globe.png" 
+                            style="border:none" 
+                            alt="T&eacute;l&eacute;charger" /><br />
+                        <strong>Consulter le rapport de 
+                            pr&eacute;sentation</strong> sur le portail 
+                        <abbr 
+                            title="Syst&egrave;me d'Information Documentaire de l'Environnement">
+                            SIDE
+                        </abbr>
+                    </a>
+                    <br />
                     <?php else: ?>
-                        <div class="align" 
-                             valign="top">Document non disponible</div>
-                    <?php endif; ?>
-                    </div>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+                    <p>Document non disponible</p>
+                <?php endif; ?>
+            </td>    
+        </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
