@@ -14,21 +14,21 @@ class Zde {
      * @param string $id_zde Identifiant de la ZDE
      */
     public function getZdeByIdZde($id_zde) {
-        $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM n_zde_eolien_s_r52
-        WHERE id_zde = :id_zde');
-        $sql->bindParam(':id_zde', $id_zde, PDO::PARAM_STR, 7);
-        try {
+        global $pdo_pg;
+        $sql = $pdo_pg->prepare('SELECT * FROM eolien."N_ZDE_EOLIEN_S_R52"
+        WHERE "N_ZDE_EOLIEN_S_R52"."ID_ZDE" = :id_zde');
+        $sql->bindParam(':id_zde', $id_zde, PDO::PARAM_INT, 7);
+        try { 
             $sql->execute();
             $row = $sql->fetch();
-            $this->nom_zde = $row['nom_zde'];
-            $this->id_zde = $row['id_zde'];
-            $this->datearrete = date("d/m/Y", strtotime($row['datearrete']));
-            $this->pu_mini = $row['pu_mini'];
-            $this->pu_maxi = $row['pu_maxi'];
-            $this->etat_zde = $row['etat_zde'];
-            $this->surfdeclar = $row['surfdeclar'];
-            $this->refarrete = $row['refarrete'];
+            $this->nom_zde = $row['NOM_ZDE'];
+            $this->id_zde = $row['ID_ZDE'];
+            $this->datearrete = date("d/m/Y", strtotime($row['DATEARRETE']));
+            $this->pu_mini = $row['PU_MINI'];
+            $this->pu_maxi = $row['PU_MAXI'];
+            $this->etat_zde = $row['ETAT_ZDE'];
+            $this->surfdeclar = $row['SURFDECLAR'];
+            $this->refarrete = $row['REFARRETE'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -41,9 +41,9 @@ class Zde {
  * @return array 
  */
 function getZde() {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM n_zde_eolien_s_r52
-    ORDER BY id_zde');
+    global $pdo_pg;
+    $sql = $pdo_pg->prepare('SELECT * FROM N_ZDE_EOLIEN_S_R52
+    ORDER BY ID_ZDE');
     try {
         $sql->execute();
         $array_zde = $sql->fetchAll();
