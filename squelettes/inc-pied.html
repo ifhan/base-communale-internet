@@ -7,6 +7,7 @@
             <BOUCLE_maj(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>[(#DATE|nom_jour)] [(#DATE|affdate)]</BOUCLE_maj>
         </div>
     </div>
+    
     <script type="text/javascript">
         <!--
         Xt_r = document.referrer;
@@ -67,6 +68,24 @@
     [(#AUTORISER{ecrire})<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
     [(#SESSION{id_auteur}|?{' '})|&nbsp;<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>]
 </div>
+<a href="http://www.xiti.com/xiti.asp?s=180970" title="WebAnalytics" target="_top">
+<script type="text/javascript">
+<!--
+Xt_param = 's=180970&p=';
+try {Xt_r = top.document.referrer;}
+catch(e) {Xt_r = document.referrer; }
+Xt_h = new Date();
+Xt_i = '<img width="1" height="1" border="0" alt="" ';
+Xt_i += 'src="http://logv26.xiti.com/vcg.xiti?'+Xt_param;
+Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
+if(parseFloat(navigator.appVersion)>=4)
+{Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
+document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'" title="Internet Audience">');
+//-->
+</script>
+<noscript>
+Mesure d'audience ROI statistique webanalytics par <img width="80" height="15" src="http://logv26.xiti.com/vcg.xiti?s=180970&p=" alt="WebAnalytics" />
+</noscript></a>
 [(#REM)
 Cette balise permet de deporter les calculs lourds (indexation etc)
 dans une image cachee, ce qui evite de ralentir l'affichage des pages.
