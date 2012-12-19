@@ -40,6 +40,7 @@ $site_natura_data->getDataByIdRegional($id_regional);
         <td>Identifiant r&eacute;gional&nbsp;:</td>
         <td><strong><?=$site_natura->id_regional?></strong></td>
     </tr>
+    <?php if($id_type == "6"): ?>
     <?php if(!empty($site_natura->date_transmission)):?>
     <tr>
         <td>Date de transmission&nbsp;:</td>
@@ -48,11 +49,14 @@ $site_natura_data->getDataByIdRegional($id_regional);
         </td>
     </tr>
     <?php endif; ?>
+    <?php endif; ?>
+    <?php if(($id_type == "5") OR ($id_type == "30")): ?>
     <?php if(!empty($site_natura->date_designation)): ?>
     <tr>
         <td>Date de d&eacute;signation&nbsp;:</td>
         <td><strong><?=$site_natura->date_designation?></strong></td>
     </tr>
+    <?php endif; ?>
     <?php endif; ?>
     <tr>
         <td>Surface calcul&eacute;e dans le SIG&nbsp;:</td>
