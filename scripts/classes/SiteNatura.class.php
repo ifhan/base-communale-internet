@@ -27,18 +27,16 @@ class SiteNatura {
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
-        $table_2 = $table . "_data";
-        $sql_2 = $pdo->prepare("SELECT * FROM $table, $table_2
-        WHERE $table.id_regional = :id_regional
-        AND $table.id_regional = $table_2.id_regional");
+        $sql_2 = $pdo->prepare("SELECT * FROM $table
+        WHERE id_regional = :id_regional");
         $sql_2->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql_2->execute();
             $row = $sql_2->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
-            $this->date_transmission = $row["date_transmission"];
-            $this->date_designation = $row["date_designation"];
+            $this->date_transmission = date("d/m/Y", strtotime($row['date_transmission']));
+            $this->date_designation = date("d/m/Y", strtotime($row['date_designation']));
             $this->surf_sig_l93 = $row["surf_sig_l93"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
