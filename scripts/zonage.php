@@ -49,6 +49,16 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
     </li>
     <?php endif; ?>
+        <?php if (!empty($zonage->url_presentation)): ?>
+    <!-- 1 bis. Lien vers la présentation du zonage sur le site Internet 
+    de la DREAL -->
+    <li>
+        <a class="document" href="
+            <?= $zonage->url_presentation ?>" target="_blank">
+            Consulter la présentation du zonage sur le site Internet de la DREAL
+        </a>
+    </li>
+    <?php endif; ?>
     <!-- 2. Fiches descriptives et liens -->
     <li>
         <?php
