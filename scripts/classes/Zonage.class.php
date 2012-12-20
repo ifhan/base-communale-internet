@@ -27,6 +27,7 @@ class Zonage {
             $this->table = $row['table'];
             $this->path = $row['path'];
             $this->map = $row['map'];
+            $this->url_presentation = $row['url_presentation'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
