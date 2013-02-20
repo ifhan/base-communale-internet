@@ -57,12 +57,20 @@
                                                 <div class="top">&nbsp;</div>
                                                 <div class="center">
                                                     <h2>[(#TITRE|supprimer_numero)]</h2>
-                                                    <div class="texterub">#TEXTE</div>
                                                 </div>
                                                 <div class="bottom">&nbsp;</div>
                                             </div>
                                         </BOUCLE_titre_rubrique>
 
+                                        <div class="clearer">&nbsp;</div>
+                                        
+                                        <BOUCLE_texte_rubrique(RUBRIQUES) {id_rubrique} >
+                                        <div class="listerub">
+                                            <div class="titresousrub">Avertissement</div>
+                                            <div class="texterub">#TEXTE</div>
+                                        </div>
+                                        </BOUCLE_texte_rubrique>
+                                        
                                         <div class="clearer">&nbsp;</div>
 
                                         <div class="ajax">
