@@ -26,9 +26,10 @@ class Apb {
             $this->id_regional = $row['id_regional'];
             $this->id_national = $row['id_national'];
             $this->nom = $row['nom'];
-            $this->code_arrete = $row['code_arrete'];
-            $this->date = date("d/m/Y", strtotime($row['date']));
-            $this->commentaire_arrete = $row['commentaire_arrete'];
+            $this->date_creation = date("d/m/Y", strtotime($row['date_creation']));
+            $this->date_modif = date("d/m/Y", strtotime($row['date_modif']));
+            $this->arrete_creation = $row['arrete_creation'];            
+            $this->arrete_modif = $row['arrete_modif'];
             $this->surf_sig_l93 = $row['surf_sig_l93'];
             $this->parcelles = nl2br($row['parcelles']);
             $this->statut_foncier = nl2br($row['statut_foncier']);
