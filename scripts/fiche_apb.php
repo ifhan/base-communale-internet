@@ -32,19 +32,28 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
         <td>Identifiant SPN&nbsp;: </td>
         <td><strong><?=$apb->id_national?></strong></td>
     </tr>
+    <?php if(!empty($apb->arrete_modif)): ?>
     <tr>
-        <td>Arr&ecirc;t&eacute;&nbsp;:</td>
+        <td>Arr&ecirc;t&eacute; de modification&nbsp;:</td>
         <td>
             <strong>
-                n&deg; <?=$apb->code_arrete?>
-                du <?=$apb->date?>
+                <?php if(!empty($apb->arrete_modif)): ?>
+                    n&deg;<?=$apb->arrete_modif?>
+                <?php endif; ?>
+                du <?=$apb->date_modif?>
             </strong>
         </td>
     </tr>
+    <?php endif; ?>
     <tr>
-        <td></td>
+        <td>Arr&ecirc;t&eacute; de cr&eacute;ation&nbsp;:</td>
         <td>
-            <em><?=$apb->commentaire_arrete?></em>
+            <strong>
+                <?php if(!empty($apb->arrete_creation)): ?>
+                    n&deg;<?=$apb->arrete_creation?>
+                <?php endif; ?>
+                du <?=$apb->date_creation?>
+            </strong>
         </td>
     </tr>
     <tr>
@@ -66,7 +75,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <h3 class="spip">Parcelles cadastrales&nbsp;:</h3>
 <?php endif; ?>
 <p><?=$apb->parcelles?></p>
-<?php if(isset($apb->statut_foncier)): ?>
+<?php if(!empty($apb->statut_foncier)): ?>
 <h3 class="spip">Statut foncier&nbsp;:</h3>
 <p><?=$apb->statut_foncier?></p>
 <?php endif; ?>
