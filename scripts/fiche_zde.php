@@ -3,19 +3,22 @@
 require_once 'config/constants.inc.php';
 require_once 'config/database.inc.php';
 
+// Utility functions  
+require_once 'classes/utilities.inc.php';
+
 // Classes
 require_once 'classes/Zde.class.php';
+require_once 'classes/ParcEolien.class.php';
 require_once 'classes/Departement.class.php';
 
 /**
- * @var $id_type Identifiant du type de zonage
  * @var $id_regional Identifiant régional du zonage
  */
-$id_type = $_REQUEST["id_type"];
 $id_zde = $_REQUEST["id_zde"];
 $zde = new Zde();
 $zde->getZdeByIdZde($id_zde);
 
+$parcs_eoliens = getParcEolienByIdZde($id_zde);
 /*$departement = new Departement();
 $departement->getDepartementByIdRegional($id_regional, $id_type);*/
 ?>
@@ -63,19 +66,13 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);*/
 </table>
 <h3 class="spip">Commune(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
-<?php if(isset($zde->parcelles)): ?>
-<h3 class="spip">Parcelles cadastrales&nbsp;:</h3>
-<?php endif; ?>
-<p><?=$zde->parcelles?></p>
-<?php if(isset($zde->statut_foncier)): ?>
-<h3 class="spip">Statut foncier&nbsp;:</h3>
-<p><?=$zde->statut_foncier?></p>
-<?php endif; ?>
-<?php if(isset($zde->interet_bio)): ?>
-<h3 class="spip">Int&eacute;r&ecirc;t biologique&nbsp;:</h3>
-<p><?=$zde->interet_bio?></p>
-<?php endif; ?>
-<?php if(isset($zde->effets_protection)): ?>
-<h3 class="spip">Effets de la protection&nbsp;:</h3>
-<p><?=$zde->effets_protection?></p>
-<?php endif; ?>
+<h3 class="spip">Parc(s) &eacute;olien(s)&nbsp;:</h3>
+<table>
+<?php foreach($parcs_eoliens as $parc_eolien): ?>
+    <tr bgcolor="<?=switchColor()?>">
+        <td><?=$parc_eolien["nom_parc"]?></td>
+        <td><?=$parc_eolien["exploitant"]?></td>
+    </tr>
+<?php endforeach; ?>    
+    
+</table>

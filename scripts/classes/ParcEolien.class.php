@@ -17,15 +17,14 @@ class ParcEolien {
  * @return array 
  */
 function getParcEolienByIdZde($id_zde) {
-    $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM n_parc_eolien_s_053
-    WHERE id_zde = :id_zde
-    ORDER BY id_zde');
-    $sql->bindParam(':id_zde', $id_zde, PDO::PARAM_STR, 7);
+    global $pdo_pg;
+    $sql = $pdo_pg->prepare('SELECT * FROM eolien."N_PARC_EOLIEN_S_R52"
+    WHERE "N_PARC_EOLIEN_S_R52"."ID_ZDE" = :id_zde');
+    $sql->bindParam(':id_zde', $id_zde, PDO::PARAM_INT, 7);
     try {
         $sql->execute();
-        $array_zde = $sql->fetchAll();
-        return $array_zde;
+        $parcs_eoliens = $sql->fetchAll();
+        return $parcs_eoliens;
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }

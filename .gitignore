@@ -26,3 +26,6 @@
 /scripts/print/
 !/plugins/contact/formulaires/
 /data/
+/scripts/config/
+!/scripts/config/database.inc.php
+/ACTIONS/

@@ -43,9 +43,10 @@ function getEntitesFromSiteByIdRegional($id_regional) {
     $sql = $pdo->prepare('SELECT * 
     FROM R_SITE_CLASSE_INSCRIT_R52, R_SITE_CLASSE_INSCRIT_R52_data
     WHERE R_SITE_CLASSE_INSCRIT_R52.id_regional = :id_regional 
-    AND R_SITE_CLASSE_INSCRIT_R52.id_regional = 
-    R_SITE_CLASSE_INSCRIT_R52_data.id_regional
-    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_sp');
+    AND R_SITE_CLASSE_INSCRIT_R52.id_sp = 
+    R_SITE_CLASSE_INSCRIT_R52_data.id_sp
+    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_sp
+    ORDER BY R_SITE_CLASSE_INSCRIT_R52.id_entite');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
     try {
         $sql->execute();
