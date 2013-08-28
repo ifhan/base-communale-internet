@@ -9,12 +9,12 @@ require_once(dirname(__FILE__)."/../classes/AnnexeHydraulique.class.php");
 /**
  * Ce fichier sert à afficher le nom de l'annexe sélectionnée dans un 
  * squelette SPIP
- * @var $id_commun Identifiant de l'a station'annexe
+ * @var $id_commun Identifiant de l'annexe
  */ 
 $id_commun = $_REQUEST["id_commun"];
 
 $annexe_hydraulique = new AnnexeHydraulique();
 $annexe_hydraulique->getAnnexeHydrauliqueByIdCommun($id_commun);
 ?>
-&nbsp;<?=$annexe_hydraulique->nom_principal?> 
-(<?=$annexe_hydraulique->id_commun?>)
+:&nbsp;<?=$annexe_hydraulique->nom_principal?> 
+(<?=$id_commun?>)
