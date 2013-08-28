@@ -4,20 +4,17 @@ require_once(dirname(__FILE__)."/../config/constants.inc.php");
 require_once(dirname(__FILE__)."/../config/database.inc.php");
 
 // Classes 
-require_once(dirname(__FILE__)."/../classes/StationTemperature.class.php");
+require_once(dirname(__FILE__)."/../classes/AnnexeHydraulique.class.php");
 
 /**
- * Ce fichier sert à afficher le nom de la station sélectionnée dans un 
+ * Ce fichier sert à afficher le nom de l'annexe sélectionnée dans un 
  * squelette SPIP
- * @var $code_hydro Identifiant de la station
+ * @var $id_commun Identifiant de l'a station'annexe
  */ 
-$code_hydro = $_REQUEST["code_hydro"];
+$id_commun = $_REQUEST["id_commun"];
 
-$station_temperature = new StationTemperature();
-$station_temperature->getStationTemperatureByIdStation($code_hydro);
+$annexe_hydraulique = new AnnexeHydraulique();
+$annexe_hydraulique->getAnnexeHydrauliqueByIdCommun($id_commun);
 ?>
-&nbsp;<?=$station_temperature->commune?> 
-(<?=$station_temperature->id_commune?>)
-<?php if(!empty($station_temperature->localite)): ?>
-, <?=$station_temperature->localite?>
-<?php endif;?>
+&nbsp;<?=$annexe_hydraulique->nom_principal?> 
+(<?=$annexe_hydraulique->id_commun?>)

@@ -7,20 +7,20 @@ require_once 'config/database.inc.php';
 require_once 'classes/utilities.inc.php';
 
 // Classes
-require_once 'classes/StationTemperature.class.php';
+require_once 'classes/AnnexeHydraulique.class.php';
 require_once 'classes/Zonage.class.php';
 
 /**
- * Ce fichier sert à afficher l'ensemble des fichiers PDF concernant la station
- * @var $code_hydro Identifiant de la station
+ * Ce fichier sert à afficher l'ensemble des informations concernant l'a station'annexe
+ * @var $id_commun Identifiant de l'annexe
  */
-$code_hydro = $_REQUEST["code_hydro"];
+$id_commun = $_REQUEST["id_commun"];
 
-$station_temperature = new StationTemperature();
-$station_temperature->getStationTemperatureByIdStation($code_hydro);
+$annexe_hydraulique = new AnnexeHydraulique();
+$annexe_hydraulique->getAnnexeHydrauliqueByIdCommun($id_commun);
 
 $zonage = new Zonage();
-$zonage->getTypeZonageByIdType("28");
+$zonage->getTypeZonageByIdType("40");
 ?>
 <div text="top">
     <table>
@@ -31,8 +31,8 @@ $zonage->getTypeZonageByIdType("28");
                      alt="Icone web" />
             </td>
             <td>
-                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;code_hydro;04<?=$code_hydro?>" 
-                   target="_blank">Consulter la localisation de la station sur CARMEN</a>.   
+                <a href="<?=URL_CARMEN?><?=$zonage->map?>.map&object=stations_temperature_rcs;id_commun;<?=$id_commun?>" 
+                   target="_blank">Consulter la localisation de l'annexe sur CARMEN</a>.   
             </td>
         </tr>
     </table>
@@ -49,42 +49,16 @@ $zonage->getTypeZonageByIdType("28");
     </thead>
     <tbody>
         <tr valign="top">
-            <td><?=$station_temperature->code_hydro?></td>
-            <td><?=$station_temperature->riviere?></td>
-            <td><?=$station_temperature->commune?> (<?=$station_temperature->id_commune?>) <?=$station_temperature->localite?></td>
-            <td><?=$station_temperature->mise_en_service?></td>
+            <td><?=$annexe_hydraulique->id_commun?></td>
+            <td><?=$annexe_hydraulique->nom_principal?></td>
+            <td><?=$annexe_hydraulique->commune?> (<?=$annexe_hydraulique->id_commune?>) <?=$annexe_hydraulique->localite?></td>
+            <td><?=$annexe_hydraulique->mise_en_service?></td>
         </tr>
     </tbody>
 </table>
 <div class="listedoc">
     <h3>T&eacute;l&eacute;charger :</h3>
     <ul>
-<?php
-$dir = "data/fiches/temperature/";
-/**
- *  Ouvre un dossier bien connu, et liste tous les fichiers
- */
-if(@is_dir($dir)):
-    if($dh = @opendir($dir)):
-        while(($file = @readdir($dh)) !== false):
-            if($file != "." && $file != ".."):
-                if (file_exists("data/fiches/temperature/$file/" . $code_hydro . ".pdf")): ?>
-        <li>
-            <a class="document" 
-               href="data/fiches/temperature/<?=$file?>/<?=$code_hydro?>.pdf" 
-               target="_blank">Temp&eacute;ratures en continu en <?=$file?></a>
-            <span class="docformat">
-                <em>
-                    (PDF, <?=@convertFilesize("data/fiches/temperature/$file/" . $code_hydro . ".pdf")?>)
-                </em>
-            </span>
-        </li>
-            <?php endif;
-            endif;
-        endwhile;
-        closedir($dh);
-    endif;
-endif;
-?>
+
     </ul>
 </div>
