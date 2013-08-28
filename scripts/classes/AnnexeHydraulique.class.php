@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of AnnexesHydrauliques
+ * Description of AnnexeHydraulique
  * Classe et fonction concernant les annexes hydrauliques en Pays de la Loire
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2013-08-27
@@ -21,13 +21,23 @@ class AnnexeHydraulique {
             $sql->execute();
             $row = $sql->fetch();
             $this->nom_principal = $row['nom_principal'];
-            $this->id_zde = $row['ID_ZDE'];
-            $this->datearrete = date("d/m/Y", strtotime($row['DATEARRETE']));
-            $this->pu_mini = $row['PU_MINI'];
-            $this->pu_maxi = $row['PU_MAXI'];
-            $this->etat_zde = $row['ETAT_ZDE'];
-            $this->surfdeclar = $row['SURFDECLAR'];
-            $this->refarrete = $row['REFARRETE'];
+            $this->autres_noms = $row['autres_noms'];
+            $this->description = $row['description'];
+            $this->SDAGE = $row['SDAGE'];
+            $this->lineaire_surfacique = $row['lineaire_surfacique'];
+            $this->annexes_2004 = $row['annexes_2004'];
+            $this->type_hydraulique_dominant = $row['type_hydraulique_dominant'];
+            $this->statut_foncier = $row['statut_foncier'];
+            $this->detail = $row['detail'];
+            $this->rive = $row['rive'];
+            $this->id_dpt = $row['id_dpt'];
+            $this->ile_associee = $row['ile_associee'];
+            $this->annexe_associee = $row['annexe_associee'];
+            $this->nom_levee = $row['nom_levee'];
+            $this->exterieur_interieur = $row['exterieur_interieur'];
+            $this->surf_annexe = $row['surf_annexe'];
+            $this->surf_frayeres = $row['surf_frayeres'];
+            $this->longueur_km = $row['longueur_km'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
