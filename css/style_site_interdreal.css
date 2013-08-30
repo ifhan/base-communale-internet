@@ -3139,6 +3139,10 @@ table.spip tr.row_first {
 	background-color: #cded95;
 }
 
+table.spip th.cell_first {
+	background-color: #cded95;
+}
+
 table.spip td {
 	padding: 0px 5px;
 	text-align: left;
