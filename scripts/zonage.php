@@ -492,7 +492,8 @@ endswitch;
 <?php endif; ?>
 </li>
 <!-- 12. Cartes PDF et rapports de présentation pour les sites classés -->
-<?php if ($id_type == '13'): ?>
+<?php switch ($id_type):
+    case 13: ?>
     <?php if (file_exists("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
     <li>
         <a class="document" 
@@ -509,7 +510,7 @@ endswitch;
     $site_classe_inscrit = new SiteClasseInscrit();
     $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
     ?>
-    <?php if (!empty($site_classe_inscrit->id_side)): ?>
+    <?php if ($site_classe_inscrit->id_side != ""): ?>
     <li>
         <a class="document" 
            href="<?=URL_SIDE?><?=$site_classe_inscrit->id_side?>" 
@@ -522,7 +523,7 @@ endswitch;
         </a>
     </li>
     <?php endif; ?>
-<?php endif; ?>
+<?php endswitch; ?>
 <!-- 13. Photographies -->
 <li>
     <?php
