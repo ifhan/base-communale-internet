@@ -23,6 +23,8 @@ class SiteClasseInscrit {
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
+            $this->texte_protection = $row["texte_protection"];
+            $this->url_texte = $row["url_texte"];
             $this->commentaires = nl2br($row["commentaires"]);
             $this->sources = nl2br($row["sources"]);
             $this->id_side = $row["id_side"];
