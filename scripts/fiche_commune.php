@@ -41,6 +41,12 @@ $themes = getThemesByIdCommune($id_commune);
             <?php foreach($zonages as $zonage): ?>
                 <?php
                 /**
+                * Affichage d'un commentaire spécifique pour le PNA Luronium natans
+                */
+                ?>
+                
+                <?php
+                /**
                  * Affichage de l'identifiant, du nom du zonage et 
                  * du lien vers la liste des ressources associées
                  */
@@ -49,7 +55,11 @@ $themes = getThemesByIdCommune($id_commune);
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>
                     </td>
-                    <td width="99%">&nbsp;<?= $zonage["nom"] ?></td>
+                    <td width="99%">&nbsp;<?= $zonage["nom"] ?>
+                        <?php if ($zonage["COMMENT"]!=""): ?>
+                            <?= '*<br /><em><small>* '.$zonage["COMMENT"].'</small></em>' ?>
+                        <?php endif;?>
+                    </td>
                     <td class="cache">
                         <a href="spip.php?page=zonage&id_type=<?= $zonage["id_type"] ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><div align="right" class="cache"><img src="IMG/png/system-search.png" alt="Lien vers la ressource" /></a></div>
                     </td>
