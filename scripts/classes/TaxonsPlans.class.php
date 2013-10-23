@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Description of TaxonsPC
+ * Description of TaxonsPlans
  * Classe et fonctions concernant les taxons des plans de conservations et les 
  * plans nationaux d'action en Pays de la Loire
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2013-10-10
- * @version 1.0
+ * @copyright 2013-10-23
+ * @version 2.0
  */
-class TaxonsPC {
+class TaxonsPlans {
     /**
      * Sélectionne un taxon par son identifiant TAXREF
      * @param string $id_taxref Identifiant TAXREF de l'espèce
      */
     public function getTaxonByIdTaxref($id_taxref) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_TAXONS_PC_2012_R52 
-        WHERE ID_TAXREF = :id_taxref');
+        $sql = $pdo->prepare('SELECT * FROM r_taxons_plans_2012_r52 
+        WHERE id_regional = :id_taxref');
         $sql->bindParam(':id_taxref', $id_taxref, PDO::PARAM_STR, 5);
         try {
             $sql->execute();
@@ -29,17 +29,39 @@ class TaxonsPC {
         }
     }
 }
-
+    
     /**
-     * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
-     * dans la région
+     * Sélectionne l'ensemble des taxons concernés par un plan 
+     * national d'action en Pays de la Loire
      * @return array 
      */    
-    function getTaxonsPC() {
+    function getTaxonsPNA() {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-                FROM r_taxons_pc_2012_r52 WHERE r_taxons_pc_2012_r52.TYPE_PLAN = "PC"
-                ORDER BY r_taxons_pc_2012_r52.id_regional');
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PNA"
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
+        try {
+            $sql->execute();
+            $taxons = $sql->fetchAll();
+            return $taxons;
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+
+    }
+    
+    /**
+     * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
+     * régional en Pays de la Loire
+     * @return array 
+     */    
+    function getTaxonsPCR() {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * 
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PCR"
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
@@ -51,14 +73,15 @@ class TaxonsPC {
     
     /**
      * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
-     * dans la région
+     * local en Pays de la Loire
      * @return array 
      */    
-    function getTaxonsPNA() {
+    function getTaxonsPCL() {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-                FROM r_taxons_pc_2012_r52 WHERE r_taxons_pc_2012_r52.TYPE_PLAN = "PNA"
-                ORDER BY r_taxons_pc_2012_r52.id_regional');
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PCL"
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
@@ -66,7 +89,6 @@ class TaxonsPC {
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
-
-    }
+    }    
 
 ?>
