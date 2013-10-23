@@ -7,9 +7,9 @@ require_once 'config/database.inc.php';
 require_once 'classes/utilities.inc.php';
 
 // Classes
-require_once 'classes/TaxonsPC.class.php';
+require_once 'classes/TaxonsPlans.class.php';
 
-$taxons = getTaxonsPC();
+$taxons = getTaxonsPCL();
 ?>
 <div class="listerub">
     <div class="titresousrub">Liens</div>
