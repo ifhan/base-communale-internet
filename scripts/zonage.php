@@ -36,27 +36,35 @@ $zonage->getTypeZonageByIdType($id_type);
         <a class="document" href="
             <?php 
             echo URL_CARMEN.$zonage->map.".map&object=".$zonage->path.";";
-            if ($id_type == "18"):
-               echo "id_bien";
-            elseif (($id_type == "12") OR ($id_type == "15")):
-               echo "id_national";
-            else:
-               echo "id_regional";
-            endif;
+            switch ($id_type):
+                case 18:
+                    echo "id_bien";
+                    break;
+                case 12:
+                    echo "id_national";
+                    break;
+                case 15: case 7:
+                    echo "ID_MNHN";
+                    break;
+                case 1: case 2: case 33:
+                    echo "ID_LOCAL";
+                    break;
+                default:
+                    echo "id_regional";
+            endswitch;
             echo ";" . $id_regional
             ?>" target="_blank">
             Consulter la carte interactive du zonage sur CARMEN
         </a>
     </li>
     <?php endif; ?>
-        <?php if (!empty($zonage->url_presentation)): ?>
+    <?php if (!empty($zonage->url_presentation)): ?>
     <!-- 1 bis. Lien vers la présentation du zonage sur le site Internet 
     de la DREAL -->
     <li>
         <a class="document" href="
             <?= $zonage->url_presentation ?>" target="_blank">
-            Consulter la présentation du zonage sur le site Internet de la DREAL
-        </a>
+            Consulter la présentation sur le site Internet de la DREAL</a>
     </li>
     <?php endif; ?>
     <!-- 2. Fiches descriptives et liens -->
@@ -277,6 +285,48 @@ switch ($id_type):
         <?php
         endif;
         break;
+        /**
+         * 3.1 Liens pour les Plans de conservation
+        */
+        case 41:
+            ?>
+        <li>
+            <a class="document"
+               href="http://www.cbnbrest.fr/site/html/regions/strategie_conservation.html"
+               target="_blank">
+                Consulter la strat&eacute;gie de conservation sur le site 
+                du <abbr  title="Conservatoire Botanique National de Brest">CBNB</abbr></a>
+        </li>
+        <li>
+            <a class="document" 
+               href="http://www.cbnbrest.fr/site/html/regions/strategie_conservation_pdl.html#pla" 
+               target="_blank">
+                Consulter les plans de conservations sur le site 
+                du <abbr  title="Conservatoire Botanique National de Brest">CBNB</abbr></a>
+        </li>
+        <?php
+        break;
+        /**
+         * 3.2 Liens pour les Plans nationaux d'action
+        */
+        case 42:
+            ?>
+        <li>
+            <a class="document"
+               href="http://www.developpement-durable.gouv.fr/-Especes-menacees-les-plans-.html" 
+               target="_blank">
+                Consulter la rubrique de pr&eacute;sentation des plans 
+                nationaux d'action sur le site du Minist&egrave;re</a>
+        </li>
+        <li>
+            <a class="document"
+               href="http://www.developpement-durable.gouv.fr/Plan-national-d-actions-2012-2016.html" 
+               target="_blank">
+                Consulter les plans nationaux d'action sur le site 
+                du Minist&egrave;re</a>
+        </li>
+        <?php
+        break;    
 endswitch;
 ?>
 <!-- 3. Formulaires standards de données pour Natura 2000 -->
@@ -493,20 +543,8 @@ endswitch;
 </li>
 <!-- 12. Cartes PDF et rapports de présentation pour les sites classés -->
 <?php switch ($id_type):
-    case 13: ?>
-    <?php if (file_exists("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
-    <li>
-        <a class="document" 
-           href="data/cartes/<?= $zonage->path ?>/<?= $id_regional ?>.pdf" 
-           target="_blank">
-            T&eacute;l&eacute;charger la carte de localisation
-        </a>
-        <span class="docformat">
-            (PDF,&nbsp;<?= @convertFilesize("data/cartes/" . $zonage->path . "/" . $id_regional . ".pdf") ?>)
-        </span>
-    </li>
-    <?php endif; ?>
-    <?php 
+    case 13:
+
     $site_classe_inscrit = new SiteClasseInscrit();
     $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
     ?>
