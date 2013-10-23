@@ -7,9 +7,9 @@ require_once 'config/database.inc.php';
 require_once 'classes/utilities.inc.php';
 
 // Classes
-require_once 'classes/TaxonsPC.class.php';
+require_once 'classes/TaxonsPlans.class.php';
 
-$taxons = getTaxonsPC();
+$taxons = getTaxonsPCR();
 ?>
 <div class="listerub">
     <div class="titresousrub">Liens</div>
@@ -39,15 +39,15 @@ $taxons = getTaxonsPC();
             <th>Fiche INPN</th>
     </thead>
     <tbody>
-        <?php foreach ($taxons as $taxons): ?>
+        <?php foreach ($taxons as $taxon): ?>
         <tr>
-            <td><?=$taxons["id_regional"]?></td>
-            <td><em><?=$taxons["nom"]?></em></td>
-            <td><?=$taxons["NOM_VERNAC"]?></td>
-            <?php if ($taxons["id_regional"]!=""): ?>
+            <td><?=$taxon["id_regional"]?></td>
+            <td><em><?=$taxon["nom"]?></em></td>
+            <td><?=$taxon["NOM_VERNAC"]?></td>
+            <?php if ($taxon["id_regional"]!=""): ?>
             <td class="cache">
                 <div align="center">
-                    <a href="<?=URL_INPN_ESPECE?><?=$taxons["id_regional"]?>" target="_blank">
+                    <a href="<?=URL_INPN_ESPECE?><?=$taxon["id_regional"]?>" target="_blank">
                         <img src="IMG/png/gnome-globe.png" style="border:none"  alt="T&eacute;l&eacute;charger" />
                         <strong>Consulter la fiche de l'esp&egrave;ce</strong><br /> sur le site 
                         de l'<abbr  title="Inventaire National du Patrimoine Naturel">INPN</abbr></a>.
