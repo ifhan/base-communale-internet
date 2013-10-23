@@ -17,7 +17,7 @@ $taxons = getTaxonsPC();
         <div class="voir_sites">
             <ul>
                 <li>
-                    <a href="http://www.cbnbrest.fr/site/html/regions/strategie_conservation_pdl.html#pla" target="_blank">
+                    <a href="http://www.cbnbrest.fr/site/html/regions/strategie_conservation.html" target="_blank">
                         Consulter la strat&eacute;gie de conservation sur le site 
                         du <abbr  title="Conservatoire Botanique National de Brest">CBNB</abbr></a>.
                 </li>
@@ -41,13 +41,13 @@ $taxons = getTaxonsPC();
     <tbody>
         <?php foreach ($taxons as $taxons): ?>
         <tr>
-            <td><?=$taxons["ID_TAXREF"]?></td>
-            <td><?=$taxons["NOM_LATIN"]?></td>
+            <td><?=$taxons["id_regional"]?></td>
+            <td><em><?=$taxons["nom"]?></em></td>
             <td><?=$taxons["NOM_VERNAC"]?></td>
-            <?php if ($taxons["ID_TAXREF"]!=""): ?>
+            <?php if ($taxons["id_regional"]!=""): ?>
             <td class="cache">
                 <div align="center">
-                    <a href="<?=URL_INPN_ESPECE?><?=$taxons["ID_TAXREF"]?>" target="_blank">
+                    <a href="<?=URL_INPN_ESPECE?><?=$taxons["id_regional"]?>" target="_blank">
                         <img src="IMG/png/gnome-globe.png" style="border:none"  alt="T&eacute;l&eacute;charger" />
                         <strong>Consulter la fiche de l'esp&egrave;ce</strong><br /> sur le site 
                         de l'<abbr  title="Inventaire National du Patrimoine Naturel">INPN</abbr></a>.
