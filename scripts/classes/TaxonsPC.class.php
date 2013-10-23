@@ -21,8 +21,8 @@ class TaxonsPC {
         try {
             $sql->execute();
             $row = $sql->fetch();
-            $this->ID_TAXREF = $row['ID_TAXREF'];
-            $this->NOM_LATIN = $row['NOM_LATIN'];
+            $this->id_regional = $row['id_regional'];
+            $this->nom = $row['nom'];
             $this->NOM_VERNAC = $row['NOM_VERNAC'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -39,7 +39,7 @@ class TaxonsPC {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
                 FROM r_taxons_pc_2012_r52 WHERE r_taxons_pc_2012_r52.TYPE_PLAN = "PC"
-                ORDER BY r_taxons_pc_2012_r52.ID_TAXREF');
+                ORDER BY r_taxons_pc_2012_r52.id_regional');
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
@@ -58,7 +58,7 @@ class TaxonsPC {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
                 FROM r_taxons_pc_2012_r52 WHERE r_taxons_pc_2012_r52.TYPE_PLAN = "PNA"
-                ORDER BY r_taxons_pc_2012_r52.ID_TAXREF');
+                ORDER BY r_taxons_pc_2012_r52.id_regional');
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
