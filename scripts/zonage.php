@@ -58,7 +58,7 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
     </li>
     <?php endif; ?>
-    <?php if (!empty($zonage->url_presentation)): ?>
+        <?php if (!empty($zonage->url_presentation)): ?>
     <!-- 1 bis. Lien vers la présentation du zonage sur le site Internet 
     de la DREAL -->
     <li>
@@ -326,7 +326,22 @@ switch ($id_type):
                 du Minist&egrave;re</a>
         </li>
         <?php
-        break;    
+        break;
+        /**
+         * 3.3 Liens pour les Plans de conservation locaux
+        */
+        case 43:
+            if($id_regional == "82715"):
+            ?>
+        <li>
+            <a class="document"
+               href="http://www.nantesmetropole.fr/html/biodiversite/" 
+               target="_blank">
+                Consulter la rubrique de pr&eacute;sentation sur le site de Nantes M&eacute;tropole</a>
+        </li>
+        <?php
+            endif;
+        break;
 endswitch;
 ?>
 <!-- 3. Formulaires standards de données pour Natura 2000 -->
