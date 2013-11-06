@@ -114,6 +114,29 @@ class Zonage {
             echo 'ERROR: ' . $e->getMessage();
         }
     }
+    
+    /**
+     * Sélectionne un objet par son sigle
+     * @param string $sigle Sigle de l'objet ou du zonage
+     */
+    public function getZonageBySigle($sigle) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        WHERE sigle = :sigle');
+        $sql->bindParam(':sigle', $sigle, PDO::PARAM_INT, 7);
+        try {
+            $sql->execute();
+            $row = $sql->fetch();
+            $this->type = $row['type'];
+            $this->sigle = $row['sigle'];
+            $this->table = $row['table'];
+            $this->path = $row['path'];
+            $this->map = $row['map'];
+            $this->url_presentation = $row['url_presentation'];
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
 
 }
 
