@@ -1,0 +1,48 @@
+<div class="listerub">
+    <div class="titresousrub">Esp&egrave;ces concern&eacute;es par un plan de conservation ou un plan national d'action</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type de plan&nbsp;:</strong><br />
+                        <select name="type_plan">
+                            <option value="PNA">Plan National d'Action</option>
+                            <option value="PCR">Plan de Conservation R&eacute;gional</option>
+                            <option value="PCL">Plan de Conservation Local</option>
+                        </select>
+                    </td>
+                    <td><strong>Type d'esp&egrave;ce&nbsp;:</strong><br />
+                        <select name="type_sp">
+                            <option value="FAUNE">Faune</option>
+                            <option value="FLORE">Flore</option>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="titresousrub">G&eacute;n&eacute;ralit&eacute;s</div>
+    <div id ="menu3">
+        <div class="voir_sites">
+            <ul>
+                <li>
+                    <a 
+                        href="http://www.pays-de-la-loire.developpement-durable.gouv.fr/plans-nationaux-d-actions-pour-la-r331.html" 
+                        target="_blank">
+                        Consulter la rubrique consacrée aux plans nationaux d'action pour la faune sauvage sur le site de la DREAL</a>
+                </li>
+                <li>
+                    <a href="http://www.pays-de-la-loire.developpement-durable.gouv.fr/spip.php?page=rubrique&id_rubrique=556" target="_blank">
+                        Consulter la rubrique consacrée aux plans de conservations pour la flore sur le site de la DREAL</a>
+                </li><br />
+            </ul>
+        </div>
+    </div>
+</div>
