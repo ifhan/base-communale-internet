@@ -29,18 +29,47 @@ class TaxonsPlans {
         }
     }
 }
+
+    /**
+     * Sélectionne l'ensemble des taxons concernés par un plan d'action
+     * ou de conservation en Pays de la Loire
+     * @param string $type_plan Type de plan
+     * @param string $type_sp Type de l'espèce (Faune/Flore)
+     * @return array 
+     */    
+    function getTaxons($type_plan,$type_sp) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * 
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = :type_plan
+                AND r_taxons_plans_2012_r52.TYPE_SP = :type_sp
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
+        $sql->bindParam(':type_plan', $type_plan, PDO::PARAM_STR, 3);
+        $sql->bindParam(':type_sp', $type_sp, PDO::PARAM_STR, 5);
+        try {
+            $sql->execute();
+            $taxons = $sql->fetchAll();
+            return $taxons;
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+
+    }
     
     /**
      * Sélectionne l'ensemble des taxons concernés par un plan 
      * national d'action en Pays de la Loire
+     * @param string $type_sp Type de l'espèce (Faune/Flore)
      * @return array 
      */    
-    function getTaxonsPNA() {
+    function getTaxonsPNA($type_sp) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
                 FROM r_taxons_plans_2012_r52 
                 WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PNA"
+                AND r_taxons_plans_2012_r52.TYPE_SP = :type_sp
                 ORDER BY r_taxons_plans_2012_r52.id_regional');
+        $sql->bindParam(':type_sp', $type_sp, PDO::PARAM_STR, 5);
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
@@ -54,14 +83,17 @@ class TaxonsPlans {
     /**
      * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
      * régional en Pays de la Loire
+     * @param string $type_sp Type de l'espèce (Faune/Flore)     
      * @return array 
      */    
-    function getTaxonsPCR() {
+    function getTaxonsPCR($type_sp) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
                 FROM r_taxons_plans_2012_r52 
                 WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PCR"
+                AND r_taxons_plans_2012_r52.TYPE_SP = :type_sp
                 ORDER BY r_taxons_plans_2012_r52.id_regional');
+        $sql->bindParam(':type_sp', $type_sp, PDO::PARAM_STR, 5);
         try {
             $sql->execute();
             $taxons = $sql->fetchAll();
