@@ -11,6 +11,7 @@ require_once(dirname(__FILE__)."/../classes/HabitatCorine.class.php");
 $id_type = $_REQUEST["id_type"];
 $id_eur15 = $_REQUEST["id_eur15"];
 $id_corine = $_REQUEST["id_corine"];
+$type_plan = $_REQUEST["type_plan"];
 
 if(isset($id_type)) {
     $zonage = new Zonage();
@@ -28,5 +29,11 @@ if(isset($id_corine)) {
     $habitat_corine = new HabitatCorine();
     $habitat_corine->getHabitatCorineById($id_corine);
     echo $habitat_corine->id_corine." - ".$habitat_corine->lb_corine;
+}
+
+if(isset($type_plan)) {
+    $plan = new Zonage();
+    $plan->getZonageBySigle($type_plan);
+    echo $plan->type;
 }
 ?>
