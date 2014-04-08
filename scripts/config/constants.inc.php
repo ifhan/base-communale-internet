@@ -2,7 +2,9 @@
 /**
  * Connection parameters
  */
-define('USERNAME', 'root');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'paysdeloire');
+define('USERNAME', 'administrateur');
 define('PASSWORD', '%+carantec29');
 
 /**
@@ -17,6 +19,7 @@ define('URL_DREAL_RUB',
         'http://www.pays-de-la-loire.developpement-durable.gouv.fr/rubrique.php3?id_rubrique=');
 define('URL_INPN_ESPACE_PROTEGE', 'http://inpn.mnhn.fr/espace/protege/');
 define('URL_INPN_ESPECE', 'http://inpn.mnhn.fr/isb/espece/cd_nom/');
+define('URL_INPN_TAXO_TREE', 'http://inpn.mnhn.fr/espece/taxoTree/');
 define('URL_INPN_NATURA_2000', 'http://inpn.mnhn.fr/isb/site/natura2000/');
 define('URL_INPN_ZNIEFF', 'http://inpn.mnhn.fr/isb/zone/znieff/');
 define('URL_PRIM_NET', 'http://macommune.prim.net/d_commune.php?insee=');
