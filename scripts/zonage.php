@@ -49,9 +49,6 @@ $zonage->getTypeZonageByIdType($id_type);
                 case 1: case 2: case 33:
                     echo "ID_LOCAL";
                     break;
-                case 44:
-                    echo "id_scap";
-                    break;
                 default:
                     echo "id_regional";
             endswitch;
@@ -77,7 +74,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29: case 44:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>

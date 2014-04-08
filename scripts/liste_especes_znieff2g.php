@@ -112,7 +112,6 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <h3 class="spip">Commune(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
 <?php include ("squelettes/nomenclature.html"); ?>
-<!-- 1. Espèces déterminantes -->
 <h3 class="spip">Esp&egrave;ces d&eacute;terminantes&nbsp;:</h3>
 <?php
 $especes_determinantes = getEspecesByIdRegionalByFgEsp($id_regional,"D");
@@ -243,7 +242,6 @@ $sources_especes = getSourcesEspeces($id_regional, "D");
 <?php endforeach; ?>
 </ul>
 <?php include ("squelettes/haut-page.html"); ?>
-<!-- 2. Espèces confidentielles -->
 <h3 class="spip">Esp&egrave;ces confidentielles&nbsp;:</h3>
 <?php $especes_confidentielles = getEspecesByIdRegionalByFgEsp($id_regional,"C"); ?>
 <?php if (count($especes_confidentielles) > 0): ?>
@@ -259,7 +257,6 @@ $sources_especes = getSourcesEspeces($id_regional, "D");
     </p>
 <?php endif; ?>
 <?php include ("squelettes/haut-page.html"); ?>
-<!-- 3. Autres espèces -->
 <h3 class="spip">Autres esp&egrave;ces&nbsp;:</h3>
 <?php
 $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
@@ -297,7 +294,18 @@ $autres_especes = getEspecesByIdRegionalByFgEsp($id_regional, "A");
                 $embranchement->getEmbranchementsEspece($id_ms_arbo_pere);
                 ?>
                 <strong><?= $embranchement->LB_ESP ?> &raquo; </strong><br />
-                <?php      
+                <?php
+                /**
+                 *  Affichage du sous-règne, de l'embranchement, 
+                 *  du super embranchement, de la classe ou de la super classe
+                 */
+                /*$ms_arbo_pere = $embranchement["MS_ARBO_PERE"];
+                $sous_regne = new Znieff2G();
+                $sous_regne->getSousRegnes($ms_arbo_pere);
+                if ($sous_regne["LB_ESP"] != ""): ?>
+                <strong><?= $sous_regne["LB_ESP"] ?> &raquo; </strong>
+                <?php endif; ?>
+                <?php       
                 /**
                  * Affichage du nom latin de l'espèce
                  */
