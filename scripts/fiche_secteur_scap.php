@@ -53,9 +53,21 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 </table>
 <h3 class="spip">Commune(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
-<?php if(!empty($secteur_scap->descriptif)): ?>
-<h3 class="spip">Descriptif&nbsp;:</h3>
-<p><?=$secteur_scap->descriptif?></p>
+<?php if(!empty($secteur_scap->localisation_geo)): ?>
+<h3 class="spip">Localisation g&eacute;ographique&nbsp;:</h3>
+<p><?=$secteur_scap->localisation_geo?></p>
+<?php endif; ?>
+<?php if(!empty($secteur_scap->biodiversite)): ?>
+<h3 class="spip">Biodiversit&eacute;&nbsp;:</h3>
+<p><?=$secteur_scap->biodiversite?></p>
+<?php endif; ?>
+<?php if(!empty($secteur_scap->menaces)): ?>
+<h3 class="spip">Menaces&nbsp;:</h3>
+<p><?=$secteur_scap->menaces?></p>
+<?php endif; ?>
+<?php if(!empty($secteur_scap->protection)): ?>
+<h3 class="spip">Protection&nbsp;:</h3>
+<p><?=$secteur_scap->protection?></p>
 <?php endif; ?>
 <h3 class="spip">Esp&egrave;ce(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/espece_scap.inc.php'; ?>
@@ -185,7 +197,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
         <td>Prairies permanentes</td>
         <td><?=$secteur_scap->surf_pp_rpg?></td>
     </tr>
-        <tr>
+    <tr>
         <td>Roseli&egrave;res</td>
         <td><?=$secteur_scap->surf_roseliere?></td>
     </tr>
