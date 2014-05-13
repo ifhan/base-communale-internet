@@ -33,9 +33,12 @@ class SecteurScap {
             $this->id_regional = $row['id_regional'];
             $this->nom = $row['nom'];
             $this->surf_sig = $row['surf_sig'];
-            $this->date_validation_csrpn = date("d/m/Y", strtotime($row['date_validation_csrpn']));
-            $this->descriptif = nl2br($row['descriptif']);
-            $this->commentaires = nl2br($row['commentaires']);     
+            $this->date_validation_csrpn = date("d/m/Y", strtotime($row['date_validation_csrpn']));    
+            $this->localisation_geo = nl2br($row['localisation_geo']);
+            $this->biodiversite = nl2br($row['biodiversite']);
+            $this->menaces = nl2br($row['menaces']);
+            $this->protection = nl2br($row['protection']);
+            $this->commentaires = nl2br($row['commentaires']);
             $this->surf_marais_tourbieres = $row['surf_marais_tourbieres'];
             $this->surf_marais_salants = $row['surf_marais_salants'];
             $this->surf_prairies = $row['surf_prairies'];
@@ -76,10 +79,11 @@ class SecteurScap {
  */
 function getEspecesScapByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM r_secteurs_scap_sp_connues_r52 
-    WHERE id_secteur_scap = :id_regional
-    GROUP BY id_taxref
-    ORDER BY id_taxref');
+    $sql = $pdo->prepare('SELECT * FROM r_secteurs_scap_sp_connues_r52, r_sp_scap_r52 
+    WHERE r_secteurs_scap_sp_connues_r52.id_secteur_scap = :id_regional
+    AND r_secteurs_scap_sp_connues_r52.id_taxref = r_sp_scap_r52.id_taxref
+    GROUP BY r_secteurs_scap_sp_connues_r52.id_taxref
+    ORDER BY r_secteurs_scap_sp_connues_r52.id_taxref');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 7);
     try {
         $sql->execute();
