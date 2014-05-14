@@ -28,7 +28,7 @@ if (isset($communes)): ?>
         <th>Nom scientifique</th>
         <th>Nom vernaculaire</th>
         <th>Priorit&eacute; SCAP</th>
-        <th>Esp&egrave;ce &agrave; faible occurence ?</th>
+        <th>Esp&egrave;ce &agrave; faible occurrence ?</th>
     </tr>
         <?php foreach ($sp_connues as $sp_connue): ?>
             <tr bgcolor="<?=switchColor()?>">
