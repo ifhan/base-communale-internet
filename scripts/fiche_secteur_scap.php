@@ -71,121 +71,134 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <?php endif; ?>
 <h3 class="spip">Esp&egrave;ce(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/espece_scap.inc.php'; ?>
-<h3 class="spip">Occupation du sol&nbsp;:</h3>
-<table  class="spip">
-    <tr class="row_first">
-        <th>Type</th>
-        <th>Surface (ha)</th>
-    </tr>
+<table>
     <tr>
-        <td>Marais et tourbi&egrave;res</td>
-        <td><?=$secteur_scap->surf_marais_tourbieres?></td>
-    </tr>
-    <tr>
-        <td>Marais salants</td>
-        <td><?=$secteur_scap->surf_marais_salants?></td>
-    </tr>
-    <tr>
-        <td>Prairies</td>
-        <td><?=$secteur_scap->surf_prairies?></td>
-    </tr> 
-    <tr>
-        <td>Broussailles</td>
-        <td><?=$secteur_scap->surf_broussailles?></td>
-    </tr> 
-    <tr>
-        <td>Sable, gravier</td>
-        <td><?=$secteur_scap->surf_sable_gravier?></td>
-    </tr> 
-    <tr>
-        <td>Vignes, vergers</td>
-        <td><?=$secteur_scap->surf_vigne_verger?></td>
-    </tr> 
-    <tr>
-        <td>Rochers, &eacute;boulis</td>
-        <td><?=$secteur_scap->surf_rocher_eboulis?></td>
-    </tr> 
-    <tr>
-        <td>Forêts</td>
-        <td><?=$secteur_scap->surf_forets?></td>
-    </tr> 
-    <tr>
-        <td>Eau libre</td>
-        <td><?=$secteur_scap->surf_eau_libre?></td>
-    </tr> 
-    <tr>
-        <td>Carri&egrave;res</td>
-        <td><?=$secteur_scap->surf_carrieres?></td>
-    </tr> 
-    <tr>
-        <td>B&acirc;ti</td>
-        <td><?=$secteur_scap->surf_bati?></td>
-    </tr> 
-    <tr>
-        <td>Zones d'activit&eacute;</td>
-        <td><?=$secteur_scap->surf_zones_activites?></td>
-    </tr>     
-</table>
-<h3 class="spip">Protections environnementales&nbsp;:</h3>
-<table  class="spip">
-    <tr class="row_first">
-        <th>Type</th>
-        <th>Surface (ha)</th>
-    </tr>
-    <tr>
-        <td>Aires de Protections de Biotope (APB)</td>
-        <td><?=$secteur_scap->surf_apb?></td>
-    </tr>
-    <tr>
-        <td>R&eacute;serves Naturelles Nationales (RNN)</td>
-        <td><?=$secteur_scap->surf_rnn?></td>
-    </tr>     
-    <tr>
-        <td>R&eacute;serves Naturelles R&eacute;gionales (RNR)</td>
-        <td><?=$secteur_scap->surf_rnr?></td>
-    </tr>
-    <tr>
-        <td>R&eacute;serves Biologiques (RB)</td>
-        <td><?=$secteur_scap->surf_rb?></td>
-    </tr> 
-    <tr>
-        <td>Sites classés</td>
-        <td><?=$secteur_scap->surf_sc?></td>
-    </tr> 
-    <tr>
-        <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 1</td>
-        <td><?=$secteur_scap->surf_znieff1?></td>
-    </tr> 
-    <tr>
-        <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 2</td>
-        <td><?=$secteur_scap->surf_znieff2?></td>
-    </tr> 
-    <tr>
-        <td>R&eacute;servoirs Biologiques du 
-            <abbr title ="Schéma Régional de Cohérence Ecologique">SRCE</abbr>
+        <td>
+            <h3 class="spip">Occupation du sol&nbsp;:</h3>
+            <table  class="spip">
+                <tr class="row_first">
+                    <th>Type</th>
+                    <th>Surface (ha)</th>
+                </tr>
+                <tr>
+                    <td>Marais et tourbi&egrave;res</td>
+                    <td><?=$secteur_scap->surf_marais_tourbieres?></td>
+                </tr>
+                <tr>
+                    <td>Marais salants</td>
+                    <td><?=$secteur_scap->surf_marais_salants?></td>
+                </tr>
+                <tr>
+                    <td>Prairies</td>
+                    <td><?=$secteur_scap->surf_prairies?></td>
+                </tr> 
+                <tr>
+                    <td>Broussailles</td>
+                    <td><?=$secteur_scap->surf_broussailles?></td>
+                </tr> 
+                <tr>
+                    <td>Sable, gravier</td>
+                    <td><?=$secteur_scap->surf_sable_gravier?></td>
+                </tr> 
+                <tr>
+                    <td>Vignes, vergers</td>
+                    <td><?=$secteur_scap->surf_vigne_verger?></td>
+                </tr> 
+                <tr>
+                    <td>Rochers, &eacute;boulis</td>
+                    <td><?=$secteur_scap->surf_rocher_eboulis?></td>
+                </tr> 
+                <tr>
+                    <td>Forêts</td>
+                    <td><?=$secteur_scap->surf_forets?></td>
+                </tr> 
+                <tr>
+                    <td>Eau libre</td>
+                    <td><?=$secteur_scap->surf_eau_libre?></td>
+                </tr> 
+                <tr>
+                    <td>Carri&egrave;res</td>
+                    <td><?=$secteur_scap->surf_carrieres?></td>
+                </tr> 
+                <tr>
+                    <td>B&acirc;ti</td>
+                    <td><?=$secteur_scap->surf_bati?></td>
+                </tr> 
+                <tr>
+                    <td>Zones d'activit&eacute;</td>
+                    <td><?=$secteur_scap->surf_zones_activites?></td>
+                </tr>     
+            </table>
+            <p style="font-size: x-small"><em>Source : BDCARTO Version 3 (septembre 2010)</em></p>
         </td>
-        <td><?=$secteur_scap->surf_srce?></td>
-    </tr> 
-    <tr>
-        <td>Natura 2000</td>
-        <td><?=$secteur_scap->surf_natura2000?></td>
-    </tr> 
-    <tr>
-        <td>Natura 2000 + Sites classés</td>
-        <td><?=$secteur_scap->surf_natura2000_sc?></td>
-    </tr>
-    <?php if(($departement->id_departement = '44') OR ($departement->id_departement = '85')): ?>
-    <tr>
-        <td>Espaces Naturels Sensibles (ENS)</td>
-        <td><?=$secteur_scap->surf_ens_44_85?></td>
-    </tr>
-    <?php endif; ?>
-    <tr>
-        <td>Sites du 
-            <abbr title="Conservatoire de l'Espace Littoral et des Rivages Lacustres">CELRL</abbr>
+        <td width="20px">&nbsp;</td>
+        <td>
+            <h3 class="spip">Outils de protection et de gestion environnementale&nbsp;:</h3>
+            <table  class="spip">
+                <tr class="row_first">
+                    <th>Type</th>
+                    <th>Surface (ha)</th>
+                </tr>
+                <tr>
+                    <td>Aires de Protections de Biotope (APB)</td>
+                    <td><?=$secteur_scap->surf_apb?></td>
+                </tr>
+                <tr>
+                    <td>R&eacute;serves Naturelles Nationales (RNN)</td>
+                    <td><?=$secteur_scap->surf_rnn?></td>
+                </tr>     
+                <tr>
+                    <td>R&eacute;serves Naturelles R&eacute;gionales (RNR)</td>
+                    <td><?=$secteur_scap->surf_rnr?></td>
+                </tr>
+                <tr>
+                    <td>R&eacute;serves Biologiques (RB)</td>
+                    <td><?=$secteur_scap->surf_rb?></td>
+                </tr> 
+                <tr>
+                    <td>Sites classés</td>
+                    <td><?=$secteur_scap->surf_sc?></td>
+                </tr> 
+                <tr>
+                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 1</td>
+                    <td><?=$secteur_scap->surf_znieff1?></td>
+                </tr> 
+                <tr>
+                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 2</td>
+                    <td><?=$secteur_scap->surf_znieff2?></td>
+                </tr> 
+                <tr>
+                    <td>R&eacute;servoirs Biologiques du 
+                        <abbr title ="Schéma Régional de Cohérence Ecologique">SRCE</abbr>
+                    </td>
+                    <td><?=$secteur_scap->surf_srce?></td>
+                </tr> 
+                <tr>
+                    <td>Natura 2000</td>
+                    <td><?=$secteur_scap->surf_natura2000?></td>
+                </tr> 
+                <tr>
+                    <td>Natura 2000 + Sites classés</td>
+                    <td><?=$secteur_scap->surf_natura2000_sc?></td>
+                </tr>
+                <?php if(($departement->id_departement = '44') OR ($departement->id_departement = '85')): ?>
+                <tr>
+                    <td>Espaces Naturels Sensibles (ENS)</td>
+                    <td><?=$secteur_scap->surf_ens_44_85?></td>
+                </tr>
+                <?php endif; ?>
+                <tr>
+                    <td>Sites du 
+                        <abbr title="Conservatoire de l'Espace Littoral et des Rivages Lacustres">CELRL</abbr>
+                    </td>
+                    <td><?=$secteur_scap->surf_celrl?></td>
+                </tr>     
+            </table>
+            <p style="font-size: x-small">
+                <em>Sources : <abbr title="Direction R&eacute;gionale de l'Environnement, de l'Am&eacute;nagement et du Logement">DREAL</abbr>, G&Eacute;OPAL, <abbr title="Conseils G&eacute;n&eacute;raux">CG</abbr>, <abbr title="Inventaire National du Patrimoine Naturel">INPN</abbr></em>
+            </p>
         </td>
-        <td><?=$secteur_scap->surf_celrl?></td>
-    </tr>     
+    </tr>
 </table>
 <h3 class="spip">Autres indicateurs&nbsp;:</h3>
 <table  class="spip">
@@ -202,3 +215,6 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
         <td><?=$secteur_scap->surf_roseliere?></td>
     </tr>
 </table>
+<p style="font-size: x-small">
+    <em>Sources : <abbr title="Agence de Services et de Paiement">ASP</abbr>, <abbr title="Office National de la Chasse et de la Faune Sauvage">ONCFS</abbr></em>
+</p>
