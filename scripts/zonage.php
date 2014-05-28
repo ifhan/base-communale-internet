@@ -50,7 +50,7 @@ $zonage->getTypeZonageByIdType($id_type);
                     echo "ID_LOCAL";
                     break;
                 case 44:
-                    echo "id_scap";
+                    echo "id_secteur";
                     break;
                 default:
                     echo "id_regional";
