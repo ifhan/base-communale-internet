@@ -19,12 +19,13 @@ class SecteurScap {
         $sql = $pdo->prepare('SELECT * 
         FROM r_secteurs_scap_retenus_r52, r_secteurs_scap_occ_sol_r52, 
         r_secteurs_scap_protections_env_r52, r_secteurs_scap_pp_rpg_r52,
-        r_secteurs_scap_roselieres_r52
+        r_secteurs_scap_roselieres_r52, r_secteurs_scap_retenus_data_r52
         WHERE r_secteurs_scap_retenus_r52.id_regional = :id_regional
         AND r_secteurs_scap_retenus_r52.id_regional = r_secteurs_scap_occ_sol_r52.id_secteur_scap
         AND r_secteurs_scap_retenus_r52.id_regional = r_secteurs_scap_protections_env_r52.id_secteur_scap
         AND r_secteurs_scap_retenus_r52.id_regional = r_secteurs_scap_pp_rpg_r52.id_secteur_scap
         AND r_secteurs_scap_retenus_r52.id_regional = r_secteurs_scap_roselieres_r52.id_secteur_scap
+        AND r_secteurs_scap_retenus_r52.id_regional = r_secteurs_scap_retenus_data_r52.id_regional
         GROUP BY r_secteurs_scap_retenus_r52.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 7);
         try {
