@@ -82,6 +82,7 @@ function getEspecesScapByIdRegional($id_regional) {
     $sql = $pdo->prepare('SELECT * FROM r_secteurs_scap_sp_connues_r52, r_sp_scap_r52 
     WHERE r_secteurs_scap_sp_connues_r52.id_secteur_scap = :id_regional
     AND r_secteurs_scap_sp_connues_r52.id_taxref = r_sp_scap_r52.id_taxref
+    AND r_secteurs_scap_sp_connues_r52.suppression = "N"
     GROUP BY r_secteurs_scap_sp_connues_r52.id_taxref
     ORDER BY r_secteurs_scap_sp_connues_r52.id_taxref');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 7);
