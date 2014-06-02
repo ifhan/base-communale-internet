@@ -36,10 +36,10 @@ class Departement {
     public function getDepartementByIdRegional($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();        
         $sql = $pdo->prepare('SELECT * 
-        FROM R_ZONAGES_COMMUNES_R52, BDC_DEPARTEMENT_52
-        WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
-        AND R_ZONAGES_COMMUNES_R52.id_type = :id_type
-        AND R_ZONAGES_COMMUNES_R52.id_departement = 
+        FROM r_zonages_communes_r52, BDC_DEPARTEMENT_52
+        WHERE r_zonages_communes_r52.id_regional = :id_regional
+        AND r_zonages_communes_r52.id_type = :id_type
+        AND r_zonages_communes_r52.id_departement = 
         BDC_DEPARTEMENT_52.id_departement 
         GROUP BY BDC_DEPARTEMENT_52.id_departement');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
@@ -64,9 +64,9 @@ class Departement {
 function getDepartementsByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM R_ZONAGES_COMMUNES_R52, BDC_COMMUNE_52, BDC_DEPARTEMENT_52
-    WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
-    AND R_ZONAGES_COMMUNES_R52.id_commune = BDC_COMMUNE_52.id_commune
+    FROM r_zonages_communes_r52, BDC_COMMUNE_52, BDC_DEPARTEMENT_52
+    WHERE r_zonages_communes_r52.id_regional = :id_regional
+    AND r_zonages_communes_r52.id_commune = BDC_COMMUNE_52.id_commune
     AND BDC_COMMUNE_52.id_departement = BDC_DEPARTEMENT_52.id_departement
     GROUP BY BDC_DEPARTEMENT_52.id_departement');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);

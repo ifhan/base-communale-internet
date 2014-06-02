@@ -223,7 +223,7 @@ function getZonagesByIdTypeByRegion($id_type) {
  */
 function getThemesByIdCommune($id_commune) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
@@ -252,7 +252,7 @@ function getThemesByIdCommune($id_commune) {
  */
 function getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
@@ -298,7 +298,7 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
     /**
      * Retourne l'ensemble des zonages concernés pour la commune
      */
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $sql_2 = $pdo->prepare("SELECT * FROM $table, $table_3 
     WHERE $table.id_commune = :id_commune 
     AND $table.id_type = :id_type
@@ -324,7 +324,7 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
  */
 function getThemesByIdEpci($id_epci) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $table_4 = "R_EPCI_COMMUNES_R52";
@@ -355,7 +355,7 @@ function getThemesByIdEpci($id_epci) {
  */
 function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $table_4 = "R_EPCI_COMMUNES_R52";
@@ -404,7 +404,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
     /**
      * Retourne l'ensemble des zonages concernés pour l'EPCI
      */
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_EPCI_COMMUNES_R52";
     $sql_2 = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3 
@@ -433,7 +433,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
  */
 function getThemesByIdScot($id_scot) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $table_4 = "R_SCOT_COMMUNES_R52";
@@ -463,7 +463,7 @@ function getThemesByIdScot($id_scot) {
  */
 function getTypesZonagesByIdScotByIdTheme($id_scot, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_TYPE_ZONAGE_R52";
     $table_3 = "R_TYPE_THEME_R52";
     $table_4 = "R_SCOT_COMMUNES_R52";
@@ -510,7 +510,7 @@ function getZonagesByIdTypeByIdScot($id_type, $id_scot) {
     /**
      * Retourne l'ensemble des zonages concernés pour le SCoT
      */
-    $table = "R_ZONAGES_COMMUNES_R52";
+    $table = "r_zonages_communes_r52";
     $table_2 = "R_SCOT_COMMUNES_R52";
     $sql_2 = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
     WHERE $table_2.id_scot = :id_scot

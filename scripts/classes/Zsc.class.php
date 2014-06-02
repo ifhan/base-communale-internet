@@ -16,7 +16,7 @@ class Zsc {
      */
     public function getZscDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_ZSC_R52_data 
+        $sql = $pdo->prepare('SELECT * FROM r_zsc_r52_data 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {

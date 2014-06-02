@@ -122,10 +122,10 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
         $sql_2 = $pdo->prepare('(SELECT * FROM R_ZPS_R52 
         WHERE categorie = :categorie
         GROUP BY id_regional) 
-        UNION (SELECT * FROM R_ZSC_R52 
+        UNION (SELECT * FROM r_zsc_r52 
         WHERE categorie = :categorie
         GROUP BY id_regional)
-        UNION (SELECT * FROM R_SIC_R52 
+        UNION (SELECT * FROM r_sic_r52 
         WHERE categorie = :categorie
         GROUP BY id_regional) 
         ORDER BY id_regional');
