@@ -176,10 +176,6 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
                 <tr>
                     <td>Natura 2000</td>
                     <td><?=$secteur_scap->surf_natura2000?></td>
-                </tr> 
-                <tr>
-                    <td>Natura 2000 + Sites classés</td>
-                    <td><?=$secteur_scap->surf_natura2000_sc?></td>
                 </tr>
                 <?php if(($departement->id_departement = '44') OR ($departement->id_departement = '85')): ?>
                 <tr>
