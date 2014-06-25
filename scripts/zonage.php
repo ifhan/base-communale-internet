@@ -288,11 +288,11 @@ switch ($id_type):
         <?php
         endif;
         break;
-        /**
-         * 3.1 Liens pour les Plans de conservation
-        */
-        case 41:
-            ?>
+     /**
+      * 3.1 Liens pour les Plans de conservation
+      */
+     case 41:
+     ?>
         <li>
             <a class="document"
                href="http://www.cbnbrest.fr/site/html/regions/strategie_conservation.html"
@@ -309,10 +309,10 @@ switch ($id_type):
         </li>
         <?php
         break;
-        /**
-         * 3.2 Liens pour les Plans nationaux d'action
-        */
-        case 42:
+      /**
+       * 3.2 Liens pour les Plans nationaux d'action
+       */
+      case 42:
             ?>
         <li>
             <a class="document"
@@ -330,10 +330,10 @@ switch ($id_type):
         </li>
         <?php
         break;
-        /**
-         * 3.3 Liens pour les Plans de conservation locaux
-        */
-        case 43:
+       /**
+        * 3.3 Liens pour les Plans de conservation locaux
+       */
+       case 43:
             if($id_regional == "82715"):
             ?>
         <li>
@@ -345,6 +345,37 @@ switch ($id_type):
         <?php
             endif;
         break;
+        /**
+         * 3.4 Liens pour les PAC SUP Canalisations
+         */
+        case 45:
+            ?>
+            <li><a class="document"
+               href="data/docs/pac/canalisations/Lettre_transport_canalisation001.pdf" 
+               target="_blank">
+                Télécharger le courrier du Pr&eacute;fet</a>
+                <span class="docformat"> 
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/Lettre_transport_canalisation001.pdf") ?>)
+            </span>
+            </li>
+            <li><a class="document"
+               href="data/docs/pac/canalisations/annexes/<?=$id_regional?>_a001.pdf" 
+               target="_blank">
+                T&eacute;l&eacute;charger l'annexe</a>
+                <span class="docformat"> 
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/annexes/".$id_regional."_a001.pdf") ?>)
+            </span>
+            </li>
+                        <li><a class="document"
+               href="data/docs/pac/canalisations/cartes/<?=$id_regional?>_c001.pdf"
+               target="_blank">
+                T&eacute;l&eacute;charger la carte</a>
+                <span class="docformat"> 
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/cartes/".$id_regional."_c001.pdf") ?>)
+            </span>
+            </li>
+        <?php
+            break;
 endswitch;
 ?>
 <!-- 3. Formulaires standards de données pour Natura 2000 -->
