@@ -65,25 +65,13 @@ $site_natura_data->getDataByIdRegional($id_regional);
     <tr>
         <td>Op&eacute;rateur&nbsp;:</td>
         <td>
-            <?php if ($operateur->id_organisme=="31"): ?>
             <?=$operateur->sigle?>
-            <?php else: ?>
-            <a href="spip.php?page=organisme&amp;id_organisme=<?=$operateur->id_organisme?>">
-                <?=$operateur->sigle?>
-            </a>
-            <?php endif; ?>
         </td>
     </tr>
     <tr>
         <td>Animateur&nbsp;: </td>
         <td>
-            <?php if ($structure_animatrice->id_organisme=="31"):?>
             <?=$structure_animatrice->sigle?>
-            <?php else:?>
-            <a href="spip.php?page=organisme&amp;id_organisme=<?=$structure_animatrice->id_organisme?>">
-                <?=$structure_animatrice->sigle?>
-            </a>
-            <?php endif; ?>
         </td>
     </tr>
     <tr>
@@ -102,16 +90,3 @@ $site_natura_data->getDataByIdRegional($id_regional);
 <div class="cadre_bleu">
     <?php require_once 'inc/commune.inc.php'; ?>
 </div>
-<br />
-<?php if(!empty($site_natura_data->QUALITY)): ?>
-<h3 class="spip">Description&nbsp;:</h3>
-<p><?=$site_natura_data->QUALITY?></p>
-<?php endif; ?>		
-<?php if(!empty($site_natura_data->VULNAR)): ?>
-<h3 class="spip">Vuln&eacute;rabilit&eacute;&nbsp;:</h3>
-<p><?=$site_natura_data->VULNAR?></p>		
-<?php endif; ?>
-<?php if(!empty($site_natura_data->CHARACT)): ?>
-<h3 class="spip">Caract&eacute;ristiques&nbsp;:</h3>
-<p><?=$site_natura_data->CHARACT?></p>
-<?php endif; ?>
