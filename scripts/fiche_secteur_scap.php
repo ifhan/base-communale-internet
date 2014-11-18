@@ -58,7 +58,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <p><?=$secteur_scap->localisation_geo?></p>
 <?php endif; ?>
 <?php if(!empty($secteur_scap->biodiversite)): ?>
-<h3 class="spip">Biodiversit&eacute;&nbsp;:</h3>
+<h3 class="spip">Enjeux principaux de biodiversit&eacute;&nbsp;:</h3>
 <p><?=$secteur_scap->biodiversite?></p>
 <?php endif; ?>
 <?php if(!empty($secteur_scap->menaces)): ?>
@@ -73,7 +73,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <?php require_once 'inc/espece_scap.inc.php'; ?>
 <table>
     <tr>
-        <td>
+        <td valign="top">
             <h3 class="spip">Occupation du sol&nbsp;:</h3>
             <table  class="spip">
                 <tr class="row_first">
@@ -132,7 +132,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
             <p style="font-size: x-small"><em>Source : BDCARTO Version 3 (septembre 2010)</em></p>
         </td>
         <td width="20px">&nbsp;</td>
-        <td>
+        <td valign="top">
             <h3 class="spip">Outils de protection et de gestion environnementale&nbsp;:</h3>
             <table  class="spip">
                 <tr class="row_first">
@@ -158,31 +158,25 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
                 <tr>
                     <td>Sites classés</td>
                     <td><?=$secteur_scap->surf_sc?></td>
-                </tr> 
+                </tr>
                 <tr>
-                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 1</td>
-                    <td><?=$secteur_scap->surf_znieff1?></td>
-                </tr> 
-                <tr>
-                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 2</td>
-                    <td><?=$secteur_scap->surf_znieff2?></td>
-                </tr> 
-                <tr>
-                    <td>R&eacute;servoirs Biologiques du 
-                        <abbr title ="Schéma Régional de Cohérence Ecologique">SRCE</abbr>
+                    <td>R&eacute;servoirs de Biodiversit&eacute; du 
+                        <abbr title ="Schéma Régional de Cohérence Ecologique">SRCE*</abbr>
                     </td>
                     <td><?=$secteur_scap->surf_srce?></td>
                 </tr> 
                 <tr>
                     <td>Natura 2000</td>
                     <td><?=$secteur_scap->surf_natura2000?></td>
-                </tr>
-                <?php if(($departement->id_departement = '44') OR ($departement->id_departement = '85')): ?>
+                </tr>                
                 <tr>
-                    <td>Espaces Naturels Sensibles (ENS)</td>
-                    <td><?=$secteur_scap->surf_ens_44_85?></td>
+                    <td>Espaces Naturels Sensibles (ENS)**</td>
+                    <td>
+                        <?php if($secteur_scap->surf_ens_44_85 !== '0'): ?>
+                        <?=$secteur_scap->surf_ens_44_85?>
+                        <?php endif; ?>
+                    </td>
                 </tr>
-                <?php endif; ?>
                 <tr>
                     <td>Sites du 
                         <abbr title="Conservatoire de l'Espace Littoral et des Rivages Lacustres">CELRL</abbr>
@@ -191,26 +185,55 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
                 </tr>     
             </table>
             <p style="font-size: x-small">
-                <em>Sources : <abbr title="Direction R&eacute;gionale de l'Environnement, de l'Am&eacute;nagement et du Logement">DREAL</abbr>, G&Eacute;OPAL, <abbr title="Conseils G&eacute;n&eacute;raux">CG</abbr>, <abbr title="Inventaire National du Patrimoine Naturel">INPN</abbr></em>
+                <em>Sources : <abbr title="Direction R&eacute;gionale de l'Environnement, de l'Am&eacute;nagement et du Logement">DREAL</abbr>, G&Eacute;OPAL, <abbr title="Conseils G&eacute;n&eacute;raux">CG</abbr>, <abbr title="Inventaire National du Patrimoine Naturel">INPN</abbr></em><br />
+                * Sur la base de la version projet du SRCE en cours d'&eacute;laboration<br />
+                ** Propri&eacute;t&eacute;s en Loire-Atlantique et en Vend&eacute;e 
             </p>
         </td>
     </tr>
 </table>
-<h3 class="spip">Autres indicateurs&nbsp;:</h3>
-<table  class="spip">
-    <tr class="row_first">
-        <th>Type</th>
-        <th>Surface (ha)</th>
-    </tr>
+<table>
     <tr>
-        <td>Prairies permanentes</td>
-        <td><?=$secteur_scap->surf_pp_rpg?></td>
-    </tr>
-    <tr>
-        <td>Roseli&egrave;res</td>
-        <td><?=$secteur_scap->surf_roseliere?></td>
+        <td valign="top">
+            <h3 class="spip">Inventaires&nbsp;:</h3>
+            <table  class="spip">
+                <tr class="row_first">
+                    <th>Type</th>
+                    <th>Surface (ha)</th>
+                </tr>
+                <tr>
+                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 1</td>
+                    <td><?=$secteur_scap->surf_znieff1?></td>
+                </tr>
+                <tr>
+                    <td><abbr title="Zones Naturelle d'Intérêt Ecologique, Faunistique et Floristique">ZNIEFF</abbr> de type 2</td>
+                    <td><?=$secteur_scap->surf_znieff2?></td>
+                </tr> 
+            </table>
+            <p style="font-size: x-small">
+                <em>Source : <abbr title="Direction R&eacute;gionale de l'Environnement, de l'Am&eacute;nagement et du Logement">DREAL</abbr></em>
+            </p>
+        </td>
+        <td width="60px">&nbsp;</td>
+        <td valign="top">
+            <h3 class="spip">Autres indicateurs&nbsp;:</h3>
+            <table  class="spip">
+                <tr class="row_first">
+                    <th>Type</th>
+                    <th>Surface (ha)</th>
+                </tr>
+                <tr>
+                    <td>Prairies permanentes</td>
+                    <td><?=$secteur_scap->surf_pp_rpg?></td>
+                </tr>
+                <tr>
+                    <td>Roseli&egrave;res</td>
+                    <td><?=$secteur_scap->surf_roseliere?></td>
+                </tr>
+            </table>
+            <p style="font-size: x-small">
+                <em>Sources : <abbr title="Agence de Services et de Paiement">ASP</abbr>, <abbr title="Office National de la Chasse et de la Faune Sauvage">ONCFS</abbr></em>
+            </p>
+        </td>
     </tr>
 </table>
-<p style="font-size: x-small">
-    <em>Sources : <abbr title="Agence de Services et de Paiement">ASP</abbr>, <abbr title="Office National de la Chasse et de la Faune Sauvage">ONCFS</abbr></em>
-</p>
