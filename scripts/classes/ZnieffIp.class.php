@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les Zones Naturelles d'Intérêt Faunistique et
  * Floristique (ZNIEFF) de l'Inventaire Permanent
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-10-05
- * @version 1.0
+ * @copyright 2014-11-07
+ * @version 2.0
  */
 class ZnieffIp {
 
@@ -18,12 +18,12 @@ class ZnieffIp {
      */
     public function getZnieffIpByIdRegional($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        if ($id_type == 34):
-            $sql = $pdo->prepare('SELECT * FROM R_ZNIEFF1_IP_R52
-            WHERE R_ZNIEFF1_IP_R52.id_regional = :id_regional');
-        elseif ($id_type == 35):
-            $sql = $pdo->prepare('SELECT * FROM R_ZNIEFF2_IP_R52
-            WHERE R_ZNIEFF2_IP_R52.id_regional = :id_regional');
+        if ($id_type == 10):
+            $sql = $pdo->prepare('SELECT * FROM n_znieff1_r52
+            WHERE n_znieff1_r52.id_regional = :id_regional');
+        elseif ($id_type == 11):
+            $sql = $pdo->prepare('SELECT * FROM n_znieff2_r52
+            WHERE n_znieff2_r52.id_regional = :id_regional');
         endif;
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
