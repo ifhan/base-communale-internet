@@ -17,6 +17,7 @@ require_once 'classes/StationQualite.class.php';
 require_once 'classes/Unesco.class.php';
 require_once 'classes/Zonage.class.php';
 require_once 'classes/Znieff2G.class.php';
+require_once 'classes/ZnieffIp.class.php';
 require_once 'classes/Zsc.class.php';
 
 /**
@@ -39,6 +40,9 @@ $zonage->getTypeZonageByIdType($id_type);
             switch ($id_type):
                 case 18:
                     echo "id_bien";
+                    break;
+                case 10: case 11:
+                    echo "id_org";
                     break;
                 case 12:
                     echo "id_national";
@@ -77,7 +81,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15:case 16: case 29: case 44:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15: case 16: case 29: case 44:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
@@ -102,7 +106,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 ?>
         <a class="link"       
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive (2&egrave;me g&eacute;n&eacute;ration)
+            Consulter la fiche descriptive
         </a>
                <?php
                break;
@@ -110,34 +114,12 @@ $zonage->getTypeZonageByIdType($id_type);
             *  2.3 Natura 2000 : Fiches descriptives des ZPS, ZSC, SIC et PSIC
             */
            case 5: case 6: case 21: case 30:
-               /**
-                 *  2.3.1 Fiches des sites en Pays de la Loire	
-                 */
-               if (ereg("^FR52", $id_regional)): ?>
+                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Consulter la fiche descriptive
         </a>
-               <?php
-                /**
-                 * 2.3.2 Lien vers des sites extérieurs pour les sites 
-                 * relevant d'autres DREAL
-                 */
-               else:
-                   $zonage_data = new Zonage();
-                   $zonage_data->getZonageDataById($id_type, $id_regional);
-
-                   if (($zonage_data->region == '0') 
-                           && (isset($zonage_data->url_fiche))):
-                ?>
-        <a class="document" href="<?= $zonage_data->url_fiche ?>" 
-           target="_blank">
-            Consulter la fiche descriptive sur le site de la DREAL 
-                        <?= $zonage_data->dreal ?>
-        </a>
-                    <?php
-                    endif;
-                endif;
+                <?php
                 break;
             /**
              * 2.4 Fiches descriptives des projets de PSIC
@@ -378,7 +360,7 @@ switch ($id_type):
             break;
 endswitch;
 ?>
-<!-- 3. Formulaires standards de données pour Natura 2000 -->
+<!-- 3. Formulaires standards de données pour Natura 2000 sur le site de l'INPN -->
 <li>
     <?php
     switch ($id_type):
@@ -410,9 +392,9 @@ endswitch;
 <li>
 <?php
 switch ($id_type):
-    case 34: case 35:
-        $znieff = new Znieff2G();
-        $znieff->getZnieff2GByIdRegional($id_regional);
+    case 10: case 11:
+        $znieff = new ZnieffIp();
+        $znieff->getZnieffIpByIdRegional($id_regional, $id_type);
         ?>
             <a class="document" 
                href="<?=URL_INPN_ZNIEFF?><?=$znieff->id_national?>" 
@@ -420,48 +402,6 @@ switch ($id_type):
                 Consulter la fiche ZNIEFF actualis&eacute;e sur le site de l'INPN
             </a>
             <?php
-            break;
-    endswitch;
-    ?>
-</li>
-<!-- 5. Listes d'espèces pour Natura 2000 et ZNIEFF -->
-<li>
-    <?php
-    switch ($id_type):
-        case 5: case 6: case 21: case 30:
-            if (ereg("^FR52", $id_regional)):
-                ?>
-                <a class="link" 
-                   href="spip.php?page=liste_especes&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-                    Consulter la liste d'esp&egrave;ces
-                </a>
-                <?php
-            endif;
-            break;
-        case 10: case 11:
-            ?>
-            <a class="link" 
-               href="spip.php?page=liste_especes&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-                Consulter la liste d'esp&egrave;ces
-            </a>
-            <?php
-            break;
-    endswitch;
-    ?>
-</li>
-<!-- 6. Listes d'habitats pour Natura 2000 -->
-<li>
-    <?php
-    switch ($id_type):
-        case 6: case 21: case 30:
-            if (ereg("^FR52", $id_regional)):
-                ?>
-                <a class="link" 
-                   href="spip.php?page=liste_habitats&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-                    Consulter la liste d'habitats
-                </a>
-                <?php
-            endif;
             break;
     endswitch;
     ?>
