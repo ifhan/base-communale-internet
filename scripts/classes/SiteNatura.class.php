@@ -87,27 +87,6 @@ class SiteNatura {
         }
     }
 
-    /**
-     * Sélectionne les données d'un site Natura à partir de son 
-     * identifiant régional
-     * @param string $id_regional Identifiant régional du zonage
-     */
-    public function getDataByIdRegional($id_regional) {
-        $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM natura_biotop 
-        WHERE SITECODE = :id_regional');
-        $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
-        try {
-            $sql->execute();
-            $row = $sql->fetch();
-            $this->QUALITY = nl2br($row["QUALITY"]);
-            $this->VULNAR = nl2br($row["VULNAR"]);
-            $this->CHARACT = nl2br($row["CHARACT"]);
-        } catch (PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-    }
-
 }
 
 /**
