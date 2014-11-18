@@ -2,10 +2,10 @@
 
 /**
  * Description of Apb
- * Classe et fonctions concernant les Arrêtés de Protection de Biotope (APB)
+ * Classe et fonctions concernant les Aires de Protection de Biotope (APB)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-13
- * @version 1.0
+ * @copyright 2014-11-14
+ * @version 1.1
  */
 class Apb {
 
@@ -16,9 +16,9 @@ class Apb {
     public function getApbByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_APB_R52, R_APB_R52_data
-        WHERE R_APB_R52.id_regional = :id_regional
-        AND R_APB_R52.id_regional = R_APB_R52_data.id_regional');
+        FROM r_apb_r52, r_apb_r52_data
+        WHERE r_apb_r52.id_regional = :id_regional
+        AND r_apb_r52.id_regional = r_apb_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();
