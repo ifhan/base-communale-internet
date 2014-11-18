@@ -38,7 +38,7 @@ $departement->getDepartementByIdRegional($id_regional,$id_type);
         </td>
     </tr>
     <tr>
-        <td>Identifiant SPN&nbsp;:</td>
+        <td>Identifiant <abbr title="Mus&eacute;um National d'Histoire Naturelle">MNHN</abbr>&nbsp;:</td>
         <td>
             <strong><?=$znieff->id_national?></strong>
         </td>
