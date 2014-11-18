@@ -27,7 +27,7 @@ define('URL_DREAL',
         </tr>
     </thead>
     <tbody>
-        <? foreach ($docobs as $docob): ?>
+        <?php foreach ($docobs as $docob): ?>
         <tr valign="top">
             <td><?=$docob["id_regional"]?></td><td><?=$docob["nom"]?></td>
             <td>
