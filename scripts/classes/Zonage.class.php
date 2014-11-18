@@ -89,9 +89,6 @@ class Zonage {
             $row = $sql_2->fetch();
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
-            $this->region = $row["region"];
-            $this->url_fiche = $row["url_fiche"];
-            $this->dreal = $row["dreal"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
