@@ -24,14 +24,17 @@ endif;
 if (isset($communes)): ?>
     <table  class="spip">
     <tr class="row_first">
+        <th>Groupe</th>
         <th>Identifiant TAXREF</th>
         <th>Nom scientifique</th>
         <th>Nom vernaculaire</th>
-        <th>Priorit&eacute; SCAP</th>
-        <th>Esp&egrave;ce &agrave; faible occurrence ?</th>
+        <th>Priorit&eacute; SCAP*</th>
     </tr>
         <?php foreach ($sp_connues as $sp_connue): ?>
             <tr bgcolor="<?=switchColor()?>">
+                <td>
+                    <?=$sp_connue["groupe"]?>
+                </td>
                 <td>
                     <?=$sp_connue["id_taxref"]?>
                 </td>
@@ -42,15 +45,13 @@ if (isset($communes)): ?>
                     </a>
                 </td>
                 <td><?= $sp_connue["nom_vernac"] ?></td>
-                <td><?= $sp_connue["priorite"] ?></td>
-                <td>
-                    <?php if($sp_connue["nb_occurence"] < "100"):
-                        echo "Oui";
-                    else:
-                        echo "Non";
-                    endif; ?>
-                </td>
+                <td style="text-align:center"><?= $sp_connue["priorite"] ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
+<p style="font-size: x-small">
+    *Priorit&eacute; 1 : Pas ou tr&egrave;s peu d'aires prot&eacute;g&eacute;es<br />
+    Priorit&eacute; 2 : Pr&eacute;sence significative d'aires prot&eacute;g&eacute;es et insuffisance qualitative du r&eacute;seau<br />
+    Priorit&eacute; 3 : Pr&eacute;sence significative d'aires prot&eacute;g&eacute;es et suffisance qualitative du r&eacute;seau
+</p>
 <?php endif; ?>
