@@ -104,39 +104,7 @@ elseif ($id_dpt != "0"):
      * III. Affichage du type de zonage sélectionné dans le formulaire 
      * pour le département requis ou la région	
      */
-    /**
-     * Lien vers les listes CSRPN au format .PDF 
-     * pour les ZNIEFF de deuxième génération
-     * @todo à supprimer ?
-     */
     ?>
-    <?php if ($id_type == 10): ?>
-        <br /><div class="listedoc">
-            <h3>T&eacute;l&eacute;charger :</h3>      
-            <ul>
-                <li>
-                    <a class="document" href="data/docs/listes/<?= $id_dpt ?>.pdf">
-                        T&eacute;l&eacute;charger la liste officielle des
-                        ZNIEFF valid&eacute;es par le CSRPN 
-                        (format PDF,&nbsp;<?= @convertFilesize("data/docs/listes/$id_dpt.pdf") ?>).
-                    </a>
-                </li>
-            </ul>
-        </div><br />
-    <?php elseif ($id_type == 11): ?>
-        <br /><div class="listedoc">
-            <h3>T&eacute;l&eacute;charger :</h3>
-            <ul>
-                <li>
-                    <a class="document" href="data/docs/listes/<?= $id_dpt ?>.pdf">
-                        T&eacute;l&eacute;charger la liste officielle des  
-                        ZNIEFF valid&eacute;es par le CSRPN 
-                        (format PDF,&nbsp;<?= @convertFilesize("data/docs/listes/$id_dpt.pdf") ?>).
-                    </a>
-                </li>
-            </ul>
-        </div><br />
-    <?php endif; ?>
     <?php $zonages = getZonagesByIdTypeByIdDpt($id_type, $id_dpt); ?>
     <?php // Affiche le nombre de résultats retourne par la requête  ?>
     <p>
