@@ -98,7 +98,7 @@ class SiteNatura {
 function getSitesNaturaByCategorie($id_type, $categorie) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_type == "25"):
-        $sql_2 = $pdo->prepare('(SELECT * FROM R_ZPS_R52 
+        $sql_2 = $pdo->prepare('(SELECT * FROM r_zps_r52 
         WHERE categorie = :categorie
         GROUP BY id_regional) 
         UNION (SELECT * FROM r_zsc_r52 
