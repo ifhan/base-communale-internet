@@ -27,9 +27,6 @@ $operateur->getOperateurByIdRegional($id_regional);
 
 $structure_animatrice = new SiteNatura();
 $structure_animatrice->getStructureAnimatriceByIdRegional($id_regional);
-
-$site_natura_data = new SiteNatura();
-$site_natura_data->getDataByIdRegional($id_regional);
 ?>
 <table class="cadre_plein">
     <tr>
