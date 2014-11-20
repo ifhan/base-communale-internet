@@ -47,7 +47,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 case 12:
                     echo "id_national";
                     break;
-                case 15: case 7:
+                case 5: case 6: case 7: case 15: case 30:
                     echo "ID_MNHN";
                     break;
                 case 1: case 2: case 33:
@@ -91,33 +91,11 @@ $zonage->getTypeZonageByIdType($id_type);
              *  2.1 bis Affichage uniquement des communes concernées si la
              *  fiche est sur le site de l'INPN ou autre 
              */
-            case 34: case 35: case 36: case 37:
+            case 5: case 6: case 10: case 11: case 21: case 30: case 34: case 35: case 36: case 37:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
             Afficher les communes concern&eacute;es
-        </a>
-                <?php
-                break;
-            /**
-             * 2.2 ZNIEFF de deuxième génération	
-             */
-            case 10: case 11:
-                ?>
-        <a class="link"       
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive
-        </a>
-               <?php
-               break;
-           /**
-            *  2.3 Natura 2000 : Fiches descriptives des ZPS, ZSC, SIC et PSIC
-            */
-           case 5: case 6: case 21: case 30:
-                 ?>
-        <a class="link" 
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche descriptive
         </a>
                 <?php
                 break;
