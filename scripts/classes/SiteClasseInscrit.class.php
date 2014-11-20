@@ -69,9 +69,9 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
     FROM R_SITE_CLASSE_INSCRIT_R52_photos, R_SITE_CLASSE_INSCRIT_R52, 
-    R_TYPE_ZONAGE_R52
+    r_type_zonage_r52
     WHERE R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = :id_regional
-    AND R_TYPE_ZONAGE_R52.id_type = :id_type
+    AND r_type_zonage_r52.id_type = :id_type
     AND R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = 
     R_SITE_CLASSE_INSCRIT_R52.id_regional');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);

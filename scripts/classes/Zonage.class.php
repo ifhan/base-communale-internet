@@ -16,7 +16,7 @@ class Zonage {
      */
     public function getTypeZonageByIdType($id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        $sql = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
         WHERE id_type = :id_type');
         $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         try {
@@ -40,7 +40,7 @@ class Zonage {
      */
     public function getZonageByIdRegional($id_type, $id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        $sql_1 = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);   
         try {
@@ -70,7 +70,7 @@ class Zonage {
      */
     public function getZonageDataById($id_type, $id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        $sql_1 = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         try {
@@ -99,7 +99,7 @@ class Zonage {
      */
     public function getZonages() {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52');   
+        $sql = $pdo->prepare('SELECT * FROM r_type_zonage_r52');   
         try {
             $sql->execute();
             $row = $sql->fetch();
@@ -118,7 +118,7 @@ class Zonage {
      */
     public function getZonageBySigle($sigle) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        $sql = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
         WHERE sigle = :sigle');
         $sql->bindParam(':sigle', $sigle, PDO::PARAM_INT, 7);
         try {
@@ -149,7 +149,7 @@ function getZonagesByIdTypeByIdDpt($id_type, $id_dpt) {
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
-    $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+    $sql_1 = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
     WHERE id_type = :id_type');
     $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
@@ -187,7 +187,7 @@ function getZonagesByIdTypeByRegion($id_type) {
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
-    $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+    $sql_1 = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
     WHERE id_type = :id_type');
     $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
@@ -221,8 +221,8 @@ function getZonagesByIdTypeByRegion($id_type) {
 function getThemesByIdCommune($id_commune) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
     WHERE $table.id_commune = :id_commune
     AND $table.id_type = $table_2.id_type 
@@ -250,8 +250,8 @@ function getThemesByIdCommune($id_commune) {
 function getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
     WHERE $table.id_commune = :id_commune 
     AND $table_3.id_theme = :id_theme 
@@ -282,7 +282,7 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
-    $sql_1 = $pdo->prepare("SELECT * FROM R_TYPE_ZONAGE_R52 
+    $sql_1 = $pdo->prepare("SELECT * FROM r_type_zonage_r52 
     WHERE id_type = :id_type");
     $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
@@ -322,8 +322,8 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
 function getThemesByIdEpci($id_epci) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $table_4 = "R_EPCI_COMMUNES_R52";
     $sql = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3, $table_4
@@ -353,8 +353,8 @@ function getThemesByIdEpci($id_epci) {
 function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $table_4 = "R_EPCI_COMMUNES_R52";
     $sql = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3, $table_4 
@@ -388,7 +388,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
     $sql_1 = $pdo->prepare("SELECT * 
-    FROM R_TYPE_ZONAGE_R52 
+    FROM r_type_zonage_r52 
     WHERE id_type = :id_type");
     $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3); 
     try {
@@ -431,8 +431,8 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
 function getThemesByIdScot($id_scot) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $table_4 = "R_SCOT_COMMUNES_R52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4
     WHERE $table_4.id_scot = :id_scot
@@ -461,8 +461,8 @@ function getThemesByIdScot($id_scot) {
 function getTypesZonagesByIdScotByIdTheme($id_scot, $id_theme) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_TYPE_ZONAGE_R52";
-    $table_3 = "R_TYPE_THEME_R52";
+    $table_2 = "r_type_zonage_r52";
+    $table_3 = "r_type_theme_r52";
     $table_4 = "R_SCOT_COMMUNES_R52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.id_scot = :id_scot
@@ -494,7 +494,7 @@ function getZonagesByIdTypeByIdScot($id_type, $id_scot) {
     /**
      * Sélectionne la table d'un zonage à partir de son identifiant 
      */
-    $sql_1 = $pdo->prepare("SELECT * FROM R_TYPE_ZONAGE_R52 
+    $sql_1 = $pdo->prepare("SELECT * FROM r_type_zonage_r52 
     WHERE id_type = :id_type");
     $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {

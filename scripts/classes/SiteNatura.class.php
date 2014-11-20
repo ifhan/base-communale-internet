@@ -17,7 +17,7 @@ class SiteNatura {
      */
     public function getSiteNaturaByIdRegionalIdType($id_regional, $id_type) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql_1 = $pdo->prepare('SELECT * FROM R_TYPE_ZONAGE_R52 
+        $sql_1 = $pdo->prepare('SELECT * FROM r_type_zonage_r52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         try {
@@ -111,7 +111,7 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
         $sql_2->bindParam(':categorie', $categorie, PDO::PARAM_STR, 10);
     else:
         $sql_1 = $pdo->prepare('SELECT * 
-        FROM R_TYPE_ZONAGE_R52 
+        FROM r_type_zonage_r52 
         WHERE id_type = :id_type');
         $sql_1->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
         try {

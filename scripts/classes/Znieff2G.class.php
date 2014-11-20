@@ -209,7 +209,7 @@ class Znieff2G {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $table = "R_ZNIEFF_R52_photos";
         $table_2 = "znieff_znieff";
-        $table_3 = "R_TYPE_ZONAGE_R52";
+        $table_3 = "r_type_zonage_r52";
         $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3
         WHERE $table.NM_REGZN = :id_regional
         AND $table.NM_REGZN = $table_2.NM_REGZN
@@ -832,7 +832,7 @@ function getZnieff2GPhotosByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "R_ZNIEFF_R52_photos";
     $table_2 = "znieff_znieff";
-    $table_3 = "R_TYPE_ZONAGE_R52";
+    $table_3 = "r_type_zonage_r52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
     WHERE $table.NM_REGZN = :id_regional 
     AND $table.NM_REGZN = $table_2.NM_REGZN 
