@@ -326,7 +326,7 @@ switch ($id_type):
                 (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/annexes/".$id_regional."_a001.pdf") ?>)
             </span>
             </li>
-                        <li><a class="document"
+            <li><a class="document"
                href="data/docs/pac/canalisations/cartes/<?=$id_regional?>_c001.pdf"
                target="_blank">
                 T&eacute;l&eacute;charger la carte</a>
@@ -334,6 +334,26 @@ switch ($id_type):
                 (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/cartes/".$id_regional."_c001.pdf") ?>)
             </span>
             </li>
+            <?php if(file_exists("data/docs/pac/canalisations/cartes/".$id_regional."_c002.pdf")): ?>
+            <li><a class="document"
+               href="data/docs/pac/canalisations/cartes/<?=$id_regional?>_c002.pdf"
+               target="_blank">
+                T&eacute;l&eacute;charger la carte n°2</a>
+                <span class="docformat"> 
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/cartes/".$id_regional."_c002.pdf") ?>)
+            </span>
+            </li>
+            <?php endif; ?>
+            <?php if(file_exists("data/docs/pac/canalisations/cartes/".$id_regional."_c003.pdf")): ?>            
+            <li><a class="document"
+               href="data/docs/pac/canalisations/cartes/<?=$id_regional?>_c003.pdf"
+               target="_blank">
+                T&eacute;l&eacute;charger la carte n°3</a>
+                <span class="docformat"> 
+                (PDF,&nbsp;<?= @convertFilesize("data/docs/pac/canalisations/cartes/".$id_regional."_c003.pdf") ?>)
+            </span>
+            </li>
+            <?php endif; ?>            
         <?php
             break;
 endswitch;
