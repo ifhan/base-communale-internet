@@ -71,7 +71,7 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 </table>
 <h3 class="spip">Commune(s) concern&eacute;e(s)&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
-<?php if(isset($apb->parcelles)): ?>
+<?php if(!empty($apb->parcelles)): ?>
 <h3 class="spip">Parcelles cadastrales&nbsp;:</h3>
 <?php endif; ?>
 <p><?=$apb->parcelles?></p>
@@ -79,11 +79,11 @@ $departement->getDepartementByIdRegional($id_regional, $id_type);
 <h3 class="spip">Statut foncier&nbsp;:</h3>
 <p><?=$apb->statut_foncier?></p>
 <?php endif; ?>
-<?php if(isset($apb->interet_bio)): ?>
+<?php if(!empty($apb->interet_bio)): ?>
 <h3 class="spip">Int&eacute;r&ecirc;t biologique&nbsp;:</h3>
 <p><?=$apb->interet_bio?></p>
 <?php endif; ?>
-<?php if(isset($apb->effets_protection)): ?>
+<?php if(!empty($apb->effets_protection)): ?>
 <h3 class="spip">Effets de la protection&nbsp;:</h3>
 <p><?=$apb->effets_protection?></p>
 <?php endif; ?>
