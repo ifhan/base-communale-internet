@@ -65,6 +65,18 @@ switch ($id_type):
         break;
     case 48:
             include(dirname(__FILE__)."/../fiche_site_basias.php");
-        break;        
+        break;
+    case 49:
+            include(dirname(__FILE__)."/../fiche_icpe_silo.php");
+        break;
+    case 50:
+            include(dirname(__FILE__)."/../fiche_icpe_seveso.php");
+        break;
+    case 51:
+            include(dirname(__FILE__)."/../fiche_icpe_tar.php");
+        break;
+    case 52:
+            include(dirname(__FILE__)."/../fiche_icpe.php");
+        break;       
     endswitch;
 ?>
