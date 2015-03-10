@@ -55,7 +55,7 @@ $themes = getThemesByIdCommune($id_commune);
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>
                     </td>
-                    <td width="99%">&nbsp;<?= $zonage["nom"] ?>
+                    <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?>
                         <?php if ($zonage["COMMENT"]!=""): ?>
                             <?= '*<br /><em><small>* '.$zonage["COMMENT"].'</small></em>' ?>
                         <?php endif;?>
