@@ -26,7 +26,8 @@ class Zonage {
             $this->sigle = $row['sigle'];
             $this->table = $row['table'];
             $this->path = $row['path'];
-            $this->map = $row['map'];
+            $this->map_carmen = $row['map_carmen'];
+            $this->map_sigloire = $row['map_sigloire'];
             $this->url_presentation = $row['url_presentation'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -106,7 +107,8 @@ class Zonage {
             $this->type = $row['type'];
             $this->table = $row['table'];
             $this->path = $row['path'];
-            $this->map = $row['map'];
+            $this->map_carmen = $row['map_carmen'];
+            $this->map_sigloire = $row['map_sigloire'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -128,7 +130,8 @@ class Zonage {
             $this->sigle = $row['sigle'];
             $this->table = $row['table'];
             $this->path = $row['path'];
-            $this->map = $row['map'];
+            $this->map_carmen = $row['map_carmen'];
+            $this->map_sigloire = $row['map_sigloire'];
             $this->url_presentation = $row['url_presentation'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
