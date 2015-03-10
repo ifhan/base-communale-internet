@@ -59,6 +59,12 @@ switch ($id_type):
         break;    
     case 44:
             include(dirname(__FILE__)."/../fiche_secteur_scap.php");
-        break;       
+        break;
+    case 47:
+            include(dirname(__FILE__)."/../fiche_site_basol.php");
+        break;
+    case 48:
+            include(dirname(__FILE__)."/../fiche_site_basias.php");
+        break;        
     endswitch;
 ?>
