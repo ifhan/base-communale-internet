@@ -2,7 +2,7 @@
 
 /**
  * Description of Unesco
- * Classe et fonctions concernant les sites insctits au Patrimoine Mondial
+ * Classe et fonctions concernant les sites inscrits au Patrimoine Mondial
  * de l'UNESCO
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2012-06-26
