@@ -108,7 +108,7 @@ elseif ($id_dpt != "0"):
     <?php $zonages = getZonagesByIdTypeByIdDpt($id_type, $id_dpt); ?>
     <?php // Affiche le nombre de résultats retourne par la requête  ?>
     <p>
-        <strong><?= count($zonages) ?> zonage(s)</strong> 
+        <strong><?= count($zonages) ?> enregistrement(s)</strong> 
         recens&eacute;(s) sur l'aire g&eacute;ographique choisie.
     </p>
     <?php if (count($zonages) > 0): ?>
@@ -148,7 +148,7 @@ else:
     <?php $zonages = getZonagesByIdTypeByRegion($id_type); ?>
     <?php // Affiche le nombre de résultats retourne par la requête  ?>
     <p>
-        <strong><?= count($zonages) ?> zonage(s)</strong> 
+        <strong><?= count($zonages) ?> enregistrement(s)</strong> 
         recens&eacute;(s) sur l'aire g&eacute;ographique choisie.
     </p>
     <?php if (count($zonages) > 0): ?>
