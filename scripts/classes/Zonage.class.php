@@ -224,18 +224,22 @@ function getZonagesByIdTypeByRegion($id_type) {
  * @param int $id_commune Code géographique de la commune
  * @return array 
  */
-function getThemesByIdCommune($id_commune) {
+function getThemesByIdCommuneIdRubrique($id_commune,$id_rub) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
-    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
+    $table_4 = "r_type_rubrique_r52";
+    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4 
     WHERE $table.id_commune = :id_commune
-    AND $table.id_type = $table_2.id_type 
+    AND $table.id_type = $table_2.id_type
     AND $table_2.id_theme = $table_3.id_theme
+    AND $table_2.id_rub = $table_4.id_rub
+    AND $table_4.id_rub = :id_rub
     GROUP BY $table_3.id_theme 
     ORDER BY $table_3.id_theme");
     $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_INT, 5);
+    $sql->bindParam(':id_rub', $id_rub, PDO::PARAM_INT, 2);
     try {
         $sql->execute();
         $themes = $sql->fetchAll();
