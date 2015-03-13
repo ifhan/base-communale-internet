@@ -11,6 +11,10 @@ require_once 'classes/Basias.class.php';
 require_once 'classes/Basol.class.php';
 require_once 'classes/Dta.class.php';
 require_once 'classes/Docob.class.php';
+require_once 'classes/Icpe.class.php';
+require_once 'classes/IcpeSeveso.class.php';
+require_once 'classes/IcpeSilo.class.php';
+require_once 'classes/IcpeTar.class.php';
 require_once 'classes/Pnr.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
@@ -74,11 +78,31 @@ $zonage->getTypeZonageByIdType($id_type);
             <?php 
             echo URL_SIGLOIRE.$zonage->map_sigloire.".map&object=".$zonage->path.";";
             switch ($id_type):
-                case 47: case 48:
-                    echo "id_regional";
+                case 47:
+                    echo "id_basol";
+                    break;
+                case 48:
+                    echo "id_basias";
+                    break;
+                case 49:
+                    echo "code_s3ic";
+                    break;
+                case 50:
+                    echo "c_code_etab";
+                    break;
+                case 51:
+                    echo "code_s3ic";
+                    break;
+                case 52:
+                    echo "code_s3ic";
+                    break;                
+            endswitch;
+            echo ";".$id_regional;
+            switch ($id_type):
+                case 49: case 50: case 51: case 52:
+                echo "&layer=".$zonage->layer;
                     break;
             endswitch;
-            echo ";" . $id_regional
             ?>" target="_blank">
             Consulter la carte interactive du zonage sur SIGLOIRE
         </a>
@@ -100,7 +124,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15: case 16: case 29: case 44:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15: case 16: case 29: case 44: case 49: case 50: case 51: case 52:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
@@ -110,7 +134,7 @@ $zonage->getTypeZonageByIdType($id_type);
              *  2.2 Affichage uniquement des communes concernées si la
              *  fiche est sur le site de l'INPN ou autre 
              */
-            case 5: case 6: case 10: case 11: case 21: case 30: case 34: case 35: case 36: case 37: case 47: case 48 :
+            case 5: case 6: case 10: case 11: case 21: case 30: case 34: case 35: case 36: case 37: case 47: case 48:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
