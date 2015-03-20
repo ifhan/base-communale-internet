@@ -84,22 +84,22 @@ $zonage->getTypeZonageByIdType($id_type);
                 case 48:
                     echo "id_basias";
                     break;
-                case 49:
+                case 49: case 51:  case 52:
                     echo "code_s3ic";
                     break;
                 case 50:
                     echo "c_code_etab";
                     break;
-                case 51:
-                    echo "code_s3ic";
+                case 53:
+                    echo "c_code_s3ic";
                     break;
-                case 52:
-                    echo "code_s3ic";
-                    break;                
+                case 54:
+                    echo "id_gaspar";
+                    break;
             endswitch;
             echo ";".$id_regional;
             switch ($id_type):
-                case 49: case 50: case 51: case 52:
+                case 49: case 50: case 51: case 52: case 53: case 54:
                 echo "&layer=".$zonage->layer;
                     break;
             endswitch;
@@ -124,7 +124,7 @@ $zonage->getTypeZonageByIdType($id_type);
             /**
              *  2.1 Cas générique pour les fiches descriptives
              */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15: case 16: case 29: case 44: case 49: case 50: case 51: case 52:
+            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: case 14: case 15: case 16: case 29: case 44: case 49: case 50: case 51: case 52: case 53:
                 ?>
         <a class="link" 
            href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
