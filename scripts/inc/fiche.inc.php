@@ -75,8 +75,11 @@ switch ($id_type):
     case 51:
             include(dirname(__FILE__)."/../fiche_icpe_tar.php");
         break;
-    case 52:
+    case 52: case 53:
             include(dirname(__FILE__)."/../fiche_icpe.php");
-        break;       
+        break;
+    case 54:
+            include(dirname(__FILE__)."/../fiche_pprt.php");
+        break;          
     endswitch;
 ?>

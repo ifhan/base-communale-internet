@@ -29,3 +29,4 @@
 /scripts/config/
 !/scripts/config/database.inc.php
 /ACTIONS/
+INSTALL.txt
