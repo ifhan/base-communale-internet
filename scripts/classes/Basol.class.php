@@ -11,7 +11,7 @@ class Basol {
 
     /**
      * Sélectionne un site BASOL par son identifiant régional
-     * @param string $id_regional Identifiant régional du site
+     * @param string $id_regional Identifiant régional du zonage
      */
     public function getBasolByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
