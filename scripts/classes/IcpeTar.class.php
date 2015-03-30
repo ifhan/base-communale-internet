@@ -22,29 +22,8 @@ class IcpeTar {
             $sql->execute();
             $row = $sql->fetch();
             $this->id_regional = $row["id_regional"];
-            $this->id_dpt = $row["id_dpt"];            
             $this->nom = $row["nom"];
-            $this->libelle = $row["libelle"];
-            $this->etat = $row["etat"];
-            $this->regime = $row["regime"];
-            $this->enjeux = $row["enjeux"];
-            $this->effectif = $row["effectif"];
-            $this->naf = $row["naf"];
-            $this->lib_naf = $row["lib_naf"];            
-            $this->siret = $row["siret"];
-            $this->id_commune = $row["id_commune"];
-            $this->lib_service = $row["lib_service"];
-            $this->commune = $row["commune"];
-            $this->rubrique = $row["rubrique"];
-            $this->alinea = $row["alinea"];
-            $this->statut_tech = $row["statut_tech"];
-            $this->regime_ic = $row["regime_ic"];
-            $this->quantite = $row["quantite"];
-            $this->unite = $row["unite"];
-            $this->type_circuit = $row["type_circuit"];
-            $this->puissance = $row["puissance"];
-            $this->nb_tar = $row["nb_tar"];
-
+            $this->url_basol = $row["url_basol"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
