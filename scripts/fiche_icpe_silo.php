@@ -41,7 +41,7 @@ $departements = getDepartementsByIdRegional($id_regional);
         </td>
     </tr>
 </table><br />
-<h3 class="spip">Commune d'exploitation&nbsp;:</h3>
+<h3 class="spip">Commune d'exploitation&nbsp;:</h2>
 <?php require_once 'inc/commune.inc.php'; ?><br />
 <table class="encadre">
     <tr>
