@@ -80,6 +80,12 @@ switch ($id_type):
         break;
     case 54:
             include(dirname(__FILE__)."/../fiche_pprt.php");
-        break;          
+        break;
+    case 55:
+            include(dirname(__FILE__)."/../fiche_titre_minier.php");
+        break;   
+    case 56:
+            include(dirname(__FILE__)."/../fiche_ancien_titre_minier.php");
+        break; 
     endswitch;
 ?>
