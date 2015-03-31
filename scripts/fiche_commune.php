@@ -15,7 +15,7 @@ require_once 'classes/Zonage.class.php';
  */
 $id_commune = $_REQUEST["id_commune"];
 
-$themes = getThemesByIdCommune($id_commune);
+$themes = getThemesByIdCommuneIdRubrique($id_commune,11);
 ?>
 <?php if(count($themes) > 0): ?>
     <?php foreach($themes as $theme): ?>
