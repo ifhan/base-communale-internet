@@ -15,7 +15,7 @@ class EnveloppeTravaux {
      */
     public function getEnveloppeTravauxByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM r_ancien_titre_minier_r52
+        $sql = $pdo->prepare('SELECT * FROM r_enveloppe_travaux_r52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
@@ -24,21 +24,31 @@ class EnveloppeTravaux {
             $this->id_regional = $row["id_regional"];
             $this->id_dpt = $row["id_dpt"];            
             $this->nom = $row["nom"];
-            $this->nom_titre = $row["nom_titre"];
-            $this->nature = $row["nature"];
-            $this->octroi = $row["octroi"];
-            $this->peremption = $row["peremption"];            
+            $this->substance = $row["substance"];
             $this->statut = $row["statut"];
-            $this->precision = $row["PRECISION"];
-            $this->titulaire = $row["titulaire"];
-            $this->substance_1 = $row["substance_1"];
-            $this->substance_2 = $row["substance_2"];
-            $this->substance_3 = $row["substance_3"];
-            $this->installation_traitement = $row["installation_traitement"];
-            $this->installation_securite = $row["installation_securite"];
-            $this->tonnage_extrait = $row["tonnage_extrait"];
-            $this->tonnage_tout_venant = $row["tonnage_tout_venant"];
-            $this->tonnage_metal = $row["tonnage_metal"];
+            $this->d_statut = $row["d_statut"];
+            $this->origine_enveloppe = $row["origine_enveloppe"];            
+            $this->surf_enveloppe = $row["surf_enveloppe"];
+            $this->cat_surf_env = $row["cat_surf_env"];
+            $this->production = $row["production"];
+            $this->caractere_env = $row["caractere_env"];
+            $this->surf_enj = $row["surf_enj"];
+            $this->res_min = $row["res_min"];
+            $this->typo_gisement = $row["typo_gisement"];
+            $this->meth_exp = $row["meth_exp"];
+            $this->profondeur_max = $row["profondeur_max"];
+            $this->profondeur_min = $row["profondeur_min"];
+            $this->ouverture = $row["ouverture"];
+            $this->deformation = $row["deformation"];
+            $this->profondeur_ouvrage = $row["profondeur_ouvrage"];
+            $this->pendage = $row["pendage"];
+            $this->encaissage = $row["encaissage"];
+            $this->recouvrement = $row["recouvrement"];
+            $this->ouvrages = $row["ouvrages"];
+            $this->nb_ouvrages = $row["nb_ouvrages"];
+            $this->desordre = $row["desordre"];
+            $this->depot = $row["depot"];
+            $this->echelle = $row["echelle"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
