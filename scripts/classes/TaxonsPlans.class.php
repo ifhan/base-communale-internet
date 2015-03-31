@@ -54,6 +54,73 @@ class TaxonsPlans {
             echo 'ERROR: ' . $e->getMessage();
         }
 
-    }  
+    }
+    
+    /**
+     * Sélectionne l'ensemble des taxons concernés par un plan 
+     * national d'action en Pays de la Loire
+     * @param string $type_sp Type de l'espèce (Faune/Flore)
+     * @return array 
+     */    
+    function getTaxonsPNA($type_sp) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * 
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PNA"
+                AND r_taxons_plans_2012_r52.TYPE_SP = :type_sp
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
+        $sql->bindParam(':type_sp', $type_sp, PDO::PARAM_STR, 5);
+        try {
+            $sql->execute();
+            $taxons = $sql->fetchAll();
+            return $taxons;
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+
+    }
+    
+    /**
+     * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
+     * régional en Pays de la Loire
+     * @param string $type_sp Type de l'espèce (Faune/Flore)     
+     * @return array 
+     */    
+    function getTaxonsPCR($type_sp) {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * 
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PCR"
+                AND r_taxons_plans_2012_r52.TYPE_SP = :type_sp
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
+        $sql->bindParam(':type_sp', $type_sp, PDO::PARAM_STR, 5);
+        try {
+            $sql->execute();
+            $taxons = $sql->fetchAll();
+            return $taxons;
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }
+    
+    /**
+     * Sélectionne l'ensemble des taxons concernés par un plan de conservation 
+     * local en Pays de la Loire
+     * @return array 
+     */    
+    function getTaxonsPCL() {
+        $pdo = ConnectionFactory::getFactory()->getConnection();
+        $sql = $pdo->prepare('SELECT * 
+                FROM r_taxons_plans_2012_r52 
+                WHERE r_taxons_plans_2012_r52.TYPE_PLAN = "PCL"
+                ORDER BY r_taxons_plans_2012_r52.id_regional');
+        try {
+            $sql->execute();
+            $taxons = $sql->fetchAll();
+            return $taxons;
+        } catch (PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
+    }    
 
 ?>
