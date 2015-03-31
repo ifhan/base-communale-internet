@@ -8,6 +8,8 @@
  * @version 1.0
  */
 class Pnr {
+    
+    public $table_pnr = "r_pnr_r52";
 
     /**
      * Sélectionne un PNR par son identifiant régional
@@ -15,7 +17,7 @@ class Pnr {
      */
     public function getPnrByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_PNR_R52 
+        $sql = $pdo->prepare('SELECT * FROM r_pnr_r52 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {

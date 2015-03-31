@@ -59,10 +59,10 @@ function getCommunesByIdDpt($id_dpt) {
 function getCommunesByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM r_zonages_communes_r52, BDC_COMMUNE_52
-    WHERE r_zonages_communes_r52.id_regional = :id_regional
-    AND r_zonages_communes_r52.id_commune = BDC_COMMUNE_52.id_commune 
-    AND r_zonages_communes_r52.id_type = :id_type
+    FROM R_ZONAGES_COMMUNES_R52, BDC_COMMUNE_52
+    WHERE R_ZONAGES_COMMUNES_R52.id_regional = :id_regional
+    AND R_ZONAGES_COMMUNES_R52.id_commune = BDC_COMMUNE_52.id_commune 
+    AND R_ZONAGES_COMMUNES_R52.id_type = :id_type
     GROUP BY BDC_COMMUNE_52.id_commune
     ORDER BY BDC_COMMUNE_52.id_commune');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
