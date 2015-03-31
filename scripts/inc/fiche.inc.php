@@ -87,5 +87,8 @@ switch ($id_type):
     case 56:
             include(dirname(__FILE__)."/../fiche_ancien_titre_minier.php");
         break; 
+    case 57:
+            include(dirname(__FILE__)."/../fiche_enveloppe_travaux.php");
+        break;     
     endswitch;
 ?>
