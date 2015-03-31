@@ -3476,3 +3476,21 @@ table.signatures {
 
 /*-- image flottante gauche et liste a puce --*/
 ul.spip {overflow:hidden;}
+
+/* Infobulles */
+
+[data-tip] { /* on sélectionne l'attribut data-tip */
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted #aaa;
+}
+[data-tip]:hover:after {
+    content: attr(data-tip); /* on récupère la valeur de l'attribut data-tip */
+    position: absolute;
+    top: 1.5em; left: 0;
+    white-space: nowrap; /* no wrapping */
+    padding: 5px 10px;
+    background: lightgray;
+    color: #484848;
+    border: 1px solid gray;
+}
