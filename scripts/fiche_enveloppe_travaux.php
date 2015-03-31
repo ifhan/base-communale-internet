@@ -45,75 +45,99 @@ $departements = getDepartementsByIdRegional($id_regional);
 <?php require_once 'inc/commune.inc.php'; ?><br />
 <table class="encadre">
     <tr>
-        <td><strong>Titre minier&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->nom_titre?></td>
-    </tr>
-    <tr>
-        <td><strong>Nature&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->nature?></td>
-    </tr>
-    <tr>
-        <td><strong>Octroi&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->octroi?></td>
-    </tr>
-    <tr>
-        <td><strong>Péremption&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->peremption?></td>
+        <td><strong>Substance&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->substance?></td>
     </tr>
     <tr>
         <td><strong>Statut&nbsp;:</strong></td>
         <td><?=$enveloppe_travaux->statut?></td>
     </tr>
     <tr>
-        <td><strong>Précisionde la localisation&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->precision?></td>
+        <td><strong>d_statut&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->d_statut?></td>
+    </tr>
+    <tr>
+        <td><strong>Origine de l'enveloppe&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->origine_enveloppe?></td>
+    </tr>
+    <tr>
+        <td><strong>Surface de l'enveloppe (en ha)&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->surf_enveloppe?></td>
+    </tr>
+    <tr>
+        <td><strong>Production&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->production?></td>
     </tr>    
     <tr>
-        <td><strong>Titulaire&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->titulaire?></td>
-    </tr>    
-    <tr>
-        <td><strong>Substance 1&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->substance_1?></td>
+        <td><strong>caractere_env&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->caractere_env?></td>
     </tr>
     <tr>
-        <td><strong>Substance 2&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->substance_2?></td>
+        <td><strong>surf_enj&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->surf_enj?></td>
     </tr>
     <tr>
-        <td><strong>Substance 3&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->substance_3?></td>
+        <td><strong>Résistance du minerai&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->res_min?></td>
+    </tr>     
+    <tr>
+        <td><strong>Typologie du gisement&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->typo_gisement?></td>
     </tr>
     <tr>
-        <td><strong>Installation de traitement&nbsp;:</strong></td>
-        <td>
-            <?php if($enveloppe_travaux->installation_traitement=="T"):?>
-            Oui
-            <?php elseif($enveloppe_travaux->installation_traitement=="F"):?>
-            Non
-            <?php endif;?>
-        </td>
-    </tr>    
-    <tr>
-        <td><strong>Installation de sécurité&nbsp;:</strong></td>
-        <td>
-            <?php if($enveloppe_travaux->installation_securite=="T"):?>
-            Oui
-            <?php elseif($enveloppe_travaux->installation_securite=="F"):?>
-            Non
-            <?php endif;?>        
-        </td>
-    </tr>        
-    <tr>
-        <td><strong>Tonnage extrait&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->tonnage_extrait?></td>
-    </tr>
-    <tr>
-        <td><strong>Tonnage de tout venant&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->tonnage_tout_venant?></td>
+        <td><strong>meth_exp&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->meth_exp?></td>
     </tr>   
     <tr>
-        <td><strong>Tonnage de métal&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->tonnage_metal?></td>
+        <td><strong>Profondeur maximale&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->profondeur_max?></td>
     </tr>
+    <tr>
+        <td><strong>Profondeur minimale&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->profondeur_min?></td>
+    </tr>
+    <tr>
+        <td><strong>Ouverture&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->ouverture?></td>
+    </tr>
+    <tr>
+        <td><strong>D&eacute;formation&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->deformation?></td>
+    </tr>
+    <tr>
+        <td><strong>Profondeur de l'ouvrage&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->profondeur_ouvrage?></td>
+    </tr>    
+    <tr>
+        <td><strong>Pendage&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->pendage?></td>
+    </tr>
+    <tr>
+        <td><strong>Encaissage&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->encaissage?></td>
+    </tr>
+    <tr>
+        <td><strong>Recouvrement&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->recouvrement?></td>
+    </tr>
+    <tr>
+        <td><strong>Ouvrages&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->ouvrages?></td>
+    </tr>
+    <tr>
+        <td><strong>Nombre d'ouvrages&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->nb_ouvrages?></td>
+    </tr>
+    <tr>
+        <td><strong>D&eacute;sordre&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->desordre?></td>
+    </tr>
+    <tr>
+        <td><strong>D&eacute;pôt&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->depot?></td>
+    </tr>
+    <tr>
+        <td><strong>&Eacute;chelle&nbsp;:</strong></td>
+        <td><?=$enveloppe_travaux->echelle?></td>
+    </tr>    
 </table>
