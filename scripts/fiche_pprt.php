@@ -87,17 +87,4 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><strong>Nature du ou des risque(s)&nbsp;:</strong></td>
         <td><?=$pprt->risque?></td>
     </tr>   
-</table><br />
-<?php if(!empty($pprt->url)):?>
-<table>
-    <tr>
-        <td style="vertical-align:bottom;">
-            <img src="IMG/png/gnome-globe.png" style="border:none" alt="Icone web" />
-        </td>
-        <td>
-            <strong>Pour en savoir plus</strong>, 
-            <a href="<?=$pprt->url?>" target="blank">consulter le site Internet de la DREAL</a>.
-        </td>
-    </tr>
 </table>
-<?php endif; ?>
