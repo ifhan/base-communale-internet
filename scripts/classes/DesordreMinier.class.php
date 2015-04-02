@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Description of DesodreMinier
+ * Description of DesordreMinier
  * Classe et fonctions concernant les ouvrages miniers
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2015-04-01
  * @version 1.0
  */
-class DesodreMinier {
+class DesordreMinier {
 
     /**
      * Sélectionne un ouvrage minier par son identifiant régional
      * @param string $id_regional Identifiant régional du titre
      */
-    public function getDesodreMinierByIdRegional($id_regional) {
+    public function getDesordreMinierByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * FROM r_desordre_minier_r52
         WHERE id_regional = :id_regional');

@@ -8,15 +8,15 @@ require_once 'classes/utilities.inc.php';
 
 // Classes
 require_once 'classes/Departement.class.php';
-require_once 'classes/DesodreMinier.class.php';
+require_once 'classes/DesordreMinier.class.php';
 
 /**
  * @var $id_regional Identifiant régional du zonage
  */
 $id_regional = $_REQUEST["id_regional"];
 
-$desordre_minier = new DesodreMinier();
-$desordre_minier->getDesodreMinierByIdRegional($id_regional);
+$desordre_minier = new DesordreMinier();
+$desordre_minier->getDesordreMinierByIdRegional($id_regional);
 
 $departements = getDepartementsByIdRegional($id_regional);
 ?>
