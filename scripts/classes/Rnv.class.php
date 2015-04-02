@@ -3,9 +3,10 @@
 /**
  * Description of Rnv
  * Classe et fonctions concernant les Réserves Naturelles Volantaires (RNV)
+ * (données historiques)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-29
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Rnv {
 
@@ -16,9 +17,9 @@ class Rnv {
     public function getRnvById($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_RNV_R52, R_RNV_R52_data  
-        WHERE R_RNV_R52.id_regional = :id_regional 
-        AND R_RNV_R52.id_regional = R_RNV_R52_data.id_regional');
+        FROM r_rnv_r52, r_rnv_r52_data  
+        WHERE r_rnv_r52.id_regional = :id_regional 
+        AND r_rnv_r52.id_regional = r_rnv_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();

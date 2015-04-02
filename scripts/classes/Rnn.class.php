@@ -4,8 +4,8 @@
  * Description of Rnn
  * Classe et fonctions concernant les Réserves Naturelles Nationales (RNN)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-27
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Rnn {
 
@@ -16,9 +16,9 @@ class Rnn {
     public function getRnnByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_RNN_R52, R_RNN_R52_data  
-        WHERE R_RNN_R52.id_regional = :id_regional 
-        AND R_RNN_R52.id_regional = R_RNN_R52_data.id_regional');
+        FROM r_rnn_r52, r_rnn_r52_data  
+        WHERE r_rnn_r52.id_regional = :id_regional 
+        AND r_rnn_r52.id_regional = r_rnn_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();
@@ -49,7 +49,7 @@ class Rnn {
  */
 function getRnnPhotosByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_RNN_R52_photos 
+    $sql = $pdo->prepare('SELECT * FROM r_rnn_r52_photos 
     WHERE id_regional = :id_regional');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
     try {
