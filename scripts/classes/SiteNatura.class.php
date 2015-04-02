@@ -23,7 +23,7 @@ class SiteNatura {
         try {
             $sql_1->execute();
             $row = $sql_1->fetch();
-            $table = $row["table"];
+            $table = $row["table_name"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -117,7 +117,7 @@ function getSitesNaturaByCategorie($id_type, $categorie) {
         try {
             $sql_1->execute();
             $row = $sql_1->fetch();
-            $table = $row["table"];
+            $table = $row["table_name"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         } 

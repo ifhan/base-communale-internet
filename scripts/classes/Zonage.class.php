@@ -50,7 +50,7 @@ class Zonage {
         try {
             $sql_1->execute();
             $row = $sql_1->fetch();
-            $this->table = $row["table"];
+            $this->table = $row["table_name"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -80,7 +80,7 @@ class Zonage {
         try {
             $sql_1->execute();
             $row = $sql_1->fetch();
-            $this->table = $row["table"];
+            $this->table = $row["table_name"];
             $table_data = $this->table . "_data";
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -163,7 +163,7 @@ function getZonagesByIdTypeByIdDpt($id_type, $id_dpt) {
     try {
         $sql_1->execute();
         $row = $sql_1->fetch();
-        $table = $row["table"];
+        $table = $row["table_name"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
@@ -201,7 +201,7 @@ function getZonagesByIdTypeByRegion($id_type) {
     try {
         $sql_1->execute();
         $row = $sql_1->fetch();
-        $table = $row["table"];
+        $table = $row["table_name"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
@@ -300,7 +300,7 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
     try {
         $sql_1->execute();
         $row = $sql_1->fetch();
-        $table_3 = $row["table"];
+        $table_3 = $row["table_name"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
@@ -406,7 +406,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
     try {
         $sql_1->execute();
         $row = $sql_1->fetch();
-        $table_3 = $row["table"];
+        $table_3 = $row["table_name"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
@@ -512,7 +512,7 @@ function getZonagesByIdTypeByIdScot($id_type, $id_scot) {
     try {
         $sql_1->execute();
         $row = $sql_1->fetch();
-        $table_3 = $row["table"];
+        $table_3 = $row["table_name"];
     } catch (PDOException $e) {
         echo 'ERROR: ' . $e->getMessage();
     }
