@@ -1,0 +1,34 @@
+<div class="listerub">
+    <div class="titresousrub">Recherche par type de risque</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type de zonage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="60">Aléas miniers</option>
+                            <option value="59">Désordes miniers</option>
+                            <option value="61">Plans de Prévention des Risques Miniers</option>
+                            <option value="62">Stériles miniers uranifères</option>
+                            <option value="63">Zones d'intérêt des stériles miniers uranifères</option>
+                        </select>
+                    </td>
+                    <td><strong>D&eacute;partement&nbsp;:</strong><br />
+                        <select name="id_dpt" id="departement">
+                            <BOUCLE_departements(spip_departements)>
+                                <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                            </BOUCLE_departements>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
