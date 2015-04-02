@@ -2,7 +2,7 @@
 
 /**
  * Description of DesordreMinier
- * Classe et fonctions concernant les ouvrages miniers
+ * Classe et fonctions concernant les désordres miniers
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2015-04-01
  * @version 1.0
@@ -10,7 +10,7 @@
 class DesordreMinier {
 
     /**
-     * Sélectionne un ouvrage minier par son identifiant régional
+     * Sélectionne un désordre minier par son identifiant régional
      * @param string $id_regional Identifiant régional du titre
      */
     public function getDesordreMinierByIdRegional($id_regional) {
