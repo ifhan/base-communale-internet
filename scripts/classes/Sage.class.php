@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les Schémas d'Aménagement et de Gestion
  * des Eaux (SAGE)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-24
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Sage {
 
@@ -17,9 +17,9 @@ class Sage {
     public function getSageByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_SAGE_R52, R_SAGE_R52_data  
-        WHERE R_SAGE_R52.id_regional = :id_regional
-        AND R_SAGE_R52.id_regional = R_SAGE_R52_data.id_regional');
+        FROM r_sage_r52, r_sage_r52_data  
+        WHERE r_sage_r52.id_regional = :id_regional
+        AND r_sage_r52.id_regional = r_sage_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();

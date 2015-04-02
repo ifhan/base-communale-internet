@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les sites insctits au Patrimoine Mondial
  * de l'UNESCO
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-26
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Unesco {
 
@@ -16,7 +16,7 @@ class Unesco {
      */
     public function getUnescoByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_UNESCO_049
+        $sql = $pdo->prepare('SELECT * FROM r_unesco_049
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 5);
         try {

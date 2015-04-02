@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les Zones Importantes pour la 
  * Conservation des Oiseaux (ZICO)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-24
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Zico {
 
@@ -16,9 +16,9 @@ class Zico {
      */
     public function getZicoByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_ZICO_R52, R_ZICO_R52_data  
-        WHERE R_ZICO_R52.id_regional = :id_regional
-        AND R_ZICO_R52.id_regional = R_ZICO_R52_data.id_regional');
+        $sql = $pdo->prepare('SELECT * FROM r_zico_r52, r_zico_r52_data  
+        WHERE r_zico_r52.id_regional = :id_regional
+        AND r_zico_r52.id_regional = r_zico_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();

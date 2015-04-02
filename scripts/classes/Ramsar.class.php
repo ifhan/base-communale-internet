@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les secteurs d'application de la convention
  * de Ramsar
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-30
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Ramsar {
 
@@ -17,7 +17,7 @@ class Ramsar {
      */
     public function getRamsarByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_RAMSAR_R52
+        $sql = $pdo->prepare('SELECT * FROM r_ramsar_r52
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {

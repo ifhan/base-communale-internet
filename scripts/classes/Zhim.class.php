@@ -2,10 +2,11 @@
 
 /**
  * Description of Zhim
- * Classe et fonctions concernant les Zones Humides d'Importance Majeure
+ * Classe et fonctions concernant les Zones Humides d'Importance Majeure (ZHIM)
+ * provenant de l'Observatoire National des Zones Humides (ONZH)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-24
- * @version 1.0
+ * @copyright 2015-04-02
+ * @version 1.1
  */
 class Zhim {
 
@@ -16,9 +17,9 @@ class Zhim {
     public function getZhimByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_ZHIM_R52, R_ZHIM_R52_data  
-        WHERE R_ZHIM_R52.id_regional = :id_regional
-        AND R_ZHIM_R52.id_regional = R_ZHIM_R52_data.id_regional');
+        FROM r_zhim_r52, r_zhim_r52_data  
+        WHERE r_zhim_r52.id_regional = :id_regional
+        AND r_zhim_r52.id_regional = r_zhim_r52_data.id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
             $sql->execute();
