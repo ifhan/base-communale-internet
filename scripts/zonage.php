@@ -11,10 +11,6 @@ require_once 'classes/Basias.class.php';
 require_once 'classes/Basol.class.php';
 require_once 'classes/Dta.class.php';
 require_once 'classes/Docob.class.php';
-require_once 'classes/Icpe.class.php';
-require_once 'classes/IcpeSeveso.class.php';
-require_once 'classes/IcpeSilo.class.php';
-require_once 'classes/IcpeTar.class.php';
 require_once 'classes/Pnr.class.php';
 require_once 'classes/Pprt.class.php';
 require_once 'classes/Rnn.class.php';
@@ -36,10 +32,11 @@ $id_type = $_REQUEST["id_type"];
 $id_regional = $_REQUEST["id_regional"];
 $zonage = new Zonage();
 $zonage->getTypeZonageByIdType($id_type);
-?>	
+?>
 <ul>
+    <!-- 1. Liens vers des cartes interactives -->
     <?php if (!empty($zonage->map_carmen)): ?>
-    <!-- 1.1 Lien vers un zoom dans la carte CARMEN -->
+    <!-- 1.1 Lien vers un zoom dans une carte CARMEN -->
     <li>
         <a class="document" 
            href="
@@ -51,7 +48,7 @@ $zonage->getTypeZonageByIdType($id_type);
     </li>
     <?php endif; ?>
     <?php if (!empty($zonage->map_sigloire)): ?>
-    <!-- 1.2 Lien vers un zoom dans la carte SIGLOIRE -->
+    <!-- 1.2 Lien vers un zoom dans une carte SIGLOIRE -->
     <li>
         <a class="document" 
            href="
@@ -65,38 +62,40 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
     </li>    
     <?php endif; ?>
-        <?php if (!empty($zonage->url_presentation)): ?>
-    <!-- 1.3 Lien vers la présentation du zonage sur le site Internet 
-    de la DREAL -->
+    <!-- 2. Présentation du zonage sur un site Internet DREAL ou Ministère -->
+    <?php if (!empty($zonage->url_presentation)): ?>
     <li>
-        <a class="document" href="
-            <?= $zonage->url_presentation ?>" target="_blank">
+        <a class="document" 
+           href="<?= $zonage->url_presentation ?>" target="_blank">
             Consulter la présentation sur le site Internet de la DREAL ou du Ministère</a>
     </li>
     <?php endif; ?>
-    <!-- 2. Fiches descriptives et liens -->
+    <!-- 3. Fiches descriptives génériques et listes de communes -->
     <li>
-        <!--  2.1 Affichage d'une fiche descriptive  -->
+        <!--  3.1 Affichage d'une fiche descriptive  -->
         <?php if($zonage->fact_sheet=="1"): ?>
             <a class="link" 
                 href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
                 Consulter la fiche descriptive
             </a>
-        <!--  2.2 Affichage de la liste des communes concernées -->
+        <!--  3.2 Affichage de la liste des communes concernées -->
         <?php elseif($zonage->fact_sheet=="2"): ?>
             <a class="link" 
                 href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
                 Afficher la ou les commune(s) concern&eacute;e(s)
             </a>
         <?php endif; ?>
+    </li>
+    <!-- 4. Fiches descriptives spécifiques -->
+    <li>
         <?php
         switch ($id_type):
             /**
-             * 2.4 Fiches descriptives des projets de PSIC
+             * 4.1 Fiches descriptives des projets de PSIC
              */
             case 20:
                 /**
-                 * 2.4.1 Fiches des projets de PSIC en PdL au format PDF
+                 * 4.1.1 Fiches des projets de PSIC en PdL au format PDF
                  */
                 if (ereg("^FR52", $id_regional)): ?>
         <a class="document" 
@@ -108,7 +107,7 @@ $zonage->getTypeZonageByIdType($id_type);
         </span>
             <?php
                 /**
-                 * 2.4.2 Lien vers des sites extérieurs pour les sites 
+                 * 4.1.2 Lien vers des sites extérieurs pour les sites 
                  * relevant d'autres DREAL
                  */
                 else:
@@ -126,7 +125,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 break;
            
             /**
-             * 2.5 Liens vers le site du Conseil Régional pour les RNR
+             * 4.2 Liens vers le site du Conseil Régional pour les RNR
              */
             case 33:
                 $rnr = new Rnr();
@@ -135,12 +134,30 @@ $zonage->getTypeZonageByIdType($id_type);
         <a class="document" href="<?=$rnr->url_site?>" target="_blank">
             Consulter la fiche de pr&eacute;sentation de la r&eacute;serve 
             sur le site du Conseil R&eacute;gional
-        </a>          
-            <?php
+        </a>
+                <?php
                 break;
+            /**
+             * 4.3 Lien vers les fiches Résultats par campagne des stations
+             * Qualité des eaux (RNB + RCS)
+             */
+            case 28: case 38:
+                ?>
+        <a class="document" 
+           href="spip.php?page=fiche_station_qualite&amp;id_regional=<?=$id_regional?>">
+            Consulter la fiche de résultats par campagne
+        </a>
+                <?php
+                break;
+        endswitch; ?>
+</li>
+<!-- 5. Liens vers un site générique -->
+<li>
+<?php
+    switch ($id_type):
 
             /**
-             * 2.6 Rubrique DTA sur le site de la Préfecture de région
+             * 5.1 Rubrique DTA sur le site de la Préfecture de région
              */
             case 17:
                 $dta = new Dta();
@@ -154,7 +171,7 @@ $zonage->getTypeZonageByIdType($id_type);
                 break;
     
             /**
-             * 2.7 Lien vers le site de l'UNESCO
+             * 5.2 Lien vers le site de l'UNESCO
              */
             case 18:
                 $unesco = new Unesco();
@@ -165,25 +182,13 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
                 <?php
                 break;
-            /**
-             * 2.8 Lien vers les fiches Résultats par campagne des stations
-             * Qualité des eaux (RNB + RCS)
-             */
-            case 28: case 38:
-                ?>
-        <a class="document" 
-           href="spip.php?page=fiche_station_qualite&amp;id_regional=<?=$id_regional?>">
-            Consulter la fiche de résultats par campagne
-        </a>
-                <?php
-                break;
         endswitch; ?>
 </li>
-<!-- 3. Compléments -->
+<!-- 6. Compléments -->
 <?php
 switch ($id_type):
      /**
-      * 3.1 Liens vers l'INPN et les sites des PNR
+      * 6.1 Liens vers l'INPN et les sites des PNR
       */
     case 7:
         $pnr = new Pnr();
@@ -202,7 +207,7 @@ switch ($id_type):
         <?php
         break;
     /**
-     *  3.2 Fiche PDF et lien INPN pour Ramsar
+     *  6.2 Fiche PDF et lien INPN pour Ramsar
      */    
     case 15:
         ?>
@@ -224,7 +229,7 @@ switch ($id_type):
         <?php
         break;
     /**
-     * 3.3 Fiche PDF pour les sites INPG préselectionnés et proposés
+     * 6.3 Fiche PDF pour les sites INPG préselectionnés et proposés
      */
     case 36: case 37:
         if (file_exists("data/fiches/$zonage->path/$id_regional.pdf")):
@@ -241,7 +246,7 @@ switch ($id_type):
         endif;
         break;
      /**
-      * 3.4 Liens pour les Plans de conservation
+      * 6.4 Liens pour les Plans de conservation
       */
      case 41:
      ?>
@@ -262,7 +267,7 @@ switch ($id_type):
         <?php
         break;
       /**
-       * 3.5 Liens pour les Plans nationaux d'action
+       * 6.5 Liens pour les Plans nationaux d'action
        */
       case 42:
             ?>
@@ -283,7 +288,7 @@ switch ($id_type):
         <?php
         break;
        /**
-        * 3.6 Liens pour les Plans de conservation locaux
+        * 6.6 Liens pour les Plans de conservation locaux
        */
        case 43:
             if($id_regional == "82715"):
@@ -298,7 +303,7 @@ switch ($id_type):
             endif;
         break;
         /**
-         * 3.7 Liens pour les PAC SUP Canalisations
+         * 6.7 Liens pour les PAC SUP Canalisations
          */
         case 45:
             ?>
@@ -349,7 +354,7 @@ switch ($id_type):
         <?php
             break;
             /**
-             * 3.8 Liens vers les bases nationales pour les sites BASOL et BASIAS
+             * 6.8 Liens vers les bases nationales pour les sites BASOL et BASIAS
              */
             case 47:
                 $basol = new Basol();
@@ -374,7 +379,7 @@ switch ($id_type):
         <?php
             break;
             /**
-             * 3.9 Lien vers le site de la DREAL pour les PPRT
+             * 6.9 Lien vers le site de la DREAL pour les PPRT
              */
             case 54:
                 $pprt = new Pprt();
@@ -388,7 +393,7 @@ switch ($id_type):
         <?php
             break;
     endswitch; ?>
-<!-- 4. Formulaires standards de données pour Natura 2000 sur le site de l'INPN -->
+<!-- 7. Formulaires standards de données pour Natura 2000 sur le site de l'INPN -->
 <li>
     <?php
     switch ($id_type):
@@ -416,7 +421,7 @@ switch ($id_type):
     endswitch;
     ?>
 </li>
-<!-- 5. Fiches ZNIEFF de l'inventaire permanent sur le site de l'INPN -->
+<!-- 8. Fiches ZNIEFF de l'inventaire permanent sur le site de l'INPN -->
 <li>
 <?php
 switch ($id_type):
@@ -434,7 +439,7 @@ switch ($id_type):
     endswitch;
     ?>
 </li>
-<!-- 6. Décrets -->
+<!-- 9. Décrets -->
 <li>
 <?php
 switch ($id_type):
@@ -475,7 +480,7 @@ switch ($id_type):
 endswitch;
 ?>
 </li>
-<!-- 7. Arrêtés -->
+<!-- 10. Arrêtés -->
 <li>
 <?php if (file_exists("data/docs/arretes/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
         <a class="document" 
@@ -512,7 +517,7 @@ endswitch;
     endif;
     ?>
 </li>
-<!-- 8. Documents d'objectifs pour Natura 2000 sur le portail SIDE-->
+<!-- 11. Documents d'objectifs pour Natura 2000 sur le portail SIDE-->
 <?php
 switch ($id_type):
         case 5: case 6: case 21: case 30:
@@ -532,7 +537,7 @@ $docob->getDocobByIdRegional($id_regional);
         </a>
     <?php endif; ?>
 </li>
-<!-- 9. Arrêtés pour Natura 2000 sur le site Internet de la DREAL-->
+<!-- 12. Arrêtés pour Natura 2000 sur le site Internet de la DREAL-->
 <li>
     <?php if ($docob->id_article !== "0"): ?>
         <a class="document" href="<?= URL_DREAL ?><?= $docob->id_article ?>" 
@@ -545,7 +550,7 @@ $docob->getDocobByIdRegional($id_regional);
 break;
 endswitch;
 ?>
-<!-- 10. Plans de gestion pour les RNN -->
+<!-- 13. Plans de gestion pour les RNN -->
 <li>
     <?php if (file_exists("data/docs/plans_gestion/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
         <a class="document" 
@@ -558,7 +563,7 @@ endswitch;
         </span>
 <?php endif; ?>
 </li>
-<!-- 11. Cartes PDF et rapports de présentation pour les sites classés -->
+<!-- 14. Cartes PDF et rapports de présentation pour les sites classés -->
 <?php switch ($id_type):
     case 13:
 
@@ -579,12 +584,12 @@ endswitch;
     </li>
     <?php endif; ?>
 <?php endswitch; ?>
-<!-- 13. Photographies -->
+<!-- 15. Photographies -->
 <li>
     <?php
     switch ($id_type):
         /**
-         * 13.1 Photographies pour les ZNIEFF
+         * 15.1 Photographies pour les ZNIEFF
          */
         case 10: case 11:
             $znieff_photos = getZnieff2GPhotosByIdRegional($id_regional, $id_type);
@@ -598,7 +603,7 @@ endswitch;
             endif;
             break;
         /**
-         *  13.2 Photographies pour les RNN 
+         *  15.2 Photographies pour les RNN 
          */
         case 2:
             $rnn_photos = getRnnPhotosByIdRegional($id_regional);
@@ -612,7 +617,7 @@ endswitch;
             endif;
             break;
         /**
-         *  13.3 Photographies pour les sites classés et inscrits
+         *  15.3 Photographies pour les sites classés et inscrits
          */
         case 13:
             $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
