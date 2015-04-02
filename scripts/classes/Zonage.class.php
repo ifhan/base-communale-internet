@@ -25,6 +25,8 @@ class Zonage {
             $this->type = $row['type'];
             $this->sigle = $row['sigle'];
             $this->table = $row['table'];
+            $this->primary_key = $row['primary_key'];
+            $this->fact_sheet = $row['fact_sheet'];
             $this->path = $row['path'];
             $this->map_carmen = $row['map_carmen'];
             $this->map_sigloire = $row['map_sigloire'];
