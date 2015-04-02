@@ -127,7 +127,7 @@ elseif ($id_dpt != "0"):
                         <?php if ($zonage["id_regional"] != "0") : ?>
                             <td><?= $zonage["id_regional"] ?> </td>
             <?php endif; ?>
-                        <td width="100%">&nbsp;<?= $zonage["nom"] ?></td>
+                        <td width="100%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?></td>
                         <td class="cache">
                             <div align="right">
                                 <a href="spip.php?page=zonage&id_type=<?= $id_type ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><img src="IMG/png/system-search.png"  alt="Icone afficher la fiche du zonage" /></a><br />
@@ -142,7 +142,7 @@ elseif ($id_dpt != "0"):
 <?php
 else:
     /**
-     * III. B. Sélection de la region
+     * III. B. Sélection de la région
      */
     ?>
     <?php $zonages = getZonagesByIdTypeByRegion($id_type); ?>
@@ -167,7 +167,7 @@ else:
             <?php if ($zonage["id_regional"] != "0"): ?>
                             <td><?= $zonage["id_regional"] ?></td>
             <?php endif; ?>
-                        <td width="99%">&nbsp;<?= $zonage["nom"] ?></td>
+                        <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?></td>
                         <td class="cache">
                             <div align="right">
                                 <a href="spip.php?page=zonage&id_type=<?= $id_type ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><img src="IMG/png/system-search.png" alt="Icone" /></a><br />
