@@ -45,18 +45,3 @@ $departements = getDepartementsByIdRegional($id_regional);
 </table>
 <h3 class="spip">Commune(s) concern&eacute;e(s) en Pays de la Loire&nbsp;:</h3>
 <?php require_once 'inc/commune.inc.php'; ?>
-<h3 class="spip">Lien&nbsp;:</h3>
-<div text="top">
-    <table>
-        <tr>
-            <td style="vertical-align:bottom;">
-                <img src="IMG/png/gnome-globe.png" 
-                     style="border:none" alt="Icone web" />
-            </td>
-            <td>
-                <a href="<?=$pnr->url_site?>" 
-                   target="_blank">Consulter le site du Parc Naturel R&eacute;gional</a>.   
-            </td>
-        </tr>
-    </table>
-</div>
