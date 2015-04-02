@@ -16,6 +16,7 @@ require_once 'classes/IcpeSeveso.class.php';
 require_once 'classes/IcpeSilo.class.php';
 require_once 'classes/IcpeTar.class.php';
 require_once 'classes/Pnr.class.php';
+require_once 'classes/Pprt.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
 require_once 'classes/SiteClasseInscrit.class.php';
@@ -40,33 +41,11 @@ $zonage->getTypeZonageByIdType($id_type);
     <?php if (!empty($zonage->map_carmen)): ?>
     <!-- 1.1 Lien vers un zoom dans la carte CARMEN -->
     <li>
-        <a class="document" href="
+        <a class="document" 
+           href="
             <?php 
-            echo URL_CARMEN.$zonage->map_carmen.".map&object=".$zonage->path.";";
-            switch ($id_type):
-                case 18:
-                    echo "id_bien";
-                    break;
-                case 10: case 11:
-                    echo "id_org";
-                    break;
-                case 12:
-                    echo "id_national";
-                    break;
-                case 5: case 6: case 7: case 15: case 30:
-                    echo "ID_MNHN";
-                    break;
-                case 1: case 2: case 33:
-                    echo "ID_LOCAL";
-                    break;
-                case 44:
-                    echo "id_secteur";
-                    break;
-                default:
-                    echo "id_regional";
-            endswitch;
-            echo ";" . $id_regional
-            ?>" target="_blank">
+            echo URL_CARMEN.$zonage->map_carmen.".map&object=".$zonage->path.";".$zonage->primary_key.";" . $id_regional?>" 
+            target="_blank">
             Consulter la carte interactive du zonage sur CARMEN
         </a>
     </li>
@@ -74,45 +53,14 @@ $zonage->getTypeZonageByIdType($id_type);
     <?php if (!empty($zonage->map_sigloire)): ?>
     <!-- 1.2 Lien vers un zoom dans la carte SIGLOIRE -->
     <li>
-        <a class="document" href="
+        <a class="document" 
+           href="
             <?php 
-            echo URL_SIGLOIRE.$zonage->map_sigloire.".map&object=".$zonage->path.";";
-            switch ($id_type):
-                case 47:
-                    echo "id_basol";
-                    break;
-                case 48:
-                    echo "id_basias";
-                    break;
-                case 49: case 51:  case 52:
-                    echo "code_s3ic";
-                    break;
-                case 50:
-                    echo "c_code_etab";
-                    break;
-                case 53:
-                    echo "c_code_s3ic";
-                    break;
-                case 54:
-                    echo "id_gaspar";
-                    break;
-                case 55:
-                    echo "id_regiona";
-                    break;
-                case 56:
-                    echo "id_site";
-                    break;
-                case 57:
-                    echo "NUM_ENV";
-                    break;
-            endswitch;
-            echo ";".$id_regional;
-            switch ($id_type):
-                case 49: case 50: case 51: case 52: case 53: case 54:
+            echo URL_SIGLOIRE.$zonage->map_sigloire.".map&object=".$zonage->path.";".$zonage->primary_key.";".$id_regional;
+            if(!empty($zonage->layer)):
                 echo "&layer=".$zonage->layer;
-                    break;
-            endswitch;
-            ?>" target="_blank">
+            endif; ?>"
+            target="_blank">
             Consulter la carte interactive du zonage sur SIGLOIRE
         </a>
     </li>    
@@ -128,31 +76,21 @@ $zonage->getTypeZonageByIdType($id_type);
     <?php endif; ?>
     <!-- 2. Fiches descriptives et liens -->
     <li>
+        <!--  2.1 Affichage d'une fiche descriptive  -->
+        <?php if($zonage->fact_sheet=="1"): ?>
+            <a class="link" 
+                href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
+                Consulter la fiche descriptive
+            </a>
+        <!--  2.2 Affichage de la liste des communes concernées -->
+        <?php elseif($zonage->fact_sheet=="2"): ?>
+            <a class="link" 
+                href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
+                Afficher la ou les commune(s) concern&eacute;e(s)
+            </a>
+        <?php endif; ?>
         <?php
         switch ($id_type):
-            /**
-             *  2.1 Cas générique pour les fiches descriptives
-             */
-            case 1: case 2: case 3: case 4: case 7: case 8: case 9: case 12: case 13: 
-            case 14: case 15: case 16: case 29: case 44: case 49: case 50: case 51: case 52: case 53:
-            case 54: case 55: case 56: case 57:
-                ?>
-        <a class="link" 
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">Consulter la fiche descriptive</a>
-                <?php
-                break;
-           /**
-             *  2.2 Affichage uniquement des communes concernées si la
-             *  fiche est sur le site de l'INPN ou autre 
-             */
-            case 5: case 6: case 10: case 11: case 21: case 30: case 34: case 35: case 36: case 37: case 47: case 48:
-                ?>
-        <a class="link" 
-           href="spip.php?page=fiche&amp;id_type=<?=$id_type?>&amp;id_regional=<?=$id_regional?>">
-            Afficher la ou les commune(s) concern&eacute;e(s)
-        </a>
-                <?php
-                break;
             /**
              * 2.4 Fiches descriptives des projets de PSIC
              */
@@ -211,7 +149,7 @@ $zonage->getTypeZonageByIdType($id_type);
         <a class="document" href="<?= $dta->url_site ?>" target="_blank">
             Consulter la rubrique DTA sur le site de la Pr&eacute;fecture 
             de Loire-Atlantique
-        </a> 
+        </a>
                 <?php
                 break;
     
@@ -238,7 +176,7 @@ $zonage->getTypeZonageByIdType($id_type);
             Consulter la fiche de résultats par campagne
         </a>
                 <?php
-                break;         
+                break;
         endswitch; ?>
 </li>
 <!-- 3. Compléments -->
@@ -418,8 +356,7 @@ switch ($id_type):
                 $basol->getBasolByIdRegional($id_regional);
                 ?>
             <li>
-                <a class="document" 
-               href="<?=$basol->url_basol?>" target="_blank">
+                <a class="document" href="<?=$basol->url_basol?>" target="_blank">
                 Consulter la fiche du site sur BASOL
                 </a>
             </li>
@@ -430,15 +367,27 @@ switch ($id_type):
                 $basias->getBasiasByIdRegional($id_regional);
                 ?>
             <li>
-                <a class="document" 
-                   href="<?=$basias->url_basias?>" target="_blank">
+                <a class="document" href="<?=$basias->url_basias?>" target="_blank">
                     Consulter la fiche du site sur BASIAS
                 </a>
             </li>
-                <?php
-                break;                  
-endswitch;
-?>
+        <?php
+            break;
+            /**
+             * 3.9 Lien vers le site de la DREAL pour les PPRT
+             */
+            case 54:
+                $pprt = new Pprt();
+                $pprt->getPprtByIdRegional($id_regional);
+                ?>
+            <li>
+                <a class="document" href="<?=$pprt->url?>" target="blank">
+                    Consulter l'article du PPRT sur le site Internet de la DREAL
+                </a>
+            </li>    
+        <?php
+            break;
+    endswitch; ?>
 <!-- 4. Formulaires standards de données pour Natura 2000 sur le site de l'INPN -->
 <li>
     <?php
@@ -660,22 +609,22 @@ endswitch;
                     Afficher les photographies
                 </a>
             <?php
-        endif;
-        break;
-    /**
-     *  13.3 Photographies pour les sites classés et inscrits
-     */
-    case 13:
-        $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
-        if (count($site_classe_inscrit_photos) > 0):
-            ?>
-                <a class="link" 
-                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
-                    Afficher les photographies
-                </a>
-            <?php
-        endif;
-        break;
+            endif;
+            break;
+        /**
+         *  13.3 Photographies pour les sites classés et inscrits
+         */
+        case 13:
+            $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
+            if (count($site_classe_inscrit_photos) > 0):
+                ?>
+                    <a class="link" 
+                       href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+                        Afficher les photographies
+                    </a>
+                <?php
+            endif;
+            break;
 endswitch;
 ?>
 </li>
