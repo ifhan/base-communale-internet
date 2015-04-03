@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les Sites d'Intérêt Communautaire (SIC)
  * (Natura 2000, directive "Habitats")
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-25
- * @version 1.0
+ * @copyright 2015-04-03
+ * @version 1.1
  */
 class Sic {
 
@@ -20,12 +20,12 @@ class Sic {
 function getSicByIdEur15($id_eur15) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM natura_eur15, natura_habit1, R_SIC_R52
+    FROM natura_eur15, natura_habit1, r_sic_r52
     WHERE natura_eur15.ID_EUR15 = :id_eur15
     AND natura_eur15.ID_EUR15 = natura_habit1.HBCDAX 
-    AND natura_habit1.SITECODE = R_SIC_R52.id_regional
-    GROUP BY R_SIC_R52.id_regional
-    ORDER BY R_SIC_R52.id_regional');
+    AND natura_habit1.SITECODE = r_sic_r52.id_regional
+    GROUP BY r_sic_r52.id_regional
+    ORDER BY r_sic_r52.id_regional');
     $sql->bindParam(':id_eur15', $id_eur15, PDO::PARAM_STR, 11);
     try {
         $sql->execute();
