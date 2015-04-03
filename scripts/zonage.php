@@ -19,7 +19,6 @@ require_once 'classes/SiteClasseInscrit.class.php';
 require_once 'classes/StationQualite.class.php';
 require_once 'classes/Unesco.class.php';
 require_once 'classes/Zonage.class.php';
-require_once 'classes/Znieff2G.class.php';
 require_once 'classes/ZnieffIp.class.php';
 require_once 'classes/Zsc.class.php';
 
@@ -185,27 +184,25 @@ $zonage->getTypeZonageByIdType($id_type);
         endswitch; ?>
 </li>
 <!-- 6. Compléments -->
+<!-- 6.1 Liens vers l'INPN et les sites des PNR -->
 <?php
-switch ($id_type):
-     /**
-      * 6.1 Liens vers l'INPN et les sites des PNR
-      */
-    case 7:
+    if($id_type==7):
         $pnr = new Pnr();
         $pnr->getPnrByIdRegional($id_regional);
 ?>
-<li>
-    <a class="document" 
-       href="<?=URL_INPN_ESPACE_PROTEGE?><?=$pnr->id_regional?>" 
-       target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
-</li>
-<li>
-    <a class="document" 
-       href="<?=$pnr->url_site?>" 
-       target="_blank">Consulter le site du PNR</a>
-</li>
-        <?php
-        break;
+    <li>
+        <a class="document" 
+           href="<?=URL_INPN_ESPACE_PROTEGE?><?=$pnr->id_regional?>" 
+           target="_blank">Consulter la fiche descriptive sur le site de l'INPN</a>
+    </li>
+    <li>
+        <a class="document" 
+           href="<?=$pnr->url_site?>" 
+           target="_blank">Consulter le site du PNR</a>
+    </li>
+<?php endif; ?>
+<?php
+switch ($id_type):
     /**
      *  6.2 Fiche PDF et lien INPN pour Ramsar
      */    
@@ -421,23 +418,18 @@ switch ($id_type):
     endswitch;
     ?>
 </li>
-<!-- 8. Fiches ZNIEFF de l'inventaire permanent sur le site de l'INPN -->
+<!-- 8. Lien vers la fiche ZNIEFF sur le site de l'INPN -->
 <li>
 <?php
-switch ($id_type):
-    case 10: case 11:
-        $znieff = new ZnieffIp();
-        $znieff->getZnieffIpByIdRegional($id_regional, $id_type);
-        ?>
-            <a class="document" 
-               href="<?=URL_INPN_ZNIEFF?><?=$znieff->id_national?>" 
-               target="_blank">
-                Consulter la fiche ZNIEFF actualis&eacute;e sur le site de l'INPN
-            </a>
-            <?php
-            break;
-    endswitch;
-    ?>
+    if(($id_type==10)||($id_type==11)):
+        $znieff_ip = new ZnieffIp();
+        $znieff_ip->getZnieffIpByIdRegional($id_regional, $id_type);
+?>
+    <a class="document" 
+       href="<?=URL_INPN_ZNIEFF?><?=$znieff_ip->id_national?>" target="_blank">
+        Consulter la fiche ZNIEFF actualis&eacute;e sur le site de l'INPN
+    </a>
+<?php endif; ?>
 </li>
 <!-- 9. Décrets -->
 <li>
@@ -563,14 +555,13 @@ endswitch;
         </span>
 <?php endif; ?>
 </li>
-<!-- 14. Cartes PDF et rapports de présentation pour les sites classés -->
-<?php switch ($id_type):
-    case 13:
-
+<!-- 14. Rapports de présentation pour les sites classés -->
+<?php
+    if($id_type==13):
     $site_classe_inscrit = new SiteClasseInscrit();
     $site_classe_inscrit->getSiteClasseInscritDataByIdRegional($id_regional);
-    ?>
-    <?php if ($site_classe_inscrit->id_side != ""): ?>
+?>
+    <?php if($site_classe_inscrit->id_side != ""): ?>
     <li>
         <a class="document" 
            href="<?=URL_SIDE?><?=$site_classe_inscrit->id_side?>" 
@@ -583,54 +574,38 @@ endswitch;
         </a>
     </li>
     <?php endif; ?>
-<?php endswitch; ?>
+<?php endif; ?>
 <!-- 15. Photographies -->
 <li>
-    <?php
-    switch ($id_type):
-        /**
-         * 15.1 Photographies pour les ZNIEFF
-         */
-        case 10: case 11:
-            $znieff_photos = getZnieff2GPhotosByIdRegional($id_regional, $id_type);
-            if (count($znieff_photos) > 0):
-                ?>
-                <a class="link" 
-                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
-                    Afficher les photographies
-                </a>
-                <?php
-            endif;
-            break;
-        /**
-         *  15.2 Photographies pour les RNN 
-         */
-        case 2:
-            $rnn_photos = getRnnPhotosByIdRegional($id_regional);
-            if (count($rnn_photos) > 0):
-                ?>
-                <a class="link" 
-                   href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
-                    Afficher les photographies
-                </a>
-            <?php
-            endif;
-            break;
-        /**
-         *  15.3 Photographies pour les sites classés et inscrits
-         */
-        case 13:
-            $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type);
-            if (count($site_classe_inscrit_photos) > 0):
-                ?>
-                    <a class="link" 
-                       href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
-                        Afficher les photographies
-                    </a>
-                <?php
-            endif;
-            break;
-endswitch;
-?>
+    <!-- 15.1 Photographies pour les ZNIEFF -->
+    <?php if(($id_type==10)||($id_type==11)): ?>
+        <?php $znieff_photos = getZnieffIpPhotosByIdRegional($id_regional, $id_type); ?>
+    <?php endif; ?>
+    <?php if(count($znieff_photos) > 0): ?>
+    <a class="link" 
+       href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+        Afficher les photographies
+    </a>
+    <?php endif; ?>    
+    <!-- 15.2 Photographies  pour les RNN -->
+    <?php if($id_type==2): ?>
+        <?php $rnn_photos = getRnnPhotosByIdRegional($id_regional); ?>
+    <?php endif; ?>
+    <?php if(count($rnn_photos) > 0): ?>
+    <a class="link" 
+       href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+        Afficher les photographies
+    </a>
+    <?php endif; ?>
+    <!-- 15.3 Photographies pour les sites classés et inscrits -->
+    <?php if($id_type==13): ?>
+        <?php $site_classe_inscrit_photos = getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type); ?>
+    <?php endif; ?>
+    <?php if(count($site_classe_inscrit_photos) > 0): ?>
+    <a class="link" 
+       href="spip.php?page=photos&amp;id_type=<?= $id_type ?>&amp;id_regional=<?= $id_regional ?>">
+        Afficher les photographies
+    </a>
+    <?php endif; ?>
 </li>
 </ul>
