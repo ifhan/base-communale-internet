@@ -8,7 +8,7 @@ require_once 'classes/utilities.inc.php';
 
 // Classes
 require_once 'classes/Sic.class.php';
-require_once 'classes/Znieff2G.class.php';
+require_once 'classes/ZnieffIp.class.php';
 require_once 'classes/Zonage.class.php';
 
 /**
