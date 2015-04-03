@@ -15,7 +15,7 @@ class SiteClasseInscrit {
      */
     public function getSiteClasseInscritDataByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52_data 
+        $sql = $pdo->prepare('SELECT * FROM r_site_classe_inscrit_r52_data 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {
@@ -43,12 +43,12 @@ class SiteClasseInscrit {
 function getEntitesFromSiteByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM R_SITE_CLASSE_INSCRIT_R52, R_SITE_CLASSE_INSCRIT_R52_data
-    WHERE R_SITE_CLASSE_INSCRIT_R52.id_regional = :id_regional 
-    AND R_SITE_CLASSE_INSCRIT_R52.id_sp = 
-    R_SITE_CLASSE_INSCRIT_R52_data.id_sp
-    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_sp
-    ORDER BY R_SITE_CLASSE_INSCRIT_R52.id_entite');
+    FROM r_site_classe_inscrit_r52, r_site_classe_inscrit_r52_data
+    WHERE r_site_classe_inscrit_r52.id_regional = :id_regional 
+    AND r_site_classe_inscrit_r52.id_sp = 
+    r_site_classe_inscrit_r52_data.id_sp
+    GROUP BY r_site_classe_inscrit_r52.id_sp
+    ORDER BY r_site_classe_inscrit_r52.id_entite');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
     try {
         $sql->execute();
@@ -68,12 +68,12 @@ function getEntitesFromSiteByIdRegional($id_regional) {
 function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM R_SITE_CLASSE_INSCRIT_R52_photos, R_SITE_CLASSE_INSCRIT_R52, 
+    FROM r_site_classe_inscrit_r52_photos, r_site_classe_inscrit_r52, 
     r_type_zonage_r52
-    WHERE R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = :id_regional
+    WHERE r_site_classe_inscrit_r52_photos.id_regional = :id_regional
     AND r_type_zonage_r52.id_type = :id_type
-    AND R_SITE_CLASSE_INSCRIT_R52_photos.id_regional = 
-    R_SITE_CLASSE_INSCRIT_R52.id_regional');
+    AND r_site_classe_inscrit_r52_photos.id_regional = 
+    r_site_classe_inscrit_r52.id_regional');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
     $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
@@ -91,11 +91,11 @@ function getSiteClasseInscritPhotosByIdRegional($id_regional, $id_type) {
  */
 function getSitesClassesInscrits() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_SITE_CLASSE_INSCRIT_R52, 
-    R_SITE_CLASSE_INSCRIT_R52_data
-    WHERE R_SITE_CLASSE_INSCRIT_R52.id_sp = R_SITE_CLASSE_INSCRIT_R52_data.id_sp
-    GROUP BY R_SITE_CLASSE_INSCRIT_R52.id_regional 
-    ORDER BY R_SITE_CLASSE_INSCRIT_R52.id_regional');
+    $sql = $pdo->prepare('SELECT * FROM r_site_classe_inscrit_r52, 
+    r_site_classe_inscrit_r52_data
+    WHERE r_site_classe_inscrit_r52.id_sp = r_site_classe_inscrit_r52_data.id_sp
+    GROUP BY r_site_classe_inscrit_r52.id_regional 
+    ORDER BY r_site_classe_inscrit_r52.id_regional');
     try {
         $sql->execute();
         $sites_classes_inscrits = $sql->fetchAll();

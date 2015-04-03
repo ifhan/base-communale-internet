@@ -4,8 +4,8 @@
  * Description of Rnr
  * Classe et fonctions concernant les Réserves Naturelles Régionales (RNR)
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-26
- * @version 1.0
+ * @copyright 2015-04-03
+ * @version 1.1
  */
 class Rnr {
 
@@ -15,7 +15,7 @@ class Rnr {
      */
     public function getRnrByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_RNR_R52 
+        $sql = $pdo->prepare('SELECT * FROM r_rnr_r52 
         WHERE id_regional = :id_regional');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 5);
         try {

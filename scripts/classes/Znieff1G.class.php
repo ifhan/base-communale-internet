@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les Zones Naturelles d'Intérêt Faunistique et
  * Floristique (ZNIEFF) de première génération
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-23
- * @version 1.0
+ * @copyright 2015-04-03
+ * @version 1.1
  */
 class Znieff1G {
 
@@ -20,16 +20,16 @@ class Znieff1G {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         if ($id_type == 8):
             $sql = $pdo->prepare('SELECT * 
-            FROM R_ZNIEFF1_G1_R52, R_ZNIEFF1_G1_R52_data
-            WHERE R_ZNIEFF1_G1_R52.id_regional = :id_regional 
-            AND R_ZNIEFF1_G1_R52.id_regional = 
-            R_ZNIEFF1_G1_R52_data.id_regional');
+            FROM r_znieff1_g1_r52, r_znieff1_g1_r52_data
+            WHERE r_znieff1_g1_r52.id_regional = :id_regional 
+            AND r_znieff1_g1_r52.id_regional = 
+            r_znieff1_g1_r52_data.id_regional');
         elseif ($id_type == 9):
             $sql = $pdo->prepare('SELECT * 
-            FROM R_ZNIEFF2_G1_R52, R_ZNIEFF2_G1_R52_data
-            WHERE R_ZNIEFF2_G1_R52.id_regional = :id_regional 
-            AND R_ZNIEFF2_G1_R52.id_regional = 
-            R_ZNIEFF2_G1_R52_data.id_regional');
+            FROM r_znieff2_g1_r52, r_znieff2_g1_r52_data
+            WHERE r_znieff2_g1_r52.id_regional = :id_regional 
+            AND r_znieff2_g1_r52.id_regional = 
+            r_znieff2_g1_r52_data.id_regional');
         endif;
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
         try {

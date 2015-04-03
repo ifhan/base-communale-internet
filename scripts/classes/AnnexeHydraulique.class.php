@@ -14,8 +14,8 @@ class AnnexeHydraulique {
      */
     public function getAnnexeHydrauliqueByIdCommun($id_commun) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_ANNEXES_HYDRAULIQUES_R52_data
-        WHERE R_ANNEXES_HYDRAULIQUES_R52_data.id_commun = :id_commun');
+        $sql = $pdo->prepare('SELECT * FROM r_annexes_hydrauliques_r52_data
+        WHERE r_annexes_hydrauliques_r52_data.id_commun = :id_commun');
         $sql->bindParam(':id_commun', $id_commun, PDO::PARAM_STR, 10);
         try { 
             $sql->execute();
@@ -52,8 +52,8 @@ class AnnexeHydraulique {
 function getAnnexesHydrauliques() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-            FROM R_ANNEXES_HYDRAULIQUES_R52_data
-            ORDER BY R_ANNEXES_HYDRAULIQUES_R52_data.id_commun');
+            FROM r_annexes_hydrauliques_r52_data
+            ORDER BY r_annexes_hydrauliques_r52_data.id_commun');
     try {
         $sql->execute();
         $annexes = $sql->fetchAll();
