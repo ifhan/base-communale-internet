@@ -6,7 +6,7 @@ require_once(dirname(__FILE__)."/../config/database.inc.php");
 $id_scot = $_REQUEST["id_scot"];
 
 $query = "SELECT * 
-FROM R_SCOT_R52 
+FROM n_scot_zsup_r52 
 WHERE id_scot = $id_scot";
 $result = mysql_query($query);
 $val = mysql_fetch_assoc($result);

@@ -5,8 +5,8 @@
  * Classe et fonctions concernant l'ensemble des zonages d'inventaire et 
  * de protection réglementaire
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-06-15
- * @version 1.0
+ * @copyright 2014-04-14
+ * @version 1.1
  */
 class Zonage {
 
@@ -336,7 +336,7 @@ function getThemesByIdEpci($id_epci) {
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
-    $table_4 = "R_EPCI_COMMUNES_R52";
+    $table_4 = "r_epci_communes_r52";
     $sql = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3, $table_4
     WHERE $table_4.id_epci = :id_epci
@@ -367,7 +367,7 @@ function getTypesZonagesByIdEpciByIdTheme($id_epci, $id_theme) {
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
-    $table_4 = "R_EPCI_COMMUNES_R52";
+    $table_4 = "r_epci_communes_r52";
     $sql = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.id_epci = :id_epci
@@ -414,7 +414,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
      * Retourne l'ensemble des zonages concernés pour l'EPCI
      */
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_EPCI_COMMUNES_R52";
+    $table_2 = "r_epci_communes_r52";
     $sql_2 = $pdo->prepare("SELECT * 
     FROM $table, $table_2, $table_3 
     WHERE $table_2.id_epci = :id_epci
@@ -445,7 +445,7 @@ function getThemesByIdScot($id_scot) {
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
-    $table_4 = "R_SCOT_COMMUNES_R52";
+    $table_4 = "r_scot_communes_r52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4
     WHERE $table_4.id_scot = :id_scot
     AND $table.id_type = $table_2.id_type 
@@ -475,7 +475,7 @@ function getTypesZonagesByIdScotByIdTheme($id_scot, $id_theme) {
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
-    $table_4 = "R_SCOT_COMMUNES_R52";
+    $table_4 = "r_scot_communes_r52";
     $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4 
     WHERE $table_4.id_scot = :id_scot
     AND $table_3.id_theme = :id_theme 
@@ -520,7 +520,7 @@ function getZonagesByIdTypeByIdScot($id_type, $id_scot) {
      * Retourne l'ensemble des zonages concernés pour le SCoT
      */
     $table = "r_zonages_communes_r52";
-    $table_2 = "R_SCOT_COMMUNES_R52";
+    $table_2 = "r_scot_communes_r52";
     $sql_2 = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3 
     WHERE $table_2.id_scot = :id_scot
     AND $table.id_type = :id_type

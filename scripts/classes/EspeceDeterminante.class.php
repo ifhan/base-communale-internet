@@ -4,8 +4,8 @@
  * Description of EspeceDeterminante
  * Classe et fonctions concernant les espèces déterminantes
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-26
- * @version 1.0
+ * @copyright 2014-04-15
+ * @version 1.1
  */
 class EspeceDeterminante {
 
@@ -18,8 +18,8 @@ class EspeceDeterminante {
 function getEspecesDeterminantesFlore() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM R_ESPECES_DETERMINANTES_FLORE_R52, R_ESPECES_DETERMINANTES_ZNIEFF_R52
-    WHERE R_ESPECES_DETERMINANTES_FLORE_R52.ID = R_ESPECES_DETERMINANTES_ZNIEFF_R52.ID 
+    FROM r_especes_determinantes_flore_r52, r_especes_determinantes_znieff_r52
+    WHERE r_especes_determinantes_flore_r52.ID = r_especes_determinantes_znieff_r52.ID 
     GROUP BY GENRE 
     ORDER BY GENRE');
     $sql->execute();
@@ -37,7 +37,7 @@ function getEspecesDeterminantesFlore() {
  */
 function getEspecesDeterminantesFaune() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_ESPECES_DETERMINANTES_FAUNE_R52
+    $sql = $pdo->prepare('SELECT * FROM r_especes_determinantes_faune_r52
     ORDER BY GENRE');
     $sql->execute();
     try {

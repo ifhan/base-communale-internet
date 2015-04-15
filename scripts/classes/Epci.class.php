@@ -16,10 +16,10 @@ class Epci {
     public function getEpciByIdEpci($id_epci) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_EPCI_R52, R_EPCI_R52_statut
-        WHERE R_EPCI_R52.id_epci = :id_epci 
-        AND R_EPCI_R52.id_statut_epci = R_EPCI_R52_statut.id_statut_epci 
-        GROUP BY R_EPCI_R52_statut.id_statut_epci');
+        FROM r_epci_r52, r_epci_statut_r52
+        WHERE r_epci_r52.id_epci = :id_epci 
+        AND r_epci_r52.id_statut_epci = r_epci_statut_r52.id_statut_epci 
+        GROUP BY r_epci_statut_r52.id_statut_epci');
         $sql->bindParam(':id_epci', $id_epci, PDO::PARAM_STR, 3);
         $sql->execute();
         try {
@@ -37,7 +37,7 @@ class Epci {
      */
     public function getEpciByCodeSiren($id_siren) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
+        $sql = $pdo->prepare('SELECT * FROM r_epci_videos_r52
         WHERE siren = :id_siren 
         GROUP BY siren');
         $sql->bindParam(':id_siren', $id_siren, PDO::PARAM_STR, 20);
@@ -59,11 +59,11 @@ class Epci {
 function getCommunesEpciByIdEpci($id_epci) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM BDC_COMMUNE_52, R_EPCI_COMMUNES_R52
-    WHERE R_EPCI_COMMUNES_R52.id_epci = :id_epci
-    AND BDC_COMMUNE_52.id_commune = R_EPCI_COMMUNES_R52.id_commune 
-    GROUP BY BDC_COMMUNE_52.id_commune 
-    ORDER BY BDC_COMMUNE_52.id_commune');
+    FROM bdc_commune_52, r_epci_communes_r52
+    WHERE r_epci_communes_r52.id_epci = :id_epci
+    AND bdc_commune_52.id_commune = r_epci_communes_r52.id_commune 
+    GROUP BY bdc_commune_52.id_commune 
+    ORDER BY bdc_commune_52.id_commune');
     $sql->bindParam(':id_epci', $id_epci, PDO::PARAM_STR, 3);
     $sql->execute();
     try {
@@ -82,7 +82,7 @@ function getCommunesEpciByIdEpci($id_epci) {
  */
 function getEpciByIdDpt($id_dpt) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52
+    $sql = $pdo->prepare('SELECT * FROM r_epci_r52
     WHERE id_departement = :id_dpt 
     ORDER BY nom_epci');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
@@ -103,7 +103,7 @@ function getEpciByIdDpt($id_dpt) {
  */
 function getEpciVideosByIdDpt($id_dpt) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM R_EPCI_R52_videos
+    $sql = $pdo->prepare('SELECT * FROM r_epci_videos_r52
     WHERE id_departement = :id_dpt 
     ORDER BY nom_epci');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);

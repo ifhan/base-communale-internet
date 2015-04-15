@@ -16,7 +16,7 @@ require_once 'classes/utilities.inc.php';
 	<title>
 	<?php  
 
-		$query = "SELECT * FROM BDC_COMMUNE_52 WHERE id_commune = $commune"; 
+		$query = "SELECT * FROM bdc_commune_52 WHERE id_commune = $commune"; 
 		$result = mysql_query($query);
 		$val = mysql_fetch_assoc($result);
 	

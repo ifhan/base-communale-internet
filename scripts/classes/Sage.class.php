@@ -67,7 +67,7 @@ class Sage {
      */
     public function getSageSituationByIdSituation($id_situation) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM R_SAGE_SITUATION_R52 
+        $sql = $pdo->prepare('SELECT * FROM r_sage_situation_r52 
         WHERE id_situation = :id_situation');
         $sql->bindParam(':id_situation', $id_situation, PDO::PARAM_INT, 11);
         try {

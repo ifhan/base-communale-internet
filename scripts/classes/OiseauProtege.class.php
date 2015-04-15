@@ -4,8 +4,8 @@
  * Description of OiseauProtege
  * Classe et fonctions concernant les oiseaux protégés
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-26
- * @version 1.0
+ * @copyright 2014-04-15
+ * @version 1.1
  */
 class OiseauProtege {
 
@@ -19,12 +19,12 @@ class OiseauProtege {
 function getOiseauxProtegesByIdArticle($id_article) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     if ($id_article !== "0"):
-        $sql = $pdo->prepare('SELECT * FROM R_OISEAUX_PROTEGES_2009_FRANCE 
+        $sql = $pdo->prepare('SELECT * FROM r_oiseaux_proteges_2009_france 
         WHERE id_article = :id_article
         ORDER BY id');
         $sql->bindParam(':id_article', $id_article, PDO::PARAM_INT, 1);
     elseif ($id_article == "0"):
-        $sql = $pdo->prepare('SELECT * FROM R_OISEAUX_PROTEGES_2009_FRANCE 
+        $sql = $pdo->prepare('SELECT * FROM r_oiseaux_proteges_2009_france 
         ORDER BY id');
     endif;
     try {

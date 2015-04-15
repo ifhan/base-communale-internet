@@ -5,8 +5,8 @@
  * Classe et fonctions concernant les sites Natura 2000 des directives Oiseaux
  * et Habitats
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2012-07-24
- * @version 1.0
+ * @copyright 2014-04-15
+ * @version 1.1
  */
 class SiteNatura {
 
@@ -51,9 +51,9 @@ class SiteNatura {
     public function getOperateurByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_DOCOB_R52, R_DOCOB_ORGANISMES_R52
-        WHERE R_DOCOB_R52.id_regional = :id_regional
-        AND R_DOCOB_R52.id_operateur = R_DOCOB_ORGANISMES_R52.id_organisme');
+        FROM r_docob_r52, r_docob_organismes_r52
+        WHERE r_docob_r52.id_regional = :id_regional
+        AND r_docob_r52.id_operateur = r_docob_organismes_r52.id_organisme');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
         try {
             $sql->execute();
@@ -73,9 +73,9 @@ class SiteNatura {
     public function getStructureAnimatriceByIdRegional($id_regional) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
         $sql = $pdo->prepare('SELECT * 
-        FROM R_DOCOB_R52, R_DOCOB_ORGANISMES_R52 
-        WHERE R_DOCOB_R52.id_regional = :id_regional
-        AND R_DOCOB_R52.id_structure_animatrice = R_DOCOB_ORGANISMES_R52.id_organisme');
+        FROM r_docob_r52, r_docob_organismes_r52 
+        WHERE r_docob_r52.id_regional = :id_regional
+        AND r_docob_r52.id_structure_animatrice = r_docob_organismes_r52.id_organisme');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_INT, 11);
         try {
             $sql->execute();
