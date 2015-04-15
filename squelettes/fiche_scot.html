@@ -7,6 +7,7 @@
             </BOUCLE_titre_recherche_geographique>
         </title>
         <INCLURE{fond=inc-head}>
+        <INCLURE{fond=inc-jqueryTabs}>
     </head>
     <body>
         [(#REM) Entete de la page + titre du site ]
@@ -36,11 +37,51 @@
                                             <br />
                                             <INCLURE(scripts/inc/scot.inc.php)>
                                         </h2>
-                                        <hr class="hrart">
-                                        <br />
-                                        <div class="lien_simple">
-                                            <INCLURE(scripts/fiche_scot.php)>
-                                        </div>
+                                        <hr class="hrart"><br />
+                                        <div id="tabs">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#tabs-0">
+                                                            <span>COMMUNES</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabs-1">
+                                                            <span>EAU</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabs-2">
+                                                            <span>NATURE PAYSAGE BIODIVERSITÉ</span>
+                                                        </a>
+                                                    </li>                                                    
+                                                    <li>
+                                                        <a href="#tabs-3">
+                                                            <span>RISQUE</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tabs-4">
+                                                            <span>SITE INDUSTRIEL PRODUCTION</span>
+                                                        </a>
+                                                    </li>                                                    
+                                                </ul>
+                                                <div id="tabs-0">
+                                                    <INCLURE(scripts/fiche_scot.php)>
+                                                </div>
+                                                <div id="tabs-1">
+                                                    <INCLURE(scripts/fiche_scot_eau.php)>
+                                                </div>
+                                                <div id="tabs-2">
+                                                    <INCLURE(scripts/fiche_scot_nature_paysage_biodiversite.php)>
+                                                </div>
+                                                <div id="tabs-3">
+                                                    <INCLURE(scripts/fiche_scot_risque.php)>
+                                                </div>                                                
+                                                <div id="tabs-4">
+                                                    <INCLURE(scripts/fiche_scot_site_industriel_production.php)>
+                                                </div>
+                                            </div>
                                         <div class="clearer">&nbsp;</div>
                                     </div><!-- innercentrale -->
                                 </div><!-- boxcentrale -->
