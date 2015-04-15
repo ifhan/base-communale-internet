@@ -222,8 +222,9 @@ function getZonagesByIdTypeByRegion($id_type) {
 
 /**
  * Sélectionne les thèmes des zonages présents sur une commune à partir du 
- * code géographique de la commune
+ * code géographique de la commune et de l'identifiant de la rubrique
  * @param int $id_commune Code géographique de la commune
+ * @param int $id_rub Identifiant de la rubrique
  * @return array 
  */
 function getThemesByIdCommuneIdRubrique($id_commune,$id_rub) {
@@ -436,24 +437,29 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
 
 /**
  * Sélectionne les thèmes des zonages présents sur un SCoT  à partir de
- * l'identifiant du SCoT
- * @param int $id_commune Code géographique de la commune
+ * l'identifiant du SCoT et de l'identifiant de la rubrique
+ * @param int $id_scot Identifiant SUDOCUH du SCoT
+ * @param int $id_rub Identifiant de la rubrique 
  * @return array 
  */
-function getThemesByIdScot($id_scot) {
+function getThemesByIdScotIdRubrique($id_scot,$id_rub) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
     $table_3 = "r_type_theme_r52";
     $table_4 = "r_scot_communes_r52";
-    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4
+    $table_5 = "r_type_rubrique_r52";
+    $sql = $pdo->prepare("SELECT * FROM $table, $table_2, $table_3, $table_4, $table_5
     WHERE $table_4.id_scot = :id_scot
     AND $table.id_type = $table_2.id_type 
     AND $table_2.id_theme = $table_3.id_theme
     AND $table_4.id_commune = $table.id_commune
+    AND $table_2.id_rub = $table_5.id_rub
+    AND $table_5.id_rub = :id_rub
     GROUP BY $table_3.id_theme 
     ORDER BY $table_3.id_theme");
-    $sql->bindParam(':id_scot', $id_scot, PDO::PARAM_STR, 2);
+    $sql->bindParam(':id_scot', $id_scot, PDO::PARAM_STR, 5);
+    $sql->bindParam(':id_rub', $id_rub, PDO::PARAM_INT, 2);    
     try {
         $sql->execute();
         $themes = $sql->fetchAll();
