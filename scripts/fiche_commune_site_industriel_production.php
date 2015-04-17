@@ -23,16 +23,25 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,15);
          * Accès direct par thème en haut de page
          */
     ?>
-    <?php foreach($themes as $theme): ?>
-    <div class="listerub">
-        <div class="titresousrub"><?=$theme["theme"]?></div>
-            <?php $id_theme = $theme["id_theme"]; ?>
-            <?php $types_zonages = getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) ?>
-            <?php foreach($types_zonages as $type_zonage): ?>
-            <strong><a href="#<?=$type_zonage["id_type"]?>"><?=$type_zonage["type"]?></a></strong><br />
+<div class="listerub">
+    <div class="titresousrub">Accès direct</div>
+    <div id="plan2">
+        <ul class="plansite">
+            <?php foreach($themes as $theme): ?>
+            <li>
+                <a href="#<?=$theme["id_theme"]?>" class="plansecteur"><?=$theme["theme"]?></a>
+                    <?php $id_theme = $theme["id_theme"]; ?>
+                    <?php $types_zonages = getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) ?>
+                <ul>
+                    <?php foreach($types_zonages as $type_zonage): ?>
+                    <li><a href="#<?=$type_zonage["id_type"]?>" class="planrubniv1"><?=$type_zonage["type"]?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
             <?php endforeach; ?>
+        </ul>
     </div>
-    <?php endforeach; ?>
+</div><br />
     <?php foreach($themes as $theme): ?>
     <div class="listerub">
         <div class="titresousrub"><?=$theme["theme"]?></div>
@@ -41,7 +50,7 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,15);
          * Affichage du thème des types de zonage 
          */
         ?>
-        <?php $id_theme = $theme["id_theme"]; ?>
+        <div id="<?=$theme["id_theme"]?>"><?php $id_theme = $theme["id_theme"]; ?>
         <?php $types_zonages = getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) ?>
         <?php foreach($types_zonages as $type_zonage): ?>
             <?php
@@ -54,12 +63,6 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,15);
             <?php $zonages = getZonagesByIdTypeByIdCommune($id_type, $id_commune) ?>
             <table class="encadre">
             <?php foreach($zonages as $zonage): ?>
-                <?php
-                /**
-                * Affichage d'un commentaire spécifique pour le PNA Luronium natans
-                */
-                ?>
-                
                 <?php
                 /**
                  * Affichage de l'identifiant, du nom du zonage et 
