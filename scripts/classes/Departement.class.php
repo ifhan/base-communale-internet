@@ -40,8 +40,8 @@ class Departement {
         WHERE r_zonages_communes_r52.id_regional = :id_regional
         AND r_zonages_communes_r52.id_type = :id_type
         AND r_zonages_communes_r52.id_departement = 
-       bdc_departement_52.id_departement 
-        GROUP BYbdc_departement_52.id_departement');
+        bdc_departement_52.id_departement 
+        GROUP BY bdc_departement_52.id_departement');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
         $sql->bindParam(':id_type', $id_type, PDO::PARAM_STR, 3);
         try {
