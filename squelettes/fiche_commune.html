@@ -13,86 +13,96 @@
         [(#REM) Entete de la page + titre du site ]
         <INCLURE{fond=inc-entete}>
         <div id="milieu">
-            <div id="ext-main">	
+            <div id="ext-main">
                 [(#REM) Fil d'Ariane ]
                 <INCLURE{fond=inc-fil_ariane} {id_rubrique=2}{tout}>
                 [(#REM) Titre de la rubrique parent]
                 <INCLURE{fond=inc-titre_rubrique}{id_rubrique=2}>
-                    <div id="milieu3_dedie">
-                        <div class="main">
-                            <div id="gauche">
-                                <div id="navi_gauche">
-                                    [(#REM) Menu de navigation par rubriques ]
-                                    <INCLURE{fond=inc-rubriques}{id_rubrique=2} {tout}>
-                                    <div class="clearer">&nbsp;</div>
-                                </div>
-                            </div><!-- gauche -->
-                            <div id="contenu">
-                                <div class="main-content-2cols_dedie">
-                                    <h1 class="invisible">Contenu</h1>
-                                    <div id="boxcentrale">
-                                        <div class="innercentrale">
-                                            <h2>Commune de 
-                                                <INCLURE(scripts/inc/commune.inc.php)>
-                                            </h2>
-                                            <hr class="hrart"><br />
-                                            <div id="tabs">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#tabs-1">
-                                                            <span>EAU</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tabs-2">
-                                                            <span>NATURE PAYSAGE BIODIVERSITÉ</span>
-                                                        </a>
-                                                    </li>                                                    
-                                                    <li>
-                                                        <a href="#tabs-3">
-                                                            <span>RISQUE</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tabs-4">
-                                                            <span>SITE INDUSTRIEL PRODUCTION</span>
-                                                        </a>
-                                                    </li>                                                    
-                                                    <li>
-                                                        <a href="#tabs-5">
-                                                            <span>CADRAGE</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <div id="tabs-1">
-                                                    <INCLURE(scripts/fiche_commune_eau.php)>
-                                                </div>
-                                                <div id="tabs-2">
-                                                    <INCLURE(scripts/fiche_commune_nature_paysage_biodiversite.php)>
-                                                </div>
-                                                <div id="tabs-3">
-                                                    <INCLURE(scripts/fiche_commune_risque.php)>
-                                                </div>                                                
-                                                <div id="tabs-4">
-                                                    <INCLURE(scripts/fiche_commune_site_industriel_production.php)>
-                                                </div>
-                                                <div id="tabs-5">
-                                                    <INCLURE(scripts/fiche_cadrage.php)>
-                                                </div>
+                <div id="milieu3_dedie">
+                    <div class="main">
+                        <div id="gauche">
+                            <div id="navi_gauche">
+                                [(#REM) Menu de navigation par rubriques ]
+                                <INCLURE{fond=inc-rubriques}{id_rubrique=2} {tout}>
+                                <div class="clearer">&nbsp;</div>
+                            </div><!-- navi_gauche -->
+                        </div><!-- gauche -->
+                        <div id="contenu">
+                            <div class="main-content-2cols_dedie">
+                                <h1 class="invisible">Contenu</h1>
+                                <div id="boxcentrale">
+                                    <div class="innercentrale">
+                                        <h2>
+                                            Commune de 
+                                            <INCLURE(scripts/inc/commune.inc.php)>
+                                        </h2>
+                                        <hr class="hrart"><br />
+                                        <div id="example">
+                                            <ul class="tabs">
+                                                <li>
+                                                    <a href="#tabs-0">
+                                                        <span>CADRAGE</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tabs-1">
+                                                        <span>AMÉNAGEMENT URBANISME</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tabs-2">
+                                                        <span>EAU</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tabs-3">
+                                                        <span>NATURE PAYSAGE BIODIVERSITÉ</span>
+                                                    </a>
+                                                </li>                                                    
+                                                <li>
+                                                    <a href="#tabs-4">
+                                                        <span>RISQUE</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#tabs-5">
+                                                        <span>SITE INDUSTRIEL PRODUCTION</span>
+                                                    </a>
+                                                </li>                                                    
+
+                                            </ul>
+                                            <div id="tabs-0">
+                                                <INCLURE(scripts/fiche_commune_cadrage.php)>
                                             </div>
-                                                <div class="clearer">&nbsp;</div>
-                                        </div><!-- innercentrale -->
-                                    </div><!-- boxcentrale -->
-                                </div><!-- main-content-2cols_dedie -->
-                            </div><!-- contenu -->
-                            <div class='clearer'>&nbsp;</div>
-                            
-                        </div><!-- main -->
-                    </div><!-- milieu3 -->
-                    </div><!-- ext-main -->
-            </div><!-- milieu -->
-            [(#REM) Pied de page ]
-            <INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+                                            <div id="tabs-1">
+                                                <INCLURE(scripts/fiche_commune_amenagement_urbanisme.php)>
+                                            </div>
+                                            <div id="tabs-2">
+                                                <INCLURE(scripts/fiche_commune_eau.php)>
+                                            </div>
+                                            <div id="tabs-3">
+                                                <INCLURE(scripts/fiche_commune_nature_paysage_biodiversite.php)>
+                                            </div>
+                                            <div id="tabs-4">
+                                                <INCLURE(scripts/fiche_commune_risque.php)>
+                                            </div>                                                
+                                            <div id="tabs-5">
+                                                <INCLURE(scripts/fiche_commune_site_industriel_production.php)>
+                                            </div>
+
+                                        </div><!-- example -->
+                                        <div class="clearer">&nbsp;</div>
+                                    </div><!-- innercentrale -->
+                                </div><!-- boxcentrale -->
+                            </div><!-- main-content-2cols_dedie -->
+                        </div><!-- contenu -->
+                        <div class="clearer">&nbsp;</div>
+                    </div><!-- main -->
+                </div><!-- milieu3 -->
+            </div><!-- ext-main -->
+        </div><!-- milieu -->
+        [(#REM) Pied de page ]
+        <INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
         </div><!--#page-->
     </body>
 </html>
