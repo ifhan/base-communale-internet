@@ -328,12 +328,12 @@ function getZonagesByIdTypeByIdCommune($id_type, $id_commune) {
 
 /**
  * Sélectionne les thèmes des zonages présents sur un EPCI  à partir de
- * l'identifiant du SCoT et de l'identifiant de la rubrique
+ * l'identifiant de l'EPCI et de l'identifiant de la rubrique
  * @param int $id_epci Identifiant de l'EPCI
  * @param int $id_rub Identifiant de la rubrique 
  * @return array 
  */
-function getThemesByIdEpciIdRubrique($id_epci,$id_rub) {
+function getThemesByIdEpciByIdRubrique($id_epci,$id_rub) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
@@ -363,7 +363,7 @@ function getThemesByIdEpciIdRubrique($id_epci,$id_rub) {
 /**
  * Sélectionne les types de zonages des zonages présents sur un EPCI à
  * partir de l'identifiant de l'EPCI et de l'identifiant du thème
- * @param int $id_commune Code géographique de la commune
+ * @param int $id_epci Code géographique de la commune
  * @param int $id_theme Identifiant du thème du zonage
  * @return array 
  */
@@ -446,7 +446,7 @@ function getZonagesByIdTypeByIdEpci($id_type, $id_epci) {
  * @param int $id_rub Identifiant de la rubrique 
  * @return array 
  */
-function getThemesByIdScotIdRubrique($id_scot,$id_rub) {
+function getThemesByIdScotByIdRubrique($id_scot,$id_rub) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $table = "r_zonages_communes_r52";
     $table_2 = "r_type_zonage_r52";
