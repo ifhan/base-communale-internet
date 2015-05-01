@@ -21,30 +21,16 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,03);
     <?php foreach($themes as $theme): ?>
     <div class="listerub">
         <div class="titresousrub"><?=$theme["theme"]?></div>
-        <?php
-        /**
-         * Affichage du thème des types de zonage 
-         */
-        ?>
+        <!-- Affichage du thème des types de zonage -->
         <?php $id_theme = $theme["id_theme"]; ?>
         <?php $types_zonages = getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) ?>
         <?php foreach($types_zonages as $type_zonage): ?>
-            <?php
-            /**
-             * Affichage du type de zonage 
-             */
-            ?>
+            <!-- Affichage du type de zonage -->
             <strong><?=$type_zonage["type"]?> :</strong><br />
             <?php $id_type = $type_zonage["id_type"]; ?>
             <?php $zonages = getZonagesByIdTypeByIdCommune($id_type, $id_commune) ?>
             <table class="encadre">
             <?php foreach($zonages as $zonage): ?>
-                <?php
-                /**
-                * Affichage d'un commentaire spécifique pour le PNA Luronium natans
-                */
-                ?>
-                
                 <?php
                 /**
                  * Affichage de l'identifiant, du nom du zonage et 
