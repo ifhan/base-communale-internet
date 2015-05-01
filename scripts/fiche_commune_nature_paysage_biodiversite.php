@@ -40,13 +40,13 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,11);
     </div><br />
     <?php foreach($themes as $theme): ?>
     <div class="listerub">
-        <div class="titresousrub"><?=$theme["theme"]?></div>
         <!-- Affichage du thème des types de zonage -->
+        <div id="<?=$theme["id_theme"]?>"></div><div class="titresousrub"><?=$theme["theme"]?></div>
         <?php $id_theme = $theme["id_theme"]; ?>
         <?php $types_zonages = getTypesZonagesByIdCommuneByIdTheme($id_commune, $id_theme) ?>
         <?php foreach($types_zonages as $type_zonage): ?>
             <!-- Affichage du type de zonage -->
-            <strong><?=$type_zonage["type"]?> :</strong><br />
+            <div id="<?=$type_zonage["id_type"]?>"></div><strong><?=$type_zonage["type"]?> :</strong><br />
             <?php $id_type = $type_zonage["id_type"]; ?>
             <?php $zonages = getZonagesByIdTypeByIdCommune($id_type, $id_commune) ?>
             <table class="encadre">
