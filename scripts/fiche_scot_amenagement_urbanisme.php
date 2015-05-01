@@ -31,12 +31,7 @@ $themes = getThemesByIdScotByIdRubrique($id_scot,03);
             <?php $zonages = getZonagesByIdTypeByIdScot($id_type, $id_scot) ?>
             <table class="encadre">
             <?php foreach($zonages as $zonage): ?>
-                <?php
-                /**
-                 * Affichage de l'identifiant, du nom du zonage et 
-                 * du lien vers la liste des ressources associées
-                 */
-                ?>
+                <!-- Affichage de l'identifiant, du nom du zonage et du lien vers la liste des ressources associées -->
                 <tr bgcolor="<?=switchColor()?>" valign="top">
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>

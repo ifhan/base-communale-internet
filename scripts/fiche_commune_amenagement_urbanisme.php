@@ -31,21 +31,12 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,03);
             <?php $zonages = getZonagesByIdTypeByIdCommune($id_type, $id_commune) ?>
             <table class="encadre">
             <?php foreach($zonages as $zonage): ?>
-                <?php
-                /**
-                 * Affichage de l'identifiant, du nom du zonage et 
-                 * du lien vers la liste des ressources associées
-                 */
-                ?>
+                <!-- Affichage de l'identifiant, du nom du zonage et du lien vers la liste des ressources associées -->
                 <tr bgcolor="<?=switchColor()?>" valign="top">
                     <td>
                         <strong><?= $zonage["id_regional"] ?></strong>
                     </td>
-                    <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?>
-                        <?php if ($zonage["COMMENT"]!=""): ?>
-                            <?= '*<br /><em><small>* '.$zonage["COMMENT"].'</small></em>' ?>
-                        <?php endif;?>
-                    </td>
+                    <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?></td>
                     <td class="cache">
                         <a href="spip.php?page=zonage&id_type=<?= $zonage["id_type"] ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><div align="right" class="cache"><img src="IMG/png/system-search.png" alt="Lien vers la ressource" /></a></div>
                     </td>
