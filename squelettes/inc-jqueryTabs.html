@@ -1,7 +1,11 @@
 <link type="text/css" href="javascript/jquery-ui-1.8.9.custom/css/smoothness/jquery-ui-1.8.9.custom.css" rel="Stylesheet" />	
-<script type="text/javascript" language="javascript" src="javascript/jquery-ui-1.8.9.custom/js/jquery-ui-1.8.9.custom.min.js"></script>
+<!--<script type="text/javascript" language="javascript" src="javascript/jquery-ui-1.8.9.custom/js/jquery-ui-1.8.9.custom.min.js"></script>-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="javascript/ui.tabs.paging.js"></script>
 <script type="text/javascript">
     $(function() {
-        $( "#tabs" ).tabs();
+        $( "#example" ).tabs();
+        $( "#example" ).tabs('paging', { cycle: true, follow: true } );
     });
 </script>
