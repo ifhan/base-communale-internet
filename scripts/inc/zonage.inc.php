@@ -19,4 +19,4 @@ $id_regional = $_REQUEST["id_regional"];
 $zonage = new Zonage();
 $zonage->getZonageByIdRegional($id_type, $id_regional);
 ?>
-<?=$zonage->id_regional?> <?= mb_strtoupper($zonage->nom) ?>
+<?=$zonage->id_regional?> <?=$zonage->nom?>
