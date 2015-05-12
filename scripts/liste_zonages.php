@@ -78,7 +78,7 @@ $id_type = $_REQUEST["id_type"];
         <?php if ($zonage["id_regional"] != "0") : ?>
             <td><?= $zonage["id_regional"] ?> </td>
         <?php endif; ?>
-            <td width="100%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?></td>
+            <td width="100%">&nbsp;<?=$zonage["nom"]?></td>
             <td class="cache">
                 <div align="right">
                     <a href="spip.php?page=zonage&id_type=<?= $id_type ?>&amp;id_regional=<?= $zonage["id_regional"] ?>">
@@ -115,7 +115,7 @@ $id_type = $_REQUEST["id_type"];
         <?php if ($zonage["id_regional"] != "0"): ?>
             <td><?= $zonage["id_regional"] ?></td>
         <?php endif; ?>
-            <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?></td>
+            <td width="99%">&nbsp;<?=$zonage["nom"]?></td>
             <td class="cache">
                 <div align="right">
                     <a href="spip.php?page=zonage&id_type=<?= $id_type ?>&amp;id_regional=<?= $zonage["id_regional"] ?>">
