@@ -209,7 +209,7 @@ function getZonagesByIdTypeByRegion($id_type) {
      * Retourne l'ensemble des zonages concernés pour la région
      */
     $sql_2 = $pdo->prepare("SELECT * FROM $table
-    GROUP BY id_regional 
+    GROUP BY id_regional
     ORDER BY id_regional");
     try {
         $sql_2->execute();
