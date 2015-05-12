@@ -15,6 +15,7 @@ require_once 'classes/Pnr.class.php';
 require_once 'classes/Pprt.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
+require_once 'classes/Scot.class.php';
 require_once 'classes/SiteClasseInscrit.class.php';
 require_once 'classes/StationQualite.class.php';
 require_once 'classes/Unesco.class.php';
@@ -148,6 +149,20 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
                 <?php
                 break;
+            /**
+             * 4.4 Lien vers SUDOCUH pour les SCoT
+             */
+            case 63:
+                $scot = new Scot();
+                $scot->getScotByIdRegional($id_regional);
+                ?>
+        <a class="document" 
+           href="<?= URL_SUDOCUH ?><?=$scot->ID_SCHEMA?>">
+            Consulter la fiche du SCoT sur l'application SUDOCUH 
+        </a>
+                <?php
+                break;
+    
         endswitch; ?>
 </li>
 <!-- 5. Liens vers un site générique -->
