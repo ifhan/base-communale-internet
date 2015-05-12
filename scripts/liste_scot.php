@@ -44,8 +44,8 @@ $id_dpt = isset($_POST['departement_scot'])?$_POST['departement_scot']:null;
                     <p>SCoT&nbsp;:</p>
                     <select name="id_scot" id="id_scot">
                         <?php foreach($array_scot as $scot): ?>
-                        <option value="<?= $scot['id_scot'] ?>">
-                        <?=$scot['nom_scot']?>
+                        <option value="<?= $scot['id_regional'] ?>">
+                        <?=$scot['nom']?>
                         </option>
                         <?php endforeach; ?>
                     </select>
