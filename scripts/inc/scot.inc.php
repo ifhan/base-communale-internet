@@ -7,9 +7,9 @@ $id_scot = $_REQUEST["id_scot"];
 
 $query = "SELECT * 
 FROM n_scot_zsup_r52 
-WHERE id_scot = $id_scot";
+WHERE id_regional = $id_scot";
 $result = mysql_query($query);
 $val = mysql_fetch_assoc($result);
 
-echo $val["nom_scot"];	
+echo $val["nom"];	
 ?>
