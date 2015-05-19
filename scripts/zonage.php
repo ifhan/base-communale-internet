@@ -15,6 +15,7 @@ require_once 'classes/Pnr.class.php';
 require_once 'classes/Pprt.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
+require_once 'classes/Sage.class.php';
 require_once 'classes/Scot.class.php';
 require_once 'classes/SiteClasseInscrit.class.php';
 require_once 'classes/StationQualite.class.php';
@@ -162,7 +163,19 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
                 <?php
                 break;
-    
+            /**
+             * 4.5 Lien vers Gest'Eau pour les SAGE
+             */            
+            case 16:
+                $sage = new Sage();
+                $sage->getSageByIdRegional($id_regional);
+                ?>
+        <a class="document" 
+           href="<?= URL_GESTEAU ?><?=$sage->url_gesteau?>">
+            Consulter la fiche du SAGE sur Gest'Eau
+        </a>
+                <?php
+                break;    
         endswitch; ?>
 </li>
 <!-- 5. Liens vers un site générique -->
