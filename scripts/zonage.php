@@ -12,6 +12,7 @@ require_once 'classes/Basol.class.php';
 require_once 'classes/Dta.class.php';
 require_once 'classes/Docob.class.php';
 require_once 'classes/Pnr.class.php';
+require_once 'classes/Pprm.class.php';
 require_once 'classes/Pprt.class.php';
 require_once 'classes/Rnn.class.php';
 require_once 'classes/Rnr.class.php';
@@ -175,7 +176,22 @@ $zonage->getTypeZonageByIdType($id_type);
             Consulter la fiche du SAGE sur Gest'Eau
         </a>
                 <?php
+                break;
+
+            /**
+             * 4.6 Lien vers le site web du PPRM
+             */            
+            case 65:
+                $pprm = new Pprm();
+                $pprm->getPprmByIdRegional($id_regional);
+                ?>
+        <a class="document" 
+           href="<?=$pprm->SITE_WEB?>">
+            Consulter la présentation du PPRM sur le site de la Préfecture
+        </a>
+                <?php
                 break;    
+            
         endswitch; ?>
 </li>
 <!-- 5. Liens vers un site générique -->
