@@ -37,7 +37,7 @@ class SiteNatura {
             $this->nom = $row["nom"];
             $this->date_transmission = date("d/m/Y", strtotime($row['date_transmission']));
             $this->date_designation = date("d/m/Y", strtotime($row['date_designation']));
-            $this->surf_sig_l93 = $row["surf_sig_l93"];
+            $this->surf_sig = $row["surf_sig"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }

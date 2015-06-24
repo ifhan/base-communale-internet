@@ -47,7 +47,7 @@ $structure_animatrice->getStructureAnimatriceByIdRegional($id_regional);
     <?php endif; ?>
     <tr>
         <td>Surface calcul&eacute;e dans le SIG&nbsp;:</td>
-        <td><strong><?=$site_natura->surf_sig_l93?> ha</strong></td>
+        <td><strong><?=$site_natura->surf_sig?> ha</strong></td>
     </tr>
     <tr>
         <td>Op&eacute;rateur&nbsp;:</td>
