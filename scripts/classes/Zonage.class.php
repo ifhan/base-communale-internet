@@ -170,10 +170,11 @@ function getZonagesByIdTypeByIdDpt($id_type, $id_dpt) {
     /**
      * Retourne l'ensemble des zonages concernés pour le département choisi 
      */
-    $sql_2 = $pdo->prepare("SELECT * FROM $table
-    WHERE id_dpt = :id_dpt 
-    GROUP BY id_regional 
-    ORDER BY id_regional");
+    $sql_2 = $pdo->prepare("SELECT * FROM $table, r_zonages_communes_r52
+    WHERE r_zonages_communes_r52.id_departement = :id_dpt 
+    AND r_zonages_communes_r52.id_regional = $table.id_regional
+    GROUP BY $table.id_regional 
+    ORDER BY $table.id_regional");
     $sql_2->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
     try {
         $sql_2->execute();
