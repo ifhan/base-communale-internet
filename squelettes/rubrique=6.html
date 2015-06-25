@@ -74,6 +74,10 @@
 								<div class="titresousrub">Recherche par document</div>
 								<a href="spip.php?page=liste_rapports_sites" class="titreartliste">Consulter la liste des rapports de pr&eacute;sentation</a>
 							</div><!-- listerub -->
+                                                        
+                                                        <div class="ajax">
+							#FORMULAIRE_TYPE_ATLAS_PAYSAGES
+							</div>
 
 							[(#REM) Sites de la rubrique ]
 							<B_sites>
@@ -86,9 +90,9 @@
 											<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
 											<li>
 												<a href="#URL_SITE" target="_blank">#NOM_SITE</a>
-											</li><br />
+											</li>
 											</BOUCLE_sites>
-										</ul>
+										</ul><br />
 									</div>
 								</div>
 							</div><!-- listerub -->
