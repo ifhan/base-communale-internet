@@ -1,0 +1,31 @@
+<div class="listerub">
+    <div class="titresousrub">Ouvrages hydrauliques</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type d'ouvrage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="66">Barrages</option>
+                            <option value="67">Digues</option>
+                        </select>
+                    </td>
+                    <td><strong>D&eacute;partement&nbsp;:</strong><br />
+                        <select name="id_dpt" id="departement">
+                            <BOUCLE_departements(spip_departements)>
+                                <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                            </BOUCLE_departements>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
