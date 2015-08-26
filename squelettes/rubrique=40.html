@@ -1,0 +1,150 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<BOUCLE_principale(RUBRIQUES) {id_rubrique} {tout}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+    <head>
+        <title>[(#TITRE|textebrut|supprimer_numero) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+        [<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+        <INCLURE{fond=inc-head}>
+            [(#REM) Lien vers le flux RSS des articles la rubrique ]
+            <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+    </head>
+    
+    <body>
+        
+        [(#REM) Entete de la page + titre du site ]
+        <INCLURE{fond=inc-entete}>
+            
+        <div id="milieu">
+            <div id="ext-main">	
+                
+                [(#REM) Fil d'Ariane ]
+                <div id="boxnavpath">
+                    <div id="navpath">
+                        <a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero)]
+                    </div>
+                </div>
+                
+                <BOUCLE_titre_secteur(RUBRIQUES) {racine} {id_secteur}>
+                    <div id="titrerub">
+                        <span style='text-transform: uppercase;' class='titrerub'>[(#TITRE|supprimer_numero)]</span><br />
+                        <img src="plugins/interdreal/_images/bg_theme_bloc3c_h1_dedie.png" width="981px" height="46px" class="img_png">
+                    </div>
+                </BOUCLE_titre_secteur>
+
+                <div id="milieu3_dedie">
+                    <div class="main">
+
+                        <div id="gauche">
+                            <div id="navi_gauche">
+                                [(#REM) Menu de navigation par rubriques ]
+                                <INCLURE{fond=inc-rubriques}{id_rubrique}{tout}>
+                                    <div class="clearer">&nbsp;</div>
+                            </div><!-- navi_gauche -->
+
+                        </div><!-- gauche -->			
+
+                        <div id="contenu">
+                            <div class="main-content-2cols_dedie">
+                                
+                                <h1 class="invisible">Contenu</h1>
+                                
+                                <div id="boxcentrale">
+                                    <div class="innercentrale">
+
+                                        <BOUCLE_titre_rubrique(RUBRIQUES) {id_rubrique} >
+                                            <div class="cadrerub">
+                                                <div class="top">&nbsp;</div>
+                                                <div class="center">
+                                                    <h2>[(#TITRE|supprimer_numero)]</h2>
+                                                    <div class="texterub">#TEXTE</div>
+                                                </div>
+                                                <div class="bottom">&nbsp;</div>
+                                            </div>
+                                        </BOUCLE_titre_rubrique>
+
+                                        <div class="clearer">&nbsp;</div>
+
+                                        <div class="listerub">
+
+                                            <div class="titresousrub">Stations d'hydrobiologie</div><br />
+                                            
+                                            <h3 class="titreartliste">Recherche par cours d'eau</h3>
+                                            <INCLURE(scripts/liste_cours_eau.php)><br />
+
+                                            <h3 class="titreartliste">Recherche par commune</h3>
+                                            <INCLURE(scripts/liste_communes_qualite.php)><br />
+
+                                            <div class="ajax">
+                                                #FORMULAIRE_QUALITE_RECHERCHE_RESEAU
+                                            </div><br />
+                                            
+                                        </div><!-- listerub -->
+
+                                        <div class="listerub">
+                                            <div class="titresousrub">Temp&eacute;rature des cours d'eau</div>
+                                            <a href="spip.php?page=liste_stations_temperature"  class="titreartliste">Liste des stations en Pays de la Loire</a>
+                                        </div><!-- listerub -->
+                                        
+                                        <div class="listerub">
+                                            <div class="titresousrub">Atlas des diatomées</div>
+                                            <a href="spip.php?page=liste_diatomees"  class="titreartliste">Liste des taxons en Bretagne et Pays de la Loire</a>
+                                            <a href="IMG/pdf/presentation_atlas_diatomees.pdf" 
+                                                class="titreartliste"
+                                                target="_blank">Télécharger la présentation de l'atlas (PDF, 538 Ko)
+                                            </a>                                             
+                                            <a href="http://webissimo.developpement-durable.gouv.fr/IMG/pdf/A_-_Atlas_diatomees_PDL_B_2015_cle7414eb.pdf" 
+                                                class="titreartliste"
+                                                target="_blank">Télécharger l'atlas (PDF, 227.8 Mo)
+                                            </a> 
+                                        </div><!-- listerub -->                                        
+                                        
+                                        <!--<div class="ajax">
+                                            #FORMULAIRE_ATLAS_DIATOMEES
+                                        </div><br />-->
+
+                                        [(#REM) Sites de la rubrique ]
+                                        <B_sites>
+                                            <div class="listerub">
+
+                                                <div class="titresousrub"><:sur_web:></div>
+                                                <div id ="menu3">
+                                                    <div class="voir_sites">
+                                                        <ul>
+                                                            <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+                                                                <li>
+                                                                    <a href="#URL_SITE" target="_blank">#NOM_SITE</a>
+                                                                </li>
+                                                            </BOUCLE_sites>
+                                                        </ul><br />
+                                                    </div>
+                                                </div>
+                                            </div><!-- listerub -->
+                                        </B_sites>
+
+                                        <div class="o2paj">
+                                            <a href="#entete" title="Haut de page">Haut de page</a>
+                                        </div>
+
+                                    </div><!-- innercentrale -->
+                                </div><!-- boxcentrale -->
+                            </div><!-- main-content-3cols -->
+                        </div><!-- contenu -->
+
+                        <div class='clearer'>&nbsp;</div>
+
+                    </div><!-- main -->
+                </div><!-- milieu3 -->
+
+            </div><!-- ext-main -->
+            </div><!-- milieu -->
+
+            [(#REM) Pied de page ]
+            <INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+            </div><!--#page-->
+    </body>
+</html>
+</BOUCLE_principale>
