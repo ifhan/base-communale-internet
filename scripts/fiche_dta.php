@@ -8,20 +8,20 @@ require_once 'classes/Departement.class.php';
 require_once 'classes/Dta.class.php';
 
 /**
- * Ce fichier sert à afficher la fiche descriptive d'un PNR
+ * Ce fichier sert à afficher la fiche descriptive d'une DTA
  * @var $id_regional Identifiant régional du zonage
  */
 $id_regional = $_REQUEST["id_regional"];
 
-$pnr = new Dta();
-$pnr->getDtaByIdRegional($id_regional);
+$dta = new Dta();
+$dta->getDtaByIdRegional($id_regional);
 
 $departements = getDepartementsByIdRegional($id_regional);
 ?>
 <table class="cadre_plein">
     <tr>
         <td>Nom&nbsp;:</td>
-        <td><strong><?=$pnr->nom?></strong></td>
+        <td><strong><?=$dta->nom?></strong></td>
     </tr>
     <tr>
         <td valign="top">D&eacute;partement(s)&nbsp;:</td>
