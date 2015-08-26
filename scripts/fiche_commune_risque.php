@@ -59,7 +59,11 @@ $themes = getThemesByIdCommuneIdRubrique($id_commune,14);
                     <td width="99%">&nbsp;<?= mb_strtoupper($zonage["nom"]) ?>
                     </td>
                     <td class="cache">
-                        <a href="spip.php?page=zonage&id_type=<?= $zonage["id_type"] ?>&amp;id_regional=<?= $zonage["id_regional"] ?>"><div align="right" class="cache"><img src="IMG/png/system-search.png" alt="Lien vers la ressource" /></a></div>
+                        <div align="right" class="cache">
+                            <a href="spip.php?page=zonage&id_type=<?= $zonage["id_type"] ?>&amp;id_regional=<?= $zonage["id_regional"] ?>">
+                                <img src="IMG/png/system-search.png" alt="Lien vers la ressource" />
+                            </a>
+                        </div>
                     </td>
                  </tr>
             <?php endforeach; ?> 
