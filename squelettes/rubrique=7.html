@@ -76,27 +76,6 @@
                                             <a href="spip.php?page=liste_annexes_hydrauliques"  class="titreartliste">Liste des annexes hydrauliques en Pays de la Loire</a>
                                         </div>
 
-                                        <div class="listerub">
-
-                                            <div class="titresousrub">Qualit&eacute; des eaux</div><br />
-                                            
-                                            <h3 class="titreartliste">Recherche par cours d'eau</h3>
-                                            <INCLURE(scripts/liste_cours_eau.php)><br />
-
-                                            <h3 class="titreartliste">Recherche par commune</h3>
-                                            <INCLURE(scripts/liste_communes_qualite.php)><br />
-
-                                            <div class="ajax">
-                                                #FORMULAIRE_QUALITE_RECHERCHE_RESEAU
-                                            </div><br />
-                                            
-                                        </div><!-- listerub -->
-
-                                        <div class="listerub">
-                                            <div class="titresousrub">Temp&eacute;rature des cours d'eau</div>
-                                            <a href="spip.php?page=liste_stations_temperature"  class="titreartliste">Liste des stations en Pays de la Loire</a>
-                                        </div>
-
                                         [(#REM) Sites de la rubrique ]
                                         <B_sites>
                                             <div class="listerub">
@@ -108,9 +87,9 @@
                                                             <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
                                                                 <li>
                                                                     <a href="#URL_SITE" target="_blank">#NOM_SITE</a>
-                                                                </li><br />
+                                                                </li>
                                                             </BOUCLE_sites>
-                                                        </ul>
+                                                        </ul><br />
                                                     </div>
                                                 </div>
                                             </div><!-- listerub -->
