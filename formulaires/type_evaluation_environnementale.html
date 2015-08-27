@@ -1,0 +1,31 @@
+<div class="listerub">
+    <div class="titresousrub">Recherche par type de zonage</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Type de zonage&nbsp;:</strong><br />
+                        <select name="id_type">
+                            <option value="26">Avis de l'autorité environnementale sur les projets soumis à étude d'impact</option>
+                            <option value="64">Décisions de l'autorité environnementale sur les dossiers d'examen au cas par cas</option>
+                        </select>
+                    </td>
+                    <td><strong>D&eacute;partement&nbsp;:</strong><br />
+                        <select name="id_dpt" id="departement">
+                            <BOUCLE_departements(spip_departements)>
+                                <option value="#ID_DEPARTEMENT">#NOM_DEPARTEMENT</option>
+                            </BOUCLE_departements>
+                        </select>
+                    </td>
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
