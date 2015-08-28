@@ -53,7 +53,7 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><?=$enveloppe_travaux->statut?></td>
     </tr>
     <tr>
-        <td><strong>d_statut&nbsp;:</strong></td>
+        <td><strong>Détail du statut&nbsp;:</strong></td>
         <td><?=$enveloppe_travaux->d_statut?></td>
     </tr>
     <tr>
@@ -69,12 +69,8 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><?=$enveloppe_travaux->production?></td>
     </tr>    
     <tr>
-        <td><strong>caractere_env&nbsp;:</strong></td>
+        <td><strong>Caractère de l'enveloppe&nbsp;:</strong></td>
         <td><?=$enveloppe_travaux->caractere_env?></td>
-    </tr>
-    <tr>
-        <td><strong>surf_enj&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->surf_enj?></td>
     </tr>
     <tr>
         <td><strong>Résistance du minerai&nbsp;:</strong></td>
@@ -83,10 +79,6 @@ $departements = getDepartementsByIdRegional($id_regional);
     <tr>
         <td><strong>Typologie du gisement&nbsp;:</strong></td>
         <td><?=$enveloppe_travaux->typo_gisement?></td>
-    </tr>
-    <tr>
-        <td><strong>meth_exp&nbsp;:</strong></td>
-        <td><?=$enveloppe_travaux->meth_exp?></td>
     </tr>   
     <tr>
         <td><strong>Profondeur maximale&nbsp;:</strong></td>

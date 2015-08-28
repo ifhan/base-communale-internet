@@ -97,15 +97,11 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><?=$desordre_minier->terrain?></td>
     </tr>
     <tr>
-        <td><strong>media&nbsp;:</strong></td>
-        <td><?=$desordre_minier->media?></td>
-    </tr>
-    <tr>
-        <td><strong>Odj connu&nbsp;:</strong></td>
+        <td><strong>ODJ connu&nbsp;:</strong></td>
         <td><?=$desordre_minier->odj_connu?></td>
     </tr>
     <tr>
-        <td><strong>Type d'odj&nbsp;:</strong></td>
+        <td><strong>Type d'ODJ&nbsp;:</strong></td>
         <td><?=$desordre_minier->type_odj?></td>
     </tr>    
     <tr>

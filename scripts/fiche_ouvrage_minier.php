@@ -69,11 +69,11 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><?=$ouvrage_minier->nature?></td>
     </tr> 
     <tr>
-        <td><strong>Rôle odj&nbsp;:</strong></td>
+        <td><strong>Rôle ODJ&nbsp;:</strong></td>
         <td><?=$ouvrage_minier->role_odj?></td>
     </tr>
     <tr>
-        <td><strong>Date de fc&nbsp;:</strong></td>
+        <td><strong>Date de FC&nbsp;:</strong></td>
         <td><?=$ouvrage_minier->date_fc?></td>
     </tr>
     <tr>
