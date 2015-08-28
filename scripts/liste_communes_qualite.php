@@ -18,7 +18,7 @@ $id_dpt = isset($_POST['departement_commune'])?$_POST['departement_commune']:nul
     <tr>
         <td>
             <div class="select">
-                <form action="spip.php?rubrique7" method="post" id="changecommune">
+                <form action="spip.php?rubrique40" method="post" id="changecommune">
                     <p>D&eacute;partement&nbsp;:</p>
                     <select name="departement_commune" id="departement_commune" onchange="document.forms['changecommune'].submit();">
                         <option value="-1">---Choisir un d&eacute;partement---</option>
