@@ -21,12 +21,10 @@ class Icpe {
         try {
             $sql->execute();
             $row = $sql->fetch();
-            $this->id_regional = $row["id_regional"];
-            $this->id_dpt = $row["id_dpt"];            
+            $this->id_regional = $row["id_regional"];         
             $this->nom = $row["nom"];
-            $this->siret = $row["siret"];
             $this->id_commune = $row["id_commune"];
-            $this->lib_service = $row["lib_service"];
+            $this->libelle_service = $row["libelle_service"];
             $this->naf = $row["naf"];
             $this->lib_naf = $row["lib_naf"];
             $this->etat = $row["etat"];
@@ -36,7 +34,6 @@ class Icpe {
             $this->iet_mtd = $row["iet_mtd"];
             $this->prioritaire = $row["prioritaire"];
             $this->enjeux = $row["enjeux"];
-            $this->effectif = $row["effectif"];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
