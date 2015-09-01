@@ -8,15 +8,15 @@ require_once 'classes/utilities.inc.php';
 
 // Classes
 require_once 'classes/Departement.class.php';
-require_once 'classes/Icpe.class.php';
+require_once 'classes/IcpeDreal.class.php';
 
 /**
  * @var $id_regional Identifiant régional du zonage
  */
 $id_regional = $_REQUEST["id_regional"];
 
-$icpe = new Icpe();
-$icpe->getIcpeByIdRegional($id_regional);
+$icpe = new IcpeDreal();
+$icpe->getIcpeDrealByIdRegional($id_regional);
 
 $departements = getDepartementsByIdRegional($id_regional);
 ?>

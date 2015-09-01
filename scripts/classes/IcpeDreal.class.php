@@ -2,7 +2,7 @@
 
 /**
  * Description of IcpeDreal
- * Classe et fonctions concernant les ICPE A,E,S de la DREAL
+ * Classe et fonctions concernant les ICPE A,E,S gérées par la DREAL
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
  * @copyright 2015-09-01
  * @version 1.0
