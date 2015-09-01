@@ -28,10 +28,8 @@ class IcpeTar {
             $this->etat = $row["etat"];
             $this->regime = $row["regime"];
             $this->enjeux = $row["enjeux"];
-            $this->effectif = $row["effectif"];
             $this->naf = $row["naf"];
             $this->lib_naf = $row["lib_naf"];
-            $this->siret = $row["siret"];
             $this->id_commune = $row["id_commune"];
             $this->lib_servic = $row["lib_servic"];
             $this->commune = $row["commune"];

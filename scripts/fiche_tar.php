@@ -49,10 +49,6 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><?=$icpe_tar->code_s3ic?></td>
     </tr>
     <tr>
-        <td><strong>N° SIRET&nbsp;:</strong></td>
-        <td><?=$icpe_tar->siret?></td>
-    </tr>
-    <tr>
         <td><strong>Libell&eacute; du service&nbsp;:</strong></td>
         <td><?=$icpe_tar->lib_service?></td>
     </tr>    
@@ -87,10 +83,6 @@ $departements = getDepartementsByIdRegional($id_regional);
     <tr>
         <td><strong>Enjeux&nbsp;:</strong></td>
         <td><?=$icpe_tar->enjeux?></td>
-    </tr>
-    <tr>
-        <td><strong>Effectif&nbsp;:</strong></td>
-        <td><?=$icpe_tar->effectif?></td>
     </tr>
     <tr>
         <td><strong>Rubrique&nbsp;:</strong></td>
