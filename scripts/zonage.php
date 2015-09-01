@@ -7,10 +7,13 @@ require_once 'config/database.inc.php';
 require_once 'classes/utilities.inc.php';
 
 // Classes
+require_once 'classes/AvisAe.class.php';
 require_once 'classes/Basias.class.php';
 require_once 'classes/Basol.class.php';
+require_once 'classes/DecisionAe.class.php';
 require_once 'classes/Dta.class.php';
 require_once 'classes/Docob.class.php';
+require_once 'classes/IcpeDreal.class.php';
 require_once 'classes/Pnr.class.php';
 require_once 'classes/Pprm.class.php';
 require_once 'classes/Pprt.class.php';
@@ -420,7 +423,7 @@ switch ($id_type):
         <?php
             break;
             /**
-             * 6.9 Lien vers le site de la DREAL pour les PPRT
+             * 6.9.1 Lien vers le site de la DREAL pour les PPRT
              */
             case 54:
                 $pprt = new Pprt();
@@ -433,6 +436,81 @@ switch ($id_type):
             </li>    
         <?php
             break;
+            /**
+             * 6.9.2 Lien vers GARANCE et le site Internet DREAL pour 
+             * les avis de l'AE
+             */
+            case 26:
+                $avis_ae = new AvisAe();
+                $avis_ae->getAvisAeByIdRegional($id_regional);
+                ?>
+            <?php if(!empty($avis_ae->url_garance)): ?>
+                <li>
+                    <a class="document" href="<?=$avis_ae->url_garance?>" 
+                       target="blank">
+                        Consulter la fiche du dossier d'opération sur GARANCE
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if(!empty($avis_ae->url_resume)): ?>
+            <li>
+                <a class="document" href="<?=$avis_ae->url_resume?>" 
+                   target="blank">
+                    Consulter le résumé non-technique
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if(!empty($avis_ae->url_lien_pub)): ?>
+            <li>
+                <a class="document" href="<?=$avis_ae->url_lien_pub?>" 
+                   target="blank">
+                    Consulter l'avis publié sur le site Internet de la DREAL
+                </a>
+            </li>
+            <?php endif; ?>
+        <?php
+            break;
+            /**
+             * 6.9.3 Lien vers GARANCE et le site Internet DREAL pour 
+             * les décisions au cas par cas
+             */
+            case 64:
+                $decision_ae = new DecisionAe();
+                $decision_ae->getDecisionAeByIdRegional($id_regional);
+                ?>
+            <?php if(!empty($decision_ae->url_garance)): ?>
+                <li>
+                    <a class="document" href="<?=$decision_ae->url_garance?>" 
+                       target="blank">
+                        Consulter la fiche du dossier d'opération sur GARANCE
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if(!empty($decision_ae->url_formulaire)): ?>
+            <li>
+                <a class="document" href="<?=$decision_ae->url_formulaire?>" 
+                   target="blank">
+                    Consulter le formulaire sur le site Internet de la DREAL
+                </a>
+            </li>
+            <?php endif; ?>
+        <?php
+            break;
+            /**
+             * 6.9.4 Lien vers la Base des installations classées pour les ICPE
+             * A,E,S de la DREAL
+             */
+            case 71:
+                $icpe_dreal = new IcpeDreal();
+                $icpe_dreal->getIcpeDrealByIdRegional($id_regional);
+                ?>
+            <li>
+                <a class="document" href="<?=$icpe_dreal->url_cedric?>" target="blank">
+                    Consulter la fiche de l'établissement dans la Base des installations classées
+                </a>
+            </li>
+        <?php
+            break;            
     endswitch; ?>
 <!-- 7. Formulaires standards de données pour Natura 2000 sur le site de l'INPN -->
 <li>
