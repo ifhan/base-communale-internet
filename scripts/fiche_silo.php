@@ -30,6 +30,10 @@ $departements = getDepartementsByIdRegional($id_regional);
         <td><strong><?=$icpe_silo->id_regional?></strong></td>
     </tr>
     <tr>
+        <td>&Eacute;tat d'activité&nbsp;:</td>
+        <td><strong><?=$icpe_silo->etat?></strong></td>
+    </tr>    
+    <tr>
         <td valign="top">D&eacute;partement(s)&nbsp;:</td>
         <td>
             <?php foreach($departements as $departement): ?>
@@ -42,18 +46,4 @@ $departements = getDepartementsByIdRegional($id_regional);
     </tr>
 </table><br />
 <h3 class="spip">Commune d'exploitation&nbsp;:</h2>
-<?php require_once 'inc/commune.inc.php'; ?><br />
-<table class="encadre">
-    <tr>
-        <td><strong>N° SIRET&nbsp;:</strong></td>
-        <td><?=$icpe_silo->siret?></td>
-    </tr>
-    <tr>
-        <td><strong>&Eacute;tat d'activité&nbsp;:</strong></td>
-        <td><?=$icpe_silo->etat?></td>
-    </tr>
-    <tr>
-        <td><strong>Effectif&nbsp;:</strong></td>
-        <td><?=$icpe_silo->effectif?></td>
-    </tr>
-</table>
+<?php require_once 'inc/commune.inc.php'; ?>

@@ -8,57 +8,73 @@ require_once 'classes/utilities.inc.php';
 
 // Classes
 require_once 'classes/Departement.class.php';
-require_once 'classes/IcpeSeveso.class.php';
+require_once 'classes/IcpeAgricole.class.php';
 
 /**
  * @var $id_regional Identifiant régional du zonage
  */
 $id_regional = $_REQUEST["id_regional"];
 
-$icpe_seveso = new IcpeSeveso();
-$icpe_seveso->getIcpeSevesoByIdRegional($id_regional);
+$icpe_agricole = new IcpeAgricole();
+$icpe_agricole->getIcpeAgricoleByIdRegional($id_regional);
 
 $departements = getDepartementsByIdRegional($id_regional);
 ?>
 <table class="cadre_plein">
     <tr>
         <td>Nom&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->nom?></strong></td>
+        <td><strong><?=$icpe_agricole->nom?></strong></td>
     </tr>
     <tr>
         <td>Identifiant r&eacute;gional&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->id_regional?></strong></td>
+        <td><strong><?=$icpe_agricole->id_regional?></strong></td>
     </tr>
     <tr>
+        <td>Libell&eacute; du service&nbsp;:</td>
+        <td><strong><?=$icpe_agricole->libelle_service?></strong></td>
+    </tr>    
+    <tr>
         <td><abbr title="Nomenclature d'Activités Française">NAF</abbr>&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->naf?></strong></td>
+        <td><strong><?=$icpe_agricole->naf?></strong></td>
     </tr>
     <tr>
         <td>Libell&eacute; <abbr title="Nomenclature d'Activités Française">NAF</abbr>&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->lib_naf?></strong></td>
+        <td><strong><?=$icpe_agricole->lib_naf?></strong></td>
     </tr>
     <tr>
         <td>&Eacute;tat d'activité&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->etat?></strong></td>
+        <td><strong><?=$icpe_agricole->etat?></strong></td>
     </tr>
     <tr>
         <td>R&eacute;gime de l'établissement&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->regime?></strong></td>
+        <td><strong><?=$icpe_agricole->regime?></strong></td>
     </tr>
     <tr>
         <td>R&eacute;gime Seveso&nbsp;:</td>
-        <td><strong>
-            <?php if($icpe_seveso->seveso=='SB'): ?>
-            Seuil bas (SB)
-            <?php elseif($icpe_seveso->seveso=='AS'): ?>
-            Seuil haut (AS)
-            <?php endif;?>
+        <td>
+            <strong>
+            <?php switch($icpe_agricole->seveso): 
+                case 'SB':
+                    echo 'Seuil bas (SB)';
+                    break;
+                case 'AS':
+                    echo 'Seuil haut (AS)';
+                    break;
+                case 'NS':
+                    echo 'Non Seveso';
+                    break;
+            endswitch;
+            ?>
             </strong>
         </td>
-    </tr> 
+    </tr>
+    <tr>
+        <td>IET-MTD&nbsp;:</td>
+        <td><strong><?=$icpe_agricole->iet_mtd?></strong></td>
+    </tr>    
     <tr>
         <td>Enjeux&nbsp;:</td>
-        <td><strong><?=$icpe_seveso->enjeux?></strong></td>
+        <td><strong><?=$icpe_agricole->enjeux?></strong></td>
     </tr>    
     <tr>
         <td valign="top">D&eacute;partement(s)&nbsp;:</td>
