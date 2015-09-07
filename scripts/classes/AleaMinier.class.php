@@ -31,7 +31,7 @@ class AleaMinier {
             $this->surf_alea = $row["surf_alea"];
             $this->remarques = $row["remarques"];
             $this->pac = $row["pac"];
-            $this->date_pac = $row["date_pac"];
+            $this->date_pac = date("d/m/Y", strtotime($row['date_pac']));
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
