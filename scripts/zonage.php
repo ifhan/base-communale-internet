@@ -72,7 +72,7 @@ $zonage->getTypeZonageByIdType($id_type);
     <li>
         <a class="document" 
            href="<?= $zonage->url_presentation ?>" target="_blank">
-            Consulter la présentation sur le site Internet de la DREAL ou du Ministère</a>
+            Consulter la rubrique sur le site Internet de la DREAL ou du Ministère</a>
     </li>
     <?php endif; ?>
     <!-- 3. Fiches descriptives génériques et listes de communes -->
