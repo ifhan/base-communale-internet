@@ -62,11 +62,11 @@ class Scot {
 function getCommunesScotByIdScot($id_scot) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM bdc_commune_52, r_scot_communes_r52
+    FROM n_commune_fla_r52, r_scot_communes_r52
     WHERE r_scot_communes_r52.id_scot = :id_scot
-    AND bdc_commune_52.id_commune = r_scot_communes_r52.id_commune
-    GROUP BY bdc_commune_52.id_commune 
-    ORDER BY bdc_commune_52.id_commune');
+    AND n_commune_fla_r52.id_commune = r_scot_communes_r52.id_commune
+    GROUP BY n_commune_fla_r52.id_commune 
+    ORDER BY n_commune_fla_r52.id_commune');
     $sql->bindParam(':id_scot', $id_scot, PDO::PARAM_STR, 5);
     try {
         $sql->execute();
