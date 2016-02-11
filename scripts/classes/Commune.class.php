@@ -15,7 +15,7 @@ class Commune {
      */
     public function getCommuneByIdCommune($id_commune) {
         $pdo = ConnectionFactory::getFactory()->getConnection();
-        $sql = $pdo->prepare('SELECT * FROM bdc_commune_52 
+        $sql = $pdo->prepare('SELECT * FROM n_commune_fla_r52 
         WHERE id_commune = :id_commune');
         $sql->bindParam(':id_commune', $id_commune, PDO::PARAM_STR, 5);
         try {
@@ -37,7 +37,7 @@ class Commune {
  */
 function getCommunesByIdDpt($id_dpt) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT * FROM bdc_commune_52 
+    $sql = $pdo->prepare('SELECT * FROM n_commune_fla_r52 
     WHERE id_departement = :id_dpt
     ORDER BY nom_commune');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_STR, 2);
@@ -59,12 +59,12 @@ function getCommunesByIdDpt($id_dpt) {
 function getCommunesByIdRegional($id_regional, $id_type) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM r_zonages_communes_r52, bdc_commune_52
+    FROM r_zonages_communes_r52, n_commune_fla_r52
     WHERE r_zonages_communes_r52.id_regional = :id_regional
-    AND r_zonages_communes_r52.id_commune = bdc_commune_52.id_commune 
+    AND r_zonages_communes_r52.id_commune = n_commune_fla_r52.id_commune 
     AND r_zonages_communes_r52.id_type = :id_type
-    GROUP BY bdc_commune_52.id_commune
-    ORDER BY bdc_commune_52.id_commune');
+    GROUP BY n_commune_fla_r52.id_commune
+    ORDER BY n_commune_fla_r52.id_commune');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
     $sql->bindParam(':id_type', $id_type, PDO::PARAM_INT, 3);
     try {
@@ -84,13 +84,13 @@ function getCommunesByIdRegional($id_regional, $id_type) {
  */
 function getCommunesStationsQualiteByIdDpt($id_dpt) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
-    $sql = $pdo->prepare('SELECT bdc_commune_52.id_commune, 
-    bdc_commune_52.nom_commune, r_station_qualite_rcs_r52.id_commune 
-    FROM bdc_commune_52, r_station_qualite_rcs_r52
-    WHERE bdc_commune_52.id_departement = :id_dpt
-    AND bdc_commune_52.id_commune = r_station_qualite_rcs_r52.id_commune 
-    GROUP BY bdc_commune_52.nom_commune
-    ORDER BY bdc_commune_52.nom_commune');
+    $sql = $pdo->prepare('SELECT n_commune_fla_r52.id_commune, 
+    n_commune_fla_r52.nom_commune, r_station_qualite_rcs_r52.id_commune 
+    FROM n_commune_fla_r52, r_station_qualite_rcs_r52
+    WHERE n_commune_fla_r52.id_departement = :id_dpt
+    AND n_commune_fla_r52.id_commune = r_station_qualite_rcs_r52.id_commune 
+    GROUP BY n_commune_fla_r52.nom_commune
+    ORDER BY n_commune_fla_r52.nom_commune');
     $sql->bindParam(':id_dpt', $id_dpt, PDO::PARAM_INT, 2);
     try {
         $sql->execute();

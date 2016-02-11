@@ -64,10 +64,10 @@ class Departement {
 function getDepartementsByIdRegional($id_regional) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM r_zonages_communes_r52, bdc_commune_52, bdc_departement_52
+    FROM r_zonages_communes_r52, n_commune_fla_r52, bdc_departement_52
     WHERE r_zonages_communes_r52.id_regional = :id_regional
-    AND r_zonages_communes_r52.id_commune = bdc_commune_52.id_commune
-    AND bdc_commune_52.id_departement = bdc_departement_52.id_departement
+    AND r_zonages_communes_r52.id_commune = n_commune_fla_r52.id_commune
+    AND n_commune_fla_r52.id_departement = bdc_departement_52.id_departement
     GROUP BY bdc_departement_52.id_departement');
     $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 11);
     try {

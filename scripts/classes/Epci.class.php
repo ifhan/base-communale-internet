@@ -59,11 +59,11 @@ class Epci {
 function getCommunesEpciByIdEpci($id_epci) {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('SELECT * 
-    FROM bdc_commune_52, r_epci_communes_r52
+    FROM n_commune_fla_r52, r_epci_communes_r52
     WHERE r_epci_communes_r52.id_epci = :id_epci
-    AND bdc_commune_52.id_commune = r_epci_communes_r52.id_commune 
-    GROUP BY bdc_commune_52.id_commune 
-    ORDER BY bdc_commune_52.id_commune');
+    AND n_commune_fla_r52.id_commune = r_epci_communes_r52.id_commune 
+    GROUP BY n_commune_fla_r52.id_commune 
+    ORDER BY n_commune_fla_r52.id_commune');
     $sql->bindParam(':id_epci', $id_epci, PDO::PARAM_STR, 3);
     $sql->execute();
     try {
