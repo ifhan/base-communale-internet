@@ -1,0 +1,35 @@
+<div class="listerub">
+    <div class="titresousrub">Atlas des diatomées</div>
+    <div class="formulaire_spip formulaire_demo">
+        <form action="#ENV{action}" method="post">
+            #ACTION_FORMULAIRE{#ENV{action}}
+            <table>
+                <tr>
+                    <td><strong>Famille&nbsp;:</strong><br />
+                        <select name="code_famille" id="famille">
+                            <BOUCLE_famille(r_diatomee_famille_r52)>
+                                <option value="#CODE_FAMILLE">#FAMILLE</option>
+                            </BOUCLE_famille>
+                        </select>
+                    </td>
+                    	<BOUCLE_editable(CONDITION){si #ENV{action}}>
+                    <td><strong>Genre&nbsp;:</strong><br />
+                        <select name="code_genre" id="genre">
+                            <BOUCLE_genre(r_diatomee_genre_r52)>
+                                <option value="#CODE_GENRE">#GENRE</option>
+                            </BOUCLE_genre>
+                        </select>
+                    </td>
+                        </BOUCLE_editable>
+
+                    <td>
+                        <br />
+                        <p class="boutons">
+                            <input type="submit" class="submit" value="Ok" />
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
