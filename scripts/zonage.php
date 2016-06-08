@@ -444,6 +444,7 @@ switch ($id_type):
                 $avis_ae = new AvisAe();
                 $avis_ae->getAvisAeByIdRegional($id_regional);
                 ?>
+            <?php if($_SERVER["HTTP_HOST"] == "base-communale.dreal-pays-de-la-loire.i2"): ?>
             <?php if(!empty($avis_ae->url_garance)): ?>
                 <li>
                     <a class="document" href="<?=$avis_ae->url_garance?>" 
@@ -451,6 +452,7 @@ switch ($id_type):
                         Consulter la fiche du dossier d'opération sur GARANCE
                     </a>
                 </li>
+            <?php endif; ?>
             <?php endif; ?>
             <?php if(!empty($avis_ae->url_resume)): ?>
             <li>
@@ -478,6 +480,7 @@ switch ($id_type):
                 $decision_ae = new DecisionAe();
                 $decision_ae->getDecisionAeByIdRegional($id_regional);
                 ?>
+            <?php if($_SERVER["HTTP_HOST"] == "base-communale.dreal-pays-de-la-loire.i2"): ?>
             <?php if(!empty($decision_ae->url_garance)): ?>
                 <li>
                     <a class="document" href="<?=$decision_ae->url_garance?>" 
@@ -485,6 +488,7 @@ switch ($id_type):
                         Consulter la fiche du dossier d'opération sur GARANCE
                     </a>
                 </li>
+            <?php endif; ?>
             <?php endif; ?>
             <?php if(!empty($decision_ae->url_formulaire)): ?>
             <li>
