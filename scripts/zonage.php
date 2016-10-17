@@ -644,6 +644,7 @@ $docob = new Docob();
 $docob->getDocobByIdRegional($id_regional);
 ?>
 <li>
+    <?php echo $docob->id_side ?>
     <?php if ($docob->id_side !== "0"): ?>
         <a class="document" href="<?= URL_SIDE ?><?= $docob->id_side ?>" 
            target="_blank">
