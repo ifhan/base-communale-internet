@@ -22,10 +22,13 @@ require_once 'classes/Rnr.class.php';
 require_once 'classes/Sage.class.php';
 require_once 'classes/Scot.class.php';
 require_once 'classes/SiteClasseInscrit.class.php';
+require_once 'classes/SousUnitePaysagere.class.php';
 require_once 'classes/StationQualite.class.php';
 require_once 'classes/Unesco.class.php';
+require_once 'classes/UnitePaysagere.class.php';
 require_once 'classes/Zonage.class.php';
 require_once 'classes/ZnieffIp.class.php';
+require_once 'classes/Zps.class.php';
 require_once 'classes/Zsc.class.php';
 
 /**
@@ -194,6 +197,19 @@ $zonage->getTypeZonageByIdType($id_type);
         </a>
                 <?php
                 break;    
+            /**
+             * 4.7 Lien vers l'Atlas de Paysages pour les UP 
+             */            
+            case 69:
+                $up = new UnitePaysagere();
+                $up->getUnitePaysagereByIdRegional($id_regional);
+                ?>
+        <a class="document" 
+           href="<?=$up->url_atlas?>">
+            Consulter l'unité paysagère sur l'Atlas de Paysages des Pays de la Loire
+        </a>
+                <?php
+                break;                
             
         endswitch; ?>
 </li>
@@ -520,7 +536,7 @@ switch ($id_type):
 <li>
     <?php
     switch ($id_type):
-        case 5: case 6: case 30:
+        case 5: case 30:
             ?>
             <a class="document" 
                href="<?= URL_INPN_NATURA_2000 ?><?=$id_regional?>" 
@@ -528,18 +544,6 @@ switch ($id_type):
                 Consulter le Formulaire Standard des Donn&eacute;es sur le site de l'INPN
             </a>
             <?php
-            break;
-
-        case 21:
-            if (ereg("^FR25", $id_regional)):
-                ?>
-                <a class="document" 
-                   href="<?= URL_INPN_NATURA_2000 ?><?=$id_regional?>" 
-                   target="_blank">
-                    Consulter le Formulaire Standard des Donn&eacute;es sur le site de l'INPN
-                </a>
-                <?php
-            endif;
             break;
     endswitch;
     ?>
@@ -635,18 +639,15 @@ endswitch;
     endif;
     ?>
 </li>
-<!-- 11. Documents d'objectifs pour Natura 2000 sur le portail SIDE-->
+<!-- 11. Documents d'objectifs des ZSC sur le portail SIDE-->
 <?php
-switch ($id_type):
-        case 5: case 6: case 21: case 30:
-            
-$docob = new Docob();
-$docob->getDocobByIdRegional($id_regional);
+if($id_type==5):     
+    $zps_data = new Zps();
+    $zps_data->getZpsDataByIdRegional($id_regional);
 ?>
 <li>
-    <?php echo $docob->id_side ?>
-    <?php if ($docob->id_side !== "0"): ?>
-        <a class="document" href="<?= URL_SIDE ?><?= $docob->id_side ?>" 
+    <?php if ($zps_data->id_side !== "0"): ?>
+        <a class="document" href="<?= URL_SIDE ?><?= $zps_data->id_side ?>" 
            target="_blank">
             Consulter la fiche du DOCOB sur le portail documentaire 
             <abbr 
@@ -656,19 +657,44 @@ $docob->getDocobByIdRegional($id_regional);
         </a>
     <?php endif; ?>
 </li>
-<!-- 12. Arrêtés pour Natura 2000 sur le site Internet de la DREAL-->
+<!-- 12. Arrêtés des ZPS sur le site Internet de la DREAL-->
 <li>
-    <?php if ($docob->id_article !== "0"): ?>
-        <a class="document" href="<?= URL_DREAL ?><?= $docob->id_article ?>" 
+    <?php if ($zps_data->id_article !== "0"): ?>
+        <a class="document" href="<?= URL_DREAL ?><?= $zps_data->id_article ?>" 
            target="_blank">
             Consulter les arr&ecirc;t&eacute;s sur le site Internet de la DREAL 
         </a>
     <?php endif; ?>
 </li>
+<?php endif; ?>
+<!-- 11 bis.  Documents d'objectifs des ZSC sur le portail SIDE-->
 <?php
-break;
-endswitch;
+if($id_type==30):
+    $zsc_data = new Zsc();
+    $zsc_data->getZscDataByIdRegional($id_regional);
 ?>
+<li>
+    <?php if ($zsc_data->id_side !== "0"): ?>
+        <a class="document" href="<?= URL_SIDE ?><?= $zsc_data->id_side ?>" 
+           target="_blank">
+            Consulter la fiche du DOCOB sur le portail documentaire 
+            <abbr 
+                title="Syst&egrave;me d'Information Documentaire de l'Environnement">
+                SIDE
+            </abbr>
+        </a>
+    <?php endif; ?>
+</li>
+<!-- 12. Arrêtés des ZSC sur le site Internet de la DREAL-->
+<li>
+    <?php if ($zsc_data->id_article !== "0"): ?>
+        <a class="document" href="<?= URL_DREAL ?><?= $zsc_data->id_article ?>" 
+           target="_blank">
+            Consulter les arr&ecirc;t&eacute;s sur le site Internet de la DREAL 
+        </a>
+    <?php endif; ?>
+</li>
+<?php endif; ?>
 <!-- 13. Plans de gestion pour les RNN -->
 <li>
     <?php if (file_exists("data/docs/plans_gestion/" . $zonage->path . "/" . $id_regional . ".pdf")): ?>
