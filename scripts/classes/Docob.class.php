@@ -19,10 +19,10 @@ class Docob {
         $sql = $pdo->prepare('(SELECT * 
         FROM r_zps_r52_data
         WHERE r_zps_r52_data.id_regional = :id_regional) 
-        UNION  (SELECT * 
+        UNION (SELECT * 
         FROM r_zsc_r52_data
         WHERE r_zsc_r52_data.id_regional = :id_regional)
-        UNION(SELECT * 
+        UNION (SELECT * 
         FROM r_sic_r52_data
         WHERE r_sic_r52_data.id_regional = :id_regional)');
         $sql->bindParam(':id_regional', $id_regional, PDO::PARAM_STR, 10);
@@ -49,8 +49,7 @@ function getDocob() {
     $pdo = ConnectionFactory::getFactory()->getConnection();
     $sql = $pdo->prepare('(SELECT * 
         FROM r_zps_r52_data) 
-        UNION  (SELECT * FROM r_zsc_r52_data) 
-        UNION(SELECT * FROM r_sic_r52_data) 
+        UNION  (SELECT * FROM r_zsc_r52_data)
         ORDER BY id_regional');
     try {
         $sql->execute();
