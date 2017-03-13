@@ -4,8 +4,8 @@
  * Description of UnitePaysagere
  * Classe et fonctions concernant les Unités paysagères de l'Atlas de Paysages
  * @author Ronan Vignard <ronan.vignard@developpement-durable.gouv.fr>
- * @copyright 2015-06-18
- * @version 1.0
+ * @copyright 2016-10-25
+ * @version 1.1
  */
 class UnitePaysagere {
 
@@ -25,6 +25,7 @@ class UnitePaysagere {
             $this->id_regional = $row["id_regional"];
             $this->nom = $row["nom"];
             $this->famille_up = $row['famille_up'];
+            $this->url_atlas = $row['url_atlas'];
         } catch (PDOException $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
